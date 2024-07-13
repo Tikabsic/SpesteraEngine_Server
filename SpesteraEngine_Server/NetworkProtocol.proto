@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+message Heartbeat {
+    string message = 1;
+    int64 timestamp = 2;
+}
+
+message Request {
+    string data = 1;
+}
+
+message Response {
+    string data = 1;
+}
+
+message Wrapper {
+    enum Channel{
+        TCP = 0;
+        UDP = 1;
+    }
+    enum MessageType {
+        UNKNOWN = 0;
+        HEARTBEAT = 1;
+        REQUEST = 2;
+        RESPONSE = 3;
+        ASSIGN_ID = 4;
+    }
+    Channel channel = 1;
+    MessageType type = 2;
+    string player_id = 3;
+    bytes payload = 4;
+}
+
+message AssignId {
+    string id = 1;
+}
