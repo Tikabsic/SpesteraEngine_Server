@@ -44,9 +44,9 @@ bool Player_Character::is_character_moving()
     if (player_transform_.position.x != last_sent_position_.x
         || player_transform_.position.y != last_sent_position_.y
         || player_transform_.position.z != last_sent_position_.z) {
-        return false;
+        return true;
     }
-    return true;
+    return false;
 }
 
 void Player_Character::set_last_sent_position()

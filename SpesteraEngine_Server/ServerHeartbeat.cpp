@@ -18,7 +18,6 @@ ServerHeartbeat::ServerHeartbeat(boost::asio::io_context& io_context, UdpServer&
 void ServerHeartbeat::push_player_character(std::shared_ptr<Player_Character> character)
 {
     online_characters_.push_back(character);
-    std::cout << "Character pushed" << character->player_id_ << std::endl;
 }
 
 void ServerHeartbeat::do_heartbeat()
@@ -36,9 +35,8 @@ void ServerHeartbeat::do_heartbeat()
     Heartbeat chunkHeartbeat;
 
     for (auto player : online_characters_) {
-        if (!player->is_character_moving()) {
+        if (player->is_character_moving()) {
             auto position = ServerHeartbeat::gather_player_transformation(player);
-            std::cout << position.player_id() << " <- playerId"  << std::endl;
             chunkHeartbeat.add_players()->CopyFrom(position);
         }
     }

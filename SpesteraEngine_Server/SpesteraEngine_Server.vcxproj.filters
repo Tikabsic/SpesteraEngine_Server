@@ -73,6 +73,9 @@
     <Filter Include="Game_Server\Source\Managers\ConnectionsManager">
       <UniqueIdentifier>{6e71028c-3baa-4068-ac86-45fca9223c75}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game_Server\Utils\MessageInterpreter">
+      <UniqueIdentifier>{11ea62f9-4a31-48ad-984d-ff74aa9787d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TcpServer.h">
@@ -100,6 +103,9 @@
       <Filter>Game_Server\Include\Entities</Filter>
     </ClInclude>
     <ClInclude Include="TDM.h" />
+    <ClInclude Include="MessageInterpreter.h">
+      <Filter>Game_Server\Utils\MessageInterpreter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TcpServer.cpp">
@@ -130,6 +136,9 @@
       <Filter>Game_Server\Source\Entities</Filter>
     </ClCompile>
     <ClCompile Include="TDM.cpp" />
+    <ClCompile Include="MessageInterpreter.cpp">
+      <Filter>Game_Server\Utils\MessageInterpreter</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Config.ini" />

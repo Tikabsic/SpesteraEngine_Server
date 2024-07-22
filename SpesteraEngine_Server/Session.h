@@ -4,14 +4,17 @@
 #include <boost/asio.hpp>
 #include <deque>
 #include <mutex>
+
 #include "NetworkProtocol.pb.h"
 #include "BinaryCompressor.h"
 #include "Player_Character.h"
 #include "ServerHeartbeat.h"
 
+class TcpServer;
+
 class Session : public std::enable_shared_from_this<Session> {
 public:
-    Session(boost::asio::ip::tcp::socket socket, int id, ServerHeartbeat& heartbeat);
+    Session(boost::asio::ip::tcp::socket socket, int id, ServerHeartbeat& heartbeat, TcpServer* tcpserver);
     void start();
     void compress_to_write(const Wrapper& msg);
     void set_player_id(u_short pid);
@@ -28,8 +31,9 @@ private:
     std::deque<std::string> write_msgs_;
     std::mutex write_mutex_;
 
-    //Heartbeat
+    //Modules
     ServerHeartbeat& server_heartbeat_;
+    TcpServer* tcp_server_;
 
     //Player things
     uint16_t playerId_;

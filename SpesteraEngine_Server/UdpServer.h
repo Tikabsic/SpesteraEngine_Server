@@ -5,6 +5,8 @@
 #include <unordered_map>
 #include <mutex>
 
+#include "NetworkProtocol.pb.h"
+
 using boost::asio::ip::udp;
 
 class UdpServer {
@@ -12,11 +14,15 @@ public:
     UdpServer(boost::asio::io_context& io_context, const std::string& address, int port);
     ~UdpServer();
 
+    //Base
     std::unordered_map<u_short, udp::endpoint> get_endpoint_map();
     char* get_buffer();
     void receive_data();
-    void response_to_login_request(udp::endpoint endpoint, u_short playerId);
+    void response_to_login_request(udp::endpoint endpoint);
+
+    //Deliver Type
     void send_data_to_all_players(const std::string& message);
+    void send_data_to_other_players(const std::string& message, u_short playerId);
 
 private:
     udp::socket socket_;

@@ -103,6 +103,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <IncludePath>Game_Server/Include/TCP_Server/;$(IncludePath)</IncludePath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>C:\Gamedev\SpesteraEngine_Server\SpesteraEngine_Server\x64;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -189,6 +192,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BinaryCompressor.h" />
+    <ClInclude Include="MessageInterpreter.h" />
     <ClInclude Include="NetworkProtocol.pb.h" />
     <ClInclude Include="Player_Character.h" />
     <ClInclude Include="ServerHeartbeat.h" />
@@ -200,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BinaryCompressor.cpp" />
+    <ClCompile Include="MessageInterpreter.cpp" />
     <ClCompile Include="NetworkProtocol.pb.cc" />
     <ClCompile Include="Player_Character.cpp" />
     <ClCompile Include="ServerHeartbeat.cpp" />

@@ -1,5 +1,4 @@
 #include "UdpServer.h"
-#include "NetworkProtocol.pb.h"
 #include "BinaryCompressor.h"
 #include <iostream>
 
@@ -31,7 +30,6 @@ void UdpServer::receive_data() {
                         throw std::runtime_error("Failed to parse Wrapper message");
                     }
 
-                    // Dalsze przetwarzanie wiadomoœci Wrapper, np. odczytanie payload
                     if (wrapper.type() == Wrapper::REQUESTLOGIN) {
                         RequestLogin login_request;
                         if (login_request.ParseFromString(wrapper.payload())) {
@@ -40,10 +38,20 @@ void UdpServer::receive_data() {
                                 std::lock_guard<std::mutex> lock(endpoint_map_mutex_);
                                 endpoint_map_[player_id] = sender_endpoint_;
                             }
-                            this->response_to_login_request(sender_endpoint_, player_id);
+                            this->response_to_login_request(sender_endpoint_);
                         }
                         else {
                             throw std::runtime_error("Failed to parse RequestLogin message");
+                        }
+                    }
+                    else if (wrapper.type() == Wrapper::CLIENTLOGOUT) {
+                        ClientLogout logout_msg;
+                        if (logout_msg.ParseFromString(wrapper.payload())) {
+                            endpoint_map_.erase(logout_msg.player_id());
+                            std::string message;
+                            BinaryCompressor compressor;
+                            compressor.compress_string(wrapper.SerializeAsString(), message);
+                            this->send_data_to_all_players(message);
                         }
                     }
                     else {
@@ -64,7 +72,7 @@ void UdpServer::receive_data() {
         });
 }
 
-void UdpServer::response_to_login_request(udp::endpoint endpoint, u_short playerId) {
+void UdpServer::response_to_login_request(udp::endpoint endpoint) {
     std::string message = "Hello from server";
     Response response;
     response.set_data(message);
@@ -103,7 +111,37 @@ void UdpServer::send_data_to_all_players(const std::string& message) {
 
         socket_.async_send_to(
             boost::asio::buffer(send_buffer_), endpoint,
-            [player_id](boost::system::error_code ec, std::size_t bytes_sent) {
+            [player_id, message](boost::system::error_code ec, std::size_t bytes_sent) {
+                if (!ec) {
+                }
+                else {
+                    std::cerr << "Error sending message to player " << player_id << ": " << ec.message() << std::endl;
+                }
+            });
+    }
+}
+
+void UdpServer::send_data_to_other_players(const std::string& message, u_short playerId)
+{
+    std::lock_guard<std::mutex> lock(endpoint_map_mutex_);
+
+    if (endpoint_map_.empty()) {
+        std::cout << "No players online" << std::endl;
+        return;
+    }
+
+    for (const auto& pair : endpoint_map_) {
+        const u_short& player_id = pair.first;
+        const udp::endpoint& endpoint = pair.second;
+
+        if (player_id == playerId)
+            continue;
+
+        send_buffer_ = message;
+
+        socket_.async_send_to(
+            boost::asio::buffer(send_buffer_), endpoint,
+            [player_id, message](boost::system::error_code ec, std::size_t bytes_sent) {
                 if (!ec) {
                 }
                 else {

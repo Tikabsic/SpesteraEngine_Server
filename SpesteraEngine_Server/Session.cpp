@@ -1,10 +1,11 @@
 #include "Session.h"
+#include "TcpServer.h"
 #include "ServerHeartbeat.h"
 
 #include <iostream>
 
-Session::Session(boost::asio::ip::tcp::socket socket, int id, ServerHeartbeat& heartbeat)
-    : socket_(std::move(socket)), id_(id), server_heartbeat_(heartbeat) {
+Session::Session(boost::asio::ip::tcp::socket socket, int id, ServerHeartbeat& heartbeat, TcpServer* tcpserver)
+    : socket_(std::move(socket)), id_(id), server_heartbeat_(heartbeat), tcp_server_(tcpserver) {
 }
 
 void Session::start() {
@@ -50,7 +51,8 @@ void Session::set_player_id(u_short pid)
 void Session::handle_message(const Wrapper& wrapper) {
     switch (wrapper.type()) {
     case Wrapper::CLIENTLOGOUT: {
-        std::cout << "Client logged out : " << playerId_ << std::endl;
+        tcp_server_->remove_session(shared_from_this());
+        socket_.close();
         break;
     }
     case Wrapper::PLAYERPOSITION: {
