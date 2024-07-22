@@ -102,9 +102,11 @@
     <ClInclude Include="Player_Character.h">
       <Filter>Game_Server\Include\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="TDM.h" />
     <ClInclude Include="MessageInterpreter.h">
       <Filter>Game_Server\Utils\MessageInterpreter</Filter>
+    </ClInclude>
+    <ClInclude Include="TDM.h">
+      <Filter>Game_Server\Utils\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -135,9 +137,11 @@
     <ClCompile Include="Player_Character.cpp">
       <Filter>Game_Server\Source\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="TDM.cpp" />
     <ClCompile Include="MessageInterpreter.cpp">
       <Filter>Game_Server\Utils\MessageInterpreter</Filter>
+    </ClCompile>
+    <ClCompile Include="TDM.cpp">
+      <Filter>Game_Server\Utils\Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

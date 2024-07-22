@@ -111,10 +111,10 @@ public:
 
     static float customRound(float value) {
         if (value >= 0.0f) {
-            return std::floor(value + 0.005f);  // Zaokr¹glamy do góry, jeœli wartoœæ jest >= 0.005
+            return std::floor(value + 0.005f);
         }
         else {
-            return std::ceil(value - 0.005f);   // Zaokr¹glamy w dó³, jeœli wartoœæ jest < 0.005
+            return std::ceil(value - 0.005f);
         }
     }
 };
