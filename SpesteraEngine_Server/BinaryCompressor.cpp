@@ -65,6 +65,8 @@ void BinaryCompressor::decompress_string(const char* input, std::size_t input_le
 
         if (ret != Z_STREAM_END && ret != Z_OK) {
             inflateEnd(&zs);
+            std::cerr << "inflate failed with error code " << ret << " while decompressing. avail_in: " 
+                      << zs.avail_in << ", avail_out: " << zs.avail_out << std::endl;
             throw std::runtime_error("inflate failed while decompressing.");
         }
 
@@ -76,7 +78,7 @@ void BinaryCompressor::decompress_string(const char* input, std::size_t input_le
     inflateEnd(&zs);
 
     if (ret != Z_STREAM_END) {
-        throw std::runtime_error("inflate failed while decompressing.");
+        throw std::runtime_error("inflate failed to reach the end of stream while decompressing.");
     }
 
     output.swap(outstring);

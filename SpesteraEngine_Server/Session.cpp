@@ -1,37 +1,32 @@
 #include "Session.h"
+#include "ServerHeartbeat.h"
+
 #include <iostream>
 
-Session::Session(boost::asio::ip::tcp::socket socket, int id)
-    : socket_(std::move(socket)), id_(id) {
+Session::Session(boost::asio::ip::tcp::socket socket, int id, ServerHeartbeat& heartbeat)
+    : socket_(std::move(socket)), id_(id), server_heartbeat_(heartbeat) {
 }
 
 void Session::start() {
-    AssignId assign_id;
-    assign_id.set_id(std::to_string(id_));
+    PlayerInitialData player_initial_data;
+    player_initial_data.set_player_id(playerId_);
+    player_initial_data.set_player_movementspeed(5);
+    player_initial_data.set_position_x(100);
+    player_initial_data.set_position_y(1);
+    player_initial_data.set_position_z(100);
+    player_initial_data.set_rotation_y(100);
 
     Wrapper wrapper;
-    wrapper.set_channel(Wrapper::TCP);
-    wrapper.set_type(Wrapper::ASSIGN_ID);
-    wrapper.set_player_id(playerId_);
-    wrapper.set_payload(assign_id.SerializeAsString());
+    wrapper.set_type(Wrapper::PLAYERINITIALDATA);
+    wrapper.set_payload(player_initial_data.SerializeAsString());
+    write_msgs_.push_back(wrapper.SerializeAsString());
 
-    compress_to_write(wrapper);
+    character_ = std::make_shared<Player_Character>(100, 1, 100, 5, 180, playerId_);
 
+    server_heartbeat_.push_player_character(character_);
+
+    do_write();
     do_read();
-}
-
-std::string Session::GenerateSessionID() {
-    std::string letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-    std::string playerId;
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dist(0, letters.size() - 1);
-
-    for (int i = 0; i < 12; i++) {
-        playerId.push_back(letters[dist(gen)]);
-    }
-    playerId_ = playerId;
-    return playerId;
 }
 
 void Session::compress_to_write(const Wrapper& msg) {
@@ -40,40 +35,43 @@ void Session::compress_to_write(const Wrapper& msg) {
     BinaryCompressor compressor;
     compressor.compress_string(msg.SerializeAsString(), compressed_msg);
     write_msgs_.push_back(compressed_msg);
-
+    std::cout << compressed_msg << std::endl;
     if (!write_in_progress) {
         do_write();
     }
 }
 
+void Session::set_player_id(u_short pid)
+{
+    playerId_ = pid;
+}
+
 
 void Session::handle_message(const Wrapper& wrapper) {
-
     switch (wrapper.type()) {
-    case Wrapper::HEARTBEAT:
-        std::cout << "Received Heartbeat" << std::endl;
+    case Wrapper::CLIENTLOGOUT: {
+        std::cout << "Client logged out : " << playerId_ << std::endl;
         break;
-    case Wrapper::REQUEST:
-    {
-        Request request;
-        request.ParseFromString(wrapper.payload());
-        std::cout << "Received Request: " << request.data() <<"from player: " << wrapper.player_id() << std::endl;
-        // Handle request
-        Response response;
-        response.set_data("Response to " + request.data());
-
-        Wrapper response_wrapper;
-        response_wrapper.set_channel(Wrapper_Channel_TCP);
-        response_wrapper.set_type(Wrapper::RESPONSE);
-        response_wrapper.set_player_id(playerId_);
-        response_wrapper.set_payload(response.SerializeAsString());
-        compress_to_write(response_wrapper);
     }
-    break;
+    case Wrapper::PLAYERPOSITION: {
+        PlayerPosition position;
+        if (position.ParseFromArray(wrapper.payload().data(), wrapper.payload().size())) {
+            character_->move_player_character(position);
+        }
+        else {
+            std::cerr << "Failed to parse PlayerPosition message" << std::endl;
+        }
+        break;
+    }
     default:
         std::cout << "Unknown message type" << std::endl;
         break;
     }
+}
+
+u_short Session::get_player_id()
+{
+    return playerId_;
 }
 
 void Session::do_read() {
@@ -81,18 +79,15 @@ void Session::do_read() {
     socket_.async_read_some(boost::asio::buffer(data_, max_length),
         [this, self](boost::system::error_code ec, std::size_t length) {
             if (!ec) {
-                BinaryCompressor decompressor;
-                std::string decompressed_data;
-                try {
-                    decompressor.decompress_string(data_, length, decompressed_data);
+                try{
                     Wrapper wrapper;
-                    if (wrapper.ParseFromString(decompressed_data)) {
+                    if (wrapper.ParseFromArray(data_, length)) {
                         handle_message(wrapper);
                     }
                     do_read();
                 }
                 catch (const std::runtime_error& e) {
-                    std::cerr << "Decompression error: " << e.what() << std::endl;
+
                 }
             }
         });
@@ -105,6 +100,7 @@ void Session::do_write() {
         [this, self](boost::system::error_code ec, std::size_t length) {
             if (!ec) {
                 write_msgs_.pop_front();
+                std::cout << "Sent data to player"<< std::endl;
                 if (!write_msgs_.empty()) {
                     do_write();
                 }

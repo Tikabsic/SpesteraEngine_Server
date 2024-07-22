@@ -52,6 +52,27 @@
     <Filter Include="Game_Server\Source\UDP_Server">
       <UniqueIdentifier>{6673758e-9254-4bd5-a0ef-8d401aadb6cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game_Server\Include\Entities">
+      <UniqueIdentifier>{1e06d47c-a93e-418f-9305-21b4eaa1295c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game_Server\Source\Entities">
+      <UniqueIdentifier>{ae0b776d-e95d-4edf-9be2-349734d96e6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game_Server\Utils\Math">
+      <UniqueIdentifier>{6b1059d4-5936-4598-a1dc-c6a59148b262}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game_Server\Source\Managers">
+      <UniqueIdentifier>{c57ce8b1-cff9-4b37-a097-2d0cafe98306}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game_Server\Include\Managers">
+      <UniqueIdentifier>{58f3a261-1bb5-4f7b-a860-daf35aecbbf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game_Server\Include\Managers\ConnectionsManager">
+      <UniqueIdentifier>{913e7a42-7239-4a3b-bcdd-fcbc77eb565c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game_Server\Source\Managers\ConnectionsManager">
+      <UniqueIdentifier>{6e71028c-3baa-4068-ac86-45fca9223c75}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TcpServer.h">
@@ -75,6 +96,10 @@
     <ClInclude Include="ServerHeartbeat.h">
       <Filter>Game_Server\Include\UDP_Server</Filter>
     </ClInclude>
+    <ClInclude Include="Player_Character.h">
+      <Filter>Game_Server\Include\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="TDM.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TcpServer.cpp">
@@ -101,6 +126,10 @@
     <ClCompile Include="ServerHeartbeat.cpp">
       <Filter>Game_Server\Source\UDP_Server</Filter>
     </ClCompile>
+    <ClCompile Include="Player_Character.cpp">
+      <Filter>Game_Server\Source\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="TDM.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Config.ini" />

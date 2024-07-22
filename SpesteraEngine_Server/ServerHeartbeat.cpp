@@ -1,19 +1,50 @@
 #include "ServerHeartbeat.h"
 #include "NetworkProtocol.pb.h"
 #include "BinaryCompressor.h"
+#include "Player_Character.h"
+
 #include <chrono>
 
 ServerHeartbeat::ServerHeartbeat(boost::asio::io_context& io_context, UdpServer& udpserver, int tickrate)
     : server_(udpserver),
     timer_(io_context, boost::asio::chrono::milliseconds(tickrate)),
-    tickrate_(tickrate)
+    tickrate_(tickrate),
+    prev_timestamp(0)
 {
+
     do_heartbeat();
 }
 
-void ServerHeartbeat::do_heartbeat() {
-    if (server_.get_endpoint_map().empty()) {
-        std::cout << "Empty server" << std::endl;
+void ServerHeartbeat::push_player_character(std::shared_ptr<Player_Character> character)
+{
+    online_characters_.push_back(character);
+    std::cout << "Character pushed" << character->player_id_ << std::endl;
+}
+
+void ServerHeartbeat::do_heartbeat()
+{
+        if (server_.get_endpoint_map().empty()) {
+        timer_.expires_after(boost::asio::chrono::milliseconds(tickrate_));
+        timer_.async_wait([this](boost::system::error_code ec) {
+        if (!ec) {
+        do_heartbeat();
+        }
+        });
+    return;
+}
+
+    Heartbeat chunkHeartbeat;
+
+    for (auto player : online_characters_) {
+        if (!player->is_character_moving()) {
+            auto position = ServerHeartbeat::gather_player_transformation(player);
+            std::cout << position.player_id() << " <- playerId"  << std::endl;
+            chunkHeartbeat.add_players()->CopyFrom(position);
+        }
+    }
+
+    if (chunkHeartbeat.players_size() < 1) {
+
         timer_.expires_after(boost::asio::chrono::milliseconds(tickrate_));
         timer_.async_wait([this](boost::system::error_code ec) {
             if (!ec) {
@@ -21,32 +52,13 @@ void ServerHeartbeat::do_heartbeat() {
             }
             });
         return;
+
     }
 
-    Heartbeat heartbeat;
-    heartbeat.set_message("Heartbeat message");
-    heartbeat.set_timestamp(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()));
-
-    Wrapper wrapper;
-    wrapper.set_channel(Wrapper_Channel_UDP);
-    wrapper.set_type(Wrapper_MessageType_HEARTBEAT);
-
-    std::string heartbeat_data;
-    if (!heartbeat.SerializeToString(&heartbeat_data)) {
-        std::cerr << "Failed to serialize heartbeat message" << std::endl;
-        return;
-    }
-    wrapper.set_payload(heartbeat_data);
-
-    std::string wrapper_data;
-    if (!wrapper.SerializeToString(&wrapper_data)) {
-        std::cerr << "Failed to serialize wrapper message" << std::endl;
-        return;
-    }
-
+    std::string heartbeat_data = chunkHeartbeat.SerializeAsString();
     std::string compressed_msg;
     BinaryCompressor compressor;
-    compressor.compress_string(wrapper_data, compressed_msg);
+    compressor.compress_string(heartbeat_data, compressed_msg);
 
     server_.send_data_to_all_players(compressed_msg);
 
@@ -56,4 +68,16 @@ void ServerHeartbeat::do_heartbeat() {
             do_heartbeat();
         }
         });
+}
+PlayerPosition ServerHeartbeat::gather_player_transformation(std::shared_ptr<Player_Character> character)
+{
+    PlayerPosition transform;
+    transform.set_player_id(character->player_id_);
+    transform.set_position_x(character->player_transform_.position.x);
+    transform.set_position_y(character->player_transform_.position.y);
+    transform.set_position_z(character->player_transform_.position.z);
+
+    character->set_last_sent_position();
+
+    return transform;
 }

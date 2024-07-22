@@ -1,8 +1,0 @@
-C:\Gamedev\SpesteraEngine_Server\SpesteraEngine_Server\BinaryCompressor.cpp;C:\Gamedev\SpesteraEngine_Server\SpesteraEngine_Server\x64\Debug\BinaryCompressor.obj
-C:\Gamedev\SpesteraEngine_Server\SpesteraEngine_Server\NetworkProtocol.pb.cc;C:\Gamedev\SpesteraEngine_Server\SpesteraEngine_Server\x64\Debug\NetworkProtocol.pb.obj
-C:\Gamedev\SpesteraEngine_Server\SpesteraEngine_Server\ServerHeartbeat.cpp;C:\Gamedev\SpesteraEngine_Server\SpesteraEngine_Server\x64\Debug\ServerHeartbeat.obj
-C:\Gamedev\SpesteraEngine_Server\SpesteraEngine_Server\Session.cpp;C:\Gamedev\SpesteraEngine_Server\SpesteraEngine_Server\x64\Debug\Session.obj
-C:\Gamedev\SpesteraEngine_Server\SpesteraEngine_Server\ConfigReader.cpp;C:\Gamedev\SpesteraEngine_Server\SpesteraEngine_Server\x64\Debug\ConfigReader.obj
-C:\Gamedev\SpesteraEngine_Server\SpesteraEngine_Server\Init.cpp;C:\Gamedev\SpesteraEngine_Server\SpesteraEngine_Server\x64\Debug\Init.obj
-C:\Gamedev\SpesteraEngine_Server\SpesteraEngine_Server\TcpServer.cpp;C:\Gamedev\SpesteraEngine_Server\SpesteraEngine_Server\x64\Debug\TcpServer.obj
-C:\Gamedev\SpesteraEngine_Server\SpesteraEngine_Server\UdpServer.cpp;C:\Gamedev\SpesteraEngine_Server\SpesteraEngine_Server\x64\Debug\UdpServer.obj

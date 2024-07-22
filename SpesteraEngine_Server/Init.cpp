@@ -5,6 +5,7 @@
 #include "UdpServer.h"
 #include "ServerHeartbeat.h"
 #include "NetworkProtocol.pb.h"
+#include "BinaryCompressor.h"
 
 int main() {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -19,15 +20,16 @@ int main() {
         int tickrate = std::stoi(config.get("Heartbeat", "tickrate"));
         int udp_port = std::stoi(config.get("Server", "udp_port"));
 
+
+
         //create asio IO context
 
         boost::asio::io_context io_context;
 
         //Init modules
-
-        TcpServer tcp_server(io_context, address, tcp_port);
         UdpServer udp_server(io_context, address, udp_port);
         ServerHeartbeat heartbeat(io_context, udp_server, tickrate);
+        TcpServer tcp_server(io_context, address, tcp_port, heartbeat);
 
         io_context.run();
     }
