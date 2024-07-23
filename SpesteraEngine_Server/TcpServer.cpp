@@ -40,13 +40,12 @@ void TcpServer::remove_session(std::shared_ptr<Session> session) {
     session_map_.erase(session->get_player_id());
 }
 
-void TcpServer::deliver_to_other(const Wrapper& msg, short session_id)
+void TcpServer::deliver_to_other_direct(const std::string& msg, short session_id)
 {
-
     for (auto other : sessions_) {
         if (other->get_player_id() == session_id)
             continue;
         if(other != nullptr)
-            other->compress_to_write(msg);
+            other->direct_push_to_buffer(msg);
     }
 }

@@ -16,7 +16,10 @@ class Session : public std::enable_shared_from_this<Session> {
 public:
     Session(boost::asio::ip::tcp::socket socket, int id, ServerHeartbeat& heartbeat, TcpServer* tcpserver);
     void start();
+
     void compress_to_write(const Wrapper& msg);
+    void direct_push_to_buffer(const std::string& msg);
+
     void set_player_id(u_short pid);
     u_short get_player_id();
 private:

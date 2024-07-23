@@ -20,6 +20,16 @@ void Session::start() {
     Wrapper wrapper;
     wrapper.set_type(Wrapper::PLAYERINITIALDATA);
     wrapper.set_payload(player_initial_data.SerializeAsString());
+
+    ClientLogin new_client_data;
+    new_client_data.mutable_player_data()->CopyFrom(player_initial_data);
+
+    Wrapper client_data_wrapper;
+    client_data_wrapper.set_type(Wrapper::CLIENTLOGIN);
+    client_data_wrapper.set_payload(new_client_data.SerializeAsString());
+
+    tcp_server_->deliver_to_other_direct(client_data_wrapper.SerializeAsString(), playerId_);
+
     write_msgs_.push_back(wrapper.SerializeAsString());
 
     character_ = std::make_shared<Player_Character>(100, 1, 100, 5, 180, playerId_);
@@ -31,15 +41,25 @@ void Session::start() {
 }
 
 void Session::compress_to_write(const Wrapper& msg) {
+
+    std::cout << "Message sent : " << msg.SerializeAsString() << std::endl;
+
     bool write_in_progress = !write_msgs_.empty();
     std::string compressed_msg;
     BinaryCompressor compressor;
     compressor.compress_string(msg.SerializeAsString(), compressed_msg);
     write_msgs_.push_back(compressed_msg);
-    std::cout << compressed_msg << std::endl;
+    std::cout << "Message sent to : " << playerId_ << std::endl;
+    std::cout << "Message size : " << compressed_msg.size() << std::endl;
     if (!write_in_progress) {
         do_write();
     }
+}
+
+void Session::direct_push_to_buffer(const std::string& msg)
+{
+    write_msgs_.push_back(msg);
+    do_write();
 }
 
 void Session::set_player_id(u_short pid)
@@ -97,19 +117,15 @@ void Session::do_read() {
 
 void Session::do_write() {
     auto self(shared_from_this());
+    std::cout << write_msgs_.size() << " <- size of buffer before send data, player id -> " << playerId_ << std::endl;
     boost::asio::async_write(socket_,
         boost::asio::buffer(write_msgs_.front()),
         [this, self](boost::system::error_code ec, std::size_t length) {
             if (!ec) {
                 write_msgs_.pop_front();
-                std::cout << "Sent data to player"<< std::endl;
                 if (!write_msgs_.empty()) {
                     do_write();
                 }
-            }
-            else {
-                std::cerr << "Write error for session ID " << id_ << ": " << ec.message() << std::endl;
-                socket_.close(); // Or any other appropriate error handling
             }
         });
 }

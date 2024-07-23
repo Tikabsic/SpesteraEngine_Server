@@ -214,7 +214,26 @@ struct HeartbeatDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HeartbeatDefaultTypeInternal _Heartbeat_default_instance_;
-static ::_pb::Metadata file_level_metadata_NetworkProtocol_2eproto[9];
+
+inline constexpr ClientLogin::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        player_data_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR ClientLogin::ClientLogin(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct ClientLoginDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ClientLoginDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ClientLoginDefaultTypeInternal() {}
+  union {
+    ClientLogin _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ClientLoginDefaultTypeInternal _ClientLogin_default_instance_;
+static ::_pb::Metadata file_level_metadata_NetworkProtocol_2eproto[10];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_NetworkProtocol_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_NetworkProtocol_2eproto = nullptr;
@@ -258,6 +277,16 @@ const ::uint32_t TableStruct_NetworkProtocol_2eproto::offsets[] PROTOBUF_SECTION
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::ClientLogout, _impl_.player_id_),
+    PROTOBUF_FIELD_OFFSET(::ClientLogin, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::ClientLogin, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::ClientLogin, _impl_.player_data_),
+    0,
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Wrapper, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -326,11 +355,12 @@ static const ::_pbi::MigrationSchema
         {11, -1, -1, sizeof(::RequestLogin)},
         {20, -1, -1, sizeof(::Response)},
         {29, -1, -1, sizeof(::ClientLogout)},
-        {38, -1, -1, sizeof(::Wrapper)},
-        {48, -1, -1, sizeof(::AssignId)},
-        {57, -1, -1, sizeof(::PlayerInitialData)},
-        {71, -1, -1, sizeof(::PlayerPosition)},
-        {84, -1, -1, sizeof(::MonsterPosition)},
+        {38, 47, -1, sizeof(::ClientLogin)},
+        {48, -1, -1, sizeof(::Wrapper)},
+        {58, -1, -1, sizeof(::AssignId)},
+        {67, -1, -1, sizeof(::PlayerInitialData)},
+        {81, -1, -1, sizeof(::PlayerPosition)},
+        {94, -1, -1, sizeof(::MonsterPosition)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -338,6 +368,7 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::_RequestLogin_default_instance_._instance,
     &::_Response_default_instance_._instance,
     &::_ClientLogout_default_instance_._instance,
+    &::_ClientLogin_default_instance_._instance,
     &::_Wrapper_default_instance_._instance,
     &::_AssignId_default_instance_._instance,
     &::_PlayerInitialData_default_instance_._instance,
@@ -350,35 +381,37 @@ const char descriptor_table_protodef_NetworkProtocol_2eproto[] PROTOBUF_SECTION_
     "rPosition\022\"\n\010monsters\030\003 \003(\0132\020.MonsterPos"
     "ition\"!\n\014RequestLogin\022\021\n\tplayer_id\030\001 \001(\r"
     "\"\030\n\010Response\022\014\n\004data\030\001 \001(\t\"!\n\014ClientLogo"
-    "ut\022\021\n\tplayer_id\030\001 \001(\r\"\267\001\n\007Wrapper\022\"\n\004typ"
-    "e\030\001 \001(\0162\024.Wrapper.MessageType\022\017\n\007payload"
-    "\030\002 \001(\014\"w\n\013MessageType\022\013\n\007UNKNOWN\020\000\022\020\n\014RE"
-    "QUESTLOGIN\020\001\022\020\n\014CLIENTLOGOUT\020\002\022\014\n\010RESPON"
-    "SE\020\003\022\025\n\021PLAYERINITIALDATA\020\004\022\022\n\016PLAYERPOS"
-    "ITION\020\005\"\026\n\010AssignId\022\n\n\002id\030\001 \001(\r\"\224\001\n\021Play"
-    "erInitialData\022\021\n\tplayer_id\030\001 \001(\r\022\022\n\nposi"
-    "tion_x\030\002 \001(\002\022\022\n\nposition_y\030\003 \001(\002\022\022\n\nposi"
-    "tion_z\030\004 \001(\002\022\022\n\nrotation_y\030\005 \001(\r\022\034\n\024play"
-    "er_movementspeed\030\006 \001(\r\"s\n\016PlayerPosition"
-    "\022\021\n\tplayer_id\030\001 \001(\r\022\022\n\nposition_x\030\002 \001(\002\022"
-    "\022\n\nposition_y\030\003 \001(\002\022\022\n\nposition_z\030\004 \001(\002\022"
-    "\022\n\nrotation_y\030\005 \001(\r\"\213\001\n\017MonsterPosition\022"
-    "\022\n\nmonster_id\030\001 \001(\005\022\024\n\014monster_name\030\002 \001("
-    "\t\022\022\n\nposition_x\030\003 \001(\002\022\022\n\nposition_y\030\004 \001("
-    "\002\022\022\n\nposition_z\030\005 \001(\002\022\022\n\nrotation_y\030\006 \001("
-    "\rb\006proto3"
+    "ut\022\021\n\tplayer_id\030\001 \001(\r\"6\n\013ClientLogin\022\'\n\013"
+    "player_data\030\001 \001(\0132\022.PlayerInitialData\"\330\001"
+    "\n\007Wrapper\022\"\n\004type\030\001 \001(\0162\024.Wrapper.Messag"
+    "eType\022\017\n\007payload\030\002 \001(\014\"\227\001\n\013MessageType\022\013"
+    "\n\007UNKNOWN\020\000\022\020\n\014REQUESTLOGIN\020\001\022\020\n\014CLIENTL"
+    "OGOUT\020\002\022\017\n\013CLIENTLOGIN\020\003\022\025\n\021PLAYERINITIA"
+    "LDATA\020\004\022\022\n\016PLAYERPOSITION\020\005\022\r\n\tHEARTBEAT"
+    "\020\006\022\014\n\010RESPONSE\020d\"\026\n\010AssignId\022\n\n\002id\030\001 \001(\r"
+    "\"\224\001\n\021PlayerInitialData\022\021\n\tplayer_id\030\001 \001("
+    "\r\022\022\n\nposition_x\030\002 \001(\002\022\022\n\nposition_y\030\003 \001("
+    "\002\022\022\n\nposition_z\030\004 \001(\002\022\022\n\nrotation_y\030\005 \001("
+    "\r\022\034\n\024player_movementspeed\030\006 \001(\r\"s\n\016Playe"
+    "rPosition\022\021\n\tplayer_id\030\001 \001(\r\022\022\n\nposition"
+    "_x\030\002 \001(\002\022\022\n\nposition_y\030\003 \001(\002\022\022\n\nposition"
+    "_z\030\004 \001(\002\022\022\n\nrotation_y\030\005 \001(\r\"\213\001\n\017Monster"
+    "Position\022\022\n\nmonster_id\030\001 \001(\005\022\024\n\014monster_"
+    "name\030\002 \001(\t\022\022\n\nposition_x\030\003 \001(\002\022\022\n\npositi"
+    "on_y\030\004 \001(\002\022\022\n\nposition_z\030\005 \001(\002\022\022\n\nrotati"
+    "on_y\030\006 \001(\rb\006proto3"
 };
 static ::absl::once_flag descriptor_table_NetworkProtocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_NetworkProtocol_2eproto = {
     false,
     false,
-    849,
+    938,
     descriptor_table_protodef_NetworkProtocol_2eproto,
     "NetworkProtocol.proto",
     &descriptor_table_NetworkProtocol_2eproto_once,
     nullptr,
     0,
-    9,
+    10,
     schemas,
     file_default_instances,
     TableStruct_NetworkProtocol_2eproto::offsets,
@@ -409,9 +442,9 @@ const ::google::protobuf::EnumDescriptor* Wrapper_MessageType_descriptor() {
   return file_level_enum_descriptors_NetworkProtocol_2eproto[0];
 }
 PROTOBUF_CONSTINIT const uint32_t Wrapper_MessageType_internal_data_[] = {
-    393216u, 0u, };
+    458752u, 65536u, 100u, };
 bool Wrapper_MessageType_IsValid(int value) {
-  return 0 <= value && value <= 5;
+  return ::_pbi::ValidateEnum(value, Wrapper_MessageType_internal_data_);
 }
 #if (__cplusplus < 201703) && \
   (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
@@ -419,9 +452,11 @@ bool Wrapper_MessageType_IsValid(int value) {
 constexpr Wrapper_MessageType Wrapper::UNKNOWN;
 constexpr Wrapper_MessageType Wrapper::REQUESTLOGIN;
 constexpr Wrapper_MessageType Wrapper::CLIENTLOGOUT;
-constexpr Wrapper_MessageType Wrapper::RESPONSE;
+constexpr Wrapper_MessageType Wrapper::CLIENTLOGIN;
 constexpr Wrapper_MessageType Wrapper::PLAYERINITIALDATA;
 constexpr Wrapper_MessageType Wrapper::PLAYERPOSITION;
+constexpr Wrapper_MessageType Wrapper::HEARTBEAT;
+constexpr Wrapper_MessageType Wrapper::RESPONSE;
 constexpr Wrapper_MessageType Wrapper::MessageType_MIN;
 constexpr Wrapper_MessageType Wrapper::MessageType_MAX;
 constexpr int Wrapper::MessageType_ARRAYSIZE;
@@ -1197,6 +1232,213 @@ void ClientLogout::InternalSwap(ClientLogout* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
+class ClientLogin::_Internal {
+ public:
+  using HasBits = decltype(std::declval<ClientLogin>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(ClientLogin, _impl_._has_bits_);
+  static const ::PlayerInitialData& player_data(const ClientLogin* msg);
+  static void set_has_player_data(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::PlayerInitialData& ClientLogin::_Internal::player_data(const ClientLogin* msg) {
+  return *msg->_impl_.player_data_;
+}
+ClientLogin::ClientLogin(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:ClientLogin)
+}
+inline PROTOBUF_NDEBUG_INLINE ClientLogin::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+ClientLogin::ClientLogin(
+    ::google::protobuf::Arena* arena,
+    const ClientLogin& from)
+    : ::google::protobuf::Message(arena) {
+  ClientLogin* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.player_data_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::PlayerInitialData>(arena, *from._impl_.player_data_)
+                : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:ClientLogin)
+}
+inline PROTOBUF_NDEBUG_INLINE ClientLogin::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void ClientLogin::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.player_data_ = {};
+}
+ClientLogin::~ClientLogin() {
+  // @@protoc_insertion_point(destructor:ClientLogin)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ClientLogin::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.player_data_;
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void ClientLogin::Clear() {
+// @@protoc_insertion_point(message_clear_start:ClientLogin)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.player_data_ != nullptr);
+    _impl_.player_data_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ClientLogin::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> ClientLogin::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(ClientLogin, _impl_._has_bits_),
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_ClientLogin_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .PlayerInitialData player_data = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(ClientLogin, _impl_.player_data_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .PlayerInitialData player_data = 1;
+    {PROTOBUF_FIELD_OFFSET(ClientLogin, _impl_.player_data_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::PlayerInitialData>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* ClientLogin::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:ClientLogin)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .PlayerInitialData player_data = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::player_data(this),
+        _Internal::player_data(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:ClientLogin)
+  return target;
+}
+
+::size_t ClientLogin::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:ClientLogin)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .PlayerInitialData player_data = 1;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.player_data_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ClientLogin::_class_data_ = {
+    ClientLogin::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* ClientLogin::GetClassData() const {
+  return &_class_data_;
+}
+
+void ClientLogin::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ClientLogin*>(&to_msg);
+  auto& from = static_cast<const ClientLogin&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:ClientLogin)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_player_data()->::PlayerInitialData::MergeFrom(
+        from._internal_player_data());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ClientLogin::CopyFrom(const ClientLogin& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:ClientLogin)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ClientLogin::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* ClientLogin::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void ClientLogin::InternalSwap(ClientLogin* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.player_data_, other->_impl_.player_data_);
+}
+
+::google::protobuf::Metadata ClientLogin::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_NetworkProtocol_2eproto_getter, &descriptor_table_NetworkProtocol_2eproto_once,
+      file_level_metadata_NetworkProtocol_2eproto[4]);
+}
+// ===================================================================
+
 class Wrapper::_Internal {
  public:
 };
@@ -1404,7 +1646,7 @@ void Wrapper::InternalSwap(Wrapper* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata Wrapper::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_NetworkProtocol_2eproto_getter, &descriptor_table_NetworkProtocol_2eproto_once,
-      file_level_metadata_NetworkProtocol_2eproto[4]);
+      file_level_metadata_NetworkProtocol_2eproto[5]);
 }
 // ===================================================================
 
@@ -1574,7 +1816,7 @@ void AssignId::InternalSwap(AssignId* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata AssignId::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_NetworkProtocol_2eproto_getter, &descriptor_table_NetworkProtocol_2eproto_once,
-      file_level_metadata_NetworkProtocol_2eproto[5]);
+      file_level_metadata_NetworkProtocol_2eproto[6]);
 }
 // ===================================================================
 
@@ -1910,7 +2152,7 @@ void PlayerInitialData::InternalSwap(PlayerInitialData* PROTOBUF_RESTRICT other)
 ::google::protobuf::Metadata PlayerInitialData::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_NetworkProtocol_2eproto_getter, &descriptor_table_NetworkProtocol_2eproto_once,
-      file_level_metadata_NetworkProtocol_2eproto[6]);
+      file_level_metadata_NetworkProtocol_2eproto[7]);
 }
 // ===================================================================
 
@@ -2225,7 +2467,7 @@ void PlayerPosition::InternalSwap(PlayerPosition* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata PlayerPosition::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_NetworkProtocol_2eproto_getter, &descriptor_table_NetworkProtocol_2eproto_once,
-      file_level_metadata_NetworkProtocol_2eproto[7]);
+      file_level_metadata_NetworkProtocol_2eproto[8]);
 }
 // ===================================================================
 
@@ -2591,7 +2833,7 @@ void MonsterPosition::InternalSwap(MonsterPosition* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata MonsterPosition::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_NetworkProtocol_2eproto_getter, &descriptor_table_NetworkProtocol_2eproto_once,
-      file_level_metadata_NetworkProtocol_2eproto[8]);
+      file_level_metadata_NetworkProtocol_2eproto[9]);
 }
 // @@protoc_insertion_point(namespace_scope)
 namespace google {

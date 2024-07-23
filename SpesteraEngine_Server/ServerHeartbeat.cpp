@@ -53,10 +53,12 @@ void ServerHeartbeat::do_heartbeat()
 
     }
 
-    std::string heartbeat_data = chunkHeartbeat.SerializeAsString();
+    Wrapper wrapper;
+    wrapper.set_type(Wrapper::HEARTBEAT);
+    wrapper.set_payload(chunkHeartbeat.SerializeAsString());
     std::string compressed_msg;
     BinaryCompressor compressor;
-    compressor.compress_string(heartbeat_data, compressed_msg);
+    compressor.compress_string(wrapper.SerializeAsString(), compressed_msg);
 
     server_.send_data_to_all_players(compressed_msg);
 

@@ -20,7 +20,7 @@ public:
     //Deliver Type
     void deliver_to_all(const Wrapper& msg);
     void deliver_to_player(const u_short& player_id, const Wrapper& msg);
-    void deliver_to_other(const Wrapper& msg, short session_id);
+    void deliver_to_other_direct(const std::string& msg, short session_id);
 
     //Session Disconnect
     void remove_session(std::shared_ptr<Session> session);
