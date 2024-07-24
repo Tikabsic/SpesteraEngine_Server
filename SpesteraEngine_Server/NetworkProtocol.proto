@@ -1,13 +1,13 @@
 syntax = "proto3";
 
 message Heartbeat {
-    repeated PlayerPosition players = 2;
-    repeated MonsterPosition monsters = 3;
+    repeated PlayerPosition players = 1;
+    repeated MonsterPosition monsters = 2;
 }
 
 message WorldData {
-    repeated PlayerPosition players = 1;
-    repeated MonsterPosition monsters = 2;
+    repeated PlayerInitialData players = 1;
+    repeated MonsterInitialData monsters = 2;
 }
 
 message RequestLogin {
@@ -28,7 +28,7 @@ message ClientLogin{
 
 message Wrapper {
     enum MessageType {
-        UNKNOWN = 0;
+        WORLDDATA = 0;
         REQUESTLOGIN = 1;
         CLIENTLOGOUT = 2;
         CLIENTLOGIN = 3;
@@ -45,7 +45,7 @@ message AssignId {
     uint32 id = 1;
 }
 
-// Characters Initial data
+// Characters Initial Data
 
 message PlayerInitialData {
     uint32 player_id = 1;
@@ -57,6 +57,7 @@ message PlayerInitialData {
 }
 
 // Characters Position
+
 message PlayerPosition {
     uint32 player_id = 1;
     float position_x = 2;
@@ -64,7 +65,19 @@ message PlayerPosition {
     float position_z = 4;
     uint32 rotation_y = 5;
 }
+//Monsters Initial Data
 
+message MonsterInitialData {
+        int32 monster_id = 1;
+    string monster_name = 2;
+    float position_x = 3;
+    float position_y = 4;
+    float position_z = 5;
+    uint32 rotation_y = 6;
+    uint32 monster_movement_speed = 7;
+}
+
+// Monsters Position
 message MonsterPosition {
     int32 monster_id = 1;
     string monster_name = 2;

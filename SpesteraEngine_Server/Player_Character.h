@@ -17,9 +17,11 @@ public:
 
 	//Base
 	Player_Character(float X, float Y, float Z, float movement_speed, uint16_t RY, uint16_t pid);
+	~Player_Character();
 	void move_player_character(PlayerPosition transform);
 
 	//Helpers
+	float get_player_movement_speed();
 	bool is_character_moving();
 	void set_last_sent_position();
 

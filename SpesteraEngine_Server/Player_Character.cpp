@@ -12,6 +12,10 @@ Player_Character::Player_Character(float X, float Y, float Z, float movement_spe
     player_movement_speed = movement_speed;
 }
 
+Player_Character::~Player_Character()
+{
+}
+
 void Player_Character::move_player_character(PlayerPosition transform)
 {
     TDM::Vector3 movementVector;
@@ -37,6 +41,11 @@ void Player_Character::move_player_character(PlayerPosition transform)
         << player_transform_.position.y << ", "
         << player_transform_.position.z << ")" << std::endl;
 
+}
+
+float Player_Character::get_player_movement_speed()
+{
+    return player_movement_speed;
 }
 
 bool Player_Character::is_character_moving()

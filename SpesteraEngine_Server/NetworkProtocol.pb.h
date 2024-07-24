@@ -68,6 +68,9 @@ extern ClientLogoutDefaultTypeInternal _ClientLogout_default_instance_;
 class Heartbeat;
 struct HeartbeatDefaultTypeInternal;
 extern HeartbeatDefaultTypeInternal _Heartbeat_default_instance_;
+class MonsterInitialData;
+struct MonsterInitialDataDefaultTypeInternal;
+extern MonsterInitialDataDefaultTypeInternal _MonsterInitialData_default_instance_;
 class MonsterPosition;
 struct MonsterPositionDefaultTypeInternal;
 extern MonsterPositionDefaultTypeInternal _MonsterPosition_default_instance_;
@@ -95,7 +98,7 @@ namespace protobuf {
 }  // namespace google
 
 enum Wrapper_MessageType : int {
-  Wrapper_MessageType_UNKNOWN = 0,
+  Wrapper_MessageType_WORLDDATA = 0,
   Wrapper_MessageType_REQUESTLOGIN = 1,
   Wrapper_MessageType_CLIENTLOGOUT = 2,
   Wrapper_MessageType_CLIENTLOGIN = 3,
@@ -263,7 +266,7 @@ class Wrapper final :
   // nested types ----------------------------------------------------
 
   using MessageType = Wrapper_MessageType;
-  static constexpr MessageType UNKNOWN = Wrapper_MessageType_UNKNOWN;
+  static constexpr MessageType WORLDDATA = Wrapper_MessageType_WORLDDATA;
   static constexpr MessageType REQUESTLOGIN = Wrapper_MessageType_REQUESTLOGIN;
   static constexpr MessageType CLIENTLOGOUT = Wrapper_MessageType_CLIENTLOGOUT;
   static constexpr MessageType CLIENTLOGIN = Wrapper_MessageType_CLIENTLOGIN;
@@ -1225,7 +1228,7 @@ class MonsterPosition final :
                &_MonsterPosition_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(MonsterPosition& a, MonsterPosition& b) {
     a.Swap(&b);
@@ -1400,6 +1403,259 @@ class MonsterPosition final :
     float position_y_;
     float position_z_;
     ::uint32_t rotation_y_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_NetworkProtocol_2eproto;
+};// -------------------------------------------------------------------
+
+class MonsterInitialData final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:MonsterInitialData) */ {
+ public:
+  inline MonsterInitialData() : MonsterInitialData(nullptr) {}
+  ~MonsterInitialData() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR MonsterInitialData(::google::protobuf::internal::ConstantInitialized);
+
+  inline MonsterInitialData(const MonsterInitialData& from)
+      : MonsterInitialData(nullptr, from) {}
+  MonsterInitialData(MonsterInitialData&& from) noexcept
+    : MonsterInitialData() {
+    *this = ::std::move(from);
+  }
+
+  inline MonsterInitialData& operator=(const MonsterInitialData& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MonsterInitialData& operator=(MonsterInitialData&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MonsterInitialData& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MonsterInitialData* internal_default_instance() {
+    return reinterpret_cast<const MonsterInitialData*>(
+               &_MonsterInitialData_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(MonsterInitialData& a, MonsterInitialData& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MonsterInitialData* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MonsterInitialData* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MonsterInitialData* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MonsterInitialData>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const MonsterInitialData& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const MonsterInitialData& from) {
+    MonsterInitialData::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(MonsterInitialData* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "MonsterInitialData";
+  }
+  protected:
+  explicit MonsterInitialData(::google::protobuf::Arena* arena);
+  MonsterInitialData(::google::protobuf::Arena* arena, const MonsterInitialData& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMonsterNameFieldNumber = 2,
+    kMonsterIdFieldNumber = 1,
+    kPositionXFieldNumber = 3,
+    kPositionYFieldNumber = 4,
+    kPositionZFieldNumber = 5,
+    kRotationYFieldNumber = 6,
+    kMonsterMovementSpeedFieldNumber = 7,
+  };
+  // string monster_name = 2;
+  void clear_monster_name() ;
+  const std::string& monster_name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_monster_name(Arg_&& arg, Args_... args);
+  std::string* mutable_monster_name();
+  PROTOBUF_NODISCARD std::string* release_monster_name();
+  void set_allocated_monster_name(std::string* value);
+
+  private:
+  const std::string& _internal_monster_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_monster_name(
+      const std::string& value);
+  std::string* _internal_mutable_monster_name();
+
+  public:
+  // int32 monster_id = 1;
+  void clear_monster_id() ;
+  ::int32_t monster_id() const;
+  void set_monster_id(::int32_t value);
+
+  private:
+  ::int32_t _internal_monster_id() const;
+  void _internal_set_monster_id(::int32_t value);
+
+  public:
+  // float position_x = 3;
+  void clear_position_x() ;
+  float position_x() const;
+  void set_position_x(float value);
+
+  private:
+  float _internal_position_x() const;
+  void _internal_set_position_x(float value);
+
+  public:
+  // float position_y = 4;
+  void clear_position_y() ;
+  float position_y() const;
+  void set_position_y(float value);
+
+  private:
+  float _internal_position_y() const;
+  void _internal_set_position_y(float value);
+
+  public:
+  // float position_z = 5;
+  void clear_position_z() ;
+  float position_z() const;
+  void set_position_z(float value);
+
+  private:
+  float _internal_position_z() const;
+  void _internal_set_position_z(float value);
+
+  public:
+  // uint32 rotation_y = 6;
+  void clear_rotation_y() ;
+  ::uint32_t rotation_y() const;
+  void set_rotation_y(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_rotation_y() const;
+  void _internal_set_rotation_y(::uint32_t value);
+
+  public:
+  // uint32 monster_movement_speed = 7;
+  void clear_monster_movement_speed() ;
+  ::uint32_t monster_movement_speed() const;
+  void set_monster_movement_speed(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_monster_movement_speed() const;
+  void _internal_set_monster_movement_speed(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:MonsterInitialData)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      3, 7, 0,
+      39, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr monster_name_;
+    ::int32_t monster_id_;
+    float position_x_;
+    float position_y_;
+    float position_z_;
+    ::uint32_t rotation_y_;
+    ::uint32_t monster_movement_speed_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1892,41 +2148,41 @@ class WorldData final :
     kPlayersFieldNumber = 1,
     kMonstersFieldNumber = 2,
   };
-  // repeated .PlayerPosition players = 1;
+  // repeated .PlayerInitialData players = 1;
   int players_size() const;
   private:
   int _internal_players_size() const;
 
   public:
   void clear_players() ;
-  ::PlayerPosition* mutable_players(int index);
-  ::google::protobuf::RepeatedPtrField< ::PlayerPosition >*
+  ::PlayerInitialData* mutable_players(int index);
+  ::google::protobuf::RepeatedPtrField< ::PlayerInitialData >*
       mutable_players();
   private:
-  const ::google::protobuf::RepeatedPtrField<::PlayerPosition>& _internal_players() const;
-  ::google::protobuf::RepeatedPtrField<::PlayerPosition>* _internal_mutable_players();
+  const ::google::protobuf::RepeatedPtrField<::PlayerInitialData>& _internal_players() const;
+  ::google::protobuf::RepeatedPtrField<::PlayerInitialData>* _internal_mutable_players();
   public:
-  const ::PlayerPosition& players(int index) const;
-  ::PlayerPosition* add_players();
-  const ::google::protobuf::RepeatedPtrField< ::PlayerPosition >&
+  const ::PlayerInitialData& players(int index) const;
+  ::PlayerInitialData* add_players();
+  const ::google::protobuf::RepeatedPtrField< ::PlayerInitialData >&
       players() const;
-  // repeated .MonsterPosition monsters = 2;
+  // repeated .MonsterInitialData monsters = 2;
   int monsters_size() const;
   private:
   int _internal_monsters_size() const;
 
   public:
   void clear_monsters() ;
-  ::MonsterPosition* mutable_monsters(int index);
-  ::google::protobuf::RepeatedPtrField< ::MonsterPosition >*
+  ::MonsterInitialData* mutable_monsters(int index);
+  ::google::protobuf::RepeatedPtrField< ::MonsterInitialData >*
       mutable_monsters();
   private:
-  const ::google::protobuf::RepeatedPtrField<::MonsterPosition>& _internal_monsters() const;
-  ::google::protobuf::RepeatedPtrField<::MonsterPosition>* _internal_mutable_monsters();
+  const ::google::protobuf::RepeatedPtrField<::MonsterInitialData>& _internal_monsters() const;
+  ::google::protobuf::RepeatedPtrField<::MonsterInitialData>* _internal_mutable_monsters();
   public:
-  const ::MonsterPosition& monsters(int index) const;
-  ::MonsterPosition* add_monsters();
-  const ::google::protobuf::RepeatedPtrField< ::MonsterPosition >&
+  const ::MonsterInitialData& monsters(int index) const;
+  ::MonsterInitialData* add_monsters();
+  const ::google::protobuf::RepeatedPtrField< ::MonsterInitialData >&
       monsters() const;
   // @@protoc_insertion_point(class_scope:WorldData)
  private:
@@ -1951,8 +2207,8 @@ class WorldData final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::RepeatedPtrField< ::PlayerPosition > players_;
-    ::google::protobuf::RepeatedPtrField< ::MonsterPosition > monsters_;
+    ::google::protobuf::RepeatedPtrField< ::PlayerInitialData > players_;
+    ::google::protobuf::RepeatedPtrField< ::MonsterInitialData > monsters_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2092,10 +2348,10 @@ class Heartbeat final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kPlayersFieldNumber = 2,
-    kMonstersFieldNumber = 3,
+    kPlayersFieldNumber = 1,
+    kMonstersFieldNumber = 2,
   };
-  // repeated .PlayerPosition players = 2;
+  // repeated .PlayerPosition players = 1;
   int players_size() const;
   private:
   int _internal_players_size() const;
@@ -2113,7 +2369,7 @@ class Heartbeat final :
   ::PlayerPosition* add_players();
   const ::google::protobuf::RepeatedPtrField< ::PlayerPosition >&
       players() const;
-  // repeated .MonsterPosition monsters = 3;
+  // repeated .MonsterPosition monsters = 2;
   int monsters_size() const;
   private:
   int _internal_monsters_size() const;
@@ -2360,7 +2616,7 @@ class ClientLogin final :
 
 // Heartbeat
 
-// repeated .PlayerPosition players = 2;
+// repeated .PlayerPosition players = 1;
 inline int Heartbeat::_internal_players_size() const {
   return _internal_players().size();
 }
@@ -2409,7 +2665,7 @@ Heartbeat::_internal_mutable_players() {
   return &_impl_.players_;
 }
 
-// repeated .MonsterPosition monsters = 3;
+// repeated .MonsterPosition monsters = 2;
 inline int Heartbeat::_internal_monsters_size() const {
   return _internal_monsters().size();
 }
@@ -2462,7 +2718,7 @@ Heartbeat::_internal_mutable_monsters() {
 
 // WorldData
 
-// repeated .PlayerPosition players = 1;
+// repeated .PlayerInitialData players = 1;
 inline int WorldData::_internal_players_size() const {
   return _internal_players().size();
 }
@@ -2473,45 +2729,45 @@ inline void WorldData::clear_players() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.players_.Clear();
 }
-inline ::PlayerPosition* WorldData::mutable_players(int index)
+inline ::PlayerInitialData* WorldData::mutable_players(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_mutable:WorldData.players)
   return _internal_mutable_players()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::PlayerPosition>* WorldData::mutable_players()
+inline ::google::protobuf::RepeatedPtrField<::PlayerInitialData>* WorldData::mutable_players()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_mutable_list:WorldData.players)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _internal_mutable_players();
 }
-inline const ::PlayerPosition& WorldData::players(int index) const
+inline const ::PlayerInitialData& WorldData::players(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:WorldData.players)
   return _internal_players().Get(index);
 }
-inline ::PlayerPosition* WorldData::add_players() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::PlayerInitialData* WorldData::add_players() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::PlayerPosition* _add = _internal_mutable_players()->Add();
+  ::PlayerInitialData* _add = _internal_mutable_players()->Add();
   // @@protoc_insertion_point(field_add:WorldData.players)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::PlayerPosition>& WorldData::players() const
+inline const ::google::protobuf::RepeatedPtrField<::PlayerInitialData>& WorldData::players() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_list:WorldData.players)
   return _internal_players();
 }
-inline const ::google::protobuf::RepeatedPtrField<::PlayerPosition>&
+inline const ::google::protobuf::RepeatedPtrField<::PlayerInitialData>&
 WorldData::_internal_players() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.players_;
 }
-inline ::google::protobuf::RepeatedPtrField<::PlayerPosition>*
+inline ::google::protobuf::RepeatedPtrField<::PlayerInitialData>*
 WorldData::_internal_mutable_players() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.players_;
 }
 
-// repeated .MonsterPosition monsters = 2;
+// repeated .MonsterInitialData monsters = 2;
 inline int WorldData::_internal_monsters_size() const {
   return _internal_monsters().size();
 }
@@ -2522,39 +2778,39 @@ inline void WorldData::clear_monsters() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.monsters_.Clear();
 }
-inline ::MonsterPosition* WorldData::mutable_monsters(int index)
+inline ::MonsterInitialData* WorldData::mutable_monsters(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_mutable:WorldData.monsters)
   return _internal_mutable_monsters()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::MonsterPosition>* WorldData::mutable_monsters()
+inline ::google::protobuf::RepeatedPtrField<::MonsterInitialData>* WorldData::mutable_monsters()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_mutable_list:WorldData.monsters)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _internal_mutable_monsters();
 }
-inline const ::MonsterPosition& WorldData::monsters(int index) const
+inline const ::MonsterInitialData& WorldData::monsters(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:WorldData.monsters)
   return _internal_monsters().Get(index);
 }
-inline ::MonsterPosition* WorldData::add_monsters() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::MonsterInitialData* WorldData::add_monsters() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::MonsterPosition* _add = _internal_mutable_monsters()->Add();
+  ::MonsterInitialData* _add = _internal_mutable_monsters()->Add();
   // @@protoc_insertion_point(field_add:WorldData.monsters)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::MonsterPosition>& WorldData::monsters() const
+inline const ::google::protobuf::RepeatedPtrField<::MonsterInitialData>& WorldData::monsters() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_list:WorldData.monsters)
   return _internal_monsters();
 }
-inline const ::google::protobuf::RepeatedPtrField<::MonsterPosition>&
+inline const ::google::protobuf::RepeatedPtrField<::MonsterInitialData>&
 WorldData::_internal_monsters() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.monsters_;
 }
-inline ::google::protobuf::RepeatedPtrField<::MonsterPosition>*
+inline ::google::protobuf::RepeatedPtrField<::MonsterInitialData>*
 WorldData::_internal_mutable_monsters() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.monsters_;
@@ -3137,6 +3393,201 @@ inline void PlayerPosition::_internal_set_rotation_y(::uint32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.rotation_y_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// MonsterInitialData
+
+// int32 monster_id = 1;
+inline void MonsterInitialData::clear_monster_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.monster_id_ = 0;
+}
+inline ::int32_t MonsterInitialData::monster_id() const {
+  // @@protoc_insertion_point(field_get:MonsterInitialData.monster_id)
+  return _internal_monster_id();
+}
+inline void MonsterInitialData::set_monster_id(::int32_t value) {
+  _internal_set_monster_id(value);
+  // @@protoc_insertion_point(field_set:MonsterInitialData.monster_id)
+}
+inline ::int32_t MonsterInitialData::_internal_monster_id() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.monster_id_;
+}
+inline void MonsterInitialData::_internal_set_monster_id(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.monster_id_ = value;
+}
+
+// string monster_name = 2;
+inline void MonsterInitialData::clear_monster_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.monster_name_.ClearToEmpty();
+}
+inline const std::string& MonsterInitialData::monster_name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MonsterInitialData.monster_name)
+  return _internal_monster_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void MonsterInitialData::set_monster_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.monster_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:MonsterInitialData.monster_name)
+}
+inline std::string* MonsterInitialData::mutable_monster_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_monster_name();
+  // @@protoc_insertion_point(field_mutable:MonsterInitialData.monster_name)
+  return _s;
+}
+inline const std::string& MonsterInitialData::_internal_monster_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.monster_name_.Get();
+}
+inline void MonsterInitialData::_internal_set_monster_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.monster_name_.Set(value, GetArena());
+}
+inline std::string* MonsterInitialData::_internal_mutable_monster_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.monster_name_.Mutable( GetArena());
+}
+inline std::string* MonsterInitialData::release_monster_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:MonsterInitialData.monster_name)
+  return _impl_.monster_name_.Release();
+}
+inline void MonsterInitialData::set_allocated_monster_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.monster_name_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.monster_name_.IsDefault()) {
+          _impl_.monster_name_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:MonsterInitialData.monster_name)
+}
+
+// float position_x = 3;
+inline void MonsterInitialData::clear_position_x() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.position_x_ = 0;
+}
+inline float MonsterInitialData::position_x() const {
+  // @@protoc_insertion_point(field_get:MonsterInitialData.position_x)
+  return _internal_position_x();
+}
+inline void MonsterInitialData::set_position_x(float value) {
+  _internal_set_position_x(value);
+  // @@protoc_insertion_point(field_set:MonsterInitialData.position_x)
+}
+inline float MonsterInitialData::_internal_position_x() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.position_x_;
+}
+inline void MonsterInitialData::_internal_set_position_x(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.position_x_ = value;
+}
+
+// float position_y = 4;
+inline void MonsterInitialData::clear_position_y() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.position_y_ = 0;
+}
+inline float MonsterInitialData::position_y() const {
+  // @@protoc_insertion_point(field_get:MonsterInitialData.position_y)
+  return _internal_position_y();
+}
+inline void MonsterInitialData::set_position_y(float value) {
+  _internal_set_position_y(value);
+  // @@protoc_insertion_point(field_set:MonsterInitialData.position_y)
+}
+inline float MonsterInitialData::_internal_position_y() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.position_y_;
+}
+inline void MonsterInitialData::_internal_set_position_y(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.position_y_ = value;
+}
+
+// float position_z = 5;
+inline void MonsterInitialData::clear_position_z() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.position_z_ = 0;
+}
+inline float MonsterInitialData::position_z() const {
+  // @@protoc_insertion_point(field_get:MonsterInitialData.position_z)
+  return _internal_position_z();
+}
+inline void MonsterInitialData::set_position_z(float value) {
+  _internal_set_position_z(value);
+  // @@protoc_insertion_point(field_set:MonsterInitialData.position_z)
+}
+inline float MonsterInitialData::_internal_position_z() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.position_z_;
+}
+inline void MonsterInitialData::_internal_set_position_z(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.position_z_ = value;
+}
+
+// uint32 rotation_y = 6;
+inline void MonsterInitialData::clear_rotation_y() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.rotation_y_ = 0u;
+}
+inline ::uint32_t MonsterInitialData::rotation_y() const {
+  // @@protoc_insertion_point(field_get:MonsterInitialData.rotation_y)
+  return _internal_rotation_y();
+}
+inline void MonsterInitialData::set_rotation_y(::uint32_t value) {
+  _internal_set_rotation_y(value);
+  // @@protoc_insertion_point(field_set:MonsterInitialData.rotation_y)
+}
+inline ::uint32_t MonsterInitialData::_internal_rotation_y() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.rotation_y_;
+}
+inline void MonsterInitialData::_internal_set_rotation_y(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.rotation_y_ = value;
+}
+
+// uint32 monster_movement_speed = 7;
+inline void MonsterInitialData::clear_monster_movement_speed() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.monster_movement_speed_ = 0u;
+}
+inline ::uint32_t MonsterInitialData::monster_movement_speed() const {
+  // @@protoc_insertion_point(field_get:MonsterInitialData.monster_movement_speed)
+  return _internal_monster_movement_speed();
+}
+inline void MonsterInitialData::set_monster_movement_speed(::uint32_t value) {
+  _internal_set_monster_movement_speed(value);
+  // @@protoc_insertion_point(field_set:MonsterInitialData.monster_movement_speed)
+}
+inline ::uint32_t MonsterInitialData::_internal_monster_movement_speed() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.monster_movement_speed_;
+}
+inline void MonsterInitialData::_internal_set_monster_movement_speed(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.monster_movement_speed_ = value;
 }
 
 // -------------------------------------------------------------------

@@ -11,9 +11,8 @@ class ServerHeartbeat {
 public:
     ServerHeartbeat(boost::asio::io_context& io_context, UdpServer& udpserver, int tickrate);
     void push_player_character(std::shared_ptr<Player_Character> character);
-
-    
-
+    void remove_player_character(std::shared_ptr<Player_Character> character);
+    Wrapper gather_initial_world_data(uint16_t playerId);
 private:
     void do_heartbeat();
     PlayerPosition gather_player_transformation(std::shared_ptr<Player_Character> character, bool is_heartbeat);

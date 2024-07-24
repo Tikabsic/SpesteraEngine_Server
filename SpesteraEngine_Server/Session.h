@@ -15,6 +15,7 @@ class TcpServer;
 class Session : public std::enable_shared_from_this<Session> {
 public:
     Session(boost::asio::ip::tcp::socket socket, int id, ServerHeartbeat& heartbeat, TcpServer* tcpserver);
+    ~Session();
     void start();
 
     void compress_to_write(const Wrapper& msg);
@@ -26,6 +27,7 @@ private:
     void do_read();
     void do_write();
     void handle_message(const Wrapper& wrapper);
+    void send_initial_world_data();
 
     boost::asio::ip::tcp::socket socket_;
     int id_;
