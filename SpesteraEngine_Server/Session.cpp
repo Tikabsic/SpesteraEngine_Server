@@ -13,7 +13,7 @@ void Session::start() {
     player_initial_data.set_player_id(playerId_);
     player_initial_data.set_player_movementspeed(5);
     player_initial_data.set_position_x(100);
-    player_initial_data.set_position_y(1);
+    player_initial_data.set_position_y(0);
     player_initial_data.set_position_z(100);
     player_initial_data.set_rotation_y(100);
 
@@ -30,27 +30,21 @@ void Session::start() {
 
     tcp_server_->deliver_to_other_direct(client_data_wrapper.SerializeAsString(), playerId_);
 
-    write_msgs_.push_back(wrapper.SerializeAsString());
-
-    character_ = std::make_shared<Player_Character>(100, 1, 100, 5, 180, playerId_);
+    character_ = std::make_shared<Player_Character>(player_initial_data.position_x(), player_initial_data.position_y(), player_initial_data.position_z(), 5, 180, playerId_);
 
     server_heartbeat_.push_player_character(character_);
 
+    write_msgs_.push_back(wrapper.SerializeAsString());
     do_write();
     do_read();
 }
 
 void Session::compress_to_write(const Wrapper& msg) {
-
-    std::cout << "Message sent : " << msg.SerializeAsString() << std::endl;
-
     bool write_in_progress = !write_msgs_.empty();
     std::string compressed_msg;
     BinaryCompressor compressor;
     compressor.compress_string(msg.SerializeAsString(), compressed_msg);
     write_msgs_.push_back(compressed_msg);
-    std::cout << "Message sent to : " << playerId_ << std::endl;
-    std::cout << "Message size : " << compressed_msg.size() << std::endl;
     if (!write_in_progress) {
         do_write();
     }
@@ -117,7 +111,6 @@ void Session::do_read() {
 
 void Session::do_write() {
     auto self(shared_from_this());
-    std::cout << write_msgs_.size() << " <- size of buffer before send data, player id -> " << playerId_ << std::endl;
     boost::asio::async_write(socket_,
         boost::asio::buffer(write_msgs_.front()),
         [this, self](boost::system::error_code ec, std::size_t length) {

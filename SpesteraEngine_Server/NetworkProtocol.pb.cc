@@ -194,11 +194,30 @@ struct AssignIdDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AssignIdDefaultTypeInternal _AssignId_default_instance_;
 
+inline constexpr WorldData::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : players_{},
+        monsters_{},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR WorldData::WorldData(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct WorldDataDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR WorldDataDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~WorldDataDefaultTypeInternal() {}
+  union {
+    WorldData _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WorldDataDefaultTypeInternal _WorldData_default_instance_;
+
 inline constexpr Heartbeat::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : players_{},
         monsters_{},
-        timestamp_{0u},
         _cached_size_{0} {}
 
 template <typename>
@@ -233,7 +252,7 @@ struct ClientLoginDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ClientLoginDefaultTypeInternal _ClientLogin_default_instance_;
-static ::_pb::Metadata file_level_metadata_NetworkProtocol_2eproto[10];
+static ::_pb::Metadata file_level_metadata_NetworkProtocol_2eproto[11];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_NetworkProtocol_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_NetworkProtocol_2eproto = nullptr;
@@ -247,9 +266,18 @@ const ::uint32_t TableStruct_NetworkProtocol_2eproto::offsets[] PROTOBUF_SECTION
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Heartbeat, _impl_.timestamp_),
     PROTOBUF_FIELD_OFFSET(::Heartbeat, _impl_.players_),
     PROTOBUF_FIELD_OFFSET(::Heartbeat, _impl_.monsters_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::WorldData, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::WorldData, _impl_.players_),
+    PROTOBUF_FIELD_OFFSET(::WorldData, _impl_.monsters_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::RequestLogin, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -352,19 +380,21 @@ const ::uint32_t TableStruct_NetworkProtocol_2eproto::offsets[] PROTOBUF_SECTION
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::Heartbeat)},
-        {11, -1, -1, sizeof(::RequestLogin)},
-        {20, -1, -1, sizeof(::Response)},
-        {29, -1, -1, sizeof(::ClientLogout)},
-        {38, 47, -1, sizeof(::ClientLogin)},
-        {48, -1, -1, sizeof(::Wrapper)},
-        {58, -1, -1, sizeof(::AssignId)},
-        {67, -1, -1, sizeof(::PlayerInitialData)},
-        {81, -1, -1, sizeof(::PlayerPosition)},
-        {94, -1, -1, sizeof(::MonsterPosition)},
+        {10, -1, -1, sizeof(::WorldData)},
+        {20, -1, -1, sizeof(::RequestLogin)},
+        {29, -1, -1, sizeof(::Response)},
+        {38, -1, -1, sizeof(::ClientLogout)},
+        {47, 56, -1, sizeof(::ClientLogin)},
+        {57, -1, -1, sizeof(::Wrapper)},
+        {67, -1, -1, sizeof(::AssignId)},
+        {76, -1, -1, sizeof(::PlayerInitialData)},
+        {90, -1, -1, sizeof(::PlayerPosition)},
+        {103, -1, -1, sizeof(::MonsterPosition)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
     &::_Heartbeat_default_instance_._instance,
+    &::_WorldData_default_instance_._instance,
     &::_RequestLogin_default_instance_._instance,
     &::_Response_default_instance_._instance,
     &::_ClientLogout_default_instance_._instance,
@@ -376,42 +406,44 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::_MonsterPosition_default_instance_._instance,
 };
 const char descriptor_table_protodef_NetworkProtocol_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\025NetworkProtocol.proto\"d\n\tHeartbeat\022\021\n\t"
-    "timestamp\030\001 \001(\r\022 \n\007players\030\002 \003(\0132\017.Playe"
-    "rPosition\022\"\n\010monsters\030\003 \003(\0132\020.MonsterPos"
-    "ition\"!\n\014RequestLogin\022\021\n\tplayer_id\030\001 \001(\r"
-    "\"\030\n\010Response\022\014\n\004data\030\001 \001(\t\"!\n\014ClientLogo"
-    "ut\022\021\n\tplayer_id\030\001 \001(\r\"6\n\013ClientLogin\022\'\n\013"
-    "player_data\030\001 \001(\0132\022.PlayerInitialData\"\330\001"
-    "\n\007Wrapper\022\"\n\004type\030\001 \001(\0162\024.Wrapper.Messag"
-    "eType\022\017\n\007payload\030\002 \001(\014\"\227\001\n\013MessageType\022\013"
-    "\n\007UNKNOWN\020\000\022\020\n\014REQUESTLOGIN\020\001\022\020\n\014CLIENTL"
-    "OGOUT\020\002\022\017\n\013CLIENTLOGIN\020\003\022\025\n\021PLAYERINITIA"
-    "LDATA\020\004\022\022\n\016PLAYERPOSITION\020\005\022\r\n\tHEARTBEAT"
-    "\020\006\022\014\n\010RESPONSE\020d\"\026\n\010AssignId\022\n\n\002id\030\001 \001(\r"
-    "\"\224\001\n\021PlayerInitialData\022\021\n\tplayer_id\030\001 \001("
-    "\r\022\022\n\nposition_x\030\002 \001(\002\022\022\n\nposition_y\030\003 \001("
-    "\002\022\022\n\nposition_z\030\004 \001(\002\022\022\n\nrotation_y\030\005 \001("
-    "\r\022\034\n\024player_movementspeed\030\006 \001(\r\"s\n\016Playe"
-    "rPosition\022\021\n\tplayer_id\030\001 \001(\r\022\022\n\nposition"
-    "_x\030\002 \001(\002\022\022\n\nposition_y\030\003 \001(\002\022\022\n\nposition"
-    "_z\030\004 \001(\002\022\022\n\nrotation_y\030\005 \001(\r\"\213\001\n\017Monster"
-    "Position\022\022\n\nmonster_id\030\001 \001(\005\022\024\n\014monster_"
-    "name\030\002 \001(\t\022\022\n\nposition_x\030\003 \001(\002\022\022\n\npositi"
-    "on_y\030\004 \001(\002\022\022\n\nposition_z\030\005 \001(\002\022\022\n\nrotati"
-    "on_y\030\006 \001(\rb\006proto3"
+    "\n\025NetworkProtocol.proto\"Q\n\tHeartbeat\022 \n\007"
+    "players\030\002 \003(\0132\017.PlayerPosition\022\"\n\010monste"
+    "rs\030\003 \003(\0132\020.MonsterPosition\"Q\n\tWorldData\022"
+    " \n\007players\030\001 \003(\0132\017.PlayerPosition\022\"\n\010mon"
+    "sters\030\002 \003(\0132\020.MonsterPosition\"!\n\014Request"
+    "Login\022\021\n\tplayer_id\030\001 \001(\r\"\030\n\010Response\022\014\n\004"
+    "data\030\001 \001(\t\"!\n\014ClientLogout\022\021\n\tplayer_id\030"
+    "\001 \001(\r\"6\n\013ClientLogin\022\'\n\013player_data\030\001 \001("
+    "\0132\022.PlayerInitialData\"\330\001\n\007Wrapper\022\"\n\004typ"
+    "e\030\001 \001(\0162\024.Wrapper.MessageType\022\017\n\007payload"
+    "\030\002 \001(\014\"\227\001\n\013MessageType\022\013\n\007UNKNOWN\020\000\022\020\n\014R"
+    "EQUESTLOGIN\020\001\022\020\n\014CLIENTLOGOUT\020\002\022\017\n\013CLIEN"
+    "TLOGIN\020\003\022\025\n\021PLAYERINITIALDATA\020\004\022\022\n\016PLAYE"
+    "RPOSITION\020\005\022\r\n\tHEARTBEAT\020\006\022\014\n\010RESPONSE\020d"
+    "\"\026\n\010AssignId\022\n\n\002id\030\001 \001(\r\"\224\001\n\021PlayerIniti"
+    "alData\022\021\n\tplayer_id\030\001 \001(\r\022\022\n\nposition_x\030"
+    "\002 \001(\002\022\022\n\nposition_y\030\003 \001(\002\022\022\n\nposition_z\030"
+    "\004 \001(\002\022\022\n\nrotation_y\030\005 \001(\r\022\034\n\024player_move"
+    "mentspeed\030\006 \001(\r\"s\n\016PlayerPosition\022\021\n\tpla"
+    "yer_id\030\001 \001(\r\022\022\n\nposition_x\030\002 \001(\002\022\022\n\nposi"
+    "tion_y\030\003 \001(\002\022\022\n\nposition_z\030\004 \001(\002\022\022\n\nrota"
+    "tion_y\030\005 \001(\r\"\213\001\n\017MonsterPosition\022\022\n\nmons"
+    "ter_id\030\001 \001(\005\022\024\n\014monster_name\030\002 \001(\t\022\022\n\npo"
+    "sition_x\030\003 \001(\002\022\022\n\nposition_y\030\004 \001(\002\022\022\n\npo"
+    "sition_z\030\005 \001(\002\022\022\n\nrotation_y\030\006 \001(\rb\006prot"
+    "o3"
 };
 static ::absl::once_flag descriptor_table_NetworkProtocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_NetworkProtocol_2eproto = {
     false,
     false,
-    938,
+    1002,
     descriptor_table_protodef_NetworkProtocol_2eproto,
     "NetworkProtocol.proto",
     &descriptor_table_NetworkProtocol_2eproto_once,
     nullptr,
     0,
-    10,
+    11,
     schemas,
     file_default_instances,
     TableStruct_NetworkProtocol_2eproto::offsets,
@@ -490,7 +522,6 @@ Heartbeat::Heartbeat(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  _impl_.timestamp_ = from._impl_.timestamp_;
 
   // @@protoc_insertion_point(copy_constructor:Heartbeat)
 }
@@ -503,7 +534,6 @@ inline PROTOBUF_NDEBUG_INLINE Heartbeat::Impl_::Impl_(
 
 inline void Heartbeat::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.timestamp_ = {};
 }
 Heartbeat::~Heartbeat() {
   // @@protoc_insertion_point(destructor:Heartbeat)
@@ -524,7 +554,6 @@ PROTOBUF_NOINLINE void Heartbeat::Clear() {
 
   _impl_.players_.Clear();
   _impl_.monsters_.Clear();
-  _impl_.timestamp_ = 0u;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -536,24 +565,20 @@ const char* Heartbeat::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 2, 0, 2> Heartbeat::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 2, 0, 2> Heartbeat::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
+    3, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967289,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
+    2,  // num_field_entries
     2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_Heartbeat_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-    // uint32 timestamp = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Heartbeat, _impl_.timestamp_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.timestamp_)}},
     // repeated .PlayerPosition players = 2;
     {::_pbi::TcParser::FastMtR1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.players_)}},
@@ -563,9 +588,6 @@ const ::_pbi::TcParseTable<2, 3, 2, 0, 2> Heartbeat::_table_ = {
   }}, {{
     65535, 65535
   }}, {{
-    // uint32 timestamp = 1;
-    {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.timestamp_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
     // repeated .PlayerPosition players = 2;
     {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.players_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
@@ -585,13 +607,6 @@ const ::_pbi::TcParseTable<2, 3, 2, 0, 2> Heartbeat::_table_ = {
   // @@protoc_insertion_point(serialize_to_array_start:Heartbeat)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
-
-  // uint32 timestamp = 1;
-  if (this->_internal_timestamp() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-        1, this->_internal_timestamp(), target);
-  }
 
   // repeated .PlayerPosition players = 2;
   for (unsigned i = 0,
@@ -638,12 +653,6 @@ const ::_pbi::TcParseTable<2, 3, 2, 0, 2> Heartbeat::_table_ = {
     total_size +=
       ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-  // uint32 timestamp = 1;
-  if (this->_internal_timestamp() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_timestamp());
-  }
-
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -667,9 +676,6 @@ void Heartbeat::MergeImpl(::google::protobuf::Message& to_msg, const ::google::p
       from._internal_players());
   _this->_internal_mutable_monsters()->MergeFrom(
       from._internal_monsters());
-  if (from._internal_timestamp() != 0) {
-    _this->_internal_set_timestamp(from._internal_timestamp());
-  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -692,13 +698,222 @@ void Heartbeat::InternalSwap(Heartbeat* PROTOBUF_RESTRICT other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.players_.InternalSwap(&other->_impl_.players_);
   _impl_.monsters_.InternalSwap(&other->_impl_.monsters_);
-        swap(_impl_.timestamp_, other->_impl_.timestamp_);
 }
 
 ::google::protobuf::Metadata Heartbeat::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_NetworkProtocol_2eproto_getter, &descriptor_table_NetworkProtocol_2eproto_once,
       file_level_metadata_NetworkProtocol_2eproto[0]);
+}
+// ===================================================================
+
+class WorldData::_Internal {
+ public:
+};
+
+WorldData::WorldData(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:WorldData)
+}
+inline PROTOBUF_NDEBUG_INLINE WorldData::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : players_{visibility, arena, from.players_},
+        monsters_{visibility, arena, from.monsters_},
+        _cached_size_{0} {}
+
+WorldData::WorldData(
+    ::google::protobuf::Arena* arena,
+    const WorldData& from)
+    : ::google::protobuf::Message(arena) {
+  WorldData* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:WorldData)
+}
+inline PROTOBUF_NDEBUG_INLINE WorldData::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : players_{visibility, arena},
+        monsters_{visibility, arena},
+        _cached_size_{0} {}
+
+inline void WorldData::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+WorldData::~WorldData() {
+  // @@protoc_insertion_point(destructor:WorldData)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void WorldData::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void WorldData::Clear() {
+// @@protoc_insertion_point(message_clear_start:WorldData)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.players_.Clear();
+  _impl_.monsters_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* WorldData::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 2, 0, 2> WorldData::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_WorldData_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated .MonsterPosition monsters = 2;
+    {::_pbi::TcParser::FastMtR1,
+     {18, 63, 1, PROTOBUF_FIELD_OFFSET(WorldData, _impl_.monsters_)}},
+    // repeated .PlayerPosition players = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(WorldData, _impl_.players_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .PlayerPosition players = 1;
+    {PROTOBUF_FIELD_OFFSET(WorldData, _impl_.players_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // repeated .MonsterPosition monsters = 2;
+    {PROTOBUF_FIELD_OFFSET(WorldData, _impl_.monsters_), 0, 1,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::PlayerPosition>()},
+    {::_pbi::TcParser::GetTable<::MonsterPosition>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* WorldData::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:WorldData)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated .PlayerPosition players = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_players_size()); i < n; i++) {
+    const auto& repfield = this->_internal_players().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // repeated .MonsterPosition monsters = 2;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_monsters_size()); i < n; i++) {
+    const auto& repfield = this->_internal_monsters().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
+        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:WorldData)
+  return target;
+}
+
+::size_t WorldData::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:WorldData)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .PlayerPosition players = 1;
+  total_size += 1UL * this->_internal_players_size();
+  for (const auto& msg : this->_internal_players()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
+  // repeated .MonsterPosition monsters = 2;
+  total_size += 1UL * this->_internal_monsters_size();
+  for (const auto& msg : this->_internal_monsters()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData WorldData::_class_data_ = {
+    WorldData::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* WorldData::GetClassData() const {
+  return &_class_data_;
+}
+
+void WorldData::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<WorldData*>(&to_msg);
+  auto& from = static_cast<const WorldData&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:WorldData)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_players()->MergeFrom(
+      from._internal_players());
+  _this->_internal_mutable_monsters()->MergeFrom(
+      from._internal_monsters());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void WorldData::CopyFrom(const WorldData& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:WorldData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool WorldData::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* WorldData::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void WorldData::InternalSwap(WorldData* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.players_.InternalSwap(&other->_impl_.players_);
+  _impl_.monsters_.InternalSwap(&other->_impl_.monsters_);
+}
+
+::google::protobuf::Metadata WorldData::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_NetworkProtocol_2eproto_getter, &descriptor_table_NetworkProtocol_2eproto_once,
+      file_level_metadata_NetworkProtocol_2eproto[1]);
 }
 // ===================================================================
 
@@ -868,7 +1083,7 @@ void RequestLogin::InternalSwap(RequestLogin* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata RequestLogin::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_NetworkProtocol_2eproto_getter, &descriptor_table_NetworkProtocol_2eproto_once,
-      file_level_metadata_NetworkProtocol_2eproto[1]);
+      file_level_metadata_NetworkProtocol_2eproto[2]);
 }
 // ===================================================================
 
@@ -1058,7 +1273,7 @@ void Response::InternalSwap(Response* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata Response::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_NetworkProtocol_2eproto_getter, &descriptor_table_NetworkProtocol_2eproto_once,
-      file_level_metadata_NetworkProtocol_2eproto[2]);
+      file_level_metadata_NetworkProtocol_2eproto[3]);
 }
 // ===================================================================
 
@@ -1228,7 +1443,7 @@ void ClientLogout::InternalSwap(ClientLogout* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata ClientLogout::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_NetworkProtocol_2eproto_getter, &descriptor_table_NetworkProtocol_2eproto_once,
-      file_level_metadata_NetworkProtocol_2eproto[3]);
+      file_level_metadata_NetworkProtocol_2eproto[4]);
 }
 // ===================================================================
 
@@ -1435,7 +1650,7 @@ void ClientLogin::InternalSwap(ClientLogin* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata ClientLogin::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_NetworkProtocol_2eproto_getter, &descriptor_table_NetworkProtocol_2eproto_once,
-      file_level_metadata_NetworkProtocol_2eproto[4]);
+      file_level_metadata_NetworkProtocol_2eproto[5]);
 }
 // ===================================================================
 
@@ -1646,7 +1861,7 @@ void Wrapper::InternalSwap(Wrapper* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata Wrapper::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_NetworkProtocol_2eproto_getter, &descriptor_table_NetworkProtocol_2eproto_once,
-      file_level_metadata_NetworkProtocol_2eproto[5]);
+      file_level_metadata_NetworkProtocol_2eproto[6]);
 }
 // ===================================================================
 
@@ -1816,7 +2031,7 @@ void AssignId::InternalSwap(AssignId* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata AssignId::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_NetworkProtocol_2eproto_getter, &descriptor_table_NetworkProtocol_2eproto_once,
-      file_level_metadata_NetworkProtocol_2eproto[6]);
+      file_level_metadata_NetworkProtocol_2eproto[7]);
 }
 // ===================================================================
 
@@ -2152,7 +2367,7 @@ void PlayerInitialData::InternalSwap(PlayerInitialData* PROTOBUF_RESTRICT other)
 ::google::protobuf::Metadata PlayerInitialData::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_NetworkProtocol_2eproto_getter, &descriptor_table_NetworkProtocol_2eproto_once,
-      file_level_metadata_NetworkProtocol_2eproto[7]);
+      file_level_metadata_NetworkProtocol_2eproto[8]);
 }
 // ===================================================================
 
@@ -2467,7 +2682,7 @@ void PlayerPosition::InternalSwap(PlayerPosition* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata PlayerPosition::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_NetworkProtocol_2eproto_getter, &descriptor_table_NetworkProtocol_2eproto_once,
-      file_level_metadata_NetworkProtocol_2eproto[8]);
+      file_level_metadata_NetworkProtocol_2eproto[9]);
 }
 // ===================================================================
 
@@ -2833,7 +3048,7 @@ void MonsterPosition::InternalSwap(MonsterPosition* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata MonsterPosition::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_NetworkProtocol_2eproto_getter, &descriptor_table_NetworkProtocol_2eproto_once,
-      file_level_metadata_NetworkProtocol_2eproto[9]);
+      file_level_metadata_NetworkProtocol_2eproto[10]);
 }
 // @@protoc_insertion_point(namespace_scope)
 namespace google {

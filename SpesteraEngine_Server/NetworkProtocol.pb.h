@@ -83,6 +83,9 @@ extern RequestLoginDefaultTypeInternal _RequestLogin_default_instance_;
 class Response;
 struct ResponseDefaultTypeInternal;
 extern ResponseDefaultTypeInternal _Response_default_instance_;
+class WorldData;
+struct WorldDataDefaultTypeInternal;
+extern WorldDataDefaultTypeInternal _WorldData_default_instance_;
 class Wrapper;
 struct WrapperDefaultTypeInternal;
 extern WrapperDefaultTypeInternal _Wrapper_default_instance_;
@@ -189,7 +192,7 @@ class Wrapper final :
                &_Wrapper_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(Wrapper& a, Wrapper& b) {
     a.Swap(&b);
@@ -408,7 +411,7 @@ class Response final :
                &_Response_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   friend void swap(Response& a, Response& b) {
     a.Swap(&b);
@@ -589,7 +592,7 @@ class RequestLogin final :
                &_RequestLogin_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    2;
 
   friend void swap(RequestLogin& a, RequestLogin& b) {
     a.Swap(&b);
@@ -764,7 +767,7 @@ class PlayerPosition final :
                &_PlayerPosition_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(PlayerPosition& a, PlayerPosition& b) {
     a.Swap(&b);
@@ -987,7 +990,7 @@ class PlayerInitialData final :
                &_PlayerInitialData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(PlayerInitialData& a, PlayerInitialData& b) {
     a.Swap(&b);
@@ -1222,7 +1225,7 @@ class MonsterPosition final :
                &_MonsterPosition_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(MonsterPosition& a, MonsterPosition& b) {
     a.Swap(&b);
@@ -1463,7 +1466,7 @@ class ClientLogout final :
                &_ClientLogout_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   friend void swap(ClientLogout& a, ClientLogout& b) {
     a.Swap(&b);
@@ -1638,7 +1641,7 @@ class AssignId final :
                &_AssignId_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(AssignId& a, AssignId& b) {
     a.Swap(&b);
@@ -1747,6 +1750,209 @@ class AssignId final :
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::uint32_t id_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_NetworkProtocol_2eproto;
+};// -------------------------------------------------------------------
+
+class WorldData final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:WorldData) */ {
+ public:
+  inline WorldData() : WorldData(nullptr) {}
+  ~WorldData() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR WorldData(::google::protobuf::internal::ConstantInitialized);
+
+  inline WorldData(const WorldData& from)
+      : WorldData(nullptr, from) {}
+  WorldData(WorldData&& from) noexcept
+    : WorldData() {
+    *this = ::std::move(from);
+  }
+
+  inline WorldData& operator=(const WorldData& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WorldData& operator=(WorldData&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const WorldData& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const WorldData* internal_default_instance() {
+    return reinterpret_cast<const WorldData*>(
+               &_WorldData_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(WorldData& a, WorldData& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(WorldData* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WorldData* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  WorldData* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<WorldData>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const WorldData& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const WorldData& from) {
+    WorldData::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(WorldData* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "WorldData";
+  }
+  protected:
+  explicit WorldData(::google::protobuf::Arena* arena);
+  WorldData(::google::protobuf::Arena* arena, const WorldData& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPlayersFieldNumber = 1,
+    kMonstersFieldNumber = 2,
+  };
+  // repeated .PlayerPosition players = 1;
+  int players_size() const;
+  private:
+  int _internal_players_size() const;
+
+  public:
+  void clear_players() ;
+  ::PlayerPosition* mutable_players(int index);
+  ::google::protobuf::RepeatedPtrField< ::PlayerPosition >*
+      mutable_players();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::PlayerPosition>& _internal_players() const;
+  ::google::protobuf::RepeatedPtrField<::PlayerPosition>* _internal_mutable_players();
+  public:
+  const ::PlayerPosition& players(int index) const;
+  ::PlayerPosition* add_players();
+  const ::google::protobuf::RepeatedPtrField< ::PlayerPosition >&
+      players() const;
+  // repeated .MonsterPosition monsters = 2;
+  int monsters_size() const;
+  private:
+  int _internal_monsters_size() const;
+
+  public:
+  void clear_monsters() ;
+  ::MonsterPosition* mutable_monsters(int index);
+  ::google::protobuf::RepeatedPtrField< ::MonsterPosition >*
+      mutable_monsters();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::MonsterPosition>& _internal_monsters() const;
+  ::google::protobuf::RepeatedPtrField<::MonsterPosition>* _internal_mutable_monsters();
+  public:
+  const ::MonsterPosition& monsters(int index) const;
+  ::MonsterPosition* add_monsters();
+  const ::google::protobuf::RepeatedPtrField< ::MonsterPosition >&
+      monsters() const;
+  // @@protoc_insertion_point(class_scope:WorldData)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 2,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::RepeatedPtrField< ::PlayerPosition > players_;
+    ::google::protobuf::RepeatedPtrField< ::MonsterPosition > monsters_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1888,7 +2094,6 @@ class Heartbeat final :
   enum : int {
     kPlayersFieldNumber = 2,
     kMonstersFieldNumber = 3,
-    kTimestampFieldNumber = 1,
   };
   // repeated .PlayerPosition players = 2;
   int players_size() const;
@@ -1926,23 +2131,13 @@ class Heartbeat final :
   ::MonsterPosition* add_monsters();
   const ::google::protobuf::RepeatedPtrField< ::MonsterPosition >&
       monsters() const;
-  // uint32 timestamp = 1;
-  void clear_timestamp() ;
-  ::uint32_t timestamp() const;
-  void set_timestamp(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_timestamp() const;
-  void _internal_set_timestamp(::uint32_t value);
-
-  public:
   // @@protoc_insertion_point(class_scope:Heartbeat)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 2,
+      1, 2, 2,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -1961,7 +2156,6 @@ class Heartbeat final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::RepeatedPtrField< ::PlayerPosition > players_;
     ::google::protobuf::RepeatedPtrField< ::MonsterPosition > monsters_;
-    ::uint32_t timestamp_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2028,7 +2222,7 @@ class ClientLogin final :
                &_ClientLogin_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(ClientLogin& a, ClientLogin& b) {
     a.Swap(&b);
@@ -2166,29 +2360,6 @@ class ClientLogin final :
 
 // Heartbeat
 
-// uint32 timestamp = 1;
-inline void Heartbeat::clear_timestamp() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.timestamp_ = 0u;
-}
-inline ::uint32_t Heartbeat::timestamp() const {
-  // @@protoc_insertion_point(field_get:Heartbeat.timestamp)
-  return _internal_timestamp();
-}
-inline void Heartbeat::set_timestamp(::uint32_t value) {
-  _internal_set_timestamp(value);
-  // @@protoc_insertion_point(field_set:Heartbeat.timestamp)
-}
-inline ::uint32_t Heartbeat::_internal_timestamp() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.timestamp_;
-}
-inline void Heartbeat::_internal_set_timestamp(::uint32_t value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.timestamp_ = value;
-}
-
 // repeated .PlayerPosition players = 2;
 inline int Heartbeat::_internal_players_size() const {
   return _internal_players().size();
@@ -2283,6 +2454,108 @@ Heartbeat::_internal_monsters() const {
 }
 inline ::google::protobuf::RepeatedPtrField<::MonsterPosition>*
 Heartbeat::_internal_mutable_monsters() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.monsters_;
+}
+
+// -------------------------------------------------------------------
+
+// WorldData
+
+// repeated .PlayerPosition players = 1;
+inline int WorldData::_internal_players_size() const {
+  return _internal_players().size();
+}
+inline int WorldData::players_size() const {
+  return _internal_players_size();
+}
+inline void WorldData::clear_players() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.players_.Clear();
+}
+inline ::PlayerPosition* WorldData::mutable_players(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:WorldData.players)
+  return _internal_mutable_players()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::PlayerPosition>* WorldData::mutable_players()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:WorldData.players)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_players();
+}
+inline const ::PlayerPosition& WorldData::players(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:WorldData.players)
+  return _internal_players().Get(index);
+}
+inline ::PlayerPosition* WorldData::add_players() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::PlayerPosition* _add = _internal_mutable_players()->Add();
+  // @@protoc_insertion_point(field_add:WorldData.players)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::PlayerPosition>& WorldData::players() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:WorldData.players)
+  return _internal_players();
+}
+inline const ::google::protobuf::RepeatedPtrField<::PlayerPosition>&
+WorldData::_internal_players() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.players_;
+}
+inline ::google::protobuf::RepeatedPtrField<::PlayerPosition>*
+WorldData::_internal_mutable_players() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.players_;
+}
+
+// repeated .MonsterPosition monsters = 2;
+inline int WorldData::_internal_monsters_size() const {
+  return _internal_monsters().size();
+}
+inline int WorldData::monsters_size() const {
+  return _internal_monsters_size();
+}
+inline void WorldData::clear_monsters() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.monsters_.Clear();
+}
+inline ::MonsterPosition* WorldData::mutable_monsters(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:WorldData.monsters)
+  return _internal_mutable_monsters()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::MonsterPosition>* WorldData::mutable_monsters()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:WorldData.monsters)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_monsters();
+}
+inline const ::MonsterPosition& WorldData::monsters(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:WorldData.monsters)
+  return _internal_monsters().Get(index);
+}
+inline ::MonsterPosition* WorldData::add_monsters() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::MonsterPosition* _add = _internal_mutable_monsters()->Add();
+  // @@protoc_insertion_point(field_add:WorldData.monsters)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::MonsterPosition>& WorldData::monsters() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:WorldData.monsters)
+  return _internal_monsters();
+}
+inline const ::google::protobuf::RepeatedPtrField<::MonsterPosition>&
+WorldData::_internal_monsters() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.monsters_;
+}
+inline ::google::protobuf::RepeatedPtrField<::MonsterPosition>*
+WorldData::_internal_mutable_monsters() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.monsters_;
 }

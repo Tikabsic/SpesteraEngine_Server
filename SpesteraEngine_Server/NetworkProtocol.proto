@@ -1,12 +1,14 @@
 syntax = "proto3";
 
 message Heartbeat {
-    uint32 timestamp = 1;
     repeated PlayerPosition players = 2;
     repeated MonsterPosition monsters = 3;
 }
 
-
+message WorldData {
+    repeated PlayerPosition players = 1;
+    repeated MonsterPosition monsters = 2;
+}
 
 message RequestLogin {
     uint32 player_id = 1;

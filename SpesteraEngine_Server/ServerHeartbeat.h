@@ -12,9 +12,11 @@ public:
     ServerHeartbeat(boost::asio::io_context& io_context, UdpServer& udpserver, int tickrate);
     void push_player_character(std::shared_ptr<Player_Character> character);
 
+    
+
 private:
     void do_heartbeat();
-    PlayerPosition gather_player_transformation(std::shared_ptr<Player_Character> character);
+    PlayerPosition gather_player_transformation(std::shared_ptr<Player_Character> character, bool is_heartbeat);
 
     UdpServer& server_;
     boost::asio::steady_timer timer_;

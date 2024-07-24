@@ -30,27 +30,25 @@ void ServerHeartbeat::do_heartbeat()
         }
         });
     return;
-}
+        }
+
+        if (online_characters_.size() < 1) {
+            timer_.expires_after(boost::asio::chrono::milliseconds(tickrate_));
+            timer_.async_wait([this](boost::system::error_code ec) {
+                if (!ec) {
+                    do_heartbeat();
+                }
+                });
+            return;
+        }
 
     Heartbeat chunkHeartbeat;
 
     for (auto player : online_characters_) {
         if (player->is_character_moving()) {
-            auto position = ServerHeartbeat::gather_player_transformation(player);
+            auto position = ServerHeartbeat::gather_player_transformation(player, true);
             chunkHeartbeat.add_players()->CopyFrom(position);
         }
-    }
-
-    if (chunkHeartbeat.players_size() < 1) {
-
-        timer_.expires_after(boost::asio::chrono::milliseconds(tickrate_));
-        timer_.async_wait([this](boost::system::error_code ec) {
-            if (!ec) {
-                do_heartbeat();
-            }
-            });
-        return;
-
     }
 
     Wrapper wrapper;
@@ -69,7 +67,8 @@ void ServerHeartbeat::do_heartbeat()
         }
         });
 }
-PlayerPosition ServerHeartbeat::gather_player_transformation(std::shared_ptr<Player_Character> character)
+
+PlayerPosition ServerHeartbeat::gather_player_transformation(std::shared_ptr<Player_Character> character, bool is_heartbeat)
 {
     PlayerPosition transform;
     transform.set_player_id(character->player_id_);
@@ -77,7 +76,9 @@ PlayerPosition ServerHeartbeat::gather_player_transformation(std::shared_ptr<Pla
     transform.set_position_y(character->player_transform_.position.y);
     transform.set_position_z(character->player_transform_.position.z);
 
-    character->set_last_sent_position();
+    if (is_heartbeat) {
+        character->set_last_sent_position();
+    }
 
     return transform;
 }
