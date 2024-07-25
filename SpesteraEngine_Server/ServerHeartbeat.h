@@ -23,6 +23,7 @@ private:
     int64_t prev_timestamp;
 
     std::vector<std::shared_ptr<Player_Character>> online_characters_;
+    std::mutex characters_mutex_;
 };
 
 #endif // SERVERHEARTBEAT_H

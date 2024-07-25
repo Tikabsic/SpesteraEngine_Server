@@ -5,17 +5,18 @@
 #include <unordered_map>
 #include <mutex>
 
+class ConnectionsManager;
+
 #include "NetworkProtocol.pb.h"
 
 using boost::asio::ip::udp;
 
 class UdpServer {
 public:
-    UdpServer(boost::asio::io_context& io_context, const std::string& address, int port);
+    UdpServer(boost::asio::io_context& io_context, const std::string& address, int port, ConnectionsManager* connmanager);
     ~UdpServer();
 
     //Base
-    std::unordered_map<u_short, udp::endpoint> get_endpoint_map();
     char* get_buffer();
     void receive_data();
     void response_to_login_request(udp::endpoint endpoint);
@@ -31,7 +32,8 @@ private:
     char receive_data_[max_length];
     std::string send_buffer_;
 
-    std::unordered_map<u_short, udp::endpoint> endpoint_map_;
+    ConnectionsManager* conn_manager_;
+    
     std::mutex endpoint_map_mutex_;
 };
 

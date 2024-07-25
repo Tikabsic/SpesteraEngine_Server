@@ -32,7 +32,7 @@ void Player_Character::move_player_character(PlayerPosition transform)
         movementVector.z = transform.position_z();
     }
 
-    movementVector *= player_movement_speed * TDM::deltaTime;
+    movementVector *= player_movement_speed;
 
     player_transform_.position += movementVector;
     player_fov_.RepositionFov(movementVector);

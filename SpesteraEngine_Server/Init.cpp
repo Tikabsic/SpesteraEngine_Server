@@ -1,6 +1,7 @@
 #include <boost/asio.hpp>
 #include <iostream>
 #include "ConfigReader.h"
+#include "ConnectionsManager.h"
 #include "TcpServer.h"
 #include "UdpServer.h"
 #include "ServerHeartbeat.h"
@@ -27,9 +28,10 @@ int main() {
         boost::asio::io_context io_context;
 
         //Init modules
-        UdpServer udp_server(io_context, address, udp_port);
+        ConnectionsManager conn_manager;
+        UdpServer udp_server(io_context, address, udp_port, &conn_manager);
         ServerHeartbeat heartbeat(io_context, udp_server, tickrate);
-        TcpServer tcp_server(io_context, address, tcp_port, heartbeat);
+        TcpServer tcp_server(io_context, address, tcp_port, heartbeat, &conn_manager);
 
         io_context.run();
     }

@@ -21,6 +21,7 @@ void ServerHeartbeat::push_player_character(std::shared_ptr<Player_Character> ch
 }
 
 void ServerHeartbeat::remove_player_character(std::shared_ptr<Player_Character> character) {
+    std::lock_guard<std::mutex> lock(characters_mutex_);
     auto it = std::find(online_characters_.begin(), online_characters_.end(), character);
     if (it != online_characters_.end()) {
         online_characters_.erase(it);
@@ -63,16 +64,6 @@ Wrapper ServerHeartbeat::gather_initial_world_data(uint16_t playerId) {
 
 void ServerHeartbeat::do_heartbeat()
 {
-        if (server_.get_endpoint_map().empty()) {
-        timer_.expires_after(boost::asio::chrono::milliseconds(tickrate_));
-        timer_.async_wait([this](boost::system::error_code ec) {
-        if (!ec) {
-        do_heartbeat();
-        }
-        });
-    return;
-        }
-
         if (online_characters_.size() < 1) {
             timer_.expires_after(boost::asio::chrono::milliseconds(tickrate_));
             timer_.async_wait([this](boost::system::error_code ec) {

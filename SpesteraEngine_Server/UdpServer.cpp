@@ -1,18 +1,15 @@
 #include "UdpServer.h"
 #include "BinaryCompressor.h"
+#include "ConnectionsManager.h"
 #include <iostream>
 
-UdpServer::UdpServer(boost::asio::io_context& io_context, const std::string& address, int port)
-    : socket_(io_context, udp::endpoint(boost::asio::ip::make_address(address), port)) {
+UdpServer::UdpServer(boost::asio::io_context& io_context, const std::string& address, int port, ConnectionsManager* connmanager)
+    : socket_(io_context, udp::endpoint(boost::asio::ip::make_address(address), port)), conn_manager_(connmanager) {
     receive_data();
 }
 
 UdpServer::~UdpServer() {
     socket_.close();
-}
-
-std::unordered_map<u_short, udp::endpoint> UdpServer::get_endpoint_map() {
-    return endpoint_map_;
 }
 
 char* UdpServer::get_buffer() {
@@ -36,22 +33,12 @@ void UdpServer::receive_data() {
                             u_short player_id = login_request.player_id();
                             {
                                 std::lock_guard<std::mutex> lock(endpoint_map_mutex_);
-                                endpoint_map_[player_id] = sender_endpoint_;
+                                conn_manager_->add_endpoint_to_map(player_id, sender_endpoint_);
                             }
                             this->response_to_login_request(sender_endpoint_);
                         }
                         else {
                             throw std::runtime_error("Failed to parse RequestLogin message");
-                        }
-                    }
-                    else if (wrapper.type() == Wrapper::CLIENTLOGOUT) {
-                        ClientLogout logout_msg;
-                        if (logout_msg.ParseFromString(wrapper.payload())) {
-                            endpoint_map_.erase(logout_msg.player_id());
-                            std::string message;
-                            BinaryCompressor compressor;
-                            compressor.compress_string(wrapper.SerializeAsString(), message);
-                            this->send_data_to_all_players(message);
                         }
                     }
                     else {
@@ -98,15 +85,14 @@ void UdpServer::response_to_login_request(udp::endpoint endpoint) {
 void UdpServer::send_data_to_all_players(const std::string& message) {
     std::lock_guard<std::mutex> lock(endpoint_map_mutex_);
 
-    if (endpoint_map_.empty()) {
+    if (conn_manager_->connections_.empty()) {
         std::cout << "No players online" << std::endl;
         return;
     }
 
-    for (const auto& pair : endpoint_map_) {
-        const u_short& player_id = pair.first;
-        const udp::endpoint& endpoint = pair.second;
-
+    for (const auto& connection : conn_manager_->connections_) {
+        const short& player_id = connection.first;
+        const udp::endpoint& endpoint = connection.second->udp_connection_;
         send_buffer_ = message;
 
         socket_.async_send_to(
@@ -125,17 +111,18 @@ void UdpServer::send_data_to_other_players(const std::string& message, u_short p
 {
     std::lock_guard<std::mutex> lock(endpoint_map_mutex_);
 
-    if (endpoint_map_.empty()) {
+    if (conn_manager_->connections_.empty()) {
         std::cout << "No players online" << std::endl;
         return;
     }
 
-    for (const auto& pair : endpoint_map_) {
-        const u_short& player_id = pair.first;
-        const udp::endpoint& endpoint = pair.second;
+    for (const auto& connection : conn_manager_->connections_) {
+        const short& player_id = connection.first;
+        const udp::endpoint& endpoint = connection.second->udp_connection_;
 
-        if (player_id == playerId)
+        if (player_id == playerId) {
             continue;
+        }
 
         send_buffer_ = message;
 

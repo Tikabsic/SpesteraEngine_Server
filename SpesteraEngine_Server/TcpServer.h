@@ -10,12 +10,13 @@
 #include <vector>
 #include <unordered_map>
 
+class ConnectionsManager;
 
 using boost::asio::ip::tcp;
 
 class TcpServer {
 public:
-    TcpServer(boost::asio::io_context& io_context, const std::string& address, int port, ServerHeartbeat& server_heartbeat);
+    TcpServer(boost::asio::io_context& io_context, const std::string& address, int port, ServerHeartbeat& server_heartbeat, ConnectionsManager* connmanager);
 
     //Deliver Type
     void deliver_to_all(const Wrapper& msg);
@@ -29,9 +30,8 @@ private:
     void do_accept();
 
     tcp::acceptor acceptor_;
-    std::vector<std::shared_ptr<Session>> sessions_;
-    std::unordered_map<u_short, std::shared_ptr<Session>> session_map_;
 
+    ConnectionsManager* conn_manager_;
     ServerHeartbeat& server_heartbeat_;
 
     u_short next_id_;

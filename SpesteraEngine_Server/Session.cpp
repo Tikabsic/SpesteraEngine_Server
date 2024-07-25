@@ -45,6 +45,11 @@ void Session::start() {
     do_read();
 }
 
+void Session::disconnect()
+{
+
+}
+
 void Session::compress_to_write(const Wrapper& msg) {
     bool write_in_progress = !write_msgs_.empty();
     std::string compressed_msg;
@@ -142,10 +147,6 @@ void Session::send_initial_world_data()
     std::cout << "processing world data request" << std::endl;
     Wrapper world_data_wrapper = server_heartbeat_.gather_initial_world_data(playerId_);
     if (!world_data_wrapper.payload().empty()) {
-        std::cout << "sending some data" << std::endl;
         compress_to_write(world_data_wrapper);
-    }
-    else {
-        std::cout << "no data to send" << std::endl;
     }
 }

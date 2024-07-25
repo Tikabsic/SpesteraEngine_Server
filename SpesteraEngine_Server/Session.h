@@ -17,6 +17,7 @@ public:
     Session(boost::asio::ip::tcp::socket socket, int id, ServerHeartbeat& heartbeat, TcpServer* tcpserver);
     ~Session();
     void start();
+    void disconnect();
 
     void compress_to_write(const Wrapper& msg);
     void direct_push_to_buffer(const std::string& msg);

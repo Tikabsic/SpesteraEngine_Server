@@ -108,6 +108,12 @@
     <ClInclude Include="TDM.h">
       <Filter>Game_Server\Utils\Math</Filter>
     </ClInclude>
+    <ClInclude Include="ConnectionsManager.h">
+      <Filter>Game_Server\Include\Managers\ConnectionsManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SpesteraConnection.h">
+      <Filter>Game_Server\Include\Managers\ConnectionsManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TcpServer.cpp">
@@ -142,6 +148,12 @@
     </ClCompile>
     <ClCompile Include="TDM.cpp">
       <Filter>Game_Server\Utils\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectionsManager.cpp">
+      <Filter>Game_Server\Source\Managers\ConnectionsManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SpesteraConnection.cpp">
+      <Filter>Game_Server\Source\Managers\ConnectionsManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

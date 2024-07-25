@@ -86,3 +86,8 @@ message MonsterPosition {
     float position_z = 5;
     uint32 rotation_y = 6;
 }
+
+//NetAnimations
+message AnimationClip{
+
+}
