@@ -102,7 +102,7 @@ The Database Server will be central to storing and managing all persistent data 
 
 - **Login Server** communicates with the **Database Server** to authenticate users and with the **Game Server** to initiate player sessions.
 - **Game Server** handles communication with clients and interacts with the **World Server** to manage the game world.
-- **World Server** communicates with the **Game Server** to provide updates and synchronize the game world.
+- **World Server** communicates with the **Game Server** to provide updates and synchronize the game world with world state such as world events, monsters behaviour and NPCs.
 - All servers interact with the **Database Server** for data storage and retrieval.
 
 ### Future Enhancements
