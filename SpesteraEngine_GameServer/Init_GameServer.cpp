@@ -1,0 +1,44 @@
+#include <boost/asio.hpp>
+#include <iostream>
+#include "ConfigReader.h"
+#include "ConnectionsManager.h"
+#include "TcpServer.h"
+#include "UdpServer.h"
+#include "ServerHeartbeat.h"
+#include "NetworkProtocol.pb.h"
+#include "BinaryCompressor.h"
+
+int main() {
+    GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+    try {
+        //read server configuration
+
+        ConfigReader config("Config.ini");
+
+        std::string address = config.get("Server", "ip");
+        int tcp_port = std::stoi(config.get("Server", "tcp_port"));
+        int tickrate = std::stoi(config.get("Heartbeat", "tickrate"));
+        int udp_port = std::stoi(config.get("Server", "udp_port"));
+
+
+
+        //create asio IO context
+
+        boost::asio::io_context io_context;
+
+        //Init modules
+        auto conn_manager = std::make_unique<ConnectionsManager>();
+        auto udp_server = std::make_unique<UdpServer>(io_context, address, udp_port, conn_manager.get());
+        auto heartbeat = std::make_unique<ServerHeartbeat>(io_context, *udp_server, tickrate);
+        auto tcp_server = std::make_unique<TcpServer>(io_context, address, tcp_port, *heartbeat, conn_manager.get());
+
+        io_context.run();
+    }
+    catch (std::exception& e) {
+        std::cerr << "Exception: " << e.what() << "\n";
+    }
+
+    google::protobuf::ShutdownProtobufLibrary();
+    return 0;
+}
