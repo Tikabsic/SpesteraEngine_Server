@@ -105,7 +105,7 @@
     <IncludePath>Game_Server/Include/TCP_Server/;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Gamedev\SpesteraEngine_Server\SpesteraEngine_Server\x64;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Gamedev\SpesteraEngine_Server\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
