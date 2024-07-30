@@ -11,3 +11,7 @@
 /SpesteraEngine_WebServer/obj
 /SpesteraEngine_WebServer/bin/Release/net8.0
 /SpesteraEngine_WorldServer/x64/Release
+/.vs
+/out/build/x64-Debug
+/SpesteraEngine_WebServer/bin/Debug/net8.0
+/x64/Debug
