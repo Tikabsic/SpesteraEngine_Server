@@ -50,7 +50,6 @@ Wrapper ServerHeartbeat::gather_initial_world_data(uint16_t playerId) {
         player_initial_data.set_position_x(player_data->player_transform_.position.x);
         player_initial_data.set_position_y(player_data->player_transform_.position.y);
         player_initial_data.set_position_z(player_data->player_transform_.position.z);
-        player_initial_data.set_rotation_y(player_data->player_transform_.rotation_Y);
         player_initial_data.set_player_movementspeed(player_data->get_player_movement_speed());
 
         initial_data.add_players()->CopyFrom(player_initial_data);

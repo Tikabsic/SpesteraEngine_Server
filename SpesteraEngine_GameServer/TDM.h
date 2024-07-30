@@ -5,7 +5,8 @@ class TDM
 {
 public:
 
-   static const float deltaTime;
+   static const float gravity_force_;
+   static const int round_multiplier_;
 
     struct Vector3 {
         float x, y, z;

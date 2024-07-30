@@ -18,9 +18,9 @@ void Session::start() {
     player_initial_data.set_player_id(playerId_);
     player_initial_data.set_player_movementspeed(5);
     player_initial_data.set_position_x(100);
-    player_initial_data.set_position_y(0);
+    player_initial_data.set_position_y(10);
     player_initial_data.set_position_z(100);
-    player_initial_data.set_rotation_y(100);
+
 
     Wrapper wrapper;
     wrapper.set_type(Wrapper::PLAYERINITIALDATA);

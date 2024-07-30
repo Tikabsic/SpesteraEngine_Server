@@ -18,10 +18,16 @@ Player_Character::~Player_Character()
 
 void Player_Character::move_player_character(PlayerPosition transform)
 {
+    std::cout << "recived data: " << transform.position_x() << " ," << transform.position_y() << " ," << transform.position_z() << std::endl;
+
+    std::cout << "Player position before: (" << player_transform_.position.x << ", "
+        << player_transform_.position.y << ", "
+        << player_transform_.position.z << ")" << std::endl;
+
     TDM::Vector3 movementVector;
     if (transform.position_x() != 0)
     {
-        movementVector.x = transform.position_x();
+        movementVector.x = ((float)transform.position_x() / TDM::round_multiplier_);
     }
     if (transform.position_y() != 0)
     {
@@ -29,15 +35,33 @@ void Player_Character::move_player_character(PlayerPosition transform)
     }
     if (transform.position_z() != 0)
     {
-        movementVector.z = transform.position_z();
+        movementVector.z = ((float)transform.position_z() / TDM::round_multiplier_);
     }
 
-    movementVector *= player_movement_speed;
+    std::cout << "Movement Vector before multiply by player speed: (" << movementVector.x << ", "
+        << movementVector.y << ", "
+        << movementVector.z << ")" << std::endl;
+
+    movementVector.x *= player_movement_speed;
+    movementVector.z *= player_movement_speed;
+
+    if (movementVector.y > 0) {
+
+        movementVector.y *= player_movement_speed;
+    }
+    else {
+
+        movementVector.y *= TDM::gravity_force_;
+    }
+
+    std::cout << "Movement Vector after multiply by player speed: (" << movementVector.x << ", "
+        << movementVector.y << ", "
+        << movementVector.z << ")" << std::endl;
 
     player_transform_.position += movementVector;
     player_fov_.RepositionFov(movementVector);
 
-    std::cout << "Player position: (" << player_transform_.position.x << ", "
+    std::cout << "Player position after: (" << player_transform_.position.x << ", "
         << player_transform_.position.y << ", "
         << player_transform_.position.z << ")" << std::endl;
 
