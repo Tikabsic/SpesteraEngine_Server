@@ -127,7 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="External_Connection.cpp" />
     <ClCompile Include="Init.cpp" />
+    <ClCompile Include="TCP_Connector.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="External_Connection.h" />
+    <ClInclude Include="TCP_Connector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

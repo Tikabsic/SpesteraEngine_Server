@@ -26,5 +26,19 @@
     <ClCompile Include="Init.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="External_Connection.cpp">
+      <Filter>Source\RPC_Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="TCP_Connector.cpp">
+      <Filter>Source\DB_Connector</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="External_Connection.h">
+      <Filter>Include\RPC_Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="TCP_Connector.h">
+      <Filter>Include\DB_Connector</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

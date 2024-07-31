@@ -37,7 +37,18 @@ void TcpServer::deliver_to_player(const u_short& player_id, const Wrapper& msg) 
 }
 
 void TcpServer::remove_session(std::shared_ptr<Session> session) {
+
+    ClientLogout logout_msg;
+    logout_msg.set_player_id(session->get_player_id());
+
+    Wrapper logout_wrapper;
+    logout_wrapper.set_type(Wrapper::CLIENTLOGOUT);
+    logout_wrapper.set_payload(logout_msg.SerializeAsString());
+
+    deliver_to_other_direct(logout_wrapper.SerializeAsString(), session->get_player_id());
+
     conn_manager_->connections_.erase(session->get_player_id());
+
 }
 
 void TcpServer::deliver_to_other_direct(const std::string& msg, short session_id)

@@ -32,7 +32,17 @@ void Player_Character::move_player_character(PlayerPosition transform)
         movementVector.z = transform.position_z();
     }
 
-    movementVector *= player_movement_speed;
+    movementVector.x *= player_movement_speed;
+    movementVector.z *= player_movement_speed;
+
+    if ( movementVector.y > 0 ) {
+
+        movementVector.y *= player_movement_speed;
+    }
+    else {
+
+        movementVector.y *= TDM::gravity_force_;
+    }
 
     player_transform_.position += movementVector;
     player_fov_.RepositionFov(movementVector);

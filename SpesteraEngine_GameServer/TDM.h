@@ -5,7 +5,7 @@ class TDM
 {
 public:
 
-   static const float deltaTime;
+   static const int gravity_force_;
 
     struct Vector3 {
         float x, y, z;

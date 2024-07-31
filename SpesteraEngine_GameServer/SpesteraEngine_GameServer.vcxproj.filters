@@ -76,6 +76,12 @@
     <Filter Include="Game_Server\Utils\MessageInterpreter">
       <UniqueIdentifier>{11ea62f9-4a31-48ad-984d-ff74aa9787d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game_Server\Include\Cache">
+      <UniqueIdentifier>{8dd38664-61bf-4e93-9335-dd08b0fc9ade}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game_Server\Source\Cache">
+      <UniqueIdentifier>{ba90bbb1-147e-49d2-a44a-0282067d65b3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TcpServer.h">

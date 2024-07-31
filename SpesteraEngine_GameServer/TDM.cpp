@@ -1,3 +1,3 @@
 #include "TDM.h"
 
-const float TDM::deltaTime = 0.0166667;
+const int TDM::gravity_force_ = 9;
