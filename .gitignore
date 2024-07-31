@@ -16,3 +16,5 @@
 /SpesteraEngine_WebServer/bin/Debug/net8.0
 /x64/Debug
 /.editorconfig
+/SpesteraEngine_DatabaseServer/x64/Debug
+/SpesteraEngine_WorldServer/x64/Debug
