@@ -130,6 +130,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ConfigReader.cpp" />
+    <ClCompile Include="DatabaseProtocol.pb.cc" />
     <ClCompile Include="DbConnection.cpp" />
     <ClCompile Include="ExternalConnection.cpp" />
     <ClCompile Include="Init_DatabaseServer.cpp" />
@@ -137,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConfigReader.h" />
+    <ClInclude Include="DatabaseProtocol.pb.h" />
     <ClInclude Include="DbConnection.h" />
     <ClInclude Include="ExternalConnection.h" />
     <ClInclude Include="TcpConnector.h" />

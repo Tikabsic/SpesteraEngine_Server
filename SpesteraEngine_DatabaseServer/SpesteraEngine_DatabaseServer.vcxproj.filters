@@ -18,20 +18,26 @@
     <Filter Include="Source\Db_Connection">
       <UniqueIdentifier>{833d3c89-606a-464c-b6d4-55f03bcb15b7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="RPC_Protocol">
-      <UniqueIdentifier>{3b67fee3-3378-4e2c-b649-9d32e2497454}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Connection">
       <UniqueIdentifier>{59c2540c-3bcc-44ff-af39-106eeb1ecd81}</UniqueIdentifier>
     </Filter>
     <Filter Include="Include\Connection">
       <UniqueIdentifier>{078a16b8-c309-465a-ae2f-3902e8f9fcaa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Include\Services">
+      <UniqueIdentifier>{d56e4618-5e03-413f-92b1-ef0a6a069169}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Services">
+      <UniqueIdentifier>{0442d4dc-449c-4470-a190-f2dcafeb84a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config\DatabasePortocol">
+      <UniqueIdentifier>{f6e9b513-9711-4611-b8a6-c4d58977e528}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config\ConfigReader">
+      <UniqueIdentifier>{9b5b71f4-210c-46e1-a9b4-b4cdeb323b03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ConfigReader.cpp">
-      <Filter>Config</Filter>
-    </ClCompile>
     <ClCompile Include="Init_DatabaseServer.cpp" />
     <ClCompile Include="DbConnection.cpp">
       <Filter>Source\Db_Connection</Filter>
@@ -42,11 +48,14 @@
     <ClCompile Include="TcpConnector.cpp">
       <Filter>Source\Connection</Filter>
     </ClCompile>
+    <ClCompile Include="ConfigReader.cpp">
+      <Filter>Config\ConfigReader</Filter>
+    </ClCompile>
+    <ClCompile Include="DatabaseProtocol.pb.cc">
+      <Filter>Config\DatabasePortocol</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ConfigReader.h">
-      <Filter>Config</Filter>
-    </ClInclude>
     <ClInclude Include="DbConnection.h">
       <Filter>Include\Db_Connection</Filter>
     </ClInclude>
@@ -56,11 +65,17 @@
     <ClInclude Include="TcpConnector.h">
       <Filter>Include\Connection</Filter>
     </ClInclude>
+    <ClInclude Include="ConfigReader.h">
+      <Filter>Config\ConfigReader</Filter>
+    </ClInclude>
+    <ClInclude Include="DatabaseProtocol.pb.h">
+      <Filter>Config\DatabasePortocol</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Config.ini" />
     <None Include="DatabaseProtocol.proto">
-      <Filter>RPC_Protocol</Filter>
+      <Filter>Config\DatabasePortocol</Filter>
     </None>
   </ItemGroup>
 </Project>

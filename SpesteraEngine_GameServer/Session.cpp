@@ -5,7 +5,7 @@
 #include <iostream>
 
 Session::Session(boost::asio::ip::tcp::socket socket, int id, ServerHeartbeat& heartbeat, TcpServer* tcpserver)
-    : socket_(std::move(socket)), id_(id), server_heartbeat_(heartbeat), tcp_server_(tcpserver) {
+    : socket_(std::move(socket)), id_(id), server_heartbeat_(heartbeat), tcp_server_(tcpserver), db_services_provider_(&DbServicesProvider::get_instance()) {
 }
 
 Session::~Session() {

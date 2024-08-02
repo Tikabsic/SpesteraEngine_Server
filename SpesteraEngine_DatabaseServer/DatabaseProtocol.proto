@@ -1,9 +1,8 @@
 syntax = "proto3";
 
-
-message RequestWrapper{
-    enum RequestType{
-        REQUESTPLAYERINITIALDATA = 1;
+message RequestWrapper {
+    enum RequestType {
+        REQUESTPLAYERINITIALDATA = 0;
     }
     RequestType request_type = 1;
     bytes request_payload = 2;
@@ -11,9 +10,9 @@ message RequestWrapper{
 
 message ResponseWrapper{
     enum ResponseType{
-        RESPONSEPLAYERINITIALDATA = 1;
+        RESPONSEPLAYERINITIALDATA = 0;
     }
-    RequestType response_type = 1;
+    ResponseType response_type = 1;
     bytes response_payload = 2;
 }
 
@@ -25,7 +24,7 @@ message ResponsePlayerInitialData {
     PlayerInitialData player_initial_data = 1;
 }
 
-message PlayerInitialData {
+message DbPlayerInitialData {
     uint32 player_id = 1;
     string player_name = 2;
     float position_x = 3;

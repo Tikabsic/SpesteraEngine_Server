@@ -193,8 +193,8 @@
   <ItemGroup>
     <ClInclude Include="BinaryCompressor.h" />
     <ClInclude Include="ConnectionsManager.h" />
-    <ClInclude Include="DatabaseProtocol.grpc.pb.h" />
     <ClInclude Include="DatabaseProtocol.pb.h" />
+    <ClInclude Include="DbServicesProvider.h" />
     <ClInclude Include="MessageInterpreter.h" />
     <ClInclude Include="NetworkProtocol.pb.h" />
     <ClInclude Include="Player_Character.h" />
@@ -202,6 +202,7 @@
     <ClInclude Include="Session.h" />
     <ClInclude Include="ConfigReader.h" />
     <ClInclude Include="SpesteraConnection.h" />
+    <ClInclude Include="TcpClient.h" />
     <ClInclude Include="TcpServer.h" />
     <ClInclude Include="TDM.h" />
     <ClInclude Include="UdpServer.h" />
@@ -209,8 +210,8 @@
   <ItemGroup>
     <ClCompile Include="BinaryCompressor.cpp" />
     <ClCompile Include="ConnectionsManager.cpp" />
-    <ClCompile Include="DatabaseProtocol.grpc.pb.cc" />
     <ClCompile Include="DatabaseProtocol.pb.cc" />
+    <ClCompile Include="DbServicesProvider.cpp" />
     <ClCompile Include="MessageInterpreter.cpp" />
     <ClCompile Include="NetworkProtocol.pb.cc" />
     <ClCompile Include="Player_Character.cpp" />
@@ -219,12 +220,13 @@
     <ClCompile Include="ConfigReader.cpp" />
     <ClCompile Include="Init_GameServer.cpp" />
     <ClCompile Include="SpesteraConnection.cpp" />
+    <ClCompile Include="TcpClient.cpp" />
     <ClCompile Include="TcpServer.cpp" />
     <ClCompile Include="TDM.cpp" />
     <ClCompile Include="UdpServer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Config.ini" />
+    <None Include="Config.ini" />
     <None Include="NetworkProtocol.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

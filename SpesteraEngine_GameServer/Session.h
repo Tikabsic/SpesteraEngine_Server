@@ -9,6 +9,7 @@
 #include "BinaryCompressor.h"
 #include "Player_Character.h"
 #include "ServerHeartbeat.h"
+#include "DbServicesProvider.h"
 
 class TcpServer;
 
@@ -40,6 +41,7 @@ private:
     //Modules
     ServerHeartbeat& server_heartbeat_;
     TcpServer* tcp_server_;
+    DbServicesProvider* db_services_provider_;
 
     //Player things
     uint16_t playerId_;

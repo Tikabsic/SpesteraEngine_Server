@@ -85,6 +85,18 @@
     <Filter Include="Game_Server\Config\Protocol\DatabaseProtocol">
       <UniqueIdentifier>{d5665f5b-ccb7-41fe-aebe-71ef7392755c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game_Server\Include\Db_Services_Provider">
+      <UniqueIdentifier>{333d6b74-668b-4dde-a2aa-551d87862d8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game_Server\Source\Db_Services_Provider">
+      <UniqueIdentifier>{89e6ca65-cd1b-4045-8601-1e32c5627b09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game_Server\Source\TCP_Client">
+      <UniqueIdentifier>{afc8b37c-7aea-406f-a5b8-69e020b62501}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game_Server\Include\TCP_Client">
+      <UniqueIdentifier>{4e421d13-d4da-4078-b33f-cd707be9e5f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TcpServer.h">
@@ -123,10 +135,13 @@
     <ClInclude Include="SpesteraConnection.h">
       <Filter>Game_Server\Include\Managers\ConnectionsManager</Filter>
     </ClInclude>
-    <ClInclude Include="DatabaseProtocol.pb.h">
-      <Filter>Game_Server\Config\Protocol\DatabaseProtocol</Filter>
+    <ClInclude Include="TcpClient.h">
+      <Filter>Game_Server\Include\TCP_Client</Filter>
     </ClInclude>
-    <ClInclude Include="DatabaseProtocol.grpc.pb.h">
+    <ClInclude Include="DbServicesProvider.h">
+      <Filter>Game_Server\Include\Db_Services_Provider</Filter>
+    </ClInclude>
+    <ClInclude Include="DatabaseProtocol.pb.h">
       <Filter>Game_Server\Config\Protocol\DatabaseProtocol</Filter>
     </ClInclude>
   </ItemGroup>
@@ -170,8 +185,11 @@
     <ClCompile Include="SpesteraConnection.cpp">
       <Filter>Game_Server\Source\Managers\ConnectionsManager</Filter>
     </ClCompile>
-    <ClCompile Include="DatabaseProtocol.grpc.pb.cc">
-      <Filter>Game_Server\Config\Protocol\DatabaseProtocol</Filter>
+    <ClCompile Include="DbServicesProvider.cpp">
+      <Filter>Game_Server\Source\Db_Services_Provider</Filter>
+    </ClCompile>
+    <ClCompile Include="TcpClient.cpp">
+      <Filter>Game_Server\Source\TCP_Client</Filter>
     </ClCompile>
     <ClCompile Include="DatabaseProtocol.pb.cc">
       <Filter>Game_Server\Config\Protocol\DatabaseProtocol</Filter>
@@ -181,6 +199,6 @@
     <None Include="NetworkProtocol.proto">
       <Filter>Game_Server\Config\Protocol</Filter>
     </None>
-    <None Include="..\Config.ini" />
+    <None Include="Config.ini" />
   </ItemGroup>
 </Project>

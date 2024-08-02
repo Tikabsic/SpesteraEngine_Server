@@ -2,11 +2,17 @@
 #include <iostream>
 
 
+ConnectionsManager::ConnectionsManager(DbServicesProvider* dbservicesprovider) :
+    db_services_provider_(dbservicesprovider)
+{
+}
+
 void ConnectionsManager::create_new_connection(short key, std::shared_ptr<Session> session)
 {
     std::lock_guard<std::mutex> lock(connections_mutex_);
     std::shared_ptr<SpesteraConnection> new_connection = std::make_shared<SpesteraConnection>(session);
     connections_.insert({key, new_connection });
+    db_services_provider_->check_and_add_client(connections_.size());
     std::cout << "New Connection Added with id : " << key << std::endl;
 }
 

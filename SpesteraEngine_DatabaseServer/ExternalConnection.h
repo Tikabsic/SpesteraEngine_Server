@@ -14,11 +14,14 @@ public:
 
 private:
     void read_data();
+    void send_data();
 
+    //Base connection fields
     boost::asio::ip::tcp::socket socket_;
     DbConnection* db_connection_;
     enum { max_length = 4 * 1024 };
-    char data_[max_length];
+    char recive_data_[max_length];
+    std::deque<std::string> send_data_;
 };
 
 #endif // EXTERNAL_CONNECTION_H

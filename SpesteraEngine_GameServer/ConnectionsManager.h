@@ -6,12 +6,16 @@
 #include <memory>
 #include <mutex>
 #include <boost/asio.hpp>
+
 #include "Session.h"
 #include "SpesteraConnection.h"
+#include "DbServicesProvider.h"
 
 class ConnectionsManager {
 
 public:
+    ConnectionsManager(DbServicesProvider* dbservicesprovider);
+
     void create_new_connection(short key, std::shared_ptr<Session> session);
     void add_endpoint_to_map(short key, udp::endpoint endpoint);
     void delete_connection_from_map(short key);
@@ -22,7 +26,7 @@ public:
     std::mutex connections_mutex_;
 
 private:
-
+    DbServicesProvider* db_services_provider_;
 };
 
 #endif // CONNECTIONSMANAGER_H
