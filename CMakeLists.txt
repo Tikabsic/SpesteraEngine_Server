@@ -8,12 +8,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 find_package(Boost 1.71 REQUIRED system)
 find_package(Protobuf REQUIRED)
 find_package(ZLIB REQUIRED)
+find_package(gRPC REQUIRED)
 
 include_directories(
     ${Boost_INCLUDE_DIRS}
     ${Protobuf_INCLUDE_DIRS}
     ${ZLIB_INCLUDE_DIRS}
-    ${CMAKE_CURRENT_SOURCE_DIR}/include  # Możesz usunąć, jeśli nie ma folderu include
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 file(GLOB SOURCES "*.cpp")
@@ -24,7 +25,13 @@ set_property(TARGET zlib PROPERTY IMPORTED_LOCATION ${ZLIB_LIBRARIES})
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE ${Boost_LIBRARIES} ${Protobuf_LIBRARIES} zlib)
+target_link_libraries(${PROJECT_NAME}
+    PRIVATE 
+        ${Boost_LIBRARIES} 
+        ${Protobuf_LIBRARIES} 
+        zlib
+        gRPC::grpc++_unsecure
+)
 
 if (CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic -Werror)

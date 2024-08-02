@@ -9,36 +9,58 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Include\DB_Connector">
-      <UniqueIdentifier>{13c2f1f6-1f15-4255-882a-9215df30bdac}</UniqueIdentifier>
+    <Filter Include="Config">
+      <UniqueIdentifier>{53c82e4c-80be-4278-bd55-e26a46e4b1f8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\DB_Connector">
-      <UniqueIdentifier>{0060d756-24dc-42e1-95f9-79c961d55a12}</UniqueIdentifier>
+    <Filter Include="Include\Db_Connection">
+      <UniqueIdentifier>{40869f04-b845-4e17-9959-53d2f26062de}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\RPC_Protocol">
-      <UniqueIdentifier>{e0b1ebe7-9f40-442d-880a-781f655501ec}</UniqueIdentifier>
+    <Filter Include="Source\Db_Connection">
+      <UniqueIdentifier>{833d3c89-606a-464c-b6d4-55f03bcb15b7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Include\RPC_Protocol">
+    <Filter Include="RPC_Protocol">
       <UniqueIdentifier>{3b67fee3-3378-4e2c-b649-9d32e2497454}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Connection">
+      <UniqueIdentifier>{59c2540c-3bcc-44ff-af39-106eeb1ecd81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Connection">
+      <UniqueIdentifier>{078a16b8-c309-465a-ae2f-3902e8f9fcaa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Init.cpp">
-      <Filter>Source</Filter>
+    <ClCompile Include="ConfigReader.cpp">
+      <Filter>Config</Filter>
     </ClCompile>
-    <ClCompile Include="External_Connection.cpp">
-      <Filter>Source\RPC_Protocol</Filter>
+    <ClCompile Include="Init_DatabaseServer.cpp" />
+    <ClCompile Include="DbConnection.cpp">
+      <Filter>Source\Db_Connection</Filter>
     </ClCompile>
-    <ClCompile Include="TCP_Connector.cpp">
-      <Filter>Source\DB_Connector</Filter>
+    <ClCompile Include="ExternalConnection.cpp">
+      <Filter>Source\Connection</Filter>
+    </ClCompile>
+    <ClCompile Include="TcpConnector.cpp">
+      <Filter>Source\Connection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="External_Connection.h">
-      <Filter>Include\RPC_Protocol</Filter>
+    <ClInclude Include="ConfigReader.h">
+      <Filter>Config</Filter>
     </ClInclude>
-    <ClInclude Include="TCP_Connector.h">
-      <Filter>Include\DB_Connector</Filter>
+    <ClInclude Include="DbConnection.h">
+      <Filter>Include\Db_Connection</Filter>
     </ClInclude>
+    <ClInclude Include="ExternalConnection.h">
+      <Filter>Include\Connection</Filter>
+    </ClInclude>
+    <ClInclude Include="TcpConnector.h">
+      <Filter>Include\Connection</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config.ini" />
+    <None Include="DatabaseProtocol.proto">
+      <Filter>RPC_Protocol</Filter>
+    </None>
   </ItemGroup>
 </Project>

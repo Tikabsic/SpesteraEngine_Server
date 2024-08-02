@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package network;
+
 message Heartbeat {
     repeated PlayerPosition players = 1;
     repeated MonsterPosition monsters = 2;
@@ -49,11 +51,12 @@ message AssignId {
 
 message PlayerInitialData {
     uint32 player_id = 1;
-    float position_x = 2;
-    float position_y = 3;
-    float position_z = 4;
-    uint32 rotation_y = 5;
-    uint32 player_movementspeed = 6;
+    string player_name = 2;
+    float position_x = 3;
+    float position_y = 4;
+    float position_z = 5;
+    uint32 rotation_y = 6;
+    uint32 player_movementspeed = 7;
 }
 
 // Characters Position

@@ -104,6 +104,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>Default</LanguageStandard>
+      <LanguageStandard_C>Default</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,13 +129,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="External_Connection.cpp" />
-    <ClCompile Include="Init.cpp" />
-    <ClCompile Include="TCP_Connector.cpp" />
+    <ClCompile Include="ConfigReader.cpp" />
+    <ClCompile Include="DbConnection.cpp" />
+    <ClCompile Include="ExternalConnection.cpp" />
+    <ClCompile Include="Init_DatabaseServer.cpp" />
+    <ClCompile Include="TcpConnector.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="External_Connection.h" />
-    <ClInclude Include="TCP_Connector.h" />
+    <ClInclude Include="ConfigReader.h" />
+    <ClInclude Include="DbConnection.h" />
+    <ClInclude Include="ExternalConnection.h" />
+    <ClInclude Include="TcpConnector.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config.ini" />
+    <None Include="DatabaseProtocol.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

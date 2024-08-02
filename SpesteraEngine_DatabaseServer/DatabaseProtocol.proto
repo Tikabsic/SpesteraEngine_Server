@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+
+message RequestWrapper{
+    enum RequestType{
+        REQUESTPLAYERINITIALDATA = 1;
+    }
+    RequestType request_type = 1;
+    bytes request_payload = 2;
+}
+
+message ResponseWrapper{
+    enum ResponseType{
+        RESPONSEPLAYERINITIALDATA = 1;
+    }
+    RequestType response_type = 1;
+    bytes response_payload = 2;
+}
+
+message RequestPlayerInitialData {
+    string player_guid = 1;
+}
+
+message ResponsePlayerInitialData {
+    PlayerInitialData player_initial_data = 1;
+}
+
+message PlayerInitialData {
+    uint32 player_id = 1;
+    string player_name = 2;
+    float position_x = 3;
+    float position_y = 4;
+    float position_z = 5;
+    uint32 rotation_y = 6;
+    uint32 player_movementspeed = 7;
+}

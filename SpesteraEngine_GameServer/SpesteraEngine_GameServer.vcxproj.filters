@@ -82,6 +82,9 @@
     <Filter Include="Game_Server\Source\Cache">
       <UniqueIdentifier>{ba90bbb1-147e-49d2-a44a-0282067d65b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game_Server\Config\Protocol\DatabaseProtocol">
+      <UniqueIdentifier>{d5665f5b-ccb7-41fe-aebe-71ef7392755c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TcpServer.h">
@@ -120,6 +123,12 @@
     <ClInclude Include="SpesteraConnection.h">
       <Filter>Game_Server\Include\Managers\ConnectionsManager</Filter>
     </ClInclude>
+    <ClInclude Include="DatabaseProtocol.pb.h">
+      <Filter>Game_Server\Config\Protocol\DatabaseProtocol</Filter>
+    </ClInclude>
+    <ClInclude Include="DatabaseProtocol.grpc.pb.h">
+      <Filter>Game_Server\Config\Protocol\DatabaseProtocol</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TcpServer.cpp">
@@ -128,7 +137,7 @@
     <ClCompile Include="Session.cpp">
       <Filter>Game_Server\Source\Client_Session</Filter>
     </ClCompile>
-    <ClCompile Include="Init.cpp">
+    <ClCompile Include="Init_GameServer.cpp">
       <Filter>Game_Server</Filter>
     </ClCompile>
     <ClCompile Include="ConfigReader.cpp">
@@ -161,11 +170,17 @@
     <ClCompile Include="SpesteraConnection.cpp">
       <Filter>Game_Server\Source\Managers\ConnectionsManager</Filter>
     </ClCompile>
+    <ClCompile Include="DatabaseProtocol.grpc.pb.cc">
+      <Filter>Game_Server\Config\Protocol\DatabaseProtocol</Filter>
+    </ClCompile>
+    <ClCompile Include="DatabaseProtocol.pb.cc">
+      <Filter>Game_Server\Config\Protocol\DatabaseProtocol</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Config.ini" />
     <None Include="NetworkProtocol.proto">
       <Filter>Game_Server\Config\Protocol</Filter>
     </None>
+    <None Include="..\Config.ini" />
   </ItemGroup>
 </Project>
