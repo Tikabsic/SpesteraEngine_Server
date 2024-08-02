@@ -43,6 +43,7 @@ Technologies used in the project:
 
 *   \[Boost.Asio\](https://www.boost.org/doc/libs/1\_76\_0/doc/html/boost\_asio.html) for asynchronous I/O operations
 *   \[Google Protobuf\](https://developers.google.com/protocol-buffers) for message serialization
+*   \[MySql\][(https://dev.mysql.com/doc/)]for data storage
 *   \[Zlib\](https://zlib.net/) for data compression
 *   \[Abseil\](https://abseil.io/) for additional C++ utility libraries
 *   \[CMake\](https://cmake.org/) for build configuration
