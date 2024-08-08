@@ -297,10 +297,11 @@ class ResponseWrapper final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kResponsePayloadFieldNumber = 2,
+    kResponsePayloadFieldNumber = 3,
     kResponseTypeFieldNumber = 1,
+    kResponseIdFieldNumber = 2,
   };
-  // bytes response_payload = 2;
+  // bytes response_payload = 3;
   void clear_response_payload() ;
   const std::string& response_payload() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -326,13 +327,23 @@ class ResponseWrapper final :
   void _internal_set_response_type(::ResponseWrapper_ResponseType value);
 
   public:
+  // uint32 response_id = 2;
+  void clear_response_id() ;
+  ::uint32_t response_id() const;
+  void set_response_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_response_id() const;
+  void _internal_set_response_id(::uint32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:ResponseWrapper)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
+      2, 3, 0,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -351,6 +362,7 @@ class ResponseWrapper final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::ArenaStringPtr response_payload_;
     int response_type_;
+    ::uint32_t response_id_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -509,10 +521,11 @@ class RequestWrapper final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kRequestPayloadFieldNumber = 2,
+    kRequestPayloadFieldNumber = 3,
     kRequestTypeFieldNumber = 1,
+    kRequestIdFieldNumber = 2,
   };
-  // bytes request_payload = 2;
+  // bytes request_payload = 3;
   void clear_request_payload() ;
   const std::string& request_payload() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -538,13 +551,23 @@ class RequestWrapper final :
   void _internal_set_request_type(::RequestWrapper_RequestType value);
 
   public:
+  // uint32 request_id = 2;
+  void clear_request_id() ;
+  ::uint32_t request_id() const;
+  void set_request_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_request_id() const;
+  void _internal_set_request_id(::uint32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:RequestWrapper)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
+      2, 3, 0,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -563,6 +586,7 @@ class RequestWrapper final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::ArenaStringPtr request_payload_;
     int request_type_;
+    ::uint32_t request_id_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -884,7 +908,6 @@ class DbPlayerInitialData final :
 
   enum : int {
     kPlayerNameFieldNumber = 2,
-    kPlayerIdFieldNumber = 1,
     kPositionXFieldNumber = 3,
     kPositionYFieldNumber = 4,
     kPositionZFieldNumber = 5,
@@ -905,16 +928,6 @@ class DbPlayerInitialData final :
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_player_name(
       const std::string& value);
   std::string* _internal_mutable_player_name();
-
-  public:
-  // uint32 player_id = 1;
-  void clear_player_id() ;
-  ::uint32_t player_id() const;
-  void set_player_id(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_player_id() const;
-  void _internal_set_player_id(::uint32_t value);
 
   public:
   // float position_x = 3;
@@ -973,7 +986,7 @@ class DbPlayerInitialData final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 7, 0,
+      3, 6, 0,
       39, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -991,7 +1004,6 @@ class DbPlayerInitialData final :
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::ArenaStringPtr player_name_;
-    ::uint32_t player_id_;
     float position_x_;
     float position_y_;
     float position_z_;
@@ -1224,7 +1236,30 @@ inline void RequestWrapper::_internal_set_request_type(::RequestWrapper_RequestT
   _impl_.request_type_ = value;
 }
 
-// bytes request_payload = 2;
+// uint32 request_id = 2;
+inline void RequestWrapper::clear_request_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.request_id_ = 0u;
+}
+inline ::uint32_t RequestWrapper::request_id() const {
+  // @@protoc_insertion_point(field_get:RequestWrapper.request_id)
+  return _internal_request_id();
+}
+inline void RequestWrapper::set_request_id(::uint32_t value) {
+  _internal_set_request_id(value);
+  // @@protoc_insertion_point(field_set:RequestWrapper.request_id)
+}
+inline ::uint32_t RequestWrapper::_internal_request_id() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.request_id_;
+}
+inline void RequestWrapper::_internal_set_request_id(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.request_id_ = value;
+}
+
+// bytes request_payload = 3;
 inline void RequestWrapper::clear_request_payload() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.request_payload_.ClearToEmpty();
@@ -1304,7 +1339,30 @@ inline void ResponseWrapper::_internal_set_response_type(::ResponseWrapper_Respo
   _impl_.response_type_ = value;
 }
 
-// bytes response_payload = 2;
+// uint32 response_id = 2;
+inline void ResponseWrapper::clear_response_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.response_id_ = 0u;
+}
+inline ::uint32_t ResponseWrapper::response_id() const {
+  // @@protoc_insertion_point(field_get:ResponseWrapper.response_id)
+  return _internal_response_id();
+}
+inline void ResponseWrapper::set_response_id(::uint32_t value) {
+  _internal_set_response_id(value);
+  // @@protoc_insertion_point(field_set:ResponseWrapper.response_id)
+}
+inline ::uint32_t ResponseWrapper::_internal_response_id() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.response_id_;
+}
+inline void ResponseWrapper::_internal_set_response_id(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.response_id_ = value;
+}
+
+// bytes response_payload = 3;
 inline void ResponseWrapper::clear_response_payload() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.response_payload_.ClearToEmpty();
@@ -1517,29 +1575,6 @@ inline void ResponsePlayerInitialData::set_allocated_player_initial_data(::DbPla
 // -------------------------------------------------------------------
 
 // DbPlayerInitialData
-
-// uint32 player_id = 1;
-inline void DbPlayerInitialData::clear_player_id() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.player_id_ = 0u;
-}
-inline ::uint32_t DbPlayerInitialData::player_id() const {
-  // @@protoc_insertion_point(field_get:DbPlayerInitialData.player_id)
-  return _internal_player_id();
-}
-inline void DbPlayerInitialData::set_player_id(::uint32_t value) {
-  _internal_set_player_id(value);
-  // @@protoc_insertion_point(field_set:DbPlayerInitialData.player_id)
-}
-inline ::uint32_t DbPlayerInitialData::_internal_player_id() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.player_id_;
-}
-inline void DbPlayerInitialData::_internal_set_player_id(::uint32_t value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.player_id_ = value;
-}
 
 // string player_name = 2;
 inline void DbPlayerInitialData::clear_player_name() {

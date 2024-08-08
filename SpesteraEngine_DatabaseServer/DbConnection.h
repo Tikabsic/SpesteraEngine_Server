@@ -9,6 +9,8 @@
 #include <mutex>
 #include <string>
 
+#include "DatabaseProtocol.pb.h"
+
 class DbConnection {
 public:
     DbConnection(const std::string& uri);
@@ -16,11 +18,11 @@ public:
 
     void process_queries();
     void add_query_broker(const std::string& query);
-    mysqlx::RowResult get_data(std::string const query);
+    ResponseWrapper get_data(const RequestWrapper& query);
     void stop();
 
 private:
-    void execute_query(const std::string& query);
+    void execute_query(const RequestWrapper query);
 
     mysqlx::Session* session;
     std::queue<std::string> queryBuffer;

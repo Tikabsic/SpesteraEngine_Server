@@ -1,14 +1,16 @@
 #include "Session.h"
 #include "TcpServer.h"
 #include "ServerHeartbeat.h"
+#include "DbServicesProvider.h"
 
 #include <iostream>
 
-Session::Session(boost::asio::ip::tcp::socket socket, int id, ServerHeartbeat& heartbeat, TcpServer* tcpserver)
-    : socket_(std::move(socket)), id_(id), server_heartbeat_(heartbeat), tcp_server_(tcpserver), db_services_provider_(&DbServicesProvider::get_instance()) {
+Session::Session(boost::asio::ip::tcp::socket socket, int id, TcpServer* tcpserver)
+    : socket_(std::move(socket)), id_(id), tcp_server_(tcpserver) {
 }
 
 Session::~Session() {
+    std::cout << "session closed" << std::endl;
 }
 
 void Session::start() {
@@ -26,7 +28,6 @@ void Session::start() {
     wrapper.set_type(Wrapper::PLAYERINITIALDATA);
     wrapper.set_payload(player_initial_data.SerializeAsString());
 
-
     //Creating data for other players to send and notice that new player logged in to game.
     ClientLogin new_client_data;
     new_client_data.mutable_player_data()->CopyFrom(player_initial_data);
@@ -36,8 +37,7 @@ void Session::start() {
     tcp_server_->deliver_to_other_direct(client_data_wrapper.SerializeAsString(), playerId_);
 
     //Creating and pushing to ServerHeart shared_ptr of a Player_Character class wich represents and hold data of game character
-    character_ = std::make_shared<Player_Character>(player_initial_data.position_x(), player_initial_data.position_y(), player_initial_data.position_z(), 5, 180, playerId_);
-    server_heartbeat_.push_player_character(character_);
+    character_ = std::make_unique<PlayerCharacter>(player_initial_data.position_x(), player_initial_data.position_y(), player_initial_data.position_z(), playerId_);
 
     //pushing PlayerInitialData to buffer and senting it direct to client 
     write_msgs_.push_back(wrapper.SerializeAsString());
@@ -77,7 +77,7 @@ void Session::set_player_id(u_short pid)
 void Session::handle_message(const Wrapper& wrapper) {
     switch (wrapper.type()) {
     case Wrapper::CLIENTLOGOUT: {
-        server_heartbeat_.remove_player_character(character_);
+        std::cout << " Processing logout" << std::endl;
         tcp_server_->remove_session(shared_from_this());
         socket_.close();
         break;
@@ -85,15 +85,11 @@ void Session::handle_message(const Wrapper& wrapper) {
     case Wrapper::PLAYERPOSITION: {
         PlayerPosition position;
         if (position.ParseFromArray(wrapper.payload().data(), wrapper.payload().size())) {
-            character_->move_player_character(position);
+            //character_->move_player_character(position);
         }
         else {
             std::cerr << "Failed to parse PlayerPosition message" << std::endl;
         }
-        break;
-    }
-    case Wrapper::WORLDDATA: {
-        send_initial_world_data();
         break;
     }
     default:
@@ -138,15 +134,4 @@ void Session::do_write() {
                 }
             }
         });
-}
-
-//Client calls methods
-
-void Session::send_initial_world_data()
-{
-    std::cout << "processing world data request" << std::endl;
-    Wrapper world_data_wrapper = server_heartbeat_.gather_initial_world_data(playerId_);
-    if (!world_data_wrapper.payload().empty()) {
-        compress_to_write(world_data_wrapper);
-    }
 }

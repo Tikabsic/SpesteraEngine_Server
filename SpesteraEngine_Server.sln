@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SpesteraEngine_WorldServer"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SpesteraEngine_GameServer", "SpesteraEngine_GameServer\SpesteraEngine_GameServer.vcxproj", "{93D12EC2-6B7A-48F0-A30D-C46E93DA035A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SpesteraEngine_ZoneServer", "SpesteraEngine_ZoneServer\SpesteraEngine_ZoneServer.vcxproj", "{BA104C7F-4B0D-40BF-8742-47519484ED0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,26 @@ Global
 		{93D12EC2-6B7A-48F0-A30D-C46E93DA035A}.Release|x64.Build.0 = Release|x64
 		{93D12EC2-6B7A-48F0-A30D-C46E93DA035A}.Release|x86.ActiveCfg = Release|Win32
 		{93D12EC2-6B7A-48F0-A30D-C46E93DA035A}.Release|x86.Build.0 = Release|Win32
+		{BA104C7F-4B0D-40BF-8742-47519484ED0D}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{BA104C7F-4B0D-40BF-8742-47519484ED0D}.Debug|Any CPU.Build.0 = Debug|x64
+		{BA104C7F-4B0D-40BF-8742-47519484ED0D}.Debug|ARM.ActiveCfg = Debug|x64
+		{BA104C7F-4B0D-40BF-8742-47519484ED0D}.Debug|ARM.Build.0 = Debug|x64
+		{BA104C7F-4B0D-40BF-8742-47519484ED0D}.Debug|ARM64.ActiveCfg = Debug|x64
+		{BA104C7F-4B0D-40BF-8742-47519484ED0D}.Debug|ARM64.Build.0 = Debug|x64
+		{BA104C7F-4B0D-40BF-8742-47519484ED0D}.Debug|x64.ActiveCfg = Debug|x64
+		{BA104C7F-4B0D-40BF-8742-47519484ED0D}.Debug|x64.Build.0 = Debug|x64
+		{BA104C7F-4B0D-40BF-8742-47519484ED0D}.Debug|x86.ActiveCfg = Debug|Win32
+		{BA104C7F-4B0D-40BF-8742-47519484ED0D}.Debug|x86.Build.0 = Debug|Win32
+		{BA104C7F-4B0D-40BF-8742-47519484ED0D}.Release|Any CPU.ActiveCfg = Release|x64
+		{BA104C7F-4B0D-40BF-8742-47519484ED0D}.Release|Any CPU.Build.0 = Release|x64
+		{BA104C7F-4B0D-40BF-8742-47519484ED0D}.Release|ARM.ActiveCfg = Release|x64
+		{BA104C7F-4B0D-40BF-8742-47519484ED0D}.Release|ARM.Build.0 = Release|x64
+		{BA104C7F-4B0D-40BF-8742-47519484ED0D}.Release|ARM64.ActiveCfg = Release|x64
+		{BA104C7F-4B0D-40BF-8742-47519484ED0D}.Release|ARM64.Build.0 = Release|x64
+		{BA104C7F-4B0D-40BF-8742-47519484ED0D}.Release|x64.ActiveCfg = Release|x64
+		{BA104C7F-4B0D-40BF-8742-47519484ED0D}.Release|x64.Build.0 = Release|x64
+		{BA104C7F-4B0D-40BF-8742-47519484ED0D}.Release|x86.ActiveCfg = Release|Win32
+		{BA104C7F-4B0D-40BF-8742-47519484ED0D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

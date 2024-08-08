@@ -7,15 +7,14 @@
 
 #include "NetworkProtocol.pb.h"
 #include "BinaryCompressor.h"
-#include "Player_Character.h"
+#include "PlayerCharacter.h"
 #include "ServerHeartbeat.h"
-#include "DbServicesProvider.h"
 
 class TcpServer;
 
 class Session : public std::enable_shared_from_this<Session> {
 public:
-    Session(boost::asio::ip::tcp::socket socket, int id, ServerHeartbeat& heartbeat, TcpServer* tcpserver);
+    Session(boost::asio::ip::tcp::socket socket, int id, TcpServer* tcpserver);
     ~Session();
     void start();
     void disconnect();
@@ -29,7 +28,6 @@ private:
     void do_read();
     void do_write();
     void handle_message(const Wrapper& wrapper);
-    void send_initial_world_data();
 
     boost::asio::ip::tcp::socket socket_;
     int id_;
@@ -39,13 +37,11 @@ private:
     std::mutex write_mutex_;
 
     //Modules
-    ServerHeartbeat& server_heartbeat_;
     TcpServer* tcp_server_;
-    DbServicesProvider* db_services_provider_;
 
     //Player things
     uint16_t playerId_;
-    std::shared_ptr<Player_Character> character_;
+    std::shared_ptr<PlayerCharacter> character_;
 };
 
 #endif // SESSION_H

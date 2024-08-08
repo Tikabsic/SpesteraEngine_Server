@@ -5,7 +5,8 @@ message RequestWrapper {
         REQUESTPLAYERINITIALDATA = 0;
     }
     RequestType request_type = 1;
-    bytes request_payload = 2;
+    uint32 request_id = 2;
+    bytes request_payload = 3;
 }
 
 message ResponseWrapper{
@@ -13,7 +14,8 @@ message ResponseWrapper{
         RESPONSEPLAYERINITIALDATA = 0;
     }
     ResponseType response_type = 1;
-    bytes response_payload = 2;
+    uint32 response_id = 2;
+    bytes response_payload = 3;
 }
 
 message RequestPlayerInitialData {
@@ -21,11 +23,10 @@ message RequestPlayerInitialData {
 }
 
 message ResponsePlayerInitialData {
-    PlayerInitialData player_initial_data = 1;
+    DbPlayerInitialData player_initial_data = 1;
 }
 
 message DbPlayerInitialData {
-    uint32 player_id = 1;
     string player_name = 2;
     float position_x = 3;
     float position_y = 4;

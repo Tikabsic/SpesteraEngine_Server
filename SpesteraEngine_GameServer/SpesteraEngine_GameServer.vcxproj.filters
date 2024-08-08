@@ -46,29 +46,17 @@
     <Filter Include="Game_Server\Utils\Compressor\Source">
       <UniqueIdentifier>{52923680-c24b-4d1d-8110-1a1ee3f58f08}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game_Server\Include\UDP_Server">
-      <UniqueIdentifier>{2e8a826c-500a-47be-b218-f9ee24e2e2a0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game_Server\Source\UDP_Server">
-      <UniqueIdentifier>{6673758e-9254-4bd5-a0ef-8d401aadb6cc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game_Server\Include\Entities">
       <UniqueIdentifier>{1e06d47c-a93e-418f-9305-21b4eaa1295c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game_Server\Source\Entities">
       <UniqueIdentifier>{ae0b776d-e95d-4edf-9be2-349734d96e6f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game_Server\Utils\Math">
-      <UniqueIdentifier>{6b1059d4-5936-4598-a1dc-c6a59148b262}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game_Server\Source\Managers">
       <UniqueIdentifier>{c57ce8b1-cff9-4b37-a097-2d0cafe98306}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game_Server\Include\Managers">
       <UniqueIdentifier>{58f3a261-1bb5-4f7b-a860-daf35aecbbf7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game_Server\Include\Managers\ConnectionsManager">
-      <UniqueIdentifier>{913e7a42-7239-4a3b-bcdd-fcbc77eb565c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game_Server\Source\Managers\ConnectionsManager">
       <UniqueIdentifier>{6e71028c-3baa-4068-ac86-45fca9223c75}</UniqueIdentifier>
@@ -97,6 +85,27 @@
     <Filter Include="Game_Server\Include\TCP_Client">
       <UniqueIdentifier>{4e421d13-d4da-4078-b33f-cd707be9e5f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game_Server\Include\Db_Services_Provider\Db_Services">
+      <UniqueIdentifier>{f58865d3-859e-4354-aade-fe4829e0f4b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game_Server\Source\Db_Services_Provider\Db_Services">
+      <UniqueIdentifier>{907254f7-f8a2-4aa9-b830-a454c85c07b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game_Server\Source\Managers\ZonesManager">
+      <UniqueIdentifier>{0922c2a0-b520-46a4-8f9e-23fa1f110cbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game_Server\Include\Managers\Connections_Manager">
+      <UniqueIdentifier>{913e7a42-7239-4a3b-bcdd-fcbc77eb565c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game_Server\Include\Managers\Zones_Manager">
+      <UniqueIdentifier>{7fe9cc75-1b6b-4fff-86b3-16a0fee23c96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game_Server\Include\Managers\Zones_Manager\Zones">
+      <UniqueIdentifier>{43154f44-8544-4677-bc2b-d5e50e9934c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game_Server\Source\Managers\ZonesManager\Zone">
+      <UniqueIdentifier>{b4923fe0-e402-4719-a0b5-efba29f83af5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TcpServer.h">
@@ -114,26 +123,17 @@
     <ClInclude Include="BinaryCompressor.h">
       <Filter>Game_Server\Utils\Compressor\Include</Filter>
     </ClInclude>
-    <ClInclude Include="UdpServer.h">
-      <Filter>Game_Server\Include\UDP_Server</Filter>
-    </ClInclude>
-    <ClInclude Include="ServerHeartbeat.h">
-      <Filter>Game_Server\Include\UDP_Server</Filter>
-    </ClInclude>
-    <ClInclude Include="Player_Character.h">
+    <ClInclude Include="PlayerCharacter.h">
       <Filter>Game_Server\Include\Entities</Filter>
     </ClInclude>
     <ClInclude Include="MessageInterpreter.h">
       <Filter>Game_Server\Utils\MessageInterpreter</Filter>
     </ClInclude>
-    <ClInclude Include="TDM.h">
-      <Filter>Game_Server\Utils\Math</Filter>
-    </ClInclude>
     <ClInclude Include="ConnectionsManager.h">
-      <Filter>Game_Server\Include\Managers\ConnectionsManager</Filter>
+      <Filter>Game_Server\Include\Managers\Connections_Manager</Filter>
     </ClInclude>
     <ClInclude Include="SpesteraConnection.h">
-      <Filter>Game_Server\Include\Managers\ConnectionsManager</Filter>
+      <Filter>Game_Server\Include\Managers\Connections_Manager</Filter>
     </ClInclude>
     <ClInclude Include="TcpClient.h">
       <Filter>Game_Server\Include\TCP_Client</Filter>
@@ -143,6 +143,12 @@
     </ClInclude>
     <ClInclude Include="DatabaseProtocol.pb.h">
       <Filter>Game_Server\Config\Protocol\DatabaseProtocol</Filter>
+    </ClInclude>
+    <ClInclude Include="ZonesManager.h">
+      <Filter>Game_Server\Include\Managers\Zones_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Zone.h">
+      <Filter>Game_Server\Include\Managers\Zones_Manager\Zones</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -164,20 +170,11 @@
     <ClCompile Include="BinaryCompressor.cpp">
       <Filter>Game_Server\Utils\Compressor\Source</Filter>
     </ClCompile>
-    <ClCompile Include="UdpServer.cpp">
-      <Filter>Game_Server\Source\UDP_Server</Filter>
-    </ClCompile>
-    <ClCompile Include="ServerHeartbeat.cpp">
-      <Filter>Game_Server\Source\UDP_Server</Filter>
-    </ClCompile>
-    <ClCompile Include="Player_Character.cpp">
+    <ClCompile Include="PlayerCharacter.cpp">
       <Filter>Game_Server\Source\Entities</Filter>
     </ClCompile>
     <ClCompile Include="MessageInterpreter.cpp">
       <Filter>Game_Server\Utils\MessageInterpreter</Filter>
-    </ClCompile>
-    <ClCompile Include="TDM.cpp">
-      <Filter>Game_Server\Utils\Math</Filter>
     </ClCompile>
     <ClCompile Include="ConnectionsManager.cpp">
       <Filter>Game_Server\Source\Managers\ConnectionsManager</Filter>
@@ -193,6 +190,12 @@
     </ClCompile>
     <ClCompile Include="DatabaseProtocol.pb.cc">
       <Filter>Game_Server\Config\Protocol\DatabaseProtocol</Filter>
+    </ClCompile>
+    <ClCompile Include="ZonesManager.cpp">
+      <Filter>Game_Server\Source\Managers\ZonesManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Zone.cpp">
+      <Filter>Game_Server\Source\Managers\ZonesManager\Zone</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

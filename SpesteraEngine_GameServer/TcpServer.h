@@ -16,7 +16,7 @@ using boost::asio::ip::tcp;
 
 class TcpServer {
 public:
-    TcpServer(boost::asio::io_context& io_context, const std::string& address, int port, ServerHeartbeat& server_heartbeat, ConnectionsManager* connmanager);
+    TcpServer(boost::asio::io_context& io_context, const std::string& address, int port, ConnectionsManager* connmanager);
 
     //Deliver Type
     void deliver_to_all(const Wrapper& msg);
@@ -32,7 +32,6 @@ private:
     tcp::acceptor acceptor_;
 
     ConnectionsManager* conn_manager_;
-    ServerHeartbeat& server_heartbeat_;
 
     u_short next_id_;
 };

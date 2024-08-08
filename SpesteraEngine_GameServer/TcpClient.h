@@ -1,5 +1,4 @@
-#ifndef TCP_CLIENT_H
-#define TCP_CLIENT_H
+#pragma once
 
 #include <boost/asio.hpp>
 #include <memory>
@@ -9,29 +8,33 @@
 
 using boost::asio::ip::tcp;
 
+enum Client_Type {
+    DB_SERVICE_PROVIDER = 0,
+    ZONE_SERVER_CONNECTION =1
+};
+
 class TcpClient {
 public:
-    TcpClient(boost::asio::io_context& io_context, const std::string& address, unsigned short port);
+    TcpClient(boost::asio::io_context& io_context, const std::string& address, unsigned short port, Client_Type clienttype);
 
     void connect();
     void send(const std::string& message);
 
 private:
     void do_connect(const tcp::resolver::results_type& endpoints);
-    void do_write(const std::string& message);
+    void do_write();
     void do_read();
-    void handle_read(const boost::system::error_code& ec, std::size_t length);
-    void handle_write(const boost::system::error_code& ec, std::size_t length);
 
     boost::asio::io_context& io_context_;
     tcp::resolver resolver_;
     tcp::socket socket_;
     std::string address_;
     unsigned short port_;
+    boost::asio::steady_timer reconnect_timer_;
     std::deque<std::string> write_msgs_;
     std::mutex write_msgs_mutex_;
     enum { max_length = 1024 };
     char read_msg_[max_length];
-};
 
-#endif // TCP_CLIENT_H
+    Client_Type type_;
+};

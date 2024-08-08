@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Include\Timer">
+      <UniqueIdentifier>{4f01d61d-7352-46f3-8c85-755f070022fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Timer">
+      <UniqueIdentifier>{706d85f1-f88c-44c7-b991-7eb7d793412f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\UDP_Server">
+      <UniqueIdentifier>{39915e3b-1dd3-409f-abce-0b9e8eb8cbbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\UDP_Server">
+      <UniqueIdentifier>{81b197ce-3dc4-4e7e-a4a8-124c892e4627}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{76612abd-f72a-4761-a76e-9e5bb8a939f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Config">
+      <UniqueIdentifier>{e0c64248-d500-4c84-bd65-cc3513f70734}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Compressor">
+      <UniqueIdentifier>{11a46d75-c439-4dda-9b10-dfb0a5de5600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Protocol">
+      <UniqueIdentifier>{a801fcbb-fc8c-4f95-9d68-0d0422561eec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Entities">
+      <UniqueIdentifier>{58c50959-6528-4a69-a98c-ac31aa0e347f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Entities">
+      <UniqueIdentifier>{9b05b734-9f62-4471-b425-549e06dc85ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Entities\Player_Character">
+      <UniqueIdentifier>{ebc1695a-8bdb-466a-b380-c898e48106c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Entities\Player_Character">
+      <UniqueIdentifier>{e9fb6857-4d29-4e74-a550-1ed8d4b87ea0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Managers">
+      <UniqueIdentifier>{5293dc39-f652-4879-ae05-a5703f000da8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Managers">
+      <UniqueIdentifier>{c1ad373f-d9c8-4da2-8e3b-d1965544ee2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Managers\Connections_Manager">
+      <UniqueIdentifier>{24f873c3-5065-4ac8-bac4-c1c268080ff3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Managers\Connections_Manager">
+      <UniqueIdentifier>{21470e48-782e-4f32-a374-757b166c5105}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Math">
+      <UniqueIdentifier>{e7723495-426b-4a05-a7f4-8ff496c0e343}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\MessageInterpreter">
+      <UniqueIdentifier>{2fd5c047-5355-4f59-9ce2-76a4d3a90883}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Init_ZoneServer.cpp" />
+    <ClCompile Include="ServerStopwatch.cpp">
+      <Filter>Source\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SpesteraEngine_GameServer\ServerHeartbeat.cpp">
+      <Filter>Source\UDP_Server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SpesteraEngine_GameServer\UdpServer.cpp">
+      <Filter>Source\UDP_Server</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigReader.cpp">
+      <Filter>Utils\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="BinaryCompressor.cpp">
+      <Filter>Utils\Compressor</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkProtocol.pb.cc">
+      <Filter>Utils\Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCharacter.cpp">
+      <Filter>Source\Entities\Player_Character</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectionsManager.cpp">
+      <Filter>Source\Managers\Connections_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoneConnection.cpp">
+      <Filter>Source\Managers\Connections_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="TDM.cpp">
+      <Filter>Utils\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageInterpreter.cpp">
+      <Filter>Utils\MessageInterpreter</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ServerStopwatch.h">
+      <Filter>Include\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SpesteraEngine_GameServer\ServerHeartbeat.h">
+      <Filter>Include\UDP_Server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SpesteraEngine_GameServer\UdpServer.h">
+      <Filter>Include\UDP_Server</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigReader.h">
+      <Filter>Utils\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryCompressor.h">
+      <Filter>Utils\Compressor</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkProtocol.pb.h">
+      <Filter>Utils\Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCharacter.h">
+      <Filter>Include\Entities\Player_Character</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectionsManager.h">
+      <Filter>Include\Managers\Connections_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoneConnection.h">
+      <Filter>Include\Managers\Connections_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="TDM.h">
+      <Filter>Utils\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageInterpreter.h">
+      <Filter>Utils\MessageInterpreter</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config.ini" />
+  </ItemGroup>
+</Project>

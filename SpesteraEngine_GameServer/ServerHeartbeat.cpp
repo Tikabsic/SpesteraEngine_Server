@@ -11,8 +11,7 @@ ServerHeartbeat::ServerHeartbeat(boost::asio::io_context& io_context, UdpServer&
     tickrate_(tickrate),
     prev_timestamp(0)
 {
-
-    do_heartbeat();
+    //do_heartbeat();
 }
 
 void ServerHeartbeat::push_player_character(std::shared_ptr<Player_Character> character)

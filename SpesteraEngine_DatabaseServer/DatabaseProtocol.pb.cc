@@ -27,6 +27,7 @@ inline constexpr ResponseWrapper::Impl_::Impl_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         response_type_{static_cast< ::ResponseWrapper_ResponseType >(0)},
+        response_id_{0u},
         _cached_size_{0} {}
 
 template <typename>
@@ -49,6 +50,7 @@ inline constexpr RequestWrapper::Impl_::Impl_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         request_type_{static_cast< ::RequestWrapper_RequestType >(0)},
+        request_id_{0u},
         _cached_size_{0} {}
 
 template <typename>
@@ -91,7 +93,6 @@ inline constexpr DbPlayerInitialData::Impl_::Impl_(
       : player_name_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        player_id_{0u},
         position_x_{0},
         position_y_{0},
         position_z_{0},
@@ -146,6 +147,7 @@ const ::uint32_t TableStruct_DatabaseProtocol_2eproto::offsets[] PROTOBUF_SECTIO
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::RequestWrapper, _impl_.request_type_),
+    PROTOBUF_FIELD_OFFSET(::RequestWrapper, _impl_.request_id_),
     PROTOBUF_FIELD_OFFSET(::RequestWrapper, _impl_.request_payload_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::ResponseWrapper, _internal_metadata_),
@@ -156,6 +158,7 @@ const ::uint32_t TableStruct_DatabaseProtocol_2eproto::offsets[] PROTOBUF_SECTIO
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::ResponseWrapper, _impl_.response_type_),
+    PROTOBUF_FIELD_OFFSET(::ResponseWrapper, _impl_.response_id_),
     PROTOBUF_FIELD_OFFSET(::ResponseWrapper, _impl_.response_payload_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::RequestPlayerInitialData, _internal_metadata_),
@@ -184,7 +187,6 @@ const ::uint32_t TableStruct_DatabaseProtocol_2eproto::offsets[] PROTOBUF_SECTIO
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::DbPlayerInitialData, _impl_.player_id_),
     PROTOBUF_FIELD_OFFSET(::DbPlayerInitialData, _impl_.player_name_),
     PROTOBUF_FIELD_OFFSET(::DbPlayerInitialData, _impl_.position_x_),
     PROTOBUF_FIELD_OFFSET(::DbPlayerInitialData, _impl_.position_y_),
@@ -196,10 +198,10 @@ const ::uint32_t TableStruct_DatabaseProtocol_2eproto::offsets[] PROTOBUF_SECTIO
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::RequestWrapper)},
-        {10, -1, -1, sizeof(::ResponseWrapper)},
-        {20, -1, -1, sizeof(::RequestPlayerInitialData)},
-        {29, 38, -1, sizeof(::ResponsePlayerInitialData)},
-        {39, -1, -1, sizeof(::DbPlayerInitialData)},
+        {11, -1, -1, sizeof(::ResponseWrapper)},
+        {22, -1, -1, sizeof(::RequestPlayerInitialData)},
+        {31, 40, -1, sizeof(::ResponsePlayerInitialData)},
+        {41, -1, -1, sizeof(::DbPlayerInitialData)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -210,28 +212,29 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::_DbPlayerInitialData_default_instance_._instance,
 };
 const char descriptor_table_protodef_DatabaseProtocol_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\026DatabaseProtocol.proto\"\211\001\n\016RequestWrap"
+    "\n\026DatabaseProtocol.proto\"\235\001\n\016RequestWrap"
     "per\0221\n\014request_type\030\001 \001(\0162\033.RequestWrapp"
-    "er.RequestType\022\027\n\017request_payload\030\002 \001(\014\""
-    "+\n\013RequestType\022\034\n\030REQUESTPLAYERINITIALDA"
-    "TA\020\000\"\220\001\n\017ResponseWrapper\0224\n\rresponse_typ"
-    "e\030\001 \001(\0162\035.ResponseWrapper.ResponseType\022\030"
-    "\n\020response_payload\030\002 \001(\014\"-\n\014ResponseType"
-    "\022\035\n\031RESPONSEPLAYERINITIALDATA\020\000\"/\n\030Reque"
-    "stPlayerInitialData\022\023\n\013player_guid\030\001 \001(\t"
-    "\"N\n\031ResponsePlayerInitialData\0221\n\023player_"
-    "initial_data\030\001 \001(\0132\024.DbPlayerInitialData"
-    "\"\253\001\n\023DbPlayerInitialData\022\021\n\tplayer_id\030\001 "
-    "\001(\r\022\023\n\013player_name\030\002 \001(\t\022\022\n\nposition_x\030\003"
-    " \001(\002\022\022\n\nposition_y\030\004 \001(\002\022\022\n\nposition_z\030\005"
-    " \001(\002\022\022\n\nrotation_y\030\006 \001(\r\022\034\n\024player_movem"
-    "entspeed\030\007 \001(\rb\006proto3"
+    "er.RequestType\022\022\n\nrequest_id\030\002 \001(\r\022\027\n\017re"
+    "quest_payload\030\003 \001(\014\"+\n\013RequestType\022\034\n\030RE"
+    "QUESTPLAYERINITIALDATA\020\000\"\245\001\n\017ResponseWra"
+    "pper\0224\n\rresponse_type\030\001 \001(\0162\035.ResponseWr"
+    "apper.ResponseType\022\023\n\013response_id\030\002 \001(\r\022"
+    "\030\n\020response_payload\030\003 \001(\014\"-\n\014ResponseTyp"
+    "e\022\035\n\031RESPONSEPLAYERINITIALDATA\020\000\"/\n\030Requ"
+    "estPlayerInitialData\022\023\n\013player_guid\030\001 \001("
+    "\t\"N\n\031ResponsePlayerInitialData\0221\n\023player"
+    "_initial_data\030\001 \001(\0132\024.DbPlayerInitialDat"
+    "a\"\230\001\n\023DbPlayerInitialData\022\023\n\013player_name"
+    "\030\002 \001(\t\022\022\n\nposition_x\030\003 \001(\002\022\022\n\nposition_y"
+    "\030\004 \001(\002\022\022\n\nposition_z\030\005 \001(\002\022\022\n\nrotation_y"
+    "\030\006 \001(\r\022\034\n\024player_movementspeed\030\007 \001(\rb\006pr"
+    "oto3"
 };
 static ::absl::once_flag descriptor_table_DatabaseProtocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_DatabaseProtocol_2eproto = {
     false,
     false,
-    622,
+    644,
     descriptor_table_protodef_DatabaseProtocol_2eproto,
     "DatabaseProtocol.proto",
     &descriptor_table_DatabaseProtocol_2eproto_once,
@@ -327,7 +330,13 @@ RequestWrapper::RequestWrapper(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  _impl_.request_type_ = from._impl_.request_type_;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, request_type_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, request_type_),
+           offsetof(Impl_, request_id_) -
+               offsetof(Impl_, request_type_) +
+               sizeof(Impl_::request_id_));
 
   // @@protoc_insertion_point(copy_constructor:RequestWrapper)
 }
@@ -339,7 +348,12 @@ inline PROTOBUF_NDEBUG_INLINE RequestWrapper::Impl_::Impl_(
 
 inline void RequestWrapper::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.request_type_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, request_type_),
+           0,
+           offsetof(Impl_, request_id_) -
+               offsetof(Impl_, request_type_) +
+               sizeof(Impl_::request_id_));
 }
 RequestWrapper::~RequestWrapper() {
   // @@protoc_insertion_point(destructor:RequestWrapper)
@@ -360,7 +374,9 @@ PROTOBUF_NOINLINE void RequestWrapper::Clear() {
   (void) cached_has_bits;
 
   _impl_.request_payload_.ClearToEmpty();
-  _impl_.request_type_ = 0;
+  ::memset(&_impl_.request_type_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.request_id_) -
+      reinterpret_cast<char*>(&_impl_.request_type_)) + sizeof(_impl_.request_id_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -372,33 +388,40 @@ const char* RequestWrapper::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2> RequestWrapper::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> RequestWrapper::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    3,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_RequestWrapper_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // bytes request_payload = 2;
-    {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(RequestWrapper, _impl_.request_payload_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // .RequestWrapper.RequestType request_type = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RequestWrapper, _impl_.request_type_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(RequestWrapper, _impl_.request_type_)}},
+    // uint32 request_id = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RequestWrapper, _impl_.request_id_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(RequestWrapper, _impl_.request_id_)}},
+    // bytes request_payload = 3;
+    {::_pbi::TcParser::FastBS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(RequestWrapper, _impl_.request_payload_)}},
   }}, {{
     65535, 65535
   }}, {{
     // .RequestWrapper.RequestType request_type = 1;
     {PROTOBUF_FIELD_OFFSET(RequestWrapper, _impl_.request_type_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-    // bytes request_payload = 2;
+    // uint32 request_id = 2;
+    {PROTOBUF_FIELD_OFFSET(RequestWrapper, _impl_.request_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // bytes request_payload = 3;
     {PROTOBUF_FIELD_OFFSET(RequestWrapper, _impl_.request_payload_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
@@ -421,10 +444,17 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> RequestWrapper::_table_ = {
         1, this->_internal_request_type(), target);
   }
 
-  // bytes request_payload = 2;
+  // uint32 request_id = 2;
+  if (this->_internal_request_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        2, this->_internal_request_id(), target);
+  }
+
+  // bytes request_payload = 3;
   if (!this->_internal_request_payload().empty()) {
     const std::string& _s = this->_internal_request_payload();
-    target = stream->WriteBytesMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(3, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -444,7 +474,7 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> RequestWrapper::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // bytes request_payload = 2;
+  // bytes request_payload = 3;
   if (!this->_internal_request_payload().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_request_payload());
@@ -454,6 +484,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> RequestWrapper::_table_ = {
   if (this->_internal_request_type() != 0) {
     total_size += 1 +
                   ::_pbi::WireFormatLite::EnumSize(this->_internal_request_type());
+  }
+
+  // uint32 request_id = 2;
+  if (this->_internal_request_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_request_id());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -481,6 +517,9 @@ void RequestWrapper::MergeImpl(::google::protobuf::Message& to_msg, const ::goog
   if (from._internal_request_type() != 0) {
     _this->_internal_set_request_type(from._internal_request_type());
   }
+  if (from._internal_request_id() != 0) {
+    _this->_internal_set_request_id(from._internal_request_id());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -504,7 +543,12 @@ void RequestWrapper::InternalSwap(RequestWrapper* PROTOBUF_RESTRICT other) {
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.request_payload_, &other->_impl_.request_payload_, arena);
-  swap(_impl_.request_type_, other->_impl_.request_type_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(RequestWrapper, _impl_.request_id_)
+      + sizeof(RequestWrapper::_impl_.request_id_)
+      - PROTOBUF_FIELD_OFFSET(RequestWrapper, _impl_.request_type_)>(
+          reinterpret_cast<char*>(&_impl_.request_type_),
+          reinterpret_cast<char*>(&other->_impl_.request_type_));
 }
 
 ::google::protobuf::Metadata RequestWrapper::GetMetadata() const {
@@ -538,7 +582,13 @@ ResponseWrapper::ResponseWrapper(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  _impl_.response_type_ = from._impl_.response_type_;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, response_type_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, response_type_),
+           offsetof(Impl_, response_id_) -
+               offsetof(Impl_, response_type_) +
+               sizeof(Impl_::response_id_));
 
   // @@protoc_insertion_point(copy_constructor:ResponseWrapper)
 }
@@ -550,7 +600,12 @@ inline PROTOBUF_NDEBUG_INLINE ResponseWrapper::Impl_::Impl_(
 
 inline void ResponseWrapper::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.response_type_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, response_type_),
+           0,
+           offsetof(Impl_, response_id_) -
+               offsetof(Impl_, response_type_) +
+               sizeof(Impl_::response_id_));
 }
 ResponseWrapper::~ResponseWrapper() {
   // @@protoc_insertion_point(destructor:ResponseWrapper)
@@ -571,7 +626,9 @@ PROTOBUF_NOINLINE void ResponseWrapper::Clear() {
   (void) cached_has_bits;
 
   _impl_.response_payload_.ClearToEmpty();
-  _impl_.response_type_ = 0;
+  ::memset(&_impl_.response_type_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.response_id_) -
+      reinterpret_cast<char*>(&_impl_.response_type_)) + sizeof(_impl_.response_id_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -583,33 +640,40 @@ const char* ResponseWrapper::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ResponseWrapper::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> ResponseWrapper::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    3,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_ResponseWrapper_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // bytes response_payload = 2;
-    {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ResponseWrapper, _impl_.response_payload_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // .ResponseWrapper.ResponseType response_type = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ResponseWrapper, _impl_.response_type_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(ResponseWrapper, _impl_.response_type_)}},
+    // uint32 response_id = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ResponseWrapper, _impl_.response_id_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(ResponseWrapper, _impl_.response_id_)}},
+    // bytes response_payload = 3;
+    {::_pbi::TcParser::FastBS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(ResponseWrapper, _impl_.response_payload_)}},
   }}, {{
     65535, 65535
   }}, {{
     // .ResponseWrapper.ResponseType response_type = 1;
     {PROTOBUF_FIELD_OFFSET(ResponseWrapper, _impl_.response_type_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-    // bytes response_payload = 2;
+    // uint32 response_id = 2;
+    {PROTOBUF_FIELD_OFFSET(ResponseWrapper, _impl_.response_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // bytes response_payload = 3;
     {PROTOBUF_FIELD_OFFSET(ResponseWrapper, _impl_.response_payload_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
@@ -632,10 +696,17 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ResponseWrapper::_table_ = {
         1, this->_internal_response_type(), target);
   }
 
-  // bytes response_payload = 2;
+  // uint32 response_id = 2;
+  if (this->_internal_response_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        2, this->_internal_response_id(), target);
+  }
+
+  // bytes response_payload = 3;
   if (!this->_internal_response_payload().empty()) {
     const std::string& _s = this->_internal_response_payload();
-    target = stream->WriteBytesMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(3, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -655,7 +726,7 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ResponseWrapper::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // bytes response_payload = 2;
+  // bytes response_payload = 3;
   if (!this->_internal_response_payload().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_response_payload());
@@ -665,6 +736,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ResponseWrapper::_table_ = {
   if (this->_internal_response_type() != 0) {
     total_size += 1 +
                   ::_pbi::WireFormatLite::EnumSize(this->_internal_response_type());
+  }
+
+  // uint32 response_id = 2;
+  if (this->_internal_response_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_response_id());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -692,6 +769,9 @@ void ResponseWrapper::MergeImpl(::google::protobuf::Message& to_msg, const ::goo
   if (from._internal_response_type() != 0) {
     _this->_internal_set_response_type(from._internal_response_type());
   }
+  if (from._internal_response_id() != 0) {
+    _this->_internal_set_response_id(from._internal_response_id());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -715,7 +795,12 @@ void ResponseWrapper::InternalSwap(ResponseWrapper* PROTOBUF_RESTRICT other) {
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.response_payload_, &other->_impl_.response_payload_, arena);
-  swap(_impl_.response_type_, other->_impl_.response_type_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ResponseWrapper, _impl_.response_id_)
+      + sizeof(ResponseWrapper::_impl_.response_id_)
+      - PROTOBUF_FIELD_OFFSET(ResponseWrapper, _impl_.response_type_)>(
+          reinterpret_cast<char*>(&_impl_.response_type_),
+          reinterpret_cast<char*>(&other->_impl_.response_type_));
 }
 
 ::google::protobuf::Metadata ResponseWrapper::GetMetadata() const {
@@ -1147,11 +1232,11 @@ DbPlayerInitialData::DbPlayerInitialData(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   ::memcpy(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, player_id_),
+               offsetof(Impl_, position_x_),
            reinterpret_cast<const char *>(&from._impl_) +
-               offsetof(Impl_, player_id_),
+               offsetof(Impl_, position_x_),
            offsetof(Impl_, player_movementspeed_) -
-               offsetof(Impl_, player_id_) +
+               offsetof(Impl_, position_x_) +
                sizeof(Impl_::player_movementspeed_));
 
   // @@protoc_insertion_point(copy_constructor:DbPlayerInitialData)
@@ -1165,10 +1250,10 @@ inline PROTOBUF_NDEBUG_INLINE DbPlayerInitialData::Impl_::Impl_(
 inline void DbPlayerInitialData::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, player_id_),
+               offsetof(Impl_, position_x_),
            0,
            offsetof(Impl_, player_movementspeed_) -
-               offsetof(Impl_, player_id_) +
+               offsetof(Impl_, position_x_) +
                sizeof(Impl_::player_movementspeed_));
 }
 DbPlayerInitialData::~DbPlayerInitialData() {
@@ -1190,9 +1275,9 @@ PROTOBUF_NOINLINE void DbPlayerInitialData::Clear() {
   (void) cached_has_bits;
 
   _impl_.player_name_.ClearToEmpty();
-  ::memset(&_impl_.player_id_, 0, static_cast<::size_t>(
+  ::memset(&_impl_.position_x_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.player_movementspeed_) -
-      reinterpret_cast<char*>(&_impl_.player_id_)) + sizeof(_impl_.player_movementspeed_));
+      reinterpret_cast<char*>(&_impl_.position_x_)) + sizeof(_impl_.player_movementspeed_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1204,24 +1289,22 @@ const char* DbPlayerInitialData::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 7, 0, 39, 2> DbPlayerInitialData::_table_ = {
+const ::_pbi::TcParseTable<3, 6, 0, 39, 2> DbPlayerInitialData::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
     7, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967168,  // skipmap
+    4294967169,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    7,  // num_field_entries
+    6,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_DbPlayerInitialData_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // uint32 player_id = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(DbPlayerInitialData, _impl_.player_id_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(DbPlayerInitialData, _impl_.player_id_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // string player_name = 2;
     {::_pbi::TcParser::FastUS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(DbPlayerInitialData, _impl_.player_name_)}},
@@ -1243,9 +1326,6 @@ const ::_pbi::TcParseTable<3, 7, 0, 39, 2> DbPlayerInitialData::_table_ = {
   }}, {{
     65535, 65535
   }}, {{
-    // uint32 player_id = 1;
-    {PROTOBUF_FIELD_OFFSET(DbPlayerInitialData, _impl_.player_id_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
     // string player_name = 2;
     {PROTOBUF_FIELD_OFFSET(DbPlayerInitialData, _impl_.player_name_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
@@ -1267,7 +1347,7 @@ const ::_pbi::TcParseTable<3, 7, 0, 39, 2> DbPlayerInitialData::_table_ = {
   }},
   // no aux_entries
   {{
-    "\23\0\13\0\0\0\0\0"
+    "\23\13\0\0\0\0\0\0"
     "DbPlayerInitialData"
     "player_name"
   }},
@@ -1279,13 +1359,6 @@ const ::_pbi::TcParseTable<3, 7, 0, 39, 2> DbPlayerInitialData::_table_ = {
   // @@protoc_insertion_point(serialize_to_array_start:DbPlayerInitialData)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
-
-  // uint32 player_id = 1;
-  if (this->_internal_player_id() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-        1, this->_internal_player_id(), target);
-  }
 
   // string player_name = 2;
   if (!this->_internal_player_name().empty()) {
@@ -1368,12 +1441,6 @@ const ::_pbi::TcParseTable<3, 7, 0, 39, 2> DbPlayerInitialData::_table_ = {
                                     this->_internal_player_name());
   }
 
-  // uint32 player_id = 1;
-  if (this->_internal_player_id() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_player_id());
-  }
-
   // float position_x = 3;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
@@ -1438,9 +1505,6 @@ void DbPlayerInitialData::MergeImpl(::google::protobuf::Message& to_msg, const :
   if (!from._internal_player_name().empty()) {
     _this->_internal_set_player_name(from._internal_player_name());
   }
-  if (from._internal_player_id() != 0) {
-    _this->_internal_set_player_id(from._internal_player_id());
-  }
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
   float tmp_position_x = from._internal_position_x();
@@ -1497,9 +1561,9 @@ void DbPlayerInitialData::InternalSwap(DbPlayerInitialData* PROTOBUF_RESTRICT ot
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(DbPlayerInitialData, _impl_.player_movementspeed_)
       + sizeof(DbPlayerInitialData::_impl_.player_movementspeed_)
-      - PROTOBUF_FIELD_OFFSET(DbPlayerInitialData, _impl_.player_id_)>(
-          reinterpret_cast<char*>(&_impl_.player_id_),
-          reinterpret_cast<char*>(&other->_impl_.player_id_));
+      - PROTOBUF_FIELD_OFFSET(DbPlayerInitialData, _impl_.position_x_)>(
+          reinterpret_cast<char*>(&_impl_.position_x_),
+          reinterpret_cast<char*>(&other->_impl_.position_x_));
 }
 
 ::google::protobuf::Metadata DbPlayerInitialData::GetMetadata() const {

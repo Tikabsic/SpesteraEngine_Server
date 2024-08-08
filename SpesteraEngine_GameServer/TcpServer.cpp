@@ -1,10 +1,9 @@
 #include "TcpServer.h"
 #include "ConnectionsManager.h"
 
-TcpServer::TcpServer(boost::asio::io_context& io_context, const std::string& address, int port, ServerHeartbeat& server_heartbeat, ConnectionsManager* connmanager)
+TcpServer::TcpServer(boost::asio::io_context& io_context, const std::string& address, int port, ConnectionsManager* connmanager)
     : acceptor_(io_context, tcp::endpoint(boost::asio::ip::make_address(address), port)),
     next_id_(1),
-    server_heartbeat_(server_heartbeat),
     conn_manager_(connmanager){
     do_accept();
 }
@@ -13,7 +12,7 @@ void TcpServer::do_accept() {
     acceptor_.async_accept(
         [this](boost::system::error_code ec, tcp::socket socket) {
             if (!ec) {
-                auto session = std::make_shared<Session>(std::move(socket), next_id_, server_heartbeat_, this);
+                auto session = std::make_shared<Session>(std::move(socket), next_id_, this);
                 session->set_player_id(next_id_);
                 conn_manager_->create_new_connection(session->get_player_id(), session);
                 session->start();
@@ -47,7 +46,7 @@ void TcpServer::remove_session(std::shared_ptr<Session> session) {
 
     deliver_to_other_direct(logout_wrapper.SerializeAsString(), session->get_player_id());
 
-    conn_manager_->connections_.erase(session->get_player_id());
+    conn_manager_->delete_connection_from_map(session->get_player_id());
 
 }
 
