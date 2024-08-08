@@ -1,7 +1,6 @@
 #include "ServerHeartbeat.h"
 #include "NetworkProtocol.pb.h"
 #include "BinaryCompressor.h"
-#include "Player_Character.h"
 
 #include <chrono>
 
@@ -14,13 +13,12 @@ ServerHeartbeat::ServerHeartbeat(boost::asio::io_context& io_context, UdpServer&
     //do_heartbeat();
 }
 
-void ServerHeartbeat::push_player_character(std::shared_ptr<Player_Character> character)
+void ServerHeartbeat::push_zone_character(std::shared_ptr<ZoneCharacter> character)
 {
     online_characters_.push_back(character);
 }
 
-void ServerHeartbeat::remove_player_character(std::shared_ptr<Player_Character> character) {
-    std::lock_guard<std::mutex> lock(characters_mutex_);
+void ServerHeartbeat::remove_zone_character(std::shared_ptr<ZoneCharacter> character) {
     auto it = std::find(online_characters_.begin(), online_characters_.end(), character);
     if (it != online_characters_.end()) {
         online_characters_.erase(it);
@@ -46,11 +44,11 @@ Wrapper ServerHeartbeat::gather_initial_world_data(uint16_t playerId) {
         }
         PlayerInitialData player_initial_data;
         player_initial_data.set_player_id(player_data->player_id_);
-        player_initial_data.set_position_x(player_data->player_transform_.position.x);
-        player_initial_data.set_position_y(player_data->player_transform_.position.y);
-        player_initial_data.set_position_z(player_data->player_transform_.position.z);
-        player_initial_data.set_rotation_y(player_data->player_transform_.rotation_Y);
-        player_initial_data.set_player_movementspeed(player_data->get_player_movement_speed());
+        player_initial_data.set_position_x(player_data->transform_.position.x);
+        player_initial_data.set_position_y(player_data->transform_.position.y);
+        player_initial_data.set_position_z(player_data->transform_.position.z);
+        player_initial_data.set_rotation_y(player_data->transform_.rotation_Y);
+        player_initial_data.set_player_movementspeed(player_data->get_character_movement_speed());
 
         initial_data.add_players()->CopyFrom(player_initial_data);
     }
@@ -99,14 +97,14 @@ void ServerHeartbeat::do_heartbeat()
         });
 }
 
-PlayerPosition ServerHeartbeat::gather_player_transformation(std::shared_ptr<Player_Character> character, bool is_heartbeat)
+PlayerPosition ServerHeartbeat::gather_player_transformation(std::shared_ptr<ZoneCharacter> character, bool is_heartbeat)
 {
     PlayerPosition transform;
 
     transform.set_player_id(character->player_id_);
-    transform.set_position_x(character->player_transform_.position.x);
-    transform.set_position_y(character->player_transform_.position.y);
-    transform.set_position_z(character->player_transform_.position.z);
+    transform.set_position_x(character->transform_.position.x);
+    transform.set_position_y(character->transform_.position.y);
+    transform.set_position_z(character->transform_.position.z);
 
     if (is_heartbeat) {
         character->set_last_sent_position();

@@ -67,17 +67,23 @@
     <Filter Include="Utils\MessageInterpreter">
       <UniqueIdentifier>{2fd5c047-5355-4f59-9ce2-76a4d3a90883}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Infrastructure_Connection">
+      <UniqueIdentifier>{70dac525-8610-4c07-b9cf-18a392288d17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Infrastructure_Connection">
+      <UniqueIdentifier>{c5423678-5083-4057-bc7f-f89038ce8329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Managers\Map_Manager">
+      <UniqueIdentifier>{2f0852e7-bc23-46b3-9f3a-43ebc775b609}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Managers\Map_Manager">
+      <UniqueIdentifier>{d9d61ab8-0cbc-4534-b94b-6578eb2955ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Init_ZoneServer.cpp" />
     <ClCompile Include="ServerStopwatch.cpp">
       <Filter>Source\Timer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SpesteraEngine_GameServer\ServerHeartbeat.cpp">
-      <Filter>Source\UDP_Server</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SpesteraEngine_GameServer\UdpServer.cpp">
-      <Filter>Source\UDP_Server</Filter>
     </ClCompile>
     <ClCompile Include="ConfigReader.cpp">
       <Filter>Utils\Config</Filter>
@@ -88,13 +94,10 @@
     <ClCompile Include="NetworkProtocol.pb.cc">
       <Filter>Utils\Protocol</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerCharacter.cpp">
+    <ClCompile Include="ZoneCharacter.cpp">
       <Filter>Source\Entities\Player_Character</Filter>
     </ClCompile>
     <ClCompile Include="ConnectionsManager.cpp">
-      <Filter>Source\Managers\Connections_Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="ZoneConnection.cpp">
       <Filter>Source\Managers\Connections_Manager</Filter>
     </ClCompile>
     <ClCompile Include="TDM.cpp">
@@ -103,16 +106,31 @@
     <ClCompile Include="MessageInterpreter.cpp">
       <Filter>Utils\MessageInterpreter</Filter>
     </ClCompile>
+    <ClCompile Include="ExternalConnection.cpp">
+      <Filter>Source\Infrastructure_Connection</Filter>
+    </ClCompile>
+    <ClCompile Include="TcpConnector.cpp">
+      <Filter>Source\Infrastructure_Connection</Filter>
+    </ClCompile>
+    <ClCompile Include="HeartbeatsManager.cpp">
+      <Filter>Source\Managers\Map_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MapManager.cpp">
+      <Filter>Source\Managers\Map_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MapChunk.cpp">
+      <Filter>Source\Managers\Map_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="UdpServer.cpp">
+      <Filter>Source\UDP_Server</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerHeartbeat.cpp">
+      <Filter>Source\Managers\Map_Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ServerStopwatch.h">
       <Filter>Include\Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SpesteraEngine_GameServer\ServerHeartbeat.h">
-      <Filter>Include\UDP_Server</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SpesteraEngine_GameServer\UdpServer.h">
-      <Filter>Include\UDP_Server</Filter>
     </ClInclude>
     <ClInclude Include="ConfigReader.h">
       <Filter>Utils\Config</Filter>
@@ -123,13 +141,10 @@
     <ClInclude Include="NetworkProtocol.pb.h">
       <Filter>Utils\Protocol</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerCharacter.h">
+    <ClInclude Include="ZoneCharacter.h">
       <Filter>Include\Entities\Player_Character</Filter>
     </ClInclude>
     <ClInclude Include="ConnectionsManager.h">
-      <Filter>Include\Managers\Connections_Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="ZoneConnection.h">
       <Filter>Include\Managers\Connections_Manager</Filter>
     </ClInclude>
     <ClInclude Include="TDM.h">
@@ -137,6 +152,27 @@
     </ClInclude>
     <ClInclude Include="MessageInterpreter.h">
       <Filter>Utils\MessageInterpreter</Filter>
+    </ClInclude>
+    <ClInclude Include="ExternalConnection.h">
+      <Filter>Include\Infrastructure_Connection</Filter>
+    </ClInclude>
+    <ClInclude Include="TcpConnector.h">
+      <Filter>Include\Infrastructure_Connection</Filter>
+    </ClInclude>
+    <ClInclude Include="HeartbeatsManager.h">
+      <Filter>Include\Managers\Map_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MapManager.h">
+      <Filter>Include\Managers\Map_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MapChunk.h">
+      <Filter>Include\Managers\Map_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerHeartbeat.h">
+      <Filter>Include\Managers\Map_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="UdpServer.h">
+      <Filter>Include\UDP_Server</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,10 +1,11 @@
 #include "UdpServer.h"
 #include "BinaryCompressor.h"
-#include "ConnectionsManager.h"
 #include <iostream>
 
-UdpServer::UdpServer(boost::asio::io_context& io_context, const std::string& address, int port, ConnectionsManager* connmanager)
-    : socket_(io_context, udp::endpoint(boost::asio::ip::make_address(address), port)), conn_manager_(connmanager) {
+UdpServer::UdpServer(boost::asio::io_context& io_context, const std::string& address, int port)
+    : socket_(io_context, udp::endpoint(boost::asio::ip::make_address(address), port)){
+
+    conn_manager_ = std::make_shared<ConnectionsManager>();
     receive_data();
 }
 
@@ -33,7 +34,7 @@ void UdpServer::receive_data() {
                             u_short player_id = login_request.player_id();
                             {
                                 std::lock_guard<std::mutex> lock(endpoint_map_mutex_);
-                                conn_manager_->add_endpoint_to_map(player_id, sender_endpoint_);
+                                conn_manager_->add_new_connection(player_id, sender_endpoint_);
                             }
                             this->response_to_login_request(sender_endpoint_);
                         }
@@ -60,17 +61,14 @@ void UdpServer::receive_data() {
 }
 
 void UdpServer::response_to_login_request(udp::endpoint endpoint) {
-    std::string message = "Hello from server";
+    std::string message = "1";
     Response response;
     response.set_data(message);
     Wrapper wrapper;
     wrapper.set_type(Wrapper::RESPONSE);
     wrapper.set_payload(response.SerializeAsString());
     std::string serialized_msg = wrapper.SerializeAsString();
-    std::string compressed_msg;
-    BinaryCompressor compressor;
-    compressor.compress_string(serialized_msg, compressed_msg);
-    send_buffer_ = compressed_msg;
+    send_buffer_ = serialized_msg;
     socket_.async_send_to(
         boost::asio::buffer(send_buffer_), endpoint,
         [this, endpoint](boost::system::error_code ec, std::size_t bytes_sent) {
@@ -109,16 +107,17 @@ void UdpServer::send_data_to_all_players(const std::string& message) {
 
 void UdpServer::send_data_to_other_players(const std::string& message, u_short playerId)
 {
-    std::lock_guard<std::mutex> lock(endpoint_map_mutex_);
 
-    if (conn_manager_->connections_.empty()) {
+    if (!conn_manager_->is_anyone_online()) {
         std::cout << "No players online" << std::endl;
         return;
     }
 
-    for (const auto& connection : conn_manager_->connections_) {
+    auto& connections = conn_manager_->get_connections();
+
+    for (const auto& connection : connections) {
         const short& player_id = connection.first;
-        const udp::endpoint& endpoint = connection.second->udp_connection_;
+        const udp::endpoint& endpoint = connection.second;
 
         if (player_id == playerId) {
             continue;

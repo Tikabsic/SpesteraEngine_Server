@@ -1,7 +1,5 @@
 syntax = "proto3";
 
-package network;
-
 message Heartbeat {
     repeated PlayerPosition players = 1;
     repeated MonsterPosition monsters = 2;
@@ -37,6 +35,7 @@ message Wrapper {
         PLAYERINITIALDATA = 4;
         PLAYERPOSITION = 5;
         HEARTBEAT = 6;
+        ASSIGNID = 99;
         RESPONSE = 100;
     }
     MessageType type = 1;
@@ -44,7 +43,7 @@ message Wrapper {
 }
 
 message AssignId {
-    uint32 id = 1;
+    uint32 string = 1;
 }
 
 // Characters Initial Data

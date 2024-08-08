@@ -1,19 +1,17 @@
-#ifndef UDPSERVER_H
-#define UDPSERVER_H
+#pragma once
 
 #include <boost/asio.hpp>
 #include <unordered_map>
 #include <mutex>
 
-class ConnectionsManager;
-
 #include "NetworkProtocol.pb.h"
+#include "ConnectionsManager.h"
 
 using boost::asio::ip::udp;
 
 class UdpServer {
 public:
-    UdpServer(boost::asio::io_context& io_context, const std::string& address, int port, ConnectionsManager* connmanager);
+    UdpServer(boost::asio::io_context& io_context, const std::string& address, int port);
     ~UdpServer();
 
     //Base
@@ -32,9 +30,7 @@ private:
     char receive_data_[max_length];
     std::string send_buffer_;
 
-    ConnectionsManager* conn_manager_;
+    std::shared_ptr<ConnectionsManager> conn_manager_;
     
     std::mutex endpoint_map_mutex_;
 };
-
-#endif // UDPSERVER_H

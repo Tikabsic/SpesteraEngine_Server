@@ -14,8 +14,8 @@ class Zone
 public:
 	Zone(boost::asio::io_context& io_context, unsigned short port, std::string address);
 	~Zone();
+	
 
-	Zone_Name get_zone_name();
 private:
 
 	Zone_Name get_zone_name_from_port(unsigned short port);

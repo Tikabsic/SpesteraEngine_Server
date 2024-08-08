@@ -4,7 +4,6 @@
 class TDM
 {
 public:
-
    static const int gravity_force_;
 
     struct Vector3 {

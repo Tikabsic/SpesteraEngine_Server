@@ -106,6 +106,9 @@
     <Filter Include="Game_Server\Source\Managers\ZonesManager\Zone">
       <UniqueIdentifier>{b4923fe0-e402-4719-a0b5-efba29f83af5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game_Server\Utils\Math">
+      <UniqueIdentifier>{c8e94946-cbfd-45df-9e3b-3608ae226c79}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TcpServer.h">
@@ -149,6 +152,9 @@
     </ClInclude>
     <ClInclude Include="Zone.h">
       <Filter>Game_Server\Include\Managers\Zones_Manager\Zones</Filter>
+    </ClInclude>
+    <ClInclude Include="TDM.h">
+      <Filter>Game_Server\Utils\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -196,6 +202,9 @@
     </ClCompile>
     <ClCompile Include="Zone.cpp">
       <Filter>Game_Server\Source\Managers\ZonesManager\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="TDM.cpp">
+      <Filter>Game_Server\Utils\Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

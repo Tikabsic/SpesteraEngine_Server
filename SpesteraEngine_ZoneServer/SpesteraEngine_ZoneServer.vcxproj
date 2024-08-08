@@ -19,31 +19,39 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\SpesteraEngine_GameServer\ServerHeartbeat.cpp" />
-    <ClCompile Include="..\SpesteraEngine_GameServer\UdpServer.cpp" />
     <ClCompile Include="BinaryCompressor.cpp" />
     <ClCompile Include="ConfigReader.cpp" />
     <ClCompile Include="ConnectionsManager.cpp" />
+    <ClCompile Include="ExternalConnection.cpp" />
+    <ClCompile Include="HeartbeatsManager.cpp" />
     <ClCompile Include="Init_ZoneServer.cpp" />
+    <ClCompile Include="MapChunk.cpp" />
+    <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="MessageInterpreter.cpp" />
     <ClCompile Include="NetworkProtocol.pb.cc" />
-    <ClCompile Include="PlayerCharacter.cpp" />
+    <ClCompile Include="ServerHeartbeat.cpp" />
+    <ClCompile Include="UdpServer.cpp" />
+    <ClCompile Include="ZoneCharacter.cpp" />
     <ClCompile Include="ServerStopwatch.cpp" />
+    <ClCompile Include="TcpConnector.cpp" />
     <ClCompile Include="TDM.cpp" />
-    <ClCompile Include="ZoneConnection.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\SpesteraEngine_GameServer\ServerHeartbeat.h" />
-    <ClInclude Include="..\SpesteraEngine_GameServer\UdpServer.h" />
     <ClInclude Include="BinaryCompressor.h" />
     <ClInclude Include="ConfigReader.h" />
     <ClInclude Include="ConnectionsManager.h" />
+    <ClInclude Include="ExternalConnection.h" />
+    <ClInclude Include="HeartbeatsManager.h" />
+    <ClInclude Include="MapChunk.h" />
+    <ClInclude Include="MapManager.h" />
     <ClInclude Include="MessageInterpreter.h" />
     <ClInclude Include="NetworkProtocol.pb.h" />
-    <ClInclude Include="PlayerCharacter.h" />
+    <ClInclude Include="ServerHeartbeat.h" />
+    <ClInclude Include="UdpServer.h" />
+    <ClInclude Include="ZoneCharacter.h" />
     <ClInclude Include="ServerStopwatch.h" />
+    <ClInclude Include="TcpConnector.h" />
     <ClInclude Include="TDM.h" />
-    <ClInclude Include="ZoneConnection.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Config.ini" />

@@ -10,7 +10,7 @@ using boost::asio::ip::tcp;
 
 enum Client_Type {
     DB_SERVICE_PROVIDER = 0,
-    ZONE_SERVER_CONNECTION =1
+    ZONE_SERVER_CONNECTION = 1
 };
 
 class TcpClient {

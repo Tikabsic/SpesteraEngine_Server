@@ -10,6 +10,7 @@ ZonesManager::ZonesManager(boost::asio::io_context& context) :
 
 	for ( auto& port : ports ) {
 		std::unique_ptr<Zone> zone = std::make_unique<Zone>(io_context_, port, address);
+		std::cout << "Zone " << port << "initialized..." << std::endl;
 		zones_.emplace_back(std::move(zone));
 	};
 

@@ -21,17 +21,14 @@ int main() {
 		int udp_port = std::stoi(config.get("Server", "zone_udp_port"));
 
 		// Create asio IO context
-		boost::asio::io_context udp_io_context;
+		boost::asio::io_context io_context;
 
 		// Init modules
-		auto message_interpreter = std::make_unique<MessageInterpreter>();
-		auto conn_manager = std::make_unique<ConnectionsManager>();
-		auto udp_server = std::make_unique<UdpServer>(udp_io_context, address, udp_port, conn_manager.get(), message_interpreter.get());
-		auto heartbeat = std::make_unique<ServerHeartbeat>(udp_io_context, *udp_server, tickrate);
+		auto udp_server = std::make_unique<UdpServer>(io_context, address, udp_port);
 
-		std::cout << "Game Server loaded" << std::endl;
+		std::cout << "Zone Server loaded" << std::endl;
 
-		udp_io_context.run();
+		io_context.run();
 	}
 	catch (std::exception& e) {
 		std::cerr << "Exception: " << e.what() << "\n";

@@ -108,7 +108,10 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr PlayerInitialData::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : player_id_{0u},
+      : player_name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        player_id_{0u},
         position_x_{0},
         position_y_{0},
         position_z_{0},
@@ -204,7 +207,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr AssignId::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : id_{0u},
+      : string_{0u},
         _cached_size_{0} {}
 
 template <typename>
@@ -220,6 +223,18 @@ struct AssignIdDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AssignIdDefaultTypeInternal _AssignId_default_instance_;
+      template <typename>
+PROTOBUF_CONSTEXPR AnimationClip::AnimationClip(::_pbi::ConstantInitialized) {}
+struct AnimationClipDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AnimationClipDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AnimationClipDefaultTypeInternal() {}
+  union {
+    AnimationClip _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AnimationClipDefaultTypeInternal _AnimationClip_default_instance_;
 
 inline constexpr WorldData::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -279,7 +294,7 @@ struct ClientLoginDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ClientLoginDefaultTypeInternal _ClientLogin_default_instance_;
-static ::_pb::Metadata file_level_metadata_NetworkProtocol_2eproto[12];
+static ::_pb::Metadata file_level_metadata_NetworkProtocol_2eproto[13];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_NetworkProtocol_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_NetworkProtocol_2eproto = nullptr;
@@ -360,7 +375,7 @@ const ::uint32_t TableStruct_NetworkProtocol_2eproto::offsets[] PROTOBUF_SECTION
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::AssignId, _impl_.id_),
+    PROTOBUF_FIELD_OFFSET(::AssignId, _impl_.string_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::PlayerInitialData, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -370,6 +385,7 @@ const ::uint32_t TableStruct_NetworkProtocol_2eproto::offsets[] PROTOBUF_SECTION
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::PlayerInitialData, _impl_.player_id_),
+    PROTOBUF_FIELD_OFFSET(::PlayerInitialData, _impl_.player_name_),
     PROTOBUF_FIELD_OFFSET(::PlayerInitialData, _impl_.position_x_),
     PROTOBUF_FIELD_OFFSET(::PlayerInitialData, _impl_.position_y_),
     PROTOBUF_FIELD_OFFSET(::PlayerInitialData, _impl_.position_z_),
@@ -417,6 +433,14 @@ const ::uint32_t TableStruct_NetworkProtocol_2eproto::offsets[] PROTOBUF_SECTION
     PROTOBUF_FIELD_OFFSET(::MonsterPosition, _impl_.position_y_),
     PROTOBUF_FIELD_OFFSET(::MonsterPosition, _impl_.position_z_),
     PROTOBUF_FIELD_OFFSET(::MonsterPosition, _impl_.rotation_y_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::AnimationClip, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
 };
 
 static const ::_pbi::MigrationSchema
@@ -430,9 +454,10 @@ static const ::_pbi::MigrationSchema
         {57, -1, -1, sizeof(::Wrapper)},
         {67, -1, -1, sizeof(::AssignId)},
         {76, -1, -1, sizeof(::PlayerInitialData)},
-        {90, -1, -1, sizeof(::PlayerPosition)},
-        {103, -1, -1, sizeof(::MonsterInitialData)},
-        {118, -1, -1, sizeof(::MonsterPosition)},
+        {91, -1, -1, sizeof(::PlayerPosition)},
+        {104, -1, -1, sizeof(::MonsterInitialData)},
+        {119, -1, -1, sizeof(::MonsterPosition)},
+        {133, -1, -1, sizeof(::AnimationClip)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -448,6 +473,7 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::_PlayerPosition_default_instance_._instance,
     &::_MonsterInitialData_default_instance_._instance,
     &::_MonsterPosition_default_instance_._instance,
+    &::_AnimationClip_default_instance_._instance,
 };
 const char descriptor_table_protodef_NetworkProtocol_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\025NetworkProtocol.proto\"Q\n\tHeartbeat\022 \n\007"
@@ -458,40 +484,42 @@ const char descriptor_table_protodef_NetworkProtocol_2eproto[] PROTOBUF_SECTION_
     "equestLogin\022\021\n\tplayer_id\030\001 \001(\r\"\030\n\010Respon"
     "se\022\014\n\004data\030\001 \001(\t\"!\n\014ClientLogout\022\021\n\tplay"
     "er_id\030\001 \001(\r\"6\n\013ClientLogin\022\'\n\013player_dat"
-    "a\030\001 \001(\0132\022.PlayerInitialData\"\332\001\n\007Wrapper\022"
+    "a\030\001 \001(\0132\022.PlayerInitialData\"\350\001\n\007Wrapper\022"
     "\"\n\004type\030\001 \001(\0162\024.Wrapper.MessageType\022\017\n\007p"
-    "ayload\030\002 \001(\014\"\231\001\n\013MessageType\022\r\n\tWORLDDAT"
+    "ayload\030\002 \001(\014\"\247\001\n\013MessageType\022\r\n\tWORLDDAT"
     "A\020\000\022\020\n\014REQUESTLOGIN\020\001\022\020\n\014CLIENTLOGOUT\020\002\022"
     "\017\n\013CLIENTLOGIN\020\003\022\025\n\021PLAYERINITIALDATA\020\004\022"
-    "\022\n\016PLAYERPOSITION\020\005\022\r\n\tHEARTBEAT\020\006\022\014\n\010RE"
-    "SPONSE\020d\"\026\n\010AssignId\022\n\n\002id\030\001 \001(\r\"\224\001\n\021Pla"
-    "yerInitialData\022\021\n\tplayer_id\030\001 \001(\r\022\022\n\npos"
-    "ition_x\030\002 \001(\002\022\022\n\nposition_y\030\003 \001(\002\022\022\n\npos"
-    "ition_z\030\004 \001(\002\022\022\n\nrotation_y\030\005 \001(\r\022\034\n\024pla"
-    "yer_movementspeed\030\006 \001(\r\"s\n\016PlayerPositio"
-    "n\022\021\n\tplayer_id\030\001 \001(\r\022\022\n\nposition_x\030\002 \001(\002"
-    "\022\022\n\nposition_y\030\003 \001(\002\022\022\n\nposition_z\030\004 \001(\002"
-    "\022\022\n\nrotation_y\030\005 \001(\r\"\256\001\n\022MonsterInitialD"
-    "ata\022\022\n\nmonster_id\030\001 \001(\005\022\024\n\014monster_name\030"
-    "\002 \001(\t\022\022\n\nposition_x\030\003 \001(\002\022\022\n\nposition_y\030"
-    "\004 \001(\002\022\022\n\nposition_z\030\005 \001(\002\022\022\n\nrotation_y\030"
-    "\006 \001(\r\022\036\n\026monster_movement_speed\030\007 \001(\r\"\213\001"
-    "\n\017MonsterPosition\022\022\n\nmonster_id\030\001 \001(\005\022\024\n"
-    "\014monster_name\030\002 \001(\t\022\022\n\nposition_x\030\003 \001(\002\022"
-    "\022\n\nposition_y\030\004 \001(\002\022\022\n\nposition_z\030\005 \001(\002\022"
-    "\022\n\nrotation_y\030\006 \001(\rb\006proto3"
+    "\022\n\016PLAYERPOSITION\020\005\022\r\n\tHEARTBEAT\020\006\022\014\n\010AS"
+    "SIGNID\020c\022\014\n\010RESPONSE\020d\"\032\n\010AssignId\022\016\n\006st"
+    "ring\030\001 \001(\r\"\251\001\n\021PlayerInitialData\022\021\n\tplay"
+    "er_id\030\001 \001(\r\022\023\n\013player_name\030\002 \001(\t\022\022\n\nposi"
+    "tion_x\030\003 \001(\002\022\022\n\nposition_y\030\004 \001(\002\022\022\n\nposi"
+    "tion_z\030\005 \001(\002\022\022\n\nrotation_y\030\006 \001(\r\022\034\n\024play"
+    "er_movementspeed\030\007 \001(\r\"s\n\016PlayerPosition"
+    "\022\021\n\tplayer_id\030\001 \001(\r\022\022\n\nposition_x\030\002 \001(\002\022"
+    "\022\n\nposition_y\030\003 \001(\002\022\022\n\nposition_z\030\004 \001(\002\022"
+    "\022\n\nrotation_y\030\005 \001(\r\"\256\001\n\022MonsterInitialDa"
+    "ta\022\022\n\nmonster_id\030\001 \001(\005\022\024\n\014monster_name\030\002"
+    " \001(\t\022\022\n\nposition_x\030\003 \001(\002\022\022\n\nposition_y\030\004"
+    " \001(\002\022\022\n\nposition_z\030\005 \001(\002\022\022\n\nrotation_y\030\006"
+    " \001(\r\022\036\n\026monster_movement_speed\030\007 \001(\r\"\213\001\n"
+    "\017MonsterPosition\022\022\n\nmonster_id\030\001 \001(\005\022\024\n\014"
+    "monster_name\030\002 \001(\t\022\022\n\nposition_x\030\003 \001(\002\022\022"
+    "\n\nposition_y\030\004 \001(\002\022\022\n\nposition_z\030\005 \001(\002\022\022"
+    "\n\nrotation_y\030\006 \001(\r\"\017\n\rAnimationClipb\006pro"
+    "to3"
 };
 static ::absl::once_flag descriptor_table_NetworkProtocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_NetworkProtocol_2eproto = {
     false,
     false,
-    1187,
+    1243,
     descriptor_table_protodef_NetworkProtocol_2eproto,
     "NetworkProtocol.proto",
     &descriptor_table_NetworkProtocol_2eproto_once,
     nullptr,
     0,
-    12,
+    13,
     schemas,
     file_default_instances,
     TableStruct_NetworkProtocol_2eproto::offsets,
@@ -522,7 +550,7 @@ const ::google::protobuf::EnumDescriptor* Wrapper_MessageType_descriptor() {
   return file_level_enum_descriptors_NetworkProtocol_2eproto[0];
 }
 PROTOBUF_CONSTINIT const uint32_t Wrapper_MessageType_internal_data_[] = {
-    458752u, 65536u, 100u, };
+    458752u, 131072u, 100u, 99u, };
 bool Wrapper_MessageType_IsValid(int value) {
   return ::_pbi::ValidateEnum(value, Wrapper_MessageType_internal_data_);
 }
@@ -536,6 +564,7 @@ constexpr Wrapper_MessageType Wrapper::CLIENTLOGIN;
 constexpr Wrapper_MessageType Wrapper::PLAYERINITIALDATA;
 constexpr Wrapper_MessageType Wrapper::PLAYERPOSITION;
 constexpr Wrapper_MessageType Wrapper::HEARTBEAT;
+constexpr Wrapper_MessageType Wrapper::ASSIGNID;
 constexpr Wrapper_MessageType Wrapper::RESPONSE;
 constexpr Wrapper_MessageType Wrapper::MessageType_MIN;
 constexpr Wrapper_MessageType Wrapper::MessageType_MAX;
@@ -1934,7 +1963,7 @@ inline PROTOBUF_NDEBUG_INLINE AssignId::Impl_::Impl_(
 
 inline void AssignId::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.id_ = {};
+  _impl_.string_ = {};
 }
 AssignId::~AssignId() {
   // @@protoc_insertion_point(destructor:AssignId)
@@ -1953,7 +1982,7 @@ PROTOBUF_NOINLINE void AssignId::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.id_ = 0u;
+  _impl_.string_ = 0u;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1979,14 +2008,14 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> AssignId::_table_ = {
     &_AssignId_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // uint32 id = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AssignId, _impl_.id_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(AssignId, _impl_.id_)}},
+    // uint32 string = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AssignId, _impl_.string_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(AssignId, _impl_.string_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // uint32 id = 1;
-    {PROTOBUF_FIELD_OFFSET(AssignId, _impl_.id_), 0, 0,
+    // uint32 string = 1;
+    {PROTOBUF_FIELD_OFFSET(AssignId, _impl_.string_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
   }},
   // no aux_entries
@@ -2001,11 +2030,11 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> AssignId::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // uint32 id = 1;
-  if (this->_internal_id() != 0) {
+  // uint32 string = 1;
+  if (this->_internal_string() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-        1, this->_internal_id(), target);
+        1, this->_internal_string(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2025,10 +2054,10 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> AssignId::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // uint32 id = 1;
-  if (this->_internal_id() != 0) {
+  // uint32 string = 1;
+  if (this->_internal_string() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_id());
+        this->_internal_string());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -2050,8 +2079,8 @@ void AssignId::MergeImpl(::google::protobuf::Message& to_msg, const ::google::pr
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_id() != 0) {
-    _this->_internal_set_id(from._internal_id());
+  if (from._internal_string() != 0) {
+    _this->_internal_set_string(from._internal_string());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -2073,7 +2102,7 @@ PROTOBUF_NOINLINE bool AssignId::IsInitialized() const {
 void AssignId::InternalSwap(AssignId* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-        swap(_impl_.id_, other->_impl_.id_);
+        swap(_impl_.string_, other->_impl_.string_);
 }
 
 ::google::protobuf::Metadata AssignId::GetMetadata() const {
@@ -2092,15 +2121,36 @@ PlayerInitialData::PlayerInitialData(::google::protobuf::Arena* arena)
   SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:PlayerInitialData)
 }
+inline PROTOBUF_NDEBUG_INLINE PlayerInitialData::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : player_name_(arena, from.player_name_),
+        _cached_size_{0} {}
+
 PlayerInitialData::PlayerInitialData(
-    ::google::protobuf::Arena* arena, const PlayerInitialData& from)
-    : PlayerInitialData(arena) {
-  MergeFrom(from);
+    ::google::protobuf::Arena* arena,
+    const PlayerInitialData& from)
+    : ::google::protobuf::Message(arena) {
+  PlayerInitialData* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, player_id_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, player_id_),
+           offsetof(Impl_, player_movementspeed_) -
+               offsetof(Impl_, player_id_) +
+               sizeof(Impl_::player_movementspeed_));
+
+  // @@protoc_insertion_point(copy_constructor:PlayerInitialData)
 }
 inline PROTOBUF_NDEBUG_INLINE PlayerInitialData::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : _cached_size_{0} {}
+      : player_name_(arena),
+        _cached_size_{0} {}
 
 inline void PlayerInitialData::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -2118,6 +2168,7 @@ PlayerInitialData::~PlayerInitialData() {
 }
 inline void PlayerInitialData::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.player_name_.Destroy();
   _impl_.~Impl_();
 }
 
@@ -2128,6 +2179,7 @@ PROTOBUF_NOINLINE void PlayerInitialData::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  _impl_.player_name_.ClearToEmpty();
   ::memset(&_impl_.player_id_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.player_movementspeed_) -
       reinterpret_cast<char*>(&_impl_.player_id_)) + sizeof(_impl_.player_movementspeed_));
@@ -2142,15 +2194,15 @@ const char* PlayerInitialData::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 6, 0, 0, 2> PlayerInitialData::_table_ = {
+const ::_pbi::TcParseTable<3, 7, 0, 37, 2> PlayerInitialData::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    6, 56,  // max_field_number, fast_idx_mask
+    7, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967232,  // skipmap
+    4294967168,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    6,  // num_field_entries
+    7,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_PlayerInitialData_default_instance_._instance,
@@ -2160,46 +2212,54 @@ const ::_pbi::TcParseTable<3, 6, 0, 0, 2> PlayerInitialData::_table_ = {
     // uint32 player_id = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PlayerInitialData, _impl_.player_id_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(PlayerInitialData, _impl_.player_id_)}},
-    // float position_x = 2;
+    // string player_name = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(PlayerInitialData, _impl_.player_name_)}},
+    // float position_x = 3;
     {::_pbi::TcParser::FastF32S1,
-     {21, 63, 0, PROTOBUF_FIELD_OFFSET(PlayerInitialData, _impl_.position_x_)}},
-    // float position_y = 3;
+     {29, 63, 0, PROTOBUF_FIELD_OFFSET(PlayerInitialData, _impl_.position_x_)}},
+    // float position_y = 4;
     {::_pbi::TcParser::FastF32S1,
-     {29, 63, 0, PROTOBUF_FIELD_OFFSET(PlayerInitialData, _impl_.position_y_)}},
-    // float position_z = 4;
+     {37, 63, 0, PROTOBUF_FIELD_OFFSET(PlayerInitialData, _impl_.position_y_)}},
+    // float position_z = 5;
     {::_pbi::TcParser::FastF32S1,
-     {37, 63, 0, PROTOBUF_FIELD_OFFSET(PlayerInitialData, _impl_.position_z_)}},
-    // uint32 rotation_y = 5;
+     {45, 63, 0, PROTOBUF_FIELD_OFFSET(PlayerInitialData, _impl_.position_z_)}},
+    // uint32 rotation_y = 6;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PlayerInitialData, _impl_.rotation_y_), 63>(),
-     {40, 63, 0, PROTOBUF_FIELD_OFFSET(PlayerInitialData, _impl_.rotation_y_)}},
-    // uint32 player_movementspeed = 6;
+     {48, 63, 0, PROTOBUF_FIELD_OFFSET(PlayerInitialData, _impl_.rotation_y_)}},
+    // uint32 player_movementspeed = 7;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PlayerInitialData, _impl_.player_movementspeed_), 63>(),
-     {48, 63, 0, PROTOBUF_FIELD_OFFSET(PlayerInitialData, _impl_.player_movementspeed_)}},
-    {::_pbi::TcParser::MiniParse, {}},
+     {56, 63, 0, PROTOBUF_FIELD_OFFSET(PlayerInitialData, _impl_.player_movementspeed_)}},
   }}, {{
     65535, 65535
   }}, {{
     // uint32 player_id = 1;
     {PROTOBUF_FIELD_OFFSET(PlayerInitialData, _impl_.player_id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // float position_x = 2;
+    // string player_name = 2;
+    {PROTOBUF_FIELD_OFFSET(PlayerInitialData, _impl_.player_name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // float position_x = 3;
     {PROTOBUF_FIELD_OFFSET(PlayerInitialData, _impl_.position_x_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // float position_y = 3;
+    // float position_y = 4;
     {PROTOBUF_FIELD_OFFSET(PlayerInitialData, _impl_.position_y_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // float position_z = 4;
+    // float position_z = 5;
     {PROTOBUF_FIELD_OFFSET(PlayerInitialData, _impl_.position_z_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // uint32 rotation_y = 5;
+    // uint32 rotation_y = 6;
     {PROTOBUF_FIELD_OFFSET(PlayerInitialData, _impl_.rotation_y_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // uint32 player_movementspeed = 6;
+    // uint32 player_movementspeed = 7;
     {PROTOBUF_FIELD_OFFSET(PlayerInitialData, _impl_.player_movementspeed_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
   }},
   // no aux_entries
   {{
+    "\21\0\13\0\0\0\0\0"
+    "PlayerInitialData"
+    "player_name"
   }},
 };
 
@@ -2217,7 +2277,15 @@ const ::_pbi::TcParseTable<3, 6, 0, 0, 2> PlayerInitialData::_table_ = {
         1, this->_internal_player_id(), target);
   }
 
-  // float position_x = 2;
+  // string player_name = 2;
+  if (!this->_internal_player_name().empty()) {
+    const std::string& _s = this->_internal_player_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "PlayerInitialData.player_name");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  // float position_x = 3;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
   float tmp_position_x = this->_internal_position_x();
@@ -2226,10 +2294,10 @@ const ::_pbi::TcParseTable<3, 6, 0, 0, 2> PlayerInitialData::_table_ = {
   if (raw_position_x != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        2, this->_internal_position_x(), target);
+        3, this->_internal_position_x(), target);
   }
 
-  // float position_y = 3;
+  // float position_y = 4;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
   float tmp_position_y = this->_internal_position_y();
@@ -2238,10 +2306,10 @@ const ::_pbi::TcParseTable<3, 6, 0, 0, 2> PlayerInitialData::_table_ = {
   if (raw_position_y != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        3, this->_internal_position_y(), target);
+        4, this->_internal_position_y(), target);
   }
 
-  // float position_z = 4;
+  // float position_z = 5;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
   float tmp_position_z = this->_internal_position_z();
@@ -2250,21 +2318,21 @@ const ::_pbi::TcParseTable<3, 6, 0, 0, 2> PlayerInitialData::_table_ = {
   if (raw_position_z != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        4, this->_internal_position_z(), target);
+        5, this->_internal_position_z(), target);
   }
 
-  // uint32 rotation_y = 5;
+  // uint32 rotation_y = 6;
   if (this->_internal_rotation_y() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-        5, this->_internal_rotation_y(), target);
+        6, this->_internal_rotation_y(), target);
   }
 
-  // uint32 player_movementspeed = 6;
+  // uint32 player_movementspeed = 7;
   if (this->_internal_player_movementspeed() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-        6, this->_internal_player_movementspeed(), target);
+        7, this->_internal_player_movementspeed(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2284,13 +2352,19 @@ const ::_pbi::TcParseTable<3, 6, 0, 0, 2> PlayerInitialData::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  // string player_name = 2;
+  if (!this->_internal_player_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_player_name());
+  }
+
   // uint32 player_id = 1;
   if (this->_internal_player_id() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
         this->_internal_player_id());
   }
 
-  // float position_x = 2;
+  // float position_x = 3;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
   float tmp_position_x = this->_internal_position_x();
@@ -2300,7 +2374,7 @@ const ::_pbi::TcParseTable<3, 6, 0, 0, 2> PlayerInitialData::_table_ = {
     total_size += 5;
   }
 
-  // float position_y = 3;
+  // float position_y = 4;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
   float tmp_position_y = this->_internal_position_y();
@@ -2310,7 +2384,7 @@ const ::_pbi::TcParseTable<3, 6, 0, 0, 2> PlayerInitialData::_table_ = {
     total_size += 5;
   }
 
-  // float position_z = 4;
+  // float position_z = 5;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
   float tmp_position_z = this->_internal_position_z();
@@ -2320,13 +2394,13 @@ const ::_pbi::TcParseTable<3, 6, 0, 0, 2> PlayerInitialData::_table_ = {
     total_size += 5;
   }
 
-  // uint32 rotation_y = 5;
+  // uint32 rotation_y = 6;
   if (this->_internal_rotation_y() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
         this->_internal_rotation_y());
   }
 
-  // uint32 player_movementspeed = 6;
+  // uint32 player_movementspeed = 7;
   if (this->_internal_player_movementspeed() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
         this->_internal_player_movementspeed());
@@ -2351,6 +2425,9 @@ void PlayerInitialData::MergeImpl(::google::protobuf::Message& to_msg, const ::g
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (!from._internal_player_name().empty()) {
+    _this->_internal_set_player_name(from._internal_player_name());
+  }
   if (from._internal_player_id() != 0) {
     _this->_internal_set_player_id(from._internal_player_id());
   }
@@ -2403,7 +2480,10 @@ PROTOBUF_NOINLINE bool PlayerInitialData::IsInitialized() const {
 }
 void PlayerInitialData::InternalSwap(PlayerInitialData* PROTOBUF_RESTRICT other) {
   using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.player_name_, &other->_impl_.player_name_, arena);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(PlayerInitialData, _impl_.player_movementspeed_)
       + sizeof(PlayerInitialData::_impl_.player_movementspeed_)
@@ -3484,6 +3564,41 @@ void MonsterPosition::InternalSwap(MonsterPosition* PROTOBUF_RESTRICT other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_NetworkProtocol_2eproto_getter, &descriptor_table_NetworkProtocol_2eproto_once,
       file_level_metadata_NetworkProtocol_2eproto[11]);
+}
+// ===================================================================
+
+class AnimationClip::_Internal {
+ public:
+};
+
+AnimationClip::AnimationClip(::google::protobuf::Arena* arena)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  // @@protoc_insertion_point(arena_constructor:AnimationClip)
+}
+AnimationClip::AnimationClip(
+    ::google::protobuf::Arena* arena,
+    const AnimationClip& from)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  AnimationClip* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:AnimationClip)
+}
+
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata AnimationClip::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_NetworkProtocol_2eproto_getter, &descriptor_table_NetworkProtocol_2eproto_once,
+      file_level_metadata_NetworkProtocol_2eproto[12]);
 }
 // @@protoc_insertion_point(namespace_scope)
 namespace google {
