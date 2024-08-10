@@ -7,6 +7,7 @@ UdpServer::UdpServer(boost::asio::io_context& io_context, const std::string& add
 
     conn_manager_ = std::make_shared<ConnectionsManager>();
     receive_data();
+    std::cout << "UDP Server on" << std::endl;
 }
 
 UdpServer::~UdpServer() {
@@ -60,6 +61,20 @@ void UdpServer::receive_data() {
         });
 }
 
+void UdpServer::send_data_to_player(udp::endpoint endpoint, const std::string& message) {
+    auto send_buffer = std::make_shared<std::string>(message);
+    socket_.async_send_to(
+        boost::asio::buffer(*send_buffer), endpoint,
+        [send_buffer](boost::system::error_code ec, std::size_t bytes_sent) {
+            if (!ec) {
+                // Mo¿esz tutaj dodaæ kod loguj¹cy lub inny kod, który ma byæ wykonany po udanym wys³aniu.
+            }
+            else {
+                std::cerr << "Error sending response: " << ec.message() << std::endl;
+            }
+        });
+}
+
 void UdpServer::response_to_login_request(udp::endpoint endpoint) {
     std::string message = "1";
     Response response;
@@ -68,7 +83,7 @@ void UdpServer::response_to_login_request(udp::endpoint endpoint) {
     wrapper.set_type(Wrapper::RESPONSE);
     wrapper.set_payload(response.SerializeAsString());
     std::string serialized_msg = wrapper.SerializeAsString();
-    send_buffer_ = serialized_msg;
+    auto send_buffer = std::make_shared<std::string>(serialized_msg);
     socket_.async_send_to(
         boost::asio::buffer(send_buffer_), endpoint,
         [this, endpoint](boost::system::error_code ec, std::size_t bytes_sent) {
@@ -80,30 +95,29 @@ void UdpServer::response_to_login_request(udp::endpoint endpoint) {
         });
 }
 
-void UdpServer::send_data_to_all_players(const std::string& message) {
-    std::lock_guard<std::mutex> lock(endpoint_map_mutex_);
-
-    //if (conn_manager_->connections_.empty()) {
-    //    std::cout << "No players online" << std::endl;
-    //    return;
-    //}
-
-    //for (const auto& connection : conn_manager_->connections_) {
-    //    const short& player_id = connection.first;
-    //    const udp::endpoint& endpoint = connection.second->udp_connection_;
-    //    send_buffer_ = message;
-
-    //    socket_.async_send_to(
-    //        boost::asio::buffer(send_buffer_), endpoint,
-    //        [player_id, message](boost::system::error_code ec, std::size_t bytes_sent) {
-    //            if (!ec) {
-    //            }
-    //            else {
-    //                std::cerr << "Error sending message to player " << player_id << ": " << ec.message() << std::endl;
-    //            }
-    //        });
-    //}
-}
+//void UdpServer::send_data_to_all_players(const std::string& message) {
+//
+//    if (conn_manager_->connections_.empty()) {
+//        std::cout << "No players online" << std::endl;
+//        return;
+//    }
+//
+//    for (const auto& connection : conn_manager_->connections_) {
+//        const short& player_id = connection.first;
+//        const udp::endpoint& endpoint = connection.second->udp_connection_;
+//        send_buffer_ = message;
+//
+//        socket_.async_send_to(
+//            boost::asio::buffer(send_buffer_), endpoint,
+//            [player_id, message](boost::system::error_code ec, std::size_t bytes_sent) {
+//                if (!ec) {
+//                }
+//                else {
+//                    std::cerr << "Error sending message to player " << player_id << ": " << ec.message() << std::endl;
+//                }
+//            });
+//    }
+//}
 
 void UdpServer::send_data_to_other_players(const std::string& message, u_short playerId)
 {
@@ -123,7 +137,7 @@ void UdpServer::send_data_to_other_players(const std::string& message, u_short p
             continue;
         }
 
-        send_buffer_ = message;
+        auto send_buffer = std::make_shared<std::string>(message);
 
         socket_.async_send_to(
             boost::asio::buffer(send_buffer_), endpoint,

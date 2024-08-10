@@ -109,6 +109,9 @@
     <Filter Include="Game_Server\Utils\Math">
       <UniqueIdentifier>{c8e94946-cbfd-45df-9e3b-3608ae226c79}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game_Server\Utils\Security">
+      <UniqueIdentifier>{eabdd9d7-4251-40d8-ab76-68bc7bbbb1f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TcpServer.h">
@@ -135,9 +138,6 @@
     <ClInclude Include="ConnectionsManager.h">
       <Filter>Game_Server\Include\Managers\Connections_Manager</Filter>
     </ClInclude>
-    <ClInclude Include="SpesteraConnection.h">
-      <Filter>Game_Server\Include\Managers\Connections_Manager</Filter>
-    </ClInclude>
     <ClInclude Include="TcpClient.h">
       <Filter>Game_Server\Include\TCP_Client</Filter>
     </ClInclude>
@@ -155,6 +155,9 @@
     </ClInclude>
     <ClInclude Include="TDM.h">
       <Filter>Game_Server\Utils\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="SSKey.h">
+      <Filter>Game_Server\Utils\Security</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -185,9 +188,6 @@
     <ClCompile Include="ConnectionsManager.cpp">
       <Filter>Game_Server\Source\Managers\ConnectionsManager</Filter>
     </ClCompile>
-    <ClCompile Include="SpesteraConnection.cpp">
-      <Filter>Game_Server\Source\Managers\ConnectionsManager</Filter>
-    </ClCompile>
     <ClCompile Include="DbServicesProvider.cpp">
       <Filter>Game_Server\Source\Db_Services_Provider</Filter>
     </ClCompile>
@@ -205,6 +205,9 @@
     </ClCompile>
     <ClCompile Include="TDM.cpp">
       <Filter>Game_Server\Utils\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="SSKey.cpp">
+      <Filter>Game_Server\Utils\Security</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

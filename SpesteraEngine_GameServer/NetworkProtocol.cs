@@ -35,21 +35,19 @@ public static partial class NetworkProtocolReflection {
           "VUVTVExPR0lOEAESEAoMQ0xJRU5UTE9HT1VUEAISDwoLQ0xJRU5UTE9HSU4Q",
           "AxIVChFQTEFZRVJJTklUSUFMREFUQRAEEhIKDlBMQVlFUlBPU0lUSU9OEAUS",
           "DQoJSEVBUlRCRUFUEAYSDAoIQVNTSUdOSUQQYxIMCghSRVNQT05TRRBkIhoK",
-          "CEFzc2lnbklkEg4KBnN0cmluZxgBIAEoDSKpAQoRUGxheWVySW5pdGlhbERh",
+          "CEFzc2lnbklkEg4KBnN0cmluZxgBIAEoDSKVAQoRUGxheWVySW5pdGlhbERh",
           "dGESEQoJcGxheWVyX2lkGAEgASgNEhMKC3BsYXllcl9uYW1lGAIgASgJEhIK",
           "CnBvc2l0aW9uX3gYAyABKAISEgoKcG9zaXRpb25feRgEIAEoAhISCgpwb3Np",
-          "dGlvbl96GAUgASgCEhIKCnJvdGF0aW9uX3kYBiABKA0SHAoUcGxheWVyX21v",
-          "dmVtZW50c3BlZWQYByABKA0icwoOUGxheWVyUG9zaXRpb24SEQoJcGxheWVy",
-          "X2lkGAEgASgNEhIKCnBvc2l0aW9uX3gYAiABKAISEgoKcG9zaXRpb25feRgD",
-          "IAEoAhISCgpwb3NpdGlvbl96GAQgASgCEhIKCnJvdGF0aW9uX3kYBSABKA0i",
-          "rgEKEk1vbnN0ZXJJbml0aWFsRGF0YRISCgptb25zdGVyX2lkGAEgASgFEhQK",
-          "DG1vbnN0ZXJfbmFtZRgCIAEoCRISCgpwb3NpdGlvbl94GAMgASgCEhIKCnBv",
-          "c2l0aW9uX3kYBCABKAISEgoKcG9zaXRpb25fehgFIAEoAhISCgpyb3RhdGlv",
-          "bl95GAYgASgNEh4KFm1vbnN0ZXJfbW92ZW1lbnRfc3BlZWQYByABKA0iiwEK",
-          "D01vbnN0ZXJQb3NpdGlvbhISCgptb25zdGVyX2lkGAEgASgFEhQKDG1vbnN0",
-          "ZXJfbmFtZRgCIAEoCRISCgpwb3NpdGlvbl94GAMgASgCEhIKCnBvc2l0aW9u",
-          "X3kYBCABKAISEgoKcG9zaXRpb25fehgFIAEoAhISCgpyb3RhdGlvbl95GAYg",
-          "ASgNIg8KDUFuaW1hdGlvbkNsaXBiBnByb3RvMw=="));
+          "dGlvbl96GAUgASgCEhwKFHBsYXllcl9tb3ZlbWVudHNwZWVkGAcgASgNIl8K",
+          "DlBsYXllclBvc2l0aW9uEhEKCXBsYXllcl9pZBgBIAEoDRISCgpwb3NpdGlv",
+          "bl94GAIgASgCEhIKCnBvc2l0aW9uX3kYAyABKAISEgoKcG9zaXRpb25fehgE",
+          "IAEoAiKaAQoSTW9uc3RlckluaXRpYWxEYXRhEhIKCm1vbnN0ZXJfaWQYASAB",
+          "KAUSFAoMbW9uc3Rlcl9uYW1lGAIgASgJEhIKCnBvc2l0aW9uX3gYAyABKAIS",
+          "EgoKcG9zaXRpb25feRgEIAEoAhISCgpwb3NpdGlvbl96GAUgASgCEh4KFm1v",
+          "bnN0ZXJfbW92ZW1lbnRfc3BlZWQYByABKA0idwoPTW9uc3RlclBvc2l0aW9u",
+          "EhIKCm1vbnN0ZXJfaWQYASABKAUSFAoMbW9uc3Rlcl9uYW1lGAIgASgJEhIK",
+          "CnBvc2l0aW9uX3gYAyABKAISEgoKcG9zaXRpb25feRgEIAEoAhISCgpwb3Np",
+          "dGlvbl96GAUgASgCIg8KDUFuaW1hdGlvbkNsaXBiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -61,10 +59,10 @@ public static partial class NetworkProtocolReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::ClientLogin), global::ClientLogin.Parser, new[]{ "PlayerData" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::Wrapper), global::Wrapper.Parser, new[]{ "Type", "Payload" }, null, new[]{ typeof(global::Wrapper.Types.MessageType) }, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::AssignId), global::AssignId.Parser, new[]{ "String" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerInitialData), global::PlayerInitialData.Parser, new[]{ "PlayerId", "PlayerName", "PositionX", "PositionY", "PositionZ", "RotationY", "PlayerMovementspeed" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerPosition), global::PlayerPosition.Parser, new[]{ "PlayerId", "PositionX", "PositionY", "PositionZ", "RotationY" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::MonsterInitialData), global::MonsterInitialData.Parser, new[]{ "MonsterId", "MonsterName", "PositionX", "PositionY", "PositionZ", "RotationY", "MonsterMovementSpeed" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::MonsterPosition), global::MonsterPosition.Parser, new[]{ "MonsterId", "MonsterName", "PositionX", "PositionY", "PositionZ", "RotationY" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerInitialData), global::PlayerInitialData.Parser, new[]{ "PlayerId", "PlayerName", "PositionX", "PositionY", "PositionZ", "PlayerMovementspeed" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerPosition), global::PlayerPosition.Parser, new[]{ "PlayerId", "PositionX", "PositionY", "PositionZ" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::MonsterInitialData), global::MonsterInitialData.Parser, new[]{ "MonsterId", "MonsterName", "PositionX", "PositionY", "PositionZ", "MonsterMovementSpeed" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::MonsterPosition), global::MonsterPosition.Parser, new[]{ "MonsterId", "MonsterName", "PositionX", "PositionY", "PositionZ" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::AnimationClip), global::AnimationClip.Parser, null, null, null, null, null)
         }));
   }
@@ -1728,7 +1726,6 @@ public sealed partial class PlayerInitialData : pb::IMessage<PlayerInitialData>
     positionX_ = other.positionX_;
     positionY_ = other.positionY_;
     positionZ_ = other.positionZ_;
-    rotationY_ = other.rotationY_;
     playerMovementspeed_ = other.playerMovementspeed_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
@@ -1799,18 +1796,6 @@ public sealed partial class PlayerInitialData : pb::IMessage<PlayerInitialData>
     }
   }
 
-  /// <summary>Field number for the "rotation_y" field.</summary>
-  public const int RotationYFieldNumber = 6;
-  private uint rotationY_;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public uint RotationY {
-    get { return rotationY_; }
-    set {
-      rotationY_ = value;
-    }
-  }
-
   /// <summary>Field number for the "player_movementspeed" field.</summary>
   public const int PlayerMovementspeedFieldNumber = 7;
   private uint playerMovementspeed_;
@@ -1843,7 +1828,6 @@ public sealed partial class PlayerInitialData : pb::IMessage<PlayerInitialData>
     if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PositionX, other.PositionX)) return false;
     if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PositionY, other.PositionY)) return false;
     if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PositionZ, other.PositionZ)) return false;
-    if (RotationY != other.RotationY) return false;
     if (PlayerMovementspeed != other.PlayerMovementspeed) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
@@ -1857,7 +1841,6 @@ public sealed partial class PlayerInitialData : pb::IMessage<PlayerInitialData>
     if (PositionX != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PositionX);
     if (PositionY != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PositionY);
     if (PositionZ != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PositionZ);
-    if (RotationY != 0) hash ^= RotationY.GetHashCode();
     if (PlayerMovementspeed != 0) hash ^= PlayerMovementspeed.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
@@ -1897,10 +1880,6 @@ public sealed partial class PlayerInitialData : pb::IMessage<PlayerInitialData>
       output.WriteRawTag(45);
       output.WriteFloat(PositionZ);
     }
-    if (RotationY != 0) {
-      output.WriteRawTag(48);
-      output.WriteUInt32(RotationY);
-    }
     if (PlayerMovementspeed != 0) {
       output.WriteRawTag(56);
       output.WriteUInt32(PlayerMovementspeed);
@@ -1935,10 +1914,6 @@ public sealed partial class PlayerInitialData : pb::IMessage<PlayerInitialData>
       output.WriteRawTag(45);
       output.WriteFloat(PositionZ);
     }
-    if (RotationY != 0) {
-      output.WriteRawTag(48);
-      output.WriteUInt32(RotationY);
-    }
     if (PlayerMovementspeed != 0) {
       output.WriteRawTag(56);
       output.WriteUInt32(PlayerMovementspeed);
@@ -1967,9 +1942,6 @@ public sealed partial class PlayerInitialData : pb::IMessage<PlayerInitialData>
     }
     if (PositionZ != 0F) {
       size += 1 + 4;
-    }
-    if (RotationY != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RotationY);
     }
     if (PlayerMovementspeed != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerMovementspeed);
@@ -2000,9 +1972,6 @@ public sealed partial class PlayerInitialData : pb::IMessage<PlayerInitialData>
     }
     if (other.PositionZ != 0F) {
       PositionZ = other.PositionZ;
-    }
-    if (other.RotationY != 0) {
-      RotationY = other.RotationY;
     }
     if (other.PlayerMovementspeed != 0) {
       PlayerMovementspeed = other.PlayerMovementspeed;
@@ -2042,10 +2011,6 @@ public sealed partial class PlayerInitialData : pb::IMessage<PlayerInitialData>
           PositionZ = input.ReadFloat();
           break;
         }
-        case 48: {
-          RotationY = input.ReadUInt32();
-          break;
-        }
         case 56: {
           PlayerMovementspeed = input.ReadUInt32();
           break;
@@ -2083,10 +2048,6 @@ public sealed partial class PlayerInitialData : pb::IMessage<PlayerInitialData>
         }
         case 45: {
           PositionZ = input.ReadFloat();
-          break;
-        }
-        case 48: {
-          RotationY = input.ReadUInt32();
           break;
         }
         case 56: {
@@ -2139,7 +2100,6 @@ public sealed partial class PlayerPosition : pb::IMessage<PlayerPosition>
     positionX_ = other.positionX_;
     positionY_ = other.positionY_;
     positionZ_ = other.positionZ_;
-    rotationY_ = other.rotationY_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -2197,18 +2157,6 @@ public sealed partial class PlayerPosition : pb::IMessage<PlayerPosition>
     }
   }
 
-  /// <summary>Field number for the "rotation_y" field.</summary>
-  public const int RotationYFieldNumber = 5;
-  private uint rotationY_;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public uint RotationY {
-    get { return rotationY_; }
-    set {
-      rotationY_ = value;
-    }
-  }
-
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -2228,7 +2176,6 @@ public sealed partial class PlayerPosition : pb::IMessage<PlayerPosition>
     if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PositionX, other.PositionX)) return false;
     if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PositionY, other.PositionY)) return false;
     if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PositionZ, other.PositionZ)) return false;
-    if (RotationY != other.RotationY) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -2240,7 +2187,6 @@ public sealed partial class PlayerPosition : pb::IMessage<PlayerPosition>
     if (PositionX != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PositionX);
     if (PositionY != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PositionY);
     if (PositionZ != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PositionZ);
-    if (RotationY != 0) hash ^= RotationY.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -2275,10 +2221,6 @@ public sealed partial class PlayerPosition : pb::IMessage<PlayerPosition>
       output.WriteRawTag(37);
       output.WriteFloat(PositionZ);
     }
-    if (RotationY != 0) {
-      output.WriteRawTag(40);
-      output.WriteUInt32(RotationY);
-    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -2305,10 +2247,6 @@ public sealed partial class PlayerPosition : pb::IMessage<PlayerPosition>
       output.WriteRawTag(37);
       output.WriteFloat(PositionZ);
     }
-    if (RotationY != 0) {
-      output.WriteRawTag(40);
-      output.WriteUInt32(RotationY);
-    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -2330,9 +2268,6 @@ public sealed partial class PlayerPosition : pb::IMessage<PlayerPosition>
     }
     if (PositionZ != 0F) {
       size += 1 + 4;
-    }
-    if (RotationY != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RotationY);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -2357,9 +2292,6 @@ public sealed partial class PlayerPosition : pb::IMessage<PlayerPosition>
     }
     if (other.PositionZ != 0F) {
       PositionZ = other.PositionZ;
-    }
-    if (other.RotationY != 0) {
-      RotationY = other.RotationY;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -2392,10 +2324,6 @@ public sealed partial class PlayerPosition : pb::IMessage<PlayerPosition>
           PositionZ = input.ReadFloat();
           break;
         }
-        case 40: {
-          RotationY = input.ReadUInt32();
-          break;
-        }
       }
     }
   #endif
@@ -2425,10 +2353,6 @@ public sealed partial class PlayerPosition : pb::IMessage<PlayerPosition>
         }
         case 37: {
           PositionZ = input.ReadFloat();
-          break;
-        }
-        case 40: {
-          RotationY = input.ReadUInt32();
           break;
         }
       }
@@ -2478,7 +2402,6 @@ public sealed partial class MonsterInitialData : pb::IMessage<MonsterInitialData
     positionX_ = other.positionX_;
     positionY_ = other.positionY_;
     positionZ_ = other.positionZ_;
-    rotationY_ = other.rotationY_;
     monsterMovementSpeed_ = other.monsterMovementSpeed_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
@@ -2549,18 +2472,6 @@ public sealed partial class MonsterInitialData : pb::IMessage<MonsterInitialData
     }
   }
 
-  /// <summary>Field number for the "rotation_y" field.</summary>
-  public const int RotationYFieldNumber = 6;
-  private uint rotationY_;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public uint RotationY {
-    get { return rotationY_; }
-    set {
-      rotationY_ = value;
-    }
-  }
-
   /// <summary>Field number for the "monster_movement_speed" field.</summary>
   public const int MonsterMovementSpeedFieldNumber = 7;
   private uint monsterMovementSpeed_;
@@ -2593,7 +2504,6 @@ public sealed partial class MonsterInitialData : pb::IMessage<MonsterInitialData
     if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PositionX, other.PositionX)) return false;
     if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PositionY, other.PositionY)) return false;
     if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PositionZ, other.PositionZ)) return false;
-    if (RotationY != other.RotationY) return false;
     if (MonsterMovementSpeed != other.MonsterMovementSpeed) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
@@ -2607,7 +2517,6 @@ public sealed partial class MonsterInitialData : pb::IMessage<MonsterInitialData
     if (PositionX != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PositionX);
     if (PositionY != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PositionY);
     if (PositionZ != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PositionZ);
-    if (RotationY != 0) hash ^= RotationY.GetHashCode();
     if (MonsterMovementSpeed != 0) hash ^= MonsterMovementSpeed.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
@@ -2647,10 +2556,6 @@ public sealed partial class MonsterInitialData : pb::IMessage<MonsterInitialData
       output.WriteRawTag(45);
       output.WriteFloat(PositionZ);
     }
-    if (RotationY != 0) {
-      output.WriteRawTag(48);
-      output.WriteUInt32(RotationY);
-    }
     if (MonsterMovementSpeed != 0) {
       output.WriteRawTag(56);
       output.WriteUInt32(MonsterMovementSpeed);
@@ -2685,10 +2590,6 @@ public sealed partial class MonsterInitialData : pb::IMessage<MonsterInitialData
       output.WriteRawTag(45);
       output.WriteFloat(PositionZ);
     }
-    if (RotationY != 0) {
-      output.WriteRawTag(48);
-      output.WriteUInt32(RotationY);
-    }
     if (MonsterMovementSpeed != 0) {
       output.WriteRawTag(56);
       output.WriteUInt32(MonsterMovementSpeed);
@@ -2717,9 +2618,6 @@ public sealed partial class MonsterInitialData : pb::IMessage<MonsterInitialData
     }
     if (PositionZ != 0F) {
       size += 1 + 4;
-    }
-    if (RotationY != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RotationY);
     }
     if (MonsterMovementSpeed != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MonsterMovementSpeed);
@@ -2750,9 +2648,6 @@ public sealed partial class MonsterInitialData : pb::IMessage<MonsterInitialData
     }
     if (other.PositionZ != 0F) {
       PositionZ = other.PositionZ;
-    }
-    if (other.RotationY != 0) {
-      RotationY = other.RotationY;
     }
     if (other.MonsterMovementSpeed != 0) {
       MonsterMovementSpeed = other.MonsterMovementSpeed;
@@ -2792,10 +2687,6 @@ public sealed partial class MonsterInitialData : pb::IMessage<MonsterInitialData
           PositionZ = input.ReadFloat();
           break;
         }
-        case 48: {
-          RotationY = input.ReadUInt32();
-          break;
-        }
         case 56: {
           MonsterMovementSpeed = input.ReadUInt32();
           break;
@@ -2833,10 +2724,6 @@ public sealed partial class MonsterInitialData : pb::IMessage<MonsterInitialData
         }
         case 45: {
           PositionZ = input.ReadFloat();
-          break;
-        }
-        case 48: {
-          RotationY = input.ReadUInt32();
           break;
         }
         case 56: {
@@ -2893,7 +2780,6 @@ public sealed partial class MonsterPosition : pb::IMessage<MonsterPosition>
     positionX_ = other.positionX_;
     positionY_ = other.positionY_;
     positionZ_ = other.positionZ_;
-    rotationY_ = other.rotationY_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -2963,18 +2849,6 @@ public sealed partial class MonsterPosition : pb::IMessage<MonsterPosition>
     }
   }
 
-  /// <summary>Field number for the "rotation_y" field.</summary>
-  public const int RotationYFieldNumber = 6;
-  private uint rotationY_;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public uint RotationY {
-    get { return rotationY_; }
-    set {
-      rotationY_ = value;
-    }
-  }
-
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -2995,7 +2869,6 @@ public sealed partial class MonsterPosition : pb::IMessage<MonsterPosition>
     if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PositionX, other.PositionX)) return false;
     if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PositionY, other.PositionY)) return false;
     if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PositionZ, other.PositionZ)) return false;
-    if (RotationY != other.RotationY) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -3008,7 +2881,6 @@ public sealed partial class MonsterPosition : pb::IMessage<MonsterPosition>
     if (PositionX != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PositionX);
     if (PositionY != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PositionY);
     if (PositionZ != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PositionZ);
-    if (RotationY != 0) hash ^= RotationY.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -3047,10 +2919,6 @@ public sealed partial class MonsterPosition : pb::IMessage<MonsterPosition>
       output.WriteRawTag(45);
       output.WriteFloat(PositionZ);
     }
-    if (RotationY != 0) {
-      output.WriteRawTag(48);
-      output.WriteUInt32(RotationY);
-    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -3081,10 +2949,6 @@ public sealed partial class MonsterPosition : pb::IMessage<MonsterPosition>
       output.WriteRawTag(45);
       output.WriteFloat(PositionZ);
     }
-    if (RotationY != 0) {
-      output.WriteRawTag(48);
-      output.WriteUInt32(RotationY);
-    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -3109,9 +2973,6 @@ public sealed partial class MonsterPosition : pb::IMessage<MonsterPosition>
     }
     if (PositionZ != 0F) {
       size += 1 + 4;
-    }
-    if (RotationY != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RotationY);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -3139,9 +3000,6 @@ public sealed partial class MonsterPosition : pb::IMessage<MonsterPosition>
     }
     if (other.PositionZ != 0F) {
       PositionZ = other.PositionZ;
-    }
-    if (other.RotationY != 0) {
-      RotationY = other.RotationY;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -3178,10 +3036,6 @@ public sealed partial class MonsterPosition : pb::IMessage<MonsterPosition>
           PositionZ = input.ReadFloat();
           break;
         }
-        case 48: {
-          RotationY = input.ReadUInt32();
-          break;
-        }
       }
     }
   #endif
@@ -3215,10 +3069,6 @@ public sealed partial class MonsterPosition : pb::IMessage<MonsterPosition>
         }
         case 45: {
           PositionZ = input.ReadFloat();
-          break;
-        }
-        case 48: {
-          RotationY = input.ReadUInt32();
           break;
         }
       }

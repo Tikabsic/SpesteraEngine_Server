@@ -6,7 +6,7 @@
 #include "TcpClient.h"
 
 enum Zone_Name {
-	MAIN = 7172
+	MAIN = 7210
 };
 
 class Zone

@@ -39,7 +39,7 @@ void DbServicesProvider::process_response(const std::string& response)
     try {
         ResponseWrapper wrapper;
         if ( wrapper.ParseFromString(response) ) {
-            auto session = conn_manager_.get_connection(wrapper.response_id())->tcp_connection_;
+            auto session = conn_manager_.get_connection(wrapper.response_id());
             session->direct_push_to_buffer("siemano");
         }
     }

@@ -8,7 +8,6 @@
 #include "NetworkProtocol.pb.h"
 #include "BinaryCompressor.h"
 #include "PlayerCharacter.h"
-#include "ServerHeartbeat.h"
 
 class TcpServer;
 
@@ -34,7 +33,6 @@ private:
     enum { max_length = 512 * 1024};
     char data_[max_length];
     std::deque<std::string> write_msgs_;
-    std::mutex write_mutex_;
 
     //Modules
     TcpServer* tcp_server_;

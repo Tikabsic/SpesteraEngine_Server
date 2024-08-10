@@ -20,6 +20,7 @@ public:
     void response_to_login_request(udp::endpoint endpoint);
 
     //Deliver Type
+    void send_data_to_player(udp::endpoint endpoint, const std::string& message);
     void send_data_to_all_players(const std::string& message);
     void send_data_to_other_players(const std::string& message, u_short playerId);
 

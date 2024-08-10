@@ -3,11 +3,11 @@
 #include <memory>
 
 #include "ConfigReader.h"
-#include "MessageInterpreter.h"
 #include "UdpServer.h"
-#include "ServerHeartbeat.h"
+#include "TcpConnector.h"
 #include "NetworkProtocol.pb.h"
-#include "BinaryCompressor.h"
+#include "ZoneMap.h"
+#include "HeartbeatsManager.h"
 
 int main() {
 	GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -24,7 +24,10 @@ int main() {
 		boost::asio::io_context io_context;
 
 		// Init modules
+		std::unique_ptr<ZoneMap> map = std::make_unique<ZoneMap>(50);
+		auto tcp_connector = std::make_unique<TcpConnector>(io_context, address, tcp_port);
 		auto udp_server = std::make_unique<UdpServer>(io_context, address, udp_port);
+		std::unique_ptr<HeartbeatsManager> heartbeat_manager = std::make_unique<HeartbeatsManager>(udp_server.get(), map.get());
 
 		std::cout << "Zone Server loaded" << std::endl;
 

@@ -200,7 +200,7 @@
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="Session.h" />
     <ClInclude Include="ConfigReader.h" />
-    <ClInclude Include="SpesteraConnection.h" />
+    <ClInclude Include="SSKey.h" />
     <ClInclude Include="TcpClient.h" />
     <ClInclude Include="TcpServer.h" />
     <ClInclude Include="TDM.h" />
@@ -218,7 +218,7 @@
     <ClCompile Include="Session.cpp" />
     <ClCompile Include="ConfigReader.cpp" />
     <ClCompile Include="Init_GameServer.cpp" />
-    <ClCompile Include="SpesteraConnection.cpp" />
+    <ClCompile Include="SSKey.cpp" />
     <ClCompile Include="TcpClient.cpp" />
     <ClCompile Include="TcpServer.cpp" />
     <ClCompile Include="TDM.cpp" />

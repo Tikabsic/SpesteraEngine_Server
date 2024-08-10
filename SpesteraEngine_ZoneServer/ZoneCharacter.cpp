@@ -1,20 +1,6 @@
 #include "ZoneCharacter.h"
 #include "TDM.h"
 
-ZoneCharacter::ZoneCharacter(float X, float Y, float Z, float movement_speed, uint16_t RY, uint16_t pid)
-{
-    transform_.position.x = X;
-    transform_.position.y = Y;
-    transform_.position.z = Z;
-    transform_.rotation_Y = RY;
-    player_id_ = pid;
-    player_fov_ = TDM::FieldOfView(transform_.position);
-    player_movement_speed = movement_speed;
-}
-
-ZoneCharacter::~ZoneCharacter()
-{
-}
 
 void ZoneCharacter::move_zone_character(PlayerPosition transform)
 {
@@ -32,12 +18,12 @@ void ZoneCharacter::move_zone_character(PlayerPosition transform)
         movementVector.z = transform.position_z();
     }
 
-    movementVector.x *= player_movement_speed;
-    movementVector.z *= player_movement_speed;
+    movementVector.x *= movement_speed_;
+    movementVector.z *= movement_speed_;
 
     if (movementVector.y > 0) {
 
-        movementVector.y *= player_movement_speed;
+        movementVector.y *= movement_speed_;
     }
     else {
 
@@ -45,20 +31,20 @@ void ZoneCharacter::move_zone_character(PlayerPosition transform)
     }
 
     transform_.position += movementVector;
-    player_fov_.RepositionFov(movementVector);
+
+    move_game_object();
 
     std::cout << "Player position: (" << transform_.position.x << ", "
         << transform_.position.y << ", "
         << transform_.position.z << ")" << std::endl;
-
 }
 
-float ZoneCharacter::get_character_movement_speed()
+float ZoneCharacter::get_character_movement_speed() const
 {
-    return player_movement_speed;
+    return movement_speed_;
 }
 
-bool ZoneCharacter::is_character_moving()
+bool ZoneCharacter::is_character_moving() const
 {
     if (transform_.position.x != last_sent_position_.x
         || transform_.position.y != last_sent_position_.y
@@ -66,6 +52,11 @@ bool ZoneCharacter::is_character_moving()
         return true;
     }
     return false;
+}
+
+int ZoneCharacter::get_player_id() const
+{
+    return object_id_;
 }
 
 void ZoneCharacter::set_last_sent_position()

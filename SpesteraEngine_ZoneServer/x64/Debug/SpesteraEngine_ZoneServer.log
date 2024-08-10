@@ -1,4 +1,4 @@
-﻿  Init_ZoneServer.cpp
+﻿  HeartbeatsManager.cpp
   Please define _WIN32_WINNT or _WIN32_WINDOWS appropriately. For example:
   - add -D_WIN32_WINNT=0x0601 to the compiler command line; or
   - add _WIN32_WINNT=0x0601 to your project's Preprocessor Definitions.
@@ -42,6 +42,7 @@ C:\Users\makow\vcpkg\installed\x64-windows\include\google\protobuf\unknown_field
 C:\Users\makow\vcpkg\installed\x64-windows\include\google\protobuf\map.h(773,13): warning C4251: 'google::protobuf::internal::UntypedMapBase::alloc_': 'google::protobuf::internal::MapAllocator<void *>' needs to have dll-interface to be used by clients of 'google::protobuf::internal::UntypedMapBase'
 C:\Users\makow\vcpkg\installed\x64-windows\include\google\protobuf\map.h(689,19): warning C4244: 'initializing': conversion from 'uintptr_t' to 'google::protobuf::internal::map_index_t', possible loss of data
 C:\Users\makow\vcpkg\installed\x64-windows\include\google\protobuf\message.h(1027,27): warning C4251: 'google::protobuf::Reflection::tcparse_table_once_': 'absl::lts_20240116::once_flag' needs to have dll-interface to be used by clients of 'google::protobuf::Reflection'
+C:\Users\makow\Desktop\Prod_Spestera\SpesteraEngine_Server\SpesteraEngine_ZoneServer\ChunkHeartbeat.h(20,51): warning C4227: anachronism used: qualifiers on reference are ignored
   SpesteraEngine_ZoneServer.vcxproj -> C:\Users\makow\Desktop\Prod_Spestera\SpesteraEngine_Server\x64\Debug\SpesteraEngine_ZoneServer.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

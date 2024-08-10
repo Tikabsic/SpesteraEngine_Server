@@ -853,7 +853,6 @@ class PlayerPosition final :
     kPositionXFieldNumber = 2,
     kPositionYFieldNumber = 3,
     kPositionZFieldNumber = 4,
-    kRotationYFieldNumber = 5,
   };
   // uint32 player_id = 1;
   void clear_player_id() ;
@@ -895,23 +894,13 @@ class PlayerPosition final :
   void _internal_set_position_z(float value);
 
   public:
-  // uint32 rotation_y = 5;
-  void clear_rotation_y() ;
-  ::uint32_t rotation_y() const;
-  void set_rotation_y(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_rotation_y() const;
-  void _internal_set_rotation_y(::uint32_t value);
-
-  public:
   // @@protoc_insertion_point(class_scope:PlayerPosition)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 5, 0,
+      2, 4, 0,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -932,7 +921,6 @@ class PlayerPosition final :
     float position_x_;
     float position_y_;
     float position_z_;
-    ::uint32_t rotation_y_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1077,7 +1065,6 @@ class PlayerInitialData final :
     kPositionXFieldNumber = 3,
     kPositionYFieldNumber = 4,
     kPositionZFieldNumber = 5,
-    kRotationYFieldNumber = 6,
     kPlayerMovementspeedFieldNumber = 7,
   };
   // string player_name = 2;
@@ -1136,16 +1123,6 @@ class PlayerInitialData final :
   void _internal_set_position_z(float value);
 
   public:
-  // uint32 rotation_y = 6;
-  void clear_rotation_y() ;
-  ::uint32_t rotation_y() const;
-  void set_rotation_y(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_rotation_y() const;
-  void _internal_set_rotation_y(::uint32_t value);
-
-  public:
   // uint32 player_movementspeed = 7;
   void clear_player_movementspeed() ;
   ::uint32_t player_movementspeed() const;
@@ -1162,7 +1139,7 @@ class PlayerInitialData final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 7, 0,
+      3, 6, 0,
       37, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -1184,7 +1161,6 @@ class PlayerInitialData final :
     float position_x_;
     float position_y_;
     float position_z_;
-    ::uint32_t rotation_y_;
     ::uint32_t player_movementspeed_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -1330,7 +1306,6 @@ class MonsterPosition final :
     kPositionXFieldNumber = 3,
     kPositionYFieldNumber = 4,
     kPositionZFieldNumber = 5,
-    kRotationYFieldNumber = 6,
   };
   // string monster_name = 2;
   void clear_monster_name() ;
@@ -1388,23 +1363,13 @@ class MonsterPosition final :
   void _internal_set_position_z(float value);
 
   public:
-  // uint32 rotation_y = 6;
-  void clear_rotation_y() ;
-  ::uint32_t rotation_y() const;
-  void set_rotation_y(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_rotation_y() const;
-  void _internal_set_rotation_y(::uint32_t value);
-
-  public:
   // @@protoc_insertion_point(class_scope:MonsterPosition)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 6, 0,
+      3, 5, 0,
       36, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -1426,7 +1391,6 @@ class MonsterPosition final :
     float position_x_;
     float position_y_;
     float position_z_;
-    ::uint32_t rotation_y_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1571,7 +1535,6 @@ class MonsterInitialData final :
     kPositionXFieldNumber = 3,
     kPositionYFieldNumber = 4,
     kPositionZFieldNumber = 5,
-    kRotationYFieldNumber = 6,
     kMonsterMovementSpeedFieldNumber = 7,
   };
   // string monster_name = 2;
@@ -1630,16 +1593,6 @@ class MonsterInitialData final :
   void _internal_set_position_z(float value);
 
   public:
-  // uint32 rotation_y = 6;
-  void clear_rotation_y() ;
-  ::uint32_t rotation_y() const;
-  void set_rotation_y(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_rotation_y() const;
-  void _internal_set_rotation_y(::uint32_t value);
-
-  public:
   // uint32 monster_movement_speed = 7;
   void clear_monster_movement_speed() ;
   ::uint32_t monster_movement_speed() const;
@@ -1656,7 +1609,7 @@ class MonsterInitialData final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 7, 0,
+      3, 6, 0,
       39, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -1678,7 +1631,6 @@ class MonsterInitialData final :
     float position_x_;
     float position_y_;
     float position_z_;
-    ::uint32_t rotation_y_;
     ::uint32_t monster_movement_speed_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -3443,29 +3395,6 @@ inline void PlayerInitialData::_internal_set_position_z(float value) {
   _impl_.position_z_ = value;
 }
 
-// uint32 rotation_y = 6;
-inline void PlayerInitialData::clear_rotation_y() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.rotation_y_ = 0u;
-}
-inline ::uint32_t PlayerInitialData::rotation_y() const {
-  // @@protoc_insertion_point(field_get:PlayerInitialData.rotation_y)
-  return _internal_rotation_y();
-}
-inline void PlayerInitialData::set_rotation_y(::uint32_t value) {
-  _internal_set_rotation_y(value);
-  // @@protoc_insertion_point(field_set:PlayerInitialData.rotation_y)
-}
-inline ::uint32_t PlayerInitialData::_internal_rotation_y() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.rotation_y_;
-}
-inline void PlayerInitialData::_internal_set_rotation_y(::uint32_t value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.rotation_y_ = value;
-}
-
 // uint32 player_movementspeed = 7;
 inline void PlayerInitialData::clear_player_movementspeed() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
@@ -3583,29 +3512,6 @@ inline void PlayerPosition::_internal_set_position_z(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.position_z_ = value;
-}
-
-// uint32 rotation_y = 5;
-inline void PlayerPosition::clear_rotation_y() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.rotation_y_ = 0u;
-}
-inline ::uint32_t PlayerPosition::rotation_y() const {
-  // @@protoc_insertion_point(field_get:PlayerPosition.rotation_y)
-  return _internal_rotation_y();
-}
-inline void PlayerPosition::set_rotation_y(::uint32_t value) {
-  _internal_set_rotation_y(value);
-  // @@protoc_insertion_point(field_set:PlayerPosition.rotation_y)
-}
-inline ::uint32_t PlayerPosition::_internal_rotation_y() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.rotation_y_;
-}
-inline void PlayerPosition::_internal_set_rotation_y(::uint32_t value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.rotation_y_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -3755,29 +3661,6 @@ inline void MonsterInitialData::_internal_set_position_z(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.position_z_ = value;
-}
-
-// uint32 rotation_y = 6;
-inline void MonsterInitialData::clear_rotation_y() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.rotation_y_ = 0u;
-}
-inline ::uint32_t MonsterInitialData::rotation_y() const {
-  // @@protoc_insertion_point(field_get:MonsterInitialData.rotation_y)
-  return _internal_rotation_y();
-}
-inline void MonsterInitialData::set_rotation_y(::uint32_t value) {
-  _internal_set_rotation_y(value);
-  // @@protoc_insertion_point(field_set:MonsterInitialData.rotation_y)
-}
-inline ::uint32_t MonsterInitialData::_internal_rotation_y() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.rotation_y_;
-}
-inline void MonsterInitialData::_internal_set_rotation_y(::uint32_t value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.rotation_y_ = value;
 }
 
 // uint32 monster_movement_speed = 7;
@@ -3950,29 +3833,6 @@ inline void MonsterPosition::_internal_set_position_z(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.position_z_ = value;
-}
-
-// uint32 rotation_y = 6;
-inline void MonsterPosition::clear_rotation_y() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.rotation_y_ = 0u;
-}
-inline ::uint32_t MonsterPosition::rotation_y() const {
-  // @@protoc_insertion_point(field_get:MonsterPosition.rotation_y)
-  return _internal_rotation_y();
-}
-inline void MonsterPosition::set_rotation_y(::uint32_t value) {
-  _internal_set_rotation_y(value);
-  // @@protoc_insertion_point(field_set:MonsterPosition.rotation_y)
-}
-inline ::uint32_t MonsterPosition::_internal_rotation_y() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.rotation_y_;
-}
-inline void MonsterPosition::_internal_set_rotation_y(::uint32_t value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.rotation_y_ = value;
 }
 
 // -------------------------------------------------------------------

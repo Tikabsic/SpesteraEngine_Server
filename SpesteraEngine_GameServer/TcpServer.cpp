@@ -24,14 +24,14 @@ void TcpServer::do_accept() {
 
 void TcpServer::deliver_to_all(const Wrapper& msg) {
     for (auto& session : conn_manager_->connections_) {
-        session.second->tcp_connection_->compress_to_write(msg);
+        session.second->compress_to_write(msg);
     }
 }
 
 void TcpServer::deliver_to_player(const u_short& player_id, const Wrapper& msg) {
     auto it = conn_manager_->get_connection(player_id);
     if (it != nullptr) {
-        it->tcp_connection_->compress_to_write(msg);
+        it->compress_to_write(msg);
     }
 }
 
@@ -53,9 +53,9 @@ void TcpServer::remove_session(std::shared_ptr<Session> session) {
 void TcpServer::deliver_to_other_direct(const std::string& msg, short session_id)
 {
     for (auto other : conn_manager_->connections_) {
-        if (other.second->tcp_connection_->get_player_id() == session_id)
+        if (other.second->get_player_id() == session_id)
             continue;
         if(other.second != nullptr)
-            other.second->tcp_connection_->direct_push_to_buffer(msg);
+            other.second->direct_push_to_buffer(msg);
     }
 }

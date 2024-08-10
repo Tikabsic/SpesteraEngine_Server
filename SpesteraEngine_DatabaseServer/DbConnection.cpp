@@ -52,7 +52,7 @@ ResponseWrapper DbConnection::get_data(const RequestWrapper& query) {
         request.ParseFromString(query.request_payload());
 
         mysqlx::Table gameCharacters = session->getSchema("spestera_db").getTable("game_characters");
-        mysqlx::RowResult res = gameCharacters.select("player_name", "position_x", "position_y", "position_z", "rotation_y", "player_movementspeed")
+        mysqlx::RowResult res = gameCharacters.select("player_name", "position_x", "position_y", "position_z", "player_movementspeed")
             .where("player_id = :player_id")
             .bind("player_id", request.player_guid())
             .execute();
@@ -64,7 +64,6 @@ ResponseWrapper DbConnection::get_data(const RequestWrapper& query) {
             dbData.set_position_x(row[1].get<float>());
             dbData.set_position_y(row[2].get<float>());
             dbData.set_position_z(row[3].get<float>());
-            dbData.set_rotation_y(row[4].get<uint32_t>());
             dbData.set_player_movementspeed(row[5].get<uint32_t>());
 
             std::string payload;

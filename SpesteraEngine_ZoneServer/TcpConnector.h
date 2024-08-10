@@ -13,6 +13,6 @@ public:
 private:
     void start_accept();
 
-    std::vector<std::unique_ptr<ExternalConnection>> external_connections_;
+    std::vector<std::shared_ptr<ExternalConnection>> external_connections_;
     boost::asio::ip::tcp::acceptor acceptor_;
 };

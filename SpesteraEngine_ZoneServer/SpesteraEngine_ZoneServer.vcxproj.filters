@@ -79,6 +79,15 @@
     <Filter Include="Include\Managers\Map_Manager">
       <UniqueIdentifier>{d9d61ab8-0cbc-4534-b94b-6578eb2955ad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Entities\Base">
+      <UniqueIdentifier>{29c9e0bc-85df-4f3e-a762-853f28999eec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Entities\Base">
+      <UniqueIdentifier>{4833611d-d263-4bc8-84d0-97018097a7c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Security">
+      <UniqueIdentifier>{1722d1d5-cd05-41d0-869f-687fafc2a922}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Init_ZoneServer.cpp" />
@@ -115,17 +124,29 @@
     <ClCompile Include="HeartbeatsManager.cpp">
       <Filter>Source\Managers\Map_Manager</Filter>
     </ClCompile>
-    <ClCompile Include="MapManager.cpp">
-      <Filter>Source\Managers\Map_Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="MapChunk.cpp">
-      <Filter>Source\Managers\Map_Manager</Filter>
-    </ClCompile>
     <ClCompile Include="UdpServer.cpp">
       <Filter>Source\UDP_Server</Filter>
     </ClCompile>
-    <ClCompile Include="ServerHeartbeat.cpp">
+    <ClCompile Include="ChunkHeartbeat.cpp">
       <Filter>Source\Managers\Map_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MovableObject.cpp">
+      <Filter>Source\Entities\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Chunk.cpp">
+      <Filter>Source\Managers\Map_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MapReader.cpp">
+      <Filter>Source\Managers\Map_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SpatialGrid.cpp">
+      <Filter>Source\Managers\Map_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoneMap.cpp">
+      <Filter>Source\Managers\Map_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SSKey.cpp">
+      <Filter>Utils\Security</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -162,20 +183,38 @@
     <ClInclude Include="HeartbeatsManager.h">
       <Filter>Include\Managers\Map_Manager</Filter>
     </ClInclude>
-    <ClInclude Include="MapManager.h">
-      <Filter>Include\Managers\Map_Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="MapChunk.h">
-      <Filter>Include\Managers\Map_Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="ServerHeartbeat.h">
+    <ClInclude Include="ChunkHeartbeat.h">
       <Filter>Include\Managers\Map_Manager</Filter>
     </ClInclude>
     <ClInclude Include="UdpServer.h">
       <Filter>Include\UDP_Server</Filter>
     </ClInclude>
+    <ClInclude Include="MovableObject.h">
+      <Filter>Include\Entities\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Chunk.h">
+      <Filter>Include\Managers\Map_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="HashSpecialization.h">
+      <Filter>Include\Managers\Map_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MapReader.h">
+      <Filter>Include\Managers\Map_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="SpatialGrid.h">
+      <Filter>Include\Managers\Map_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoneMap.h">
+      <Filter>Include\Managers\Map_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="SSKey.h">
+      <Filter>Utils\Security</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Config.ini" />
+    <None Include="map.bin">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

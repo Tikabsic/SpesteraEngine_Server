@@ -20,41 +20,51 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BinaryCompressor.cpp" />
+    <ClCompile Include="Chunk.cpp" />
     <ClCompile Include="ConfigReader.cpp" />
     <ClCompile Include="ConnectionsManager.cpp" />
     <ClCompile Include="ExternalConnection.cpp" />
     <ClCompile Include="HeartbeatsManager.cpp" />
     <ClCompile Include="Init_ZoneServer.cpp" />
-    <ClCompile Include="MapChunk.cpp" />
-    <ClCompile Include="MapManager.cpp" />
+    <ClCompile Include="MapReader.cpp" />
     <ClCompile Include="MessageInterpreter.cpp" />
+    <ClCompile Include="MovableObject.cpp" />
     <ClCompile Include="NetworkProtocol.pb.cc" />
-    <ClCompile Include="ServerHeartbeat.cpp" />
+    <ClCompile Include="ChunkHeartbeat.cpp" />
+    <ClCompile Include="SpatialGrid.cpp" />
+    <ClCompile Include="SSKey.cpp" />
     <ClCompile Include="UdpServer.cpp" />
     <ClCompile Include="ZoneCharacter.cpp" />
     <ClCompile Include="ServerStopwatch.cpp" />
     <ClCompile Include="TcpConnector.cpp" />
     <ClCompile Include="TDM.cpp" />
+    <ClCompile Include="ZoneMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryCompressor.h" />
+    <ClInclude Include="Chunk.h" />
     <ClInclude Include="ConfigReader.h" />
     <ClInclude Include="ConnectionsManager.h" />
     <ClInclude Include="ExternalConnection.h" />
+    <ClInclude Include="HashSpecialization.h" />
     <ClInclude Include="HeartbeatsManager.h" />
-    <ClInclude Include="MapChunk.h" />
-    <ClInclude Include="MapManager.h" />
+    <ClInclude Include="MapReader.h" />
     <ClInclude Include="MessageInterpreter.h" />
+    <ClInclude Include="MovableObject.h" />
     <ClInclude Include="NetworkProtocol.pb.h" />
-    <ClInclude Include="ServerHeartbeat.h" />
+    <ClInclude Include="ChunkHeartbeat.h" />
+    <ClInclude Include="SpatialGrid.h" />
+    <ClInclude Include="SSKey.h" />
     <ClInclude Include="UdpServer.h" />
     <ClInclude Include="ZoneCharacter.h" />
     <ClInclude Include="ServerStopwatch.h" />
     <ClInclude Include="TcpConnector.h" />
     <ClInclude Include="TDM.h" />
+    <ClInclude Include="ZoneMap.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Config.ini" />
+    <None Include="map.bin" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

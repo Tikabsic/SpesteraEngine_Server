@@ -10,7 +10,7 @@ void TcpConnector::start_accept() {
     acceptor_.async_accept(
         [this](const boost::system::error_code& error, boost::asio::ip::tcp::socket socket) {
             if (!error) {
-                auto new_connection = std::make_unique<ExternalConnection>(std::move(socket));
+                auto new_connection = std::make_shared<ExternalConnection>(std::move(socket));
                 new_connection->start();
                 external_connections_.push_back(std::move(new_connection));
                 start_accept();

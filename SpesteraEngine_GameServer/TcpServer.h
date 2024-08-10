@@ -2,8 +2,6 @@
 #define TCPSERVER_H
 
 #include "Session.h"
-#include "ServerHeartbeat.h"
-
 
 #include <boost/asio.hpp>
 #include <memory>

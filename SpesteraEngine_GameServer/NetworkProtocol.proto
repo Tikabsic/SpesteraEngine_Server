@@ -54,7 +54,6 @@ message PlayerInitialData {
     float position_x = 3;
     float position_y = 4;
     float position_z = 5;
-    uint32 rotation_y = 6;
     uint32 player_movementspeed = 7;
 }
 
@@ -65,7 +64,6 @@ message PlayerPosition {
     float position_x = 2;
     float position_y = 3;
     float position_z = 4;
-    uint32 rotation_y = 5;
 }
 //Monsters Initial Data
 
@@ -75,7 +73,6 @@ message MonsterInitialData {
     float position_x = 3;
     float position_y = 4;
     float position_z = 5;
-    uint32 rotation_y = 6;
     uint32 monster_movement_speed = 7;
 }
 
@@ -86,7 +83,6 @@ message MonsterPosition {
     float position_x = 3;
     float position_y = 4;
     float position_z = 5;
-    uint32 rotation_y = 6;
 }
 
 //NetAnimations

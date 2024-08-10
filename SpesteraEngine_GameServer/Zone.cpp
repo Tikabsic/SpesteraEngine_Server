@@ -13,7 +13,7 @@ Zone::~Zone()
 Zone_Name Zone::get_zone_name_from_port(unsigned short port)
 {
 	switch ( port ) {
-	case 7172: return MAIN;
+	case 7210: return MAIN;
 	default: throw std::invalid_argument("Unknown port for zone");
 	}
 }

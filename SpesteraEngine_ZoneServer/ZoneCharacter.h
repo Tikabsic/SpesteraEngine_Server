@@ -3,33 +3,33 @@
 #include <memory>
 #include <cstdint>
 #include "NetworkProtocol.pb.h"
-#include "TDM.h"
+#include "MovableObject.h"
 
 struct Transform
 {
-	TDM::Vector3 position;
-	uint16_t rotation_Y;
+    TDM::Vector3 position;
 };
 
-class ZoneCharacter : public std::enable_shared_from_this<ZoneCharacter>
+class ZoneCharacter : public MovableObject
 {
 public:
+    // Constructor
+    ZoneCharacter(ZoneMap& map, float x, float y, float z, float movementspeed, int pid)
+        : MovableObject(map, x, y, z, movementspeed, pid) {}
 
-	//Base
-	ZoneCharacter(float X, float Y, float Z, float movement_speed, uint16_t RY, uint16_t pid);
-	~ZoneCharacter();
-	void move_zone_character(PlayerPosition transform);
+    ~ZoneCharacter() {}
 
-	//Helpers
-	float get_character_movement_speed();
-	bool is_character_moving();
-	void set_last_sent_position();
+    void move_zone_character(PlayerPosition transform);
 
-	Transform transform_;
-	uint16_t player_id_;
-	TDM::Vector3 last_sent_position_;
+    // Helpers
+    float get_character_movement_speed() const;
+    bool is_character_moving() const;
+    int get_player_id() const;
+    void set_last_sent_position();
+
+    TDM::Vector3 last_sent_position_;
+
+    boost::asio::ip::udp::endpoint player_endpoint;
 private:
-	TDM::FieldOfView player_fov_;
-	float player_movement_speed;
-};
 
+};
