@@ -1,11 +1,34 @@
+using FluentValidation.AspNetCore;
+using SpesteraEngine_WebServer;
+using Newtonsoft.Json;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddFluentValidationAutoValidation();
+
+builder.Services.AddInjections(builder.Configuration);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Client", builder =>
+        builder.AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials()
+        .AllowAnyOrigin()
+    );
+});
+
+JsonSerializerSettings settings = new JsonSerializerSettings
+{
+    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+};
+
 
 var app = builder.Build();
 
