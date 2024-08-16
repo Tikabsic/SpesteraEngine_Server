@@ -19,3 +19,5 @@
 /SpesteraEngine_DatabaseServer/x64/Debug
 /SpesteraEngine_WorldServer/x64/Debug
 /SpesteraEngine_ZoneServer/x64/Debug/Spestera.ba104c7f.tlog
+/SpesteraEngine_WebServer/bin/Debug/net6.0
+/SpesteraEngine_WebServer/Migrations
