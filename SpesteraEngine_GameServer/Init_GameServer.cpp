@@ -8,7 +8,7 @@
 #include "ConnectionsManager.h"
 #include "TcpServer.h"
 #include "ZonesManager.h"
-#include "NetworkProtocol.pb.h"
+#include "GSProtocol.pb.h"
 #include "BinaryCompressor.h"
 #include "DbServicesProvider.h"
 

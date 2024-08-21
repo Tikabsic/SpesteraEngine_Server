@@ -11,6 +11,6 @@ namespace Services.Interfaces
     public interface ILoginService
     {
         Task<bool> LoginToServer(LoginRequestDTO dto);
-        Task<GameCharactersListDTO> SendGameCharactersList(string accountName);
+        Task<LoginResponseDTO> SendLoginData(string accountName);
     }
 }

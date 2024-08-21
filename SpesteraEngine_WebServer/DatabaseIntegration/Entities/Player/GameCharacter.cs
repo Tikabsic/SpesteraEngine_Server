@@ -4,9 +4,9 @@ namespace DatabaseIntegration.Entities.Player
 {
     public class GameCharacter
     {
-        public Guid Id { get; set; }
         public GameAccount Account { get; set; }
-        public Guid AccountId { get; set; }
+        public string AccountId { get; set; }
+        public string CharacterId { get; set; }
         public int SlotNumber { get; set; }
         public string Nickname { get; set; }
         public float PositionX { get; set; }

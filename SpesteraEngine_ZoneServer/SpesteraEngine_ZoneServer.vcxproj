@@ -29,16 +29,17 @@
     <ClCompile Include="MapReader.cpp" />
     <ClCompile Include="MessageInterpreter.cpp" />
     <ClCompile Include="MovableObject.cpp" />
-    <ClCompile Include="NetworkProtocol.pb.cc" />
     <ClCompile Include="ChunkHeartbeat.cpp" />
+    <ClCompile Include="Session.cpp" />
     <ClCompile Include="SpatialGrid.cpp" />
     <ClCompile Include="SSKey.cpp" />
-    <ClCompile Include="UdpServer.cpp" />
+    <ClCompile Include="TcpServer.cpp" />
     <ClCompile Include="ZoneCharacter.cpp" />
     <ClCompile Include="ServerStopwatch.cpp" />
     <ClCompile Include="TcpConnector.cpp" />
     <ClCompile Include="TDM.cpp" />
     <ClCompile Include="ZoneMap.cpp" />
+    <ClCompile Include="ZSProtocol.pb.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryCompressor.h" />
@@ -51,20 +52,22 @@
     <ClInclude Include="MapReader.h" />
     <ClInclude Include="MessageInterpreter.h" />
     <ClInclude Include="MovableObject.h" />
-    <ClInclude Include="NetworkProtocol.pb.h" />
     <ClInclude Include="ChunkHeartbeat.h" />
+    <ClInclude Include="Session.h" />
     <ClInclude Include="SpatialGrid.h" />
     <ClInclude Include="SSKey.h" />
-    <ClInclude Include="UdpServer.h" />
+    <ClInclude Include="TcpServer.h" />
     <ClInclude Include="ZoneCharacter.h" />
     <ClInclude Include="ServerStopwatch.h" />
     <ClInclude Include="TcpConnector.h" />
     <ClInclude Include="TDM.h" />
     <ClInclude Include="ZoneMap.h" />
+    <ClInclude Include="ZSProtocol.pb.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Config.ini" />
     <None Include="map.bin" />
+    <None Include="ZSProtocol.proto" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

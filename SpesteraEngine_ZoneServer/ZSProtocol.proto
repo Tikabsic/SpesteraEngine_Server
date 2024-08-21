@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+message ZSWrapper {
+    enum MessageType {
+        WORLDDATA = 0;
+        ASSIGNCHARACTER = 1;
+        PLAYERINITIALDATA = 4;
+        PLAYERPOSITION = 5;
+        HEARTBEAT = 6;
+        REQUESTWORLDDATA = 98;
+        PLAYERIN = 99;
+        PLAYEROUT = 100;
+    }
+    MessageType type = 1;
+    bytes payload = 2;
+}
+
+message Heartbeat {
+    repeated PlayerPosition players = 1;
+    repeated MonsterPosition monsters = 2;
+}
+
+message RequestWorldData{
+    uint32 player_id = 1;
+}
+
+message WorldData {
+    repeated PlayerInitialData players = 1;
+    repeated MonsterInitialData monsters = 2;
+}
+
+message AssignCharacter {
+    string secret_key = 1;
+}
+
+message PlayerIn {
+    PlayerInitialData data = 1;
+}
+
+message PlayerOut {
+    uint32 player_id = 1;
+}
+
+// Characters Initial Data
+
+message PlayerInitialData {
+    uint32 player_id = 1;
+    string player_name = 2;
+    float position_x = 3;
+    float position_y = 4;
+    float position_z = 5;
+    uint32 player_movementspeed = 7;
+}
+
+// Characters Position
+
+message PlayerPosition {
+    uint32 player_id = 1;
+    float position_x = 2;
+    float position_y = 3;
+    float position_z = 4;
+}
+//Monsters Initial Data
+
+message MonsterInitialData {
+        int32 monster_id = 1;
+    string monster_name = 2;
+    float position_x = 3;
+    float position_y = 4;
+    float position_z = 5;
+    uint32 monster_movement_speed = 7;
+}
+
+// Monsters Position
+message MonsterPosition {
+    int32 monster_id = 1;
+    string monster_name = 2;
+    float position_x = 3;
+    float position_y = 4;
+    float position_z = 5;
+}
+
+//NetAnimations
+message AnimationClip{
+
+}

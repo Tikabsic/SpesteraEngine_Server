@@ -195,8 +195,8 @@
     <ClInclude Include="ConnectionsManager.h" />
     <ClInclude Include="DatabaseProtocol.pb.h" />
     <ClInclude Include="DbServicesProvider.h" />
+    <ClInclude Include="GSProtocol.pb.h" />
     <ClInclude Include="MessageInterpreter.h" />
-    <ClInclude Include="NetworkProtocol.pb.h" />
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="Session.h" />
     <ClInclude Include="ConfigReader.h" />
@@ -212,8 +212,8 @@
     <ClCompile Include="ConnectionsManager.cpp" />
     <ClCompile Include="DatabaseProtocol.pb.cc" />
     <ClCompile Include="DbServicesProvider.cpp" />
+    <ClCompile Include="GSProtocol.pb.cc" />
     <ClCompile Include="MessageInterpreter.cpp" />
-    <ClCompile Include="NetworkProtocol.pb.cc" />
     <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="Session.cpp" />
     <ClCompile Include="ConfigReader.cpp" />
@@ -227,7 +227,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Config.ini" />
-    <None Include="NetworkProtocol.proto" />
+    <None Include="GSProtocol.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

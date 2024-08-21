@@ -13,9 +13,10 @@ namespace DatabaseIntegration.Configuration
     {
         public void Configure(EntityTypeBuilder<GameAccount> builder)
         {
-            builder.HasIndex(a => a.Id).IsUnique();
-            builder.HasKey(a => a.Id);
-            builder.Property(a => a.Id).ValueGeneratedOnAdd();
+            builder.HasKey(a => a.AccountId);
+
+            builder.HasIndex(a => a.AccountName).IsUnique();
+            builder.HasIndex(a => a.AccountId).IsUnique();
 
             builder.HasMany(a => a.GameCharacters)
                 .WithOne(gc => gc.Account)

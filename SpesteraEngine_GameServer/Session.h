@@ -5,7 +5,7 @@
 #include <deque>
 #include <mutex>
 
-#include "NetworkProtocol.pb.h"
+#include "GSProtocol.pb.h"
 #include "BinaryCompressor.h"
 #include "PlayerCharacter.h"
 
@@ -18,7 +18,7 @@ public:
     void start();
     void disconnect();
 
-    void compress_to_write(const Wrapper& msg);
+    void compress_to_write(const GSWrapper& msg);
     void direct_push_to_buffer(const std::string& msg);
 
     void set_player_id(u_short pid);
@@ -26,7 +26,7 @@ public:
 private:
     void do_read();
     void do_write();
-    void handle_message(const Wrapper& wrapper);
+    void handle_message(const GSWrapper& wrapper);
 
     boost::asio::ip::tcp::socket socket_;
     int id_;

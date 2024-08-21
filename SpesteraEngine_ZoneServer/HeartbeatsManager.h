@@ -7,20 +7,20 @@
 
 #include "ChunkHeartbeat.h"
 #include "ServerStopwatch.h"
-#include "UdpServer.h"
+#include "TcpServer.h"
 #include "ZoneMap.h"
 
 
 class HeartbeatsManager
 {
 public:
-	HeartbeatsManager(UdpServer* udpserver, ZoneMap* zonemap);
+	HeartbeatsManager(TcpServer* tcpserver, ZoneMap* zonemap, boost::asio::io_context& iocontext);
 	~HeartbeatsManager();
 
 	void start_heartbeating();
 private:
-	boost::asio::io_context io_context_;
-	UdpServer* udp_server_;
+	boost::asio::io_context& io_context_;
+	TcpServer* tcp_server_;
 	ZoneMap* map_;
 	std::unique_ptr<ServerStopwatch> stopwatch_;
 	std::vector<std::unique_ptr<ChunkHeartbeat>> heartbeats_;

@@ -1,18 +1,28 @@
-#pragma once
-#include <map>
+// ConnectionsManager.h
+#ifndef CONNECTIONSMANAGER_H
+#define CONNECTIONSMANAGER_H
+
+#include <unordered_map>
+#include <memory>
+#include <mutex>
 #include <boost/asio.hpp>
 
-class ConnectionsManager : public std::enable_shared_from_this<ConnectionsManager>
-{
+#include "Session.h"
+
+class ConnectionsManager {
+
 public:
-	void add_new_connection(short id, boost::asio::ip::udp::endpoint endpoint);
-	void delete_connection(short id);
+    ConnectionsManager();
 
-	std::map<short, boost::asio::ip::udp::endpoint>& get_connections();
+    void create_new_connection(short key, std::shared_ptr<Session> session);
+    void delete_connection_from_map(short key);
 
-	bool is_anyone_online();
+    std::shared_ptr<Session> get_connection(short connectionid);
 
-private:
-	std::map<short, boost::asio::ip::udp::endpoint> connections_;
+    std::unordered_map<short, std::shared_ptr<Session>> connections_;
+    std::mutex connections_mutex_;
+
 };
+
+#endif // CONNECTIONSMANAGER_H
 

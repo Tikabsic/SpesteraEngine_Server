@@ -23,18 +23,12 @@ namespace SpesteraEngine_WebServer.Controllers
         [HttpPost("login")]
         public async Task<ActionResult> Login([FromBody] LoginRequestDTO dto)
         {
-            var stopwatch = Stopwatch.StartNew();
             var request = await _loginService.LoginToServer(dto);
 
             if (request)
             {
-                var characterList = await _loginService.SendGameCharactersList(dto.AccountName);
-
-                stopwatch.Stop();
-                var elapsedMilliseconds = stopwatch.ElapsedMilliseconds;
-                Console.WriteLine($"Total time for operation: {elapsedMilliseconds} ms");
-
-                return Ok(characterList);
+                var loginData = await _loginService.SendLoginData(dto.AccountName);
+                return Ok(loginData);
             }
             return BadRequest("Wrong username or password.");
         }
@@ -42,13 +36,7 @@ namespace SpesteraEngine_WebServer.Controllers
         [HttpPost("register")]
         public async Task<ActionResult> Register([FromBody] RegisterRequestDTO dto)
         {
-            var stopwatch = Stopwatch.StartNew();
-
             var request = await _registerService.RegisterNewUser(dto);
-
-            stopwatch.Stop();
-            var elapsedMilliseconds = stopwatch.ElapsedMilliseconds;
-            Console.WriteLine($"Total time for operation: {elapsedMilliseconds} ms");
             return Ok(request);
         }
     }

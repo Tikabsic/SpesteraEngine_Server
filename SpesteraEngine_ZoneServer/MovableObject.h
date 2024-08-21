@@ -5,7 +5,7 @@
 #include <string>
 #include <unordered_set>
 
-#include "NetworkProtocol.pb.h"
+#include "ZSProtocol.pb.h"
 #include "HashSpecialization.h"
 #include "TDM.h"
 
@@ -19,16 +19,15 @@ public:
         TDM::Vector3 position;
     };
 
-    MovableObject(ZoneMap& map, float x, float y, float z, float movementspeed, int objid)
-        : map_(map), transform_{ TDM::Vector3{x, y, z} }, movement_speed_(movementspeed), object_id_(objid) {}
+    MovableObject(ZoneMap& map, float x, float y, float z, float movementspeed, int objid);
 
-    ~MovableObject() {}
+    virtual ~MovableObject() {}
 
     TDM::Vector3 get_transform() const;
-    void move_game_object();
+    int get_object_id() const;
+    void update_chunk_position();
 
-    std::unordered_set<CellKey> fov_;
-
+    CellKey current_chunk_;
 protected:
     ZoneMap& map_;
     int object_id_;

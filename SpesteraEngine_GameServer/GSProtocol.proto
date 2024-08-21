@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+message GSWrapper {
+    enum MessageType {
+        WORLDDATA = 0;
+        REQUESTCHARACTER = 1;
+        CLIENTLOGOUT = 2;
+        ASSIGNID = 99;
+        RESPONSE = 100;
+    }
+    MessageType type = 1;
+    bytes payload = 2;
+}
+
+message RequestCharacter {
+    string player_id = 1;
+}
+
+message Response {
+    string data = 1;
+}
+
+message ClientLogin{
+    uint32 player_id = 1;
+}
+
+message ClientLogout{
+    uint32 player_id = 1;
+}
+
+message AssignId {
+    uint32 string = 1;
+}

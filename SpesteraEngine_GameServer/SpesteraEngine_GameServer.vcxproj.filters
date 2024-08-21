@@ -70,9 +70,6 @@
     <Filter Include="Game_Server\Source\Cache">
       <UniqueIdentifier>{ba90bbb1-147e-49d2-a44a-0282067d65b3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game_Server\Config\Protocol\DatabaseProtocol">
-      <UniqueIdentifier>{d5665f5b-ccb7-41fe-aebe-71ef7392755c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game_Server\Include\Db_Services_Provider">
       <UniqueIdentifier>{333d6b74-668b-4dde-a2aa-551d87862d8a}</UniqueIdentifier>
     </Filter>
@@ -112,6 +109,12 @@
     <Filter Include="Game_Server\Utils\Security">
       <UniqueIdentifier>{eabdd9d7-4251-40d8-ab76-68bc7bbbb1f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game_Server\Config\Protocol\GameServer_Protocol">
+      <UniqueIdentifier>{3fcb3798-3190-411b-9fc5-e1d549f6f8b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game_Server\Config\Protocol\Database_Protocol">
+      <UniqueIdentifier>{d5665f5b-ccb7-41fe-aebe-71ef7392755c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TcpServer.h">
@@ -122,9 +125,6 @@
     </ClInclude>
     <ClInclude Include="ConfigReader.h">
       <Filter>Game_Server\Config\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="NetworkProtocol.pb.h">
-      <Filter>Game_Server\Config\Protocol</Filter>
     </ClInclude>
     <ClInclude Include="BinaryCompressor.h">
       <Filter>Game_Server\Utils\Compressor\Include</Filter>
@@ -145,7 +145,7 @@
       <Filter>Game_Server\Include\Db_Services_Provider</Filter>
     </ClInclude>
     <ClInclude Include="DatabaseProtocol.pb.h">
-      <Filter>Game_Server\Config\Protocol\DatabaseProtocol</Filter>
+      <Filter>Game_Server\Config\Protocol\Database_Protocol</Filter>
     </ClInclude>
     <ClInclude Include="ZonesManager.h">
       <Filter>Game_Server\Include\Managers\Zones_Manager</Filter>
@@ -158,6 +158,9 @@
     </ClInclude>
     <ClInclude Include="SSKey.h">
       <Filter>Game_Server\Utils\Security</Filter>
+    </ClInclude>
+    <ClInclude Include="GSProtocol.pb.h">
+      <Filter>Game_Server\Config\Protocol\GameServer_Protocol</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -172,9 +175,6 @@
     </ClCompile>
     <ClCompile Include="ConfigReader.cpp">
       <Filter>Game_Server\Config\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="NetworkProtocol.pb.cc">
-      <Filter>Game_Server\Config\Protocol</Filter>
     </ClCompile>
     <ClCompile Include="BinaryCompressor.cpp">
       <Filter>Game_Server\Utils\Compressor\Source</Filter>
@@ -195,7 +195,7 @@
       <Filter>Game_Server\Source\TCP_Client</Filter>
     </ClCompile>
     <ClCompile Include="DatabaseProtocol.pb.cc">
-      <Filter>Game_Server\Config\Protocol\DatabaseProtocol</Filter>
+      <Filter>Game_Server\Config\Protocol\Database_Protocol</Filter>
     </ClCompile>
     <ClCompile Include="ZonesManager.cpp">
       <Filter>Game_Server\Source\Managers\ZonesManager</Filter>
@@ -209,11 +209,14 @@
     <ClCompile Include="SSKey.cpp">
       <Filter>Game_Server\Utils\Security</Filter>
     </ClCompile>
+    <ClCompile Include="GSProtocol.pb.cc">
+      <Filter>Game_Server\Config\Protocol\GameServer_Protocol</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="NetworkProtocol.proto">
-      <Filter>Game_Server\Config\Protocol</Filter>
-    </None>
     <None Include="Config.ini" />
+    <None Include="GSProtocol.proto">
+      <Filter>Game_Server\Config\Protocol\GameServer_Protocol</Filter>
+    </None>
   </ItemGroup>
 </Project>

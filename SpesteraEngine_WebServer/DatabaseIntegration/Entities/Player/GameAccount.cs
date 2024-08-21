@@ -11,7 +11,7 @@ namespace DatabaseIntegration.Entities.Player
 {
     public class GameAccount
     {
-        public Guid Id { get; set; }
+        public string AccountId { get; set; }
         public DateTime CreationDate { get; set; }
         public Nationality Nationality { get; set; }
         public string Email { get; set; }

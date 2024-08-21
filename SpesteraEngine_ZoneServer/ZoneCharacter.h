@@ -2,8 +2,10 @@
 
 #include <memory>
 #include <cstdint>
-#include "NetworkProtocol.pb.h"
+#include "ZSProtocol.pb.h"
 #include "MovableObject.h"
+
+class Session;
 
 struct Transform
 {
@@ -13,13 +15,18 @@ struct Transform
 class ZoneCharacter : public MovableObject
 {
 public:
-    // Constructor
-    ZoneCharacter(ZoneMap& map, float x, float y, float z, float movementspeed, int pid)
-        : MovableObject(map, x, y, z, movementspeed, pid) {}
+
+    ZoneCharacter(ZoneMap& map, float x, float y, float z, float movementspeed, int pid, std::weak_ptr<Session> session)
+        : MovableObject(map, x, y, z, movementspeed, pid), session_(session) {}
 
     ~ZoneCharacter() {}
 
+    std::shared_ptr<Session> get_session() const {
+        return session_.lock();
+    }
+
     void move_zone_character(PlayerPosition transform);
+    void update_fov();
 
     // Helpers
     float get_character_movement_speed() const;
@@ -28,8 +35,7 @@ public:
     void set_last_sent_position();
 
     TDM::Vector3 last_sent_position_;
-
-    boost::asio::ip::udp::endpoint player_endpoint;
+    std::unordered_set<CellKey> fov_;
 private:
-
+    std::weak_ptr<Session> session_;
 };

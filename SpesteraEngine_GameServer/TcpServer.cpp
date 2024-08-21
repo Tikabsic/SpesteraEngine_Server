@@ -12,6 +12,7 @@ void TcpServer::do_accept() {
     acceptor_.async_accept(
         [this](boost::system::error_code ec, tcp::socket socket) {
             if (!ec) {
+                std::cout << "Accepting..." << std::endl;
                 auto session = std::make_shared<Session>(std::move(socket), next_id_, this);
                 session->set_player_id(next_id_);
                 conn_manager_->create_new_connection(session->get_player_id(), session);
@@ -22,13 +23,13 @@ void TcpServer::do_accept() {
         });
 }
 
-void TcpServer::deliver_to_all(const Wrapper& msg) {
+void TcpServer::deliver_to_all(const GSWrapper& msg) {
     for (auto& session : conn_manager_->connections_) {
         session.second->compress_to_write(msg);
     }
 }
 
-void TcpServer::deliver_to_player(const u_short& player_id, const Wrapper& msg) {
+void TcpServer::deliver_to_player(const u_short& player_id, const GSWrapper& msg) {
     auto it = conn_manager_->get_connection(player_id);
     if (it != nullptr) {
         it->compress_to_write(msg);
@@ -40,8 +41,8 @@ void TcpServer::remove_session(std::shared_ptr<Session> session) {
     ClientLogout logout_msg;
     logout_msg.set_player_id(session->get_player_id());
 
-    Wrapper logout_wrapper;
-    logout_wrapper.set_type(Wrapper::CLIENTLOGOUT);
+    GSWrapper logout_wrapper;
+    logout_wrapper.set_type(GSWrapper::CLIENTLOGOUT);
     logout_wrapper.set_payload(logout_msg.SerializeAsString());
 
     deliver_to_other_direct(logout_wrapper.SerializeAsString(), session->get_player_id());

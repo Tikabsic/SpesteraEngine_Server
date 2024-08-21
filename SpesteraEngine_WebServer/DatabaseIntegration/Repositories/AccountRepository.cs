@@ -1,6 +1,7 @@
 ﻿using DatabaseIntegration.Database;
 using DatabaseIntegration.Entities.Player;
 using DatabaseIntegration.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace DatabaseIntegration.Repositories
 {
@@ -17,6 +18,11 @@ namespace DatabaseIntegration.Repositories
         {
             await _appDbContext.Accounts.AddAsync(acc);
             _appDbContext.SaveChanges();
+        }
+
+        public async Task<bool> CheckId(string accountId)
+        {
+            return await _appDbContext.Accounts.AnyAsync(a => a.AccountId == accountId);
         }
     }
 }

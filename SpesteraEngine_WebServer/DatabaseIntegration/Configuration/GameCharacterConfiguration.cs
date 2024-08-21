@@ -13,11 +13,14 @@ namespace DatabaseIntegration.Configuration
     {
         public void Configure(EntityTypeBuilder<GameCharacter> builder)
         {
-            builder.HasIndex(gc => gc.Id).IsUnique();
+            builder.HasKey(gc => gc.CharacterId);
 
             builder.HasIndex(gc => gc.Nickname).IsUnique();
 
+            builder.HasIndex(gc => gc.AccountId).IsUnique();
+
             builder.Property(gc => gc.Nickname).HasMaxLength(18);
+
 
             //builder.HasOne(gc => gc.PlayerStats)
             //    .WithOne(ps => ps.GameCharacter);

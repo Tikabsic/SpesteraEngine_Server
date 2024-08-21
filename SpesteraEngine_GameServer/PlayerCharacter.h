@@ -2,7 +2,7 @@
 
 #include <memory>
 #include <cstdint>
-#include "NetworkProtocol.pb.h"
+#include "GSProtocol.pb.h"
 #include "TDM.h"
 
 struct Transform

@@ -19,12 +19,6 @@
     <Filter Include="Source\Timer">
       <UniqueIdentifier>{706d85f1-f88c-44c7-b991-7eb7d793412f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\UDP_Server">
-      <UniqueIdentifier>{39915e3b-1dd3-409f-abce-0b9e8eb8cbbd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Include\UDP_Server">
-      <UniqueIdentifier>{81b197ce-3dc4-4e7e-a4a8-124c892e4627}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Utils">
       <UniqueIdentifier>{76612abd-f72a-4761-a76e-9e5bb8a939f7}</UniqueIdentifier>
     </Filter>
@@ -88,6 +82,18 @@
     <Filter Include="Utils\Security">
       <UniqueIdentifier>{1722d1d5-cd05-41d0-869f-687fafc2a922}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Client_Session">
+      <UniqueIdentifier>{6a4ad7f2-3c3d-4f9f-baa2-c86f1b23c623}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Client_Session">
+      <UniqueIdentifier>{3347a912-d4dc-4742-a4fd-f0c567f965c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tcp_Server">
+      <UniqueIdentifier>{39915e3b-1dd3-409f-abce-0b9e8eb8cbbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Tcp_Server">
+      <UniqueIdentifier>{81b197ce-3dc4-4e7e-a4a8-124c892e4627}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Init_ZoneServer.cpp" />
@@ -100,14 +106,8 @@
     <ClCompile Include="BinaryCompressor.cpp">
       <Filter>Utils\Compressor</Filter>
     </ClCompile>
-    <ClCompile Include="NetworkProtocol.pb.cc">
-      <Filter>Utils\Protocol</Filter>
-    </ClCompile>
     <ClCompile Include="ZoneCharacter.cpp">
       <Filter>Source\Entities\Player_Character</Filter>
-    </ClCompile>
-    <ClCompile Include="ConnectionsManager.cpp">
-      <Filter>Source\Managers\Connections_Manager</Filter>
     </ClCompile>
     <ClCompile Include="TDM.cpp">
       <Filter>Utils\Math</Filter>
@@ -123,9 +123,6 @@
     </ClCompile>
     <ClCompile Include="HeartbeatsManager.cpp">
       <Filter>Source\Managers\Map_Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="UdpServer.cpp">
-      <Filter>Source\UDP_Server</Filter>
     </ClCompile>
     <ClCompile Include="ChunkHeartbeat.cpp">
       <Filter>Source\Managers\Map_Manager</Filter>
@@ -148,6 +145,18 @@
     <ClCompile Include="SSKey.cpp">
       <Filter>Utils\Security</Filter>
     </ClCompile>
+    <ClCompile Include="ZSProtocol.pb.cc">
+      <Filter>Utils\Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="TcpServer.cpp">
+      <Filter>Source\Tcp_Server</Filter>
+    </ClCompile>
+    <ClCompile Include="Session.cpp">
+      <Filter>Source\Client_Session</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectionsManager.cpp">
+      <Filter>Source\Managers\Connections_Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ServerStopwatch.h">
@@ -159,14 +168,8 @@
     <ClInclude Include="BinaryCompressor.h">
       <Filter>Utils\Compressor</Filter>
     </ClInclude>
-    <ClInclude Include="NetworkProtocol.pb.h">
-      <Filter>Utils\Protocol</Filter>
-    </ClInclude>
     <ClInclude Include="ZoneCharacter.h">
       <Filter>Include\Entities\Player_Character</Filter>
-    </ClInclude>
-    <ClInclude Include="ConnectionsManager.h">
-      <Filter>Include\Managers\Connections_Manager</Filter>
     </ClInclude>
     <ClInclude Include="TDM.h">
       <Filter>Utils\Math</Filter>
@@ -185,9 +188,6 @@
     </ClInclude>
     <ClInclude Include="ChunkHeartbeat.h">
       <Filter>Include\Managers\Map_Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="UdpServer.h">
-      <Filter>Include\UDP_Server</Filter>
     </ClInclude>
     <ClInclude Include="MovableObject.h">
       <Filter>Include\Entities\Base</Filter>
@@ -210,11 +210,26 @@
     <ClInclude Include="SSKey.h">
       <Filter>Utils\Security</Filter>
     </ClInclude>
+    <ClInclude Include="ZSProtocol.pb.h">
+      <Filter>Utils\Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="TcpServer.h">
+      <Filter>Include\Tcp_Server</Filter>
+    </ClInclude>
+    <ClInclude Include="Session.h">
+      <Filter>Include\Client_Session</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectionsManager.h">
+      <Filter>Include\Managers\Connections_Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Config.ini" />
     <None Include="map.bin">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="ZSProtocol.proto">
+      <Filter>Utils\Protocol</Filter>
     </None>
   </ItemGroup>
 </Project>

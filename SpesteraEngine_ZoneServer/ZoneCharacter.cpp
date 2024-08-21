@@ -1,4 +1,5 @@
 #include "ZoneCharacter.h"
+#include "ZoneMap.h"
 #include "TDM.h"
 
 
@@ -31,12 +32,16 @@ void ZoneCharacter::move_zone_character(PlayerPosition transform)
     }
 
     transform_.position += movementVector;
+    update_chunk_position();
+    update_fov();
+}
 
-    move_game_object();
-
-    std::cout << "Player position: (" << transform_.position.x << ", "
-        << transform_.position.y << ", "
-        << transform_.position.z << ")" << std::endl;
+void ZoneCharacter::update_fov()
+{
+    auto self = std::dynamic_pointer_cast<ZoneCharacter>(shared_from_this());
+    if (self) {
+        map_.update_zone_character_fov(self);
+    }
 }
 
 float ZoneCharacter::get_character_movement_speed() const

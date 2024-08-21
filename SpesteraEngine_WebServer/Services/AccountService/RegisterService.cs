@@ -36,6 +36,7 @@ namespace Services.AccountServices
 
             DatabaseIntegration.Entities.Player.GameAccount newAccount = new DatabaseIntegration.Entities.Player.GameAccount();
 
+            newAccount.AccountId = await GenerateUniqueId();
             newAccount.Email = dto.Email;
             newAccount.AccountName = dto.AccountName;
             newAccount.Password = hashedPassword;
@@ -46,5 +47,28 @@ namespace Services.AccountServices
 
             return "Register succeeded.";
         }
+
+        private async Task<string> GenerateUniqueId()
+        {
+            var numberOfDigits = 12;
+            var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var rng = new Random();
+            var id = new char[numberOfDigits];
+
+            for (int i = 0; i < numberOfDigits; i++)
+            {
+                id[i] = chars[rng.Next(chars.Length)];
+            }
+
+            var generatedId = new string(id);
+
+            if (await _accountRepository.CheckId(generatedId))
+            {
+                return await GenerateUniqueId();
+            }
+
+            return generatedId;
+        }
+
     }
 }

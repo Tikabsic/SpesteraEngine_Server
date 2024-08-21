@@ -3,11 +3,12 @@
 #include <memory>
 
 #include "ConfigReader.h"
-#include "UdpServer.h"
+#include "TcpServer.h"
 #include "TcpConnector.h"
-#include "NetworkProtocol.pb.h"
+#include "ZSProtocol.pb.h"
 #include "ZoneMap.h"
 #include "HeartbeatsManager.h"
+#include "ConnectionsManager.h"
 
 int main() {
 	GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -16,18 +17,19 @@ int main() {
 		// Read server configuration
 		ConfigReader config("Config.ini");
 		std::string address = config.get("Server", "ip");
-		int tcp_port = std::stoi(config.get("Server", "tcp_port"));
+		int connector_port = std::stoi(config.get("Server", "connector_port"));
 		int tickrate = std::stoi(config.get("Heartbeat", "tickrate"));
-		int udp_port = std::stoi(config.get("Server", "zone_udp_port"));
+		int zone_port = std::stoi(config.get("Server", "zone_tcp_port"));
 
 		// Create asio IO context
 		boost::asio::io_context io_context;
 
 		// Init modules
+		std::unique_ptr<ConnectionsManager> conn_manager = std::make_unique<ConnectionsManager>();
 		std::unique_ptr<ZoneMap> map = std::make_unique<ZoneMap>(50);
-		auto tcp_connector = std::make_unique<TcpConnector>(io_context, address, tcp_port);
-		auto udp_server = std::make_unique<UdpServer>(io_context, address, udp_port);
-		std::unique_ptr<HeartbeatsManager> heartbeat_manager = std::make_unique<HeartbeatsManager>(udp_server.get(), map.get());
+		auto tcp_connector = std::make_unique<TcpConnector>(io_context, address, connector_port);
+		auto tcp_server = std::make_unique<TcpServer>(io_context, address, zone_port, conn_manager.get(), map.get());
+		std::unique_ptr<HeartbeatsManager> heartbeat_manager = std::make_unique<HeartbeatsManager>(tcp_server.get(), map.get(), io_context);
 
 		std::cout << "Zone Server loaded" << std::endl;
 

@@ -1,21 +1,33 @@
 #include "ConnectionsManager.h"
+#include <iostream>
 
-void ConnectionsManager::add_new_connection(short id, boost::asio::ip::udp::endpoint endpoint)
+
+ConnectionsManager::ConnectionsManager()
 {
-	connections_.insert({id, endpoint});
+
 }
 
-void ConnectionsManager::delete_connection(short id)
+void ConnectionsManager::create_new_connection(short key, std::shared_ptr<Session> session)
 {
-	connections_.erase(id);
+    connections_.insert({key, session });
+    std::cout << "New player connected with id : " << key << ". Total players online : " << connections_.size() << "!" << std::endl;
 }
 
-std::map<short, boost::asio::ip::udp::endpoint>& ConnectionsManager::get_connections()
+void ConnectionsManager::delete_connection_from_map(short key)
 {
-	return connections_;
+    auto it = connections_.find(key);
+    if (it != connections_.end()) {
+        connections_.erase(it);
+        std::cout << "Player with id: " << key << " disconnected, online players in zone: " << connections_.size() << "!" << std::endl;
+    }
 }
 
-bool ConnectionsManager::is_anyone_online()
+std::shared_ptr<Session> ConnectionsManager::get_connection(short connectionid)
 {
-	return !connections_.empty();
+    auto it = connections_.find(connectionid);
+    if (it != connections_.end()) {
+        return it->second;
+    }
+    return nullptr;
 }
+

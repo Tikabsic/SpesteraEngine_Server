@@ -6,5 +6,6 @@ namespace DatabaseIntegration.Interfaces
     public interface IAccountRepository
     {
         Task AddNewAccount(GameAccount acc);
+        Task<bool> CheckId(string accountId);
     }
 }

@@ -1,90 +1,96 @@
 #include "SSKey.h"
-#include <openssl/rand.h>
-#include <openssl/err.h>
-#include <cstring>
-#include <iostream>
-#include <vector>
 
-SSKey::SSKey(const std::string& security_code) : security_code_(security_code) {
-    // Ensure the security code is the correct length
-    if (security_code_.length() != AES_KEY_LENGTH) {
+SSKey::SSKey() {
+    const std::string base64_security_code = "pGf+lh2QOloKXU/mVh5k4ErP76mkcG6Dt1TZMZTj4Ks=";
+    base64_decode(base64_security_code, security_code_);
+
+    if ( security_code_.size() != AES_KEY_LENGTH ) {
         throw std::runtime_error("Security code must be 32 bytes (256 bits) long.");
     }
 }
 
 SSKey::~SSKey() {}
 
-std::string SSKey::encrypt_ssk(const std::string& key) {
-    unsigned char iv[AES_IV_LENGTH];
-    std::vector<unsigned char> ciphertext(key.size() + AES_IV_LENGTH);
+#include <openssl/bio.h>
+#include <openssl/evp.h>
+#include <vector>
+#include <string>
+#include <iostream>
 
-    // Generate random IV
-    if (!RAND_bytes(iv, AES_IV_LENGTH)) {
-        throw std::runtime_error("Failed to generate random IV");
-    }
 
-    EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();
-    if (!ctx) {
-        throw std::runtime_error("Failed to create cipher context");
-    }
 
-    int len;
-    int ciphertext_len;
+// Base64 decode
+void SSKey::base64_decode(const std::string& in, std::vector<unsigned char>& out) {
+    BIO* bio;
+    BIO* b64;
+    int decodeLen = calcDecodeLength(in.c_str());
+    out.resize(decodeLen);
 
-    if (1 != EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), nullptr, (unsigned char*)security_code_.data(), iv)) {
-        throw std::runtime_error("Failed to initialize encryption");
-    }
-
-    if (1 != EVP_EncryptUpdate(ctx, ciphertext.data(), &len, (unsigned char*)key.data(), key.size())) {
-        throw std::runtime_error("Failed to encrypt");
-    }
-    ciphertext_len = len;
-
-    if (1 != EVP_EncryptFinal_ex(ctx, ciphertext.data() + len, &len)) {
-        throw std::runtime_error("Failed to finalize encryption");
-    }
-    ciphertext_len += len;
-
-    EVP_CIPHER_CTX_free(ctx);
-
-    std::string result((char*)iv, AES_IV_LENGTH);
-    result += std::string((char*)ciphertext.data(), ciphertext_len);
-
-    return result;
+    bio = BIO_new_mem_buf(in.c_str(), -1);
+    b64 = BIO_new(BIO_f_base64());
+    BIO_set_flags(b64, BIO_FLAGS_BASE64_NO_NL);
+    bio = BIO_push(b64, bio);
+    decodeLen = BIO_read(bio, out.data(), in.size());
+    out.resize(decodeLen);
+    BIO_free_all(bio);
 }
 
-std::string SSKey::decrypt_ssk(const std::string& encrypted_key) {
-    unsigned char iv[AES_IV_LENGTH];
-    std::memcpy(iv, encrypted_key.data(), AES_IV_LENGTH);
+// Calculate decode length
+int SSKey::calcDecodeLength(const char* b64input) {
+    int len = strlen(b64input);
+    int padding = 0;
+    if ( b64input[len - 1] == '=' ) {
+        padding++;
+        if ( b64input[len - 2] == '=' )
+            padding++;
+    }
+    return ( len * 3 ) / 4 - padding;
+}
 
-    std::vector<unsigned char> plaintext(encrypted_key.size() - AES_IV_LENGTH);
-    int len;
-    int plaintext_len;
+void SSKey::handle_errors() {
+    ERR_print_errors_fp(stderr);
+    throw std::runtime_error("An OpenSSL error occurred");
+}
+
+std::string SSKey::decrypt_ssk(const std::string& base64_encoded_token) {
+    std::vector<unsigned char> encrypted_data;
+    base64_decode(base64_encoded_token, encrypted_data);
+
+    unsigned char iv[AES_IV_LENGTH];
+    std::memcpy(iv, encrypted_data.data(), AES_IV_LENGTH);
+
+    std::vector<unsigned char> ciphertext(encrypted_data.size() - AES_IV_LENGTH);
+    std::memcpy(ciphertext.data(), encrypted_data.data() + AES_IV_LENGTH, ciphertext.size());
+
+    std::vector<unsigned char> plaintext(ciphertext.size() + AES_BLOCK_SIZE);
+    int len = 0;
+    int plaintext_len = 0;
 
     EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();
-    if (!ctx) {
-        throw std::runtime_error("Failed to create cipher context");
+    if ( !ctx ) {
+        handle_errors();
     }
 
-    if (1 != EVP_DecryptInit_ex(ctx, EVP_aes_256_cbc(), nullptr, (unsigned char*)security_code_.data(), iv)) {
-        throw std::runtime_error("Failed to initialize decryption");
+    if ( 1 != EVP_DecryptInit_ex(ctx, EVP_aes_256_cbc(), nullptr, security_code_.data(), iv) ) {
+        EVP_CIPHER_CTX_free(ctx);
+        handle_errors();
     }
 
-    if (1 != EVP_DecryptUpdate(ctx, plaintext.data(), &len, (unsigned char*)encrypted_key.data() + AES_IV_LENGTH, encrypted_key.size() - AES_IV_LENGTH)) {
-        throw std::runtime_error("Failed to decrypt");
+    if ( 1 != EVP_DecryptUpdate(ctx, plaintext.data(), &len, ciphertext.data(), ciphertext.size()) ) {
+        EVP_CIPHER_CTX_free(ctx);
+        handle_errors();
     }
     plaintext_len = len;
 
-    if (1 != EVP_DecryptFinal_ex(ctx, plaintext.data() + len, &len)) {
-        throw std::runtime_error("Failed to finalize decryption");
+    if ( 1 != EVP_DecryptFinal_ex(ctx, plaintext.data() + len, &len) ) {
+        EVP_CIPHER_CTX_free(ctx);
+        handle_errors();
     }
     plaintext_len += len;
 
     EVP_CIPHER_CTX_free(ctx);
 
-    return std::string((char*)plaintext.data(), plaintext_len);
-}
+    std::string result(reinterpret_cast< char* >( plaintext.data() ), plaintext_len);
 
-bool SSKey::validate_ssk(const std::string& decrypted_ssk, const std::string& encrypted_ssk) {
-    return decrypt_ssk(encrypted_ssk) == decrypted_ssk;
+    return result;
 }

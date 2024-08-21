@@ -1,6 +1,7 @@
 #include "UdpServer.h"
 #include "BinaryCompressor.h"
 #include <iostream>
+#include "SSKey.h"
 
 UdpServer::UdpServer(boost::asio::io_context& io_context, const std::string& address, int port)
     : socket_(io_context, udp::endpoint(boost::asio::ip::make_address(address), port)){
@@ -24,20 +25,21 @@ void UdpServer::receive_data() {
         [this](boost::system::error_code ec, std::size_t bytes_received) {
             if (!ec && bytes_received > 0) {
                 try {
-                    Wrapper wrapper;
+                    ZSWrapper wrapper;
                     if (!wrapper.ParseFromArray(receive_data_, bytes_received)) {
                         throw std::runtime_error("Failed to parse Wrapper message");
                     }
 
-                    if (wrapper.type() == Wrapper::REQUESTLOGIN) {
-                        RequestLogin login_request;
+                    if (wrapper.type() == ZSWrapper::ASSIGNCHARACTER) {
+                        AssignCharacter login_request;
                         if (login_request.ParseFromString(wrapper.payload())) {
-                            u_short player_id = login_request.player_id();
-                            {
-                                std::lock_guard<std::mutex> lock(endpoint_map_mutex_);
-                                conn_manager_->add_new_connection(player_id, sender_endpoint_);
-                            }
-                            this->response_to_login_request(sender_endpoint_);
+                            //SSKey key;
+                            //key.
+                            //{
+                            //    std::lock_guard<std::mutex> lock(endpoint_map_mutex_);
+                            //    conn_manager_->add_new_connection(player_id, sender_endpoint_);
+                            //}
+                            //this->response_to_login_request(sender_endpoint_);
                         }
                         else {
                             throw std::runtime_error("Failed to parse RequestLogin message");
@@ -75,9 +77,8 @@ void UdpServer::send_data_to_player(udp::endpoint endpoint, const std::string& m
         });
 }
 
-void UdpServer::response_to_login_request(udp::endpoint endpoint) {
-    std::string message = "1";
-    Response response;
+void UdpServer::response_to_login_request(udp::endpoint endpoint) {;
+    PlayerInitialData p_data;
     response.set_data(message);
     Wrapper wrapper;
     wrapper.set_type(Wrapper::RESPONSE);

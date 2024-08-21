@@ -17,7 +17,7 @@ using CellKey = std::pair<int, int>;
 class SpatialGrid {
 public:
 
-    SpatialGrid(int cellsize, const int fov, std::unordered_map<CellKey, std::unique_ptr<Chunk>>* chunks)
+    SpatialGrid(int cellsize, const int fov, std::unordered_map<CellKey, std::unique_ptr<Chunk>>& chunks)
         : cell_size_(cellsize), fov_(fov), grid_(chunks) {
         std::cout << "SpatialGrid initialized..." << std::endl;
     };
@@ -26,13 +26,14 @@ public:
     const int cell_size_;
     const int fov_;
 
-    std::unordered_map<CellKey,std::unique_ptr<Chunk>>* grid_;
+    std::unordered_map<CellKey,std::unique_ptr<Chunk>>& grid_;
 
     // Adds an object to the appropriate cell
-    void add_object(std::shared_ptr<MovableObject> go);
+    void add_object(const std::shared_ptr<MovableObject>& go);
+    void update_chunk_position(const std::shared_ptr<MovableObject>& go);
 
     // Updates the list of chunks where the player is located
-    void update_object_chunks(std::shared_ptr<MovableObject>& go);
+    void update_zone_character_fov(std::shared_ptr<ZoneCharacter>& go);
 
     // Helper function to calculate the cell key
     CellKey getChunkKey(double x, double y) const;

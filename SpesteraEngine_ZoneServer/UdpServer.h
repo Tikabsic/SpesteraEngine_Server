@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <mutex>
 
-#include "NetworkProtocol.pb.h"
+#include "ZSProtocol.pb.h"
 #include "ConnectionsManager.h"
 
 using boost::asio::ip::udp;
