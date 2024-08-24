@@ -1,6 +1,6 @@
 <h1 align="center" id="title">SpesteraEngine GameServer</h1>
 
-<p id="description">Server-side application for an MMORPG game fully written in C++ using the Boost library supporting async sessions for client TCP connections and async UDP messages using Google Protobuf and Zlib for serialization larger data structures.</p>
+<p id="description">Server-side application for an MMORPG game fully written in C++ using the Boost library supporting async sessions for client TCP connections and async messages using Google Protobuf and Zlib for serialization larger data structures.</p>
 
   
   
@@ -9,7 +9,7 @@
 Here're some of the project's best features:
 
 *   Asynchronous handling of TCP client connections
-*   Asynchronous UDP messaging
+*   Asynchronous TCP messaging
 *   Google Protobuf for efficient serialization and deserialization of messages
 *   Server-side movement handling
 *   Session management for multiple players
@@ -56,6 +56,7 @@ The future architecture for the server infrastructure of the MMORPG will consist
 
 - **Login Server**
 - **Game Server**
+- **Zone Server**
 - **World Server**
 - **Database Server**
 
@@ -80,6 +81,16 @@ The Game Server will be responsible for managing the game state and interacting 
 - Real-time communication with clients
 - Synchronization with World Server for game world updates
 - Handling gameplay logic and events
+
+<h3>Zone Server</h3>
+
+The Zone Server will handle  player actions, and real-time communication. It will be implemented in C++ using boost::asio library. The Zone Server will comunicate with Game Server for persisting crucial data e.g. level updates, inventory updates, quest etc.
+
+**Key Responsibilities:**
+- Managing zone state and player interactions
+- Calculating NPC AI
+- Managing zone logic (quest/events/loot/exp)
+- Interaction with Game Server to save player state
 
 <h3> World Server</h3>
 
