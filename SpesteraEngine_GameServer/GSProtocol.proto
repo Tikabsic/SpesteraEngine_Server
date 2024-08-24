@@ -48,7 +48,6 @@ message CharacterInfoBase {
 }
 
 message LoginRequestResult {
-    bool validation_result = 1;
     string message = 2;
 }
 

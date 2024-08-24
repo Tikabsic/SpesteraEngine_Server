@@ -40,7 +40,6 @@ void DbServicesProvider::process_response(const std::string& response)
         if ( wrapper.ParseFromString(response) ) {
             auto session = conn_manager_.get_connection(wrapper.response_id());
             session->process_database_data(wrapper);
-            std::cout << "db provider return process response" << std::endl;
         }
     }
     catch ( const std::runtime_error& e ) {

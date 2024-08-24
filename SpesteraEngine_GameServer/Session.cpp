@@ -29,6 +29,9 @@ void Session::start() {
 void Session::disconnect()
 {
     std::cout << " Processing logout" << std::endl;
+    if ( !account_name_.empty() ) {
+        tcp_server_->disconnect_account(account_name_);
+    }
     tcp_server_->remove_session(shared_from_this());
     socket_.close();
 }
@@ -62,17 +65,11 @@ void Session::set_player_id(u_short pid)
 
 
 void Session::handle_message(const GSWrapper& wrapper) {
-    switch (wrapper.type()) {
-    case GSWrapper::CLIENTLOGOUT: {
-        disconnect();
-        break;
-    }
-    case GSWrapper::REQUESTLOGIN: {
+    if (!is_authenticated ) {
         RequestLogin request;
-        if (request.ParseFromString(wrapper.payload()) ) {
+        if ( request.ParseFromString(wrapper.payload()) ) {
             if ( request.account_name().empty() || request.password().empty() ) {
                 LoginRequestResult result;
-                result.set_validation_result(false);
                 result.set_message("Username and password required!");
 
                 GSWrapper wrapper;
@@ -82,11 +79,28 @@ void Session::handle_message(const GSWrapper& wrapper) {
                 direct_push_to_buffer(wrapper.SerializeAsString());
 
                 disconnect();
-
-                break;
+                return;
             }
             process_login_request(request);
         }
+        else {
+            LoginRequestResult result;
+            result.set_message("Unauthenticated. disconnecting...");
+
+            GSWrapper wrapper;
+            wrapper.set_type(GSWrapper::LOGINREQUESTRESULT);
+            wrapper.set_payload(result.SerializeAsString());
+
+            direct_push_to_buffer(wrapper.SerializeAsString());
+
+            disconnect();
+        }
+        return;
+    }
+
+    switch (wrapper.type()) {
+    case GSWrapper::CLIENTLOGOUT: {
+        disconnect();
         break;
     }
     default:
@@ -101,10 +115,23 @@ void Session::process_database_data(ResponseWrapper& wrapper)
     case ResponseWrapper::RESPONSEACCOUNTDATA: {
         ResponseAccountData data;
         if ( data.ParseFromString(wrapper.response_payload()) ) {
+
+            if ( tcp_server_->is_account_online(data.account_name()) ) {
+                LoginRequestResult result;
+                result.set_message("Account already log in...");
+
+                GSWrapper wrapper;
+                wrapper.set_type(GSWrapper::LOGINREQUESTRESULT);
+                wrapper.set_payload(result.SerializeAsString());
+
+                direct_push_to_buffer(wrapper.SerializeAsString());
+                disconnect();
+                break;
+            }
+
             bool verify_result = verify_login_request(data);
             if ( verify_result ) {
                 LoginRequestResult result;
-                result.set_validation_result(verify_result);
                 result.set_message("Succefully logged in...");
 
                 GSWrapper wrapper;
@@ -112,11 +139,13 @@ void Session::process_database_data(ResponseWrapper& wrapper)
                 wrapper.set_payload(result.SerializeAsString());
 
                 direct_push_to_buffer(wrapper.SerializeAsString());
+                account_name_ = data.account_name();
+                tcp_server_->connect_account(account_name_);
+                is_authenticated = true;
                 break;
             }
             else {
                 LoginRequestResult result;
-                result.set_validation_result(verify_result);
                 result.set_message("Wrong username or password...");
 
                 GSWrapper wrapper;
@@ -124,6 +153,7 @@ void Session::process_database_data(ResponseWrapper& wrapper)
                 wrapper.set_payload(result.SerializeAsString());
 
                 direct_push_to_buffer(wrapper.SerializeAsString());
+                disconnect();
                 break;
             }
         }

@@ -46,6 +46,10 @@ private:
     //Modules
     TcpServer* tcp_server_;
 
+    //Account properties
+    bool is_authenticated = false;
+    std::string account_name_ = "";
+
     //Player things
     uint16_t playerId_;
     std::shared_ptr<PlayerCharacter> character_;

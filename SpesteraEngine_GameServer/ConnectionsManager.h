@@ -19,7 +19,12 @@ public:
 
     std::shared_ptr<Session> get_connection(short connectionid);
 
+    void set_account_online(std::string accountname);
+    void set_account_offline(std::string accountname);
+    bool is_account_online(std::string accountname);
+
     std::unordered_map<short, std::shared_ptr<Session>> connections_;
+    std::unordered_set<std::string> online_accounts_;
     std::mutex connections_mutex_;
 
 };

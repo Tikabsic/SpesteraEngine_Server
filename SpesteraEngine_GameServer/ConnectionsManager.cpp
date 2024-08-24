@@ -33,3 +33,27 @@ std::shared_ptr<Session> ConnectionsManager::get_connection(short connectionid)
     return nullptr;
 }
 
+void ConnectionsManager::set_account_online(std::string accountname)
+{
+    online_accounts_.insert(accountname);
+}
+
+void ConnectionsManager::set_account_offline(std::string accountname)
+{
+    auto it = online_accounts_.find(accountname);
+    if ( it == online_accounts_.end() ) {
+        std::cerr << "Account not found, error!" << std::endl;
+        return;
+    }
+    online_accounts_.erase(accountname);
+}
+
+bool ConnectionsManager::is_account_online(std::string accountname)
+{
+    auto it = online_accounts_.find(accountname);
+    if ( it == online_accounts_.end() ) {
+        return false;
+    }
+    return true;
+}
+

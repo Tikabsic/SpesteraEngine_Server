@@ -92,7 +92,6 @@ inline constexpr LoginRequestResult::Impl_::Impl_(
       : message_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        validation_result_{false},
         _cached_size_{0} {}
 
 template <typename>
@@ -343,7 +342,6 @@ const ::uint32_t TableStruct_GSProtocol_2eproto::offsets[] PROTOBUF_SECTION_VARI
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::LoginRequestResult, _impl_.validation_result_),
     PROTOBUF_FIELD_OFFSET(::LoginRequestResult, _impl_.message_),
     PROTOBUF_FIELD_OFFSET(::LoginResponse, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::LoginResponse, _internal_metadata_),
@@ -379,8 +377,8 @@ static const ::_pbi::MigrationSchema
         {56, -1, -1, sizeof(::AuthenticationToken)},
         {65, -1, -1, sizeof(::CharacterInfoBase)},
         {76, -1, -1, sizeof(::LoginRequestResult)},
-        {86, 96, -1, sizeof(::LoginResponse)},
-        {98, -1, -1, sizeof(::AssignId)},
+        {85, 95, -1, sizeof(::LoginResponse)},
+        {97, -1, -1, sizeof(::AssignId)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -411,18 +409,17 @@ const char descriptor_table_protodef_GSProtocol_2eproto[] PROTOBUF_SECTION_VARIA
     "rd\030\002 \001(\t\"$\n\023AuthenticationToken\022\r\n\005token"
     "\030\001 \001(\t\"V\n\021CharacterInfoBase\022\023\n\013slot_numb"
     "er\030\001 \001(\r\022\024\n\014character_id\030\002 \001(\t\022\026\n\016charac"
-    "ter_name\030\003 \001(\t\"@\n\022LoginRequestResult\022\031\n\021"
-    "validation_result\030\001 \001(\010\022\017\n\007message\030\002 \001(\t"
-    "\"V\n\rLoginResponse\022#\n\005token\030\001 \001(\0132\024.Authe"
-    "nticationToken\022 \n\004data\030\002 \003(\0132\022.Character"
-    "InfoBase\"\032\n\010AssignId\022\016\n\006string\030\001 \001(\rb\006pr"
-    "oto3"
+    "ter_name\030\003 \001(\t\"%\n\022LoginRequestResult\022\017\n\007"
+    "message\030\002 \001(\t\"V\n\rLoginResponse\022#\n\005token\030"
+    "\001 \001(\0132\024.AuthenticationToken\022 \n\004data\030\002 \003("
+    "\0132\022.CharacterInfoBase\"\032\n\010AssignId\022\016\n\006str"
+    "ing\030\001 \001(\rb\006proto3"
 };
 static ::absl::once_flag descriptor_table_GSProtocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_GSProtocol_2eproto = {
     false,
     false,
-    764,
+    737,
     descriptor_table_protodef_GSProtocol_2eproto,
     "GSProtocol.proto",
     &descriptor_table_GSProtocol_2eproto_once,
@@ -2093,7 +2090,6 @@ LoginRequestResult::LoginRequestResult(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  _impl_.validation_result_ = from._impl_.validation_result_;
 
   // @@protoc_insertion_point(copy_constructor:LoginRequestResult)
 }
@@ -2105,7 +2101,6 @@ inline PROTOBUF_NDEBUG_INLINE LoginRequestResult::Impl_::Impl_(
 
 inline void LoginRequestResult::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.validation_result_ = {};
 }
 LoginRequestResult::~LoginRequestResult() {
   // @@protoc_insertion_point(destructor:LoginRequestResult)
@@ -2126,7 +2121,6 @@ PROTOBUF_NOINLINE void LoginRequestResult::Clear() {
   (void) cached_has_bits;
 
   _impl_.message_.ClearToEmpty();
-  _impl_.validation_result_ = false;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -2138,15 +2132,15 @@ const char* LoginRequestResult::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 34, 2> LoginRequestResult::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 34, 2> LoginRequestResult::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    2, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967293,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    1,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_LoginRequestResult_default_instance_._instance,
@@ -2155,22 +2149,16 @@ const ::_pbi::TcParseTable<1, 2, 0, 34, 2> LoginRequestResult::_table_ = {
     // string message = 2;
     {::_pbi::TcParser::FastUS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(LoginRequestResult, _impl_.message_)}},
-    // bool validation_result = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(LoginRequestResult, _impl_.validation_result_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(LoginRequestResult, _impl_.validation_result_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // bool validation_result = 1;
-    {PROTOBUF_FIELD_OFFSET(LoginRequestResult, _impl_.validation_result_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // string message = 2;
     {PROTOBUF_FIELD_OFFSET(LoginRequestResult, _impl_.message_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\22\0\7\0\0\0\0\0"
+    "\22\7\0\0\0\0\0\0"
     "LoginRequestResult"
     "message"
   }},
@@ -2182,13 +2170,6 @@ const ::_pbi::TcParseTable<1, 2, 0, 34, 2> LoginRequestResult::_table_ = {
   // @@protoc_insertion_point(serialize_to_array_start:LoginRequestResult)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
-
-  // bool validation_result = 1;
-  if (this->_internal_validation_result() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(
-        1, this->_internal_validation_result(), target);
-  }
 
   // string message = 2;
   if (!this->_internal_message().empty()) {
@@ -2221,11 +2202,6 @@ const ::_pbi::TcParseTable<1, 2, 0, 34, 2> LoginRequestResult::_table_ = {
                                     this->_internal_message());
   }
 
-  // bool validation_result = 1;
-  if (this->_internal_validation_result() != 0) {
-    total_size += 2;
-  }
-
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -2247,9 +2223,6 @@ void LoginRequestResult::MergeImpl(::google::protobuf::Message& to_msg, const ::
 
   if (!from._internal_message().empty()) {
     _this->_internal_set_message(from._internal_message());
-  }
-  if (from._internal_validation_result() != 0) {
-    _this->_internal_set_validation_result(from._internal_validation_result());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -2274,7 +2247,6 @@ void LoginRequestResult::InternalSwap(LoginRequestResult* PROTOBUF_RESTRICT othe
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
-        swap(_impl_.validation_result_, other->_impl_.validation_result_);
 }
 
 ::google::protobuf::Metadata LoginRequestResult::GetMetadata() const {

@@ -35,6 +35,16 @@ void TcpServer::deliver_to_player(const u_short& player_id, const GSWrapper& msg
     }
 }
 
+void TcpServer::deliver_to_other_direct(const std::string& msg, short session_id)
+{
+    for (auto other : conn_manager_->connections_) {
+        if (other.second->get_player_id() == session_id)
+            continue;
+        if(other.second != nullptr)
+            other.second->direct_push_to_buffer(msg);
+    }
+}
+
 void TcpServer::remove_session(std::shared_ptr<Session> session) {
 
     ClientLogout logout_msg;
@@ -50,12 +60,18 @@ void TcpServer::remove_session(std::shared_ptr<Session> session) {
 
 }
 
-void TcpServer::deliver_to_other_direct(const std::string& msg, short session_id)
+void TcpServer::connect_account(std::string accountname)
 {
-    for (auto other : conn_manager_->connections_) {
-        if (other.second->get_player_id() == session_id)
-            continue;
-        if(other.second != nullptr)
-            other.second->direct_push_to_buffer(msg);
-    }
+    conn_manager_->set_account_online(accountname);
 }
+
+void TcpServer::disconnect_account(std::string accountname)
+{
+    conn_manager_->set_account_offline(accountname);
+}
+
+bool TcpServer::is_account_online(std::string accountname)
+{
+    return conn_manager_->is_account_online(accountname);
+}
+

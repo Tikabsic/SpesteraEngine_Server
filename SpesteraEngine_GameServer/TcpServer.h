@@ -23,6 +23,11 @@ public:
     //Session Disconnect
     void remove_session(std::shared_ptr<Session> session);
 
+    //Account managing
+    void connect_account(std::string accountname);
+    void disconnect_account(std::string accountname);
+    bool is_account_online(std::string accountname);
+
 private:
     void do_accept();
 

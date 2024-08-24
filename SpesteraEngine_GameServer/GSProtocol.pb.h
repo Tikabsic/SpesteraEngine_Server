@@ -828,7 +828,6 @@ class LoginRequestResult final :
 
   enum : int {
     kMessageFieldNumber = 2,
-    kValidationResultFieldNumber = 1,
   };
   // string message = 2;
   void clear_message() ;
@@ -846,23 +845,13 @@ class LoginRequestResult final :
   std::string* _internal_mutable_message();
 
   public:
-  // bool validation_result = 1;
-  void clear_validation_result() ;
-  bool validation_result() const;
-  void set_validation_result(bool value);
-
-  private:
-  bool _internal_validation_result() const;
-  void _internal_set_validation_result(bool value);
-
-  public:
   // @@protoc_insertion_point(class_scope:LoginRequestResult)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
+      0, 1, 0,
       34, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -880,7 +869,6 @@ class LoginRequestResult final :
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::ArenaStringPtr message_;
-    bool validation_result_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2789,29 +2777,6 @@ inline void CharacterInfoBase::set_allocated_character_name(std::string* value) 
 // -------------------------------------------------------------------
 
 // LoginRequestResult
-
-// bool validation_result = 1;
-inline void LoginRequestResult::clear_validation_result() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.validation_result_ = false;
-}
-inline bool LoginRequestResult::validation_result() const {
-  // @@protoc_insertion_point(field_get:LoginRequestResult.validation_result)
-  return _internal_validation_result();
-}
-inline void LoginRequestResult::set_validation_result(bool value) {
-  _internal_set_validation_result(value);
-  // @@protoc_insertion_point(field_set:LoginRequestResult.validation_result)
-}
-inline bool LoginRequestResult::_internal_validation_result() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.validation_result_;
-}
-inline void LoginRequestResult::_internal_set_validation_result(bool value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.validation_result_ = value;
-}
 
 // string message = 2;
 inline void LoginRequestResult::clear_message() {

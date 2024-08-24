@@ -34,11 +34,11 @@ public static partial class GSProtocolReflection {
           "Z2luEhQKDGFjY291bnRfbmFtZRgBIAEoCRIQCghwYXNzd29yZBgCIAEoCSIk",
           "ChNBdXRoZW50aWNhdGlvblRva2VuEg0KBXRva2VuGAEgASgJIlYKEUNoYXJh",
           "Y3RlckluZm9CYXNlEhMKC3Nsb3RfbnVtYmVyGAEgASgNEhQKDGNoYXJhY3Rl",
-          "cl9pZBgCIAEoCRIWCg5jaGFyYWN0ZXJfbmFtZRgDIAEoCSJAChJMb2dpblJl",
-          "cXVlc3RSZXN1bHQSGQoRdmFsaWRhdGlvbl9yZXN1bHQYASABKAgSDwoHbWVz",
-          "c2FnZRgCIAEoCSJWCg1Mb2dpblJlc3BvbnNlEiMKBXRva2VuGAEgASgLMhQu",
-          "QXV0aGVudGljYXRpb25Ub2tlbhIgCgRkYXRhGAIgAygLMhIuQ2hhcmFjdGVy",
-          "SW5mb0Jhc2UiGgoIQXNzaWduSWQSDgoGc3RyaW5nGAEgASgNYgZwcm90bzM="));
+          "cl9pZBgCIAEoCRIWCg5jaGFyYWN0ZXJfbmFtZRgDIAEoCSIlChJMb2dpblJl",
+          "cXVlc3RSZXN1bHQSDwoHbWVzc2FnZRgCIAEoCSJWCg1Mb2dpblJlc3BvbnNl",
+          "EiMKBXRva2VuGAEgASgLMhQuQXV0aGVudGljYXRpb25Ub2tlbhIgCgRkYXRh",
+          "GAIgAygLMhIuQ2hhcmFjdGVySW5mb0Jhc2UiGgoIQXNzaWduSWQSDgoGc3Ry",
+          "aW5nGAEgASgNYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -50,7 +50,7 @@ public static partial class GSProtocolReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::RequestLogin), global::RequestLogin.Parser, new[]{ "AccountName", "Password" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::AuthenticationToken), global::AuthenticationToken.Parser, new[]{ "Token" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::CharacterInfoBase), global::CharacterInfoBase.Parser, new[]{ "SlotNumber", "CharacterId", "CharacterName" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::LoginRequestResult), global::LoginRequestResult.Parser, new[]{ "ValidationResult", "Message" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::LoginRequestResult), global::LoginRequestResult.Parser, new[]{ "Message" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::LoginResponse), global::LoginResponse.Parser, new[]{ "Token", "Data" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::AssignId), global::AssignId.Parser, new[]{ "String" }, null, null, null, null)
         }));
@@ -1782,7 +1782,6 @@ public sealed partial class LoginRequestResult : pb::IMessage<LoginRequestResult
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public LoginRequestResult(LoginRequestResult other) : this() {
-    validationResult_ = other.validationResult_;
     message_ = other.message_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
@@ -1791,18 +1790,6 @@ public sealed partial class LoginRequestResult : pb::IMessage<LoginRequestResult
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public LoginRequestResult Clone() {
     return new LoginRequestResult(this);
-  }
-
-  /// <summary>Field number for the "validation_result" field.</summary>
-  public const int ValidationResultFieldNumber = 1;
-  private bool validationResult_;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public bool ValidationResult {
-    get { return validationResult_; }
-    set {
-      validationResult_ = value;
-    }
   }
 
   /// <summary>Field number for the "message" field.</summary>
@@ -1832,7 +1819,6 @@ public sealed partial class LoginRequestResult : pb::IMessage<LoginRequestResult
     if (ReferenceEquals(other, this)) {
       return true;
     }
-    if (ValidationResult != other.ValidationResult) return false;
     if (Message != other.Message) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
@@ -1841,7 +1827,6 @@ public sealed partial class LoginRequestResult : pb::IMessage<LoginRequestResult
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
-    if (ValidationResult != false) hash ^= ValidationResult.GetHashCode();
     if (Message.Length != 0) hash ^= Message.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
@@ -1861,10 +1846,6 @@ public sealed partial class LoginRequestResult : pb::IMessage<LoginRequestResult
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
   #else
-    if (ValidationResult != false) {
-      output.WriteRawTag(8);
-      output.WriteBool(ValidationResult);
-    }
     if (Message.Length != 0) {
       output.WriteRawTag(18);
       output.WriteString(Message);
@@ -1879,10 +1860,6 @@ public sealed partial class LoginRequestResult : pb::IMessage<LoginRequestResult
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-    if (ValidationResult != false) {
-      output.WriteRawTag(8);
-      output.WriteBool(ValidationResult);
-    }
     if (Message.Length != 0) {
       output.WriteRawTag(18);
       output.WriteString(Message);
@@ -1897,9 +1874,6 @@ public sealed partial class LoginRequestResult : pb::IMessage<LoginRequestResult
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
-    if (ValidationResult != false) {
-      size += 1 + 1;
-    }
     if (Message.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Message);
     }
@@ -1914,9 +1888,6 @@ public sealed partial class LoginRequestResult : pb::IMessage<LoginRequestResult
   public void MergeFrom(LoginRequestResult other) {
     if (other == null) {
       return;
-    }
-    if (other.ValidationResult != false) {
-      ValidationResult = other.ValidationResult;
     }
     if (other.Message.Length != 0) {
       Message = other.Message;
@@ -1936,10 +1907,6 @@ public sealed partial class LoginRequestResult : pb::IMessage<LoginRequestResult
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
-        case 8: {
-          ValidationResult = input.ReadBool();
-          break;
-        }
         case 18: {
           Message = input.ReadString();
           break;
@@ -1959,10 +1926,6 @@ public sealed partial class LoginRequestResult : pb::IMessage<LoginRequestResult
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
           break;
-        case 8: {
-          ValidationResult = input.ReadBool();
-          break;
-        }
         case 18: {
           Message = input.ReadString();
           break;
