@@ -16,10 +16,12 @@ public:
     SSKey();
     ~SSKey();
     std::string decrypt_ssk(const std::string& base64_encoded_token);
+    std::string encrypt_ssk(const std::string& plaintext);
 
 private:
     std::vector<unsigned char> security_code_;
     void base64_decode(const std::string& in, std::vector<unsigned char>& out);
+    std::string base64_encode(const unsigned char* data, size_t length);
     int calcDecodeLength(const char* b64input);
     void handle_errors();
 };

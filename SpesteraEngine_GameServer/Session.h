@@ -6,6 +6,7 @@
 #include <mutex>
 
 #include "GSProtocol.pb.h"
+#include "DatabaseProtocol.pb.h"
 #include "BinaryCompressor.h"
 #include "PlayerCharacter.h"
 
@@ -21,12 +22,20 @@ public:
     void compress_to_write(const GSWrapper& msg);
     void direct_push_to_buffer(const std::string& msg);
 
+    //DbDataProcessing
+    void process_database_data(ResponseWrapper& wrapper);
+
     void set_player_id(u_short pid);
     u_short get_player_id();
 private:
     void do_read();
     void do_write();
     void handle_message(const GSWrapper& wrapper);
+
+    //Authentication
+    void process_login_request(RequestLogin& request);
+    bool verify_login_request(ResponseAccountData& data);
+
 
     boost::asio::ip::tcp::socket socket_;
     int id_;

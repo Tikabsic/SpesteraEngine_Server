@@ -14,7 +14,6 @@ void TcpServer::do_accept() {
     acceptor_.async_accept(
         [this](boost::system::error_code ec, tcp::socket socket) {
             if (!ec) {
-                std::cout << "Accepting..." << std::endl;
                 auto session = std::make_shared<Session>(std::move(socket), next_id_, this, zone_map_);
                 session->set_player_id(next_id_);
                 conn_manager_->create_new_connection(session->get_player_id(), session);
@@ -43,9 +42,14 @@ void TcpServer::add_session(std::shared_ptr<Session> session)
     conn_manager_->create_new_connection(session->get_player_id(), session);
 }
 
-void TcpServer::remove_session(std::shared_ptr<Session> session) {
+void TcpServer::remove_session(int sessionid) {
 
-    PlayerOut logout_msg;
+    conn_manager_->delete_connection_from_map(sessionid);
+}
+
+void TcpServer::send_logout_message(std::shared_ptr<Session> session)
+{
+        PlayerOut logout_msg;
     logout_msg.set_player_id(session->get_player_id());
 
     ZSWrapper logout_wrapper;
@@ -53,9 +57,6 @@ void TcpServer::remove_session(std::shared_ptr<Session> session) {
     logout_wrapper.set_payload(logout_msg.SerializeAsString());
 
     deliver_to_other_direct(logout_wrapper.SerializeAsString(), session->get_player_id());
-
-    conn_manager_->delete_connection_from_map(session->get_player_id());
-
 }
 
 void TcpServer::deliver_to_other_direct(const std::string& msg, short session_id)

@@ -18,6 +18,7 @@ void Chunk::add_session_to_chunk(const std::shared_ptr<Session>& session) {
 
     if (it == sessions_.end()) {
         sessions_.push_back(session);
+        session->send_chunk_data(chunk_position_);
         std::cout << "Added session: " << session->get_player_id() << " to chunk: (" << chunk_position_.first << " , " << chunk_position_.second << " )" << std::endl;
     }
     else {
@@ -51,9 +52,6 @@ void Chunk::remove_object_from_chunk(const std::shared_ptr<MovableObject>& go, b
             chunk_objects_.erase(go);
             std::cout << "Removed zone character with id: " << go->get_object_id() << " from chunk: (" << chunk_position_.first << " , " << chunk_position_.second << " )" << std::endl;
         }
-        else {
-            std::cout << "zone character not found" << std::endl;
-        }
     }
     else {
         chunk_objects_.erase(go);
@@ -64,6 +62,11 @@ void Chunk::remove_object_from_chunk(const std::shared_ptr<MovableObject>& go, b
 bool Chunk::check_for_object(std::shared_ptr<MovableObject> go) {
 	auto it = chunk_objects_.find(go);
 	return it != chunk_objects_.end();
+}
+
+std::unordered_set<std::shared_ptr<MovableObject>>& Chunk::get_chunk_objects()
+{
+    return chunk_objects_;
 }
 
 void Chunk::set_chunk_heartbeat(ChunkHeartbeat* chunkheartbeat)

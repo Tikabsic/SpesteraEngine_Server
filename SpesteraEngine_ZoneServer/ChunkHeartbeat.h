@@ -1,5 +1,4 @@
-#ifndef SERVERHEARTBEAT_H
-#define SERVERHEARTBEAT_H
+#pragma once
 
 #include <boost/asio.hpp>
 #include <vector>
@@ -16,7 +15,7 @@ public:
 
     void do_heartbeat();
 
-    void send_data_to_players_in_chunk(std::string& const message);
+    void send_data_to_players_in_chunk(ZSWrapper& message);
 private:
     PlayerPosition gather_player_transformation(std::shared_ptr<ZoneCharacter>& character, bool is_heartbeat);
 
@@ -27,5 +26,3 @@ private:
     std::vector<std::shared_ptr<Session>>& sessions_;
     CellKey chunk_key_;
 };
-
-#endif // SERVERHEARTBEAT_H

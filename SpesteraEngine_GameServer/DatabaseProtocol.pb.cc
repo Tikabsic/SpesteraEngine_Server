@@ -44,12 +44,69 @@ struct ResponseWrapperDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResponseWrapperDefaultTypeInternal _ResponseWrapper_default_instance_;
 
+inline constexpr ResponsePlayerInitialData::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : player_name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        position_x_{0},
+        position_y_{0},
+        position_z_{0},
+        rotation_y_{0u},
+        player_movementspeed_{0u},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR ResponsePlayerInitialData::ResponsePlayerInitialData(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct ResponsePlayerInitialDataDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ResponsePlayerInitialDataDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ResponsePlayerInitialDataDefaultTypeInternal() {}
+  union {
+    ResponsePlayerInitialData _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResponsePlayerInitialDataDefaultTypeInternal _ResponsePlayerInitialData_default_instance_;
+
+inline constexpr ResponseAccountData::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : account_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        account_name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        account_password_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        account_password_to_verify_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR ResponseAccountData::ResponseAccountData(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct ResponseAccountDataDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ResponseAccountDataDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ResponseAccountDataDefaultTypeInternal() {}
+  union {
+    ResponseAccountData _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResponseAccountDataDefaultTypeInternal _ResponseAccountData_default_instance_;
+
 inline constexpr RequestWrapper::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : request_payload_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         request_type_{static_cast< ::RequestWrapper_RequestType >(0)},
+        service_type_{static_cast< ::RequestWrapper_ServiceType >(0)},
         request_id_{0u},
         _cached_size_{0} {}
 
@@ -88,52 +145,31 @@ struct RequestPlayerInitialDataDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RequestPlayerInitialDataDefaultTypeInternal _RequestPlayerInitialData_default_instance_;
 
-inline constexpr DbPlayerInitialData::Impl_::Impl_(
+inline constexpr RequestAccountData::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : player_name_(
+      : account_name_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        position_x_{0},
-        position_y_{0},
-        position_z_{0},
-        rotation_y_{0u},
-        player_movementspeed_{0u},
+        account_password_to_verify_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR DbPlayerInitialData::DbPlayerInitialData(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR RequestAccountData::RequestAccountData(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct DbPlayerInitialDataDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR DbPlayerInitialDataDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~DbPlayerInitialDataDefaultTypeInternal() {}
+struct RequestAccountDataDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RequestAccountDataDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RequestAccountDataDefaultTypeInternal() {}
   union {
-    DbPlayerInitialData _instance;
+    RequestAccountData _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DbPlayerInitialDataDefaultTypeInternal _DbPlayerInitialData_default_instance_;
-
-inline constexpr ResponsePlayerInitialData::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        player_initial_data_{nullptr} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR ResponsePlayerInitialData::ResponsePlayerInitialData(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct ResponsePlayerInitialDataDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ResponsePlayerInitialDataDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ResponsePlayerInitialDataDefaultTypeInternal() {}
-  union {
-    ResponsePlayerInitialData _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResponsePlayerInitialDataDefaultTypeInternal _ResponsePlayerInitialData_default_instance_;
-static ::_pb::Metadata file_level_metadata_DatabaseProtocol_2eproto[5];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_DatabaseProtocol_2eproto[2];
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RequestAccountDataDefaultTypeInternal _RequestAccountData_default_instance_;
+static ::_pb::Metadata file_level_metadata_DatabaseProtocol_2eproto[6];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_DatabaseProtocol_2eproto[3];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_DatabaseProtocol_2eproto = nullptr;
 const ::uint32_t TableStruct_DatabaseProtocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
@@ -147,6 +183,7 @@ const ::uint32_t TableStruct_DatabaseProtocol_2eproto::offsets[] PROTOBUF_SECTIO
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::RequestWrapper, _impl_.request_type_),
+    PROTOBUF_FIELD_OFFSET(::RequestWrapper, _impl_.service_type_),
     PROTOBUF_FIELD_OFFSET(::RequestWrapper, _impl_.request_id_),
     PROTOBUF_FIELD_OFFSET(::RequestWrapper, _impl_.request_payload_),
     ~0u,  // no _has_bits_
@@ -161,6 +198,28 @@ const ::uint32_t TableStruct_DatabaseProtocol_2eproto::offsets[] PROTOBUF_SECTIO
     PROTOBUF_FIELD_OFFSET(::ResponseWrapper, _impl_.response_id_),
     PROTOBUF_FIELD_OFFSET(::ResponseWrapper, _impl_.response_payload_),
     ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::RequestAccountData, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::RequestAccountData, _impl_.account_name_),
+    PROTOBUF_FIELD_OFFSET(::RequestAccountData, _impl_.account_password_to_verify_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::ResponseAccountData, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::ResponseAccountData, _impl_.account_id_),
+    PROTOBUF_FIELD_OFFSET(::ResponseAccountData, _impl_.account_name_),
+    PROTOBUF_FIELD_OFFSET(::ResponseAccountData, _impl_.account_password_),
+    PROTOBUF_FIELD_OFFSET(::ResponseAccountData, _impl_.account_password_to_verify_),
+    ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::RequestPlayerInitialData, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
@@ -169,7 +228,7 @@ const ::uint32_t TableStruct_DatabaseProtocol_2eproto::offsets[] PROTOBUF_SECTIO
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::RequestPlayerInitialData, _impl_.player_guid_),
-    PROTOBUF_FIELD_OFFSET(::ResponsePlayerInitialData, _impl_._has_bits_),
+    ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::ResponsePlayerInitialData, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
@@ -177,70 +236,68 @@ const ::uint32_t TableStruct_DatabaseProtocol_2eproto::offsets[] PROTOBUF_SECTIO
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::ResponsePlayerInitialData, _impl_.player_initial_data_),
-    0,
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::DbPlayerInitialData, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::DbPlayerInitialData, _impl_.player_name_),
-    PROTOBUF_FIELD_OFFSET(::DbPlayerInitialData, _impl_.position_x_),
-    PROTOBUF_FIELD_OFFSET(::DbPlayerInitialData, _impl_.position_y_),
-    PROTOBUF_FIELD_OFFSET(::DbPlayerInitialData, _impl_.position_z_),
-    PROTOBUF_FIELD_OFFSET(::DbPlayerInitialData, _impl_.rotation_y_),
-    PROTOBUF_FIELD_OFFSET(::DbPlayerInitialData, _impl_.player_movementspeed_),
+    PROTOBUF_FIELD_OFFSET(::ResponsePlayerInitialData, _impl_.player_name_),
+    PROTOBUF_FIELD_OFFSET(::ResponsePlayerInitialData, _impl_.position_x_),
+    PROTOBUF_FIELD_OFFSET(::ResponsePlayerInitialData, _impl_.position_y_),
+    PROTOBUF_FIELD_OFFSET(::ResponsePlayerInitialData, _impl_.position_z_),
+    PROTOBUF_FIELD_OFFSET(::ResponsePlayerInitialData, _impl_.rotation_y_),
+    PROTOBUF_FIELD_OFFSET(::ResponsePlayerInitialData, _impl_.player_movementspeed_),
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::RequestWrapper)},
-        {11, -1, -1, sizeof(::ResponseWrapper)},
-        {22, -1, -1, sizeof(::RequestPlayerInitialData)},
-        {31, 40, -1, sizeof(::ResponsePlayerInitialData)},
-        {41, -1, -1, sizeof(::DbPlayerInitialData)},
+        {12, -1, -1, sizeof(::ResponseWrapper)},
+        {23, -1, -1, sizeof(::RequestAccountData)},
+        {33, -1, -1, sizeof(::ResponseAccountData)},
+        {45, -1, -1, sizeof(::RequestPlayerInitialData)},
+        {54, -1, -1, sizeof(::ResponsePlayerInitialData)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
     &::_RequestWrapper_default_instance_._instance,
     &::_ResponseWrapper_default_instance_._instance,
+    &::_RequestAccountData_default_instance_._instance,
+    &::_ResponseAccountData_default_instance_._instance,
     &::_RequestPlayerInitialData_default_instance_._instance,
     &::_ResponsePlayerInitialData_default_instance_._instance,
-    &::_DbPlayerInitialData_default_instance_._instance,
 };
 const char descriptor_table_protodef_DatabaseProtocol_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\026DatabaseProtocol.proto\"\235\001\n\016RequestWrap"
+    "\n\026DatabaseProtocol.proto\"\213\002\n\016RequestWrap"
     "per\0221\n\014request_type\030\001 \001(\0162\033.RequestWrapp"
-    "er.RequestType\022\022\n\nrequest_id\030\002 \001(\r\022\027\n\017re"
-    "quest_payload\030\003 \001(\014\"+\n\013RequestType\022\034\n\030RE"
-    "QUESTPLAYERINITIALDATA\020\000\"\245\001\n\017ResponseWra"
-    "pper\0224\n\rresponse_type\030\001 \001(\0162\035.ResponseWr"
-    "apper.ResponseType\022\023\n\013response_id\030\002 \001(\r\022"
-    "\030\n\020response_payload\030\003 \001(\014\"-\n\014ResponseTyp"
-    "e\022\035\n\031RESPONSEPLAYERINITIALDATA\020\000\"/\n\030Requ"
-    "estPlayerInitialData\022\023\n\013player_guid\030\001 \001("
-    "\t\"N\n\031ResponsePlayerInitialData\0221\n\023player"
-    "_initial_data\030\001 \001(\0132\024.DbPlayerInitialDat"
-    "a\"\230\001\n\023DbPlayerInitialData\022\023\n\013player_name"
-    "\030\002 \001(\t\022\022\n\nposition_x\030\003 \001(\002\022\022\n\nposition_y"
-    "\030\004 \001(\002\022\022\n\nposition_z\030\005 \001(\002\022\022\n\nrotation_y"
-    "\030\006 \001(\r\022\034\n\024player_movementspeed\030\007 \001(\rb\006pr"
-    "oto3"
+    "er.RequestType\0221\n\014service_type\030\002 \001(\0162\033.R"
+    "equestWrapper.ServiceType\022\022\n\nrequest_id\030"
+    "\003 \001(\r\022\027\n\017request_payload\030\004 \001(\014\"C\n\013Reques"
+    "tType\022\026\n\022REQUESTACCOUNTDATA\020\000\022\034\n\030REQUEST"
+    "PLAYERINITIALDATA\020\001\"!\n\013ServiceType\022\022\n\016AC"
+    "COUNTSERVICE\020\000\"\276\001\n\017ResponseWrapper\0224\n\rre"
+    "sponse_type\030\001 \001(\0162\035.ResponseWrapper.Resp"
+    "onseType\022\023\n\013response_id\030\002 \001(\r\022\030\n\020respons"
+    "e_payload\030\003 \001(\014\"F\n\014ResponseType\022\027\n\023RESPO"
+    "NSEACCOUNTDATA\020\000\022\035\n\031RESPONSEPLAYERINITIA"
+    "LDATA\020\001\"N\n\022RequestAccountData\022\024\n\014account"
+    "_name\030\001 \001(\t\022\"\n\032account_password_to_verif"
+    "y\030\002 \001(\t\"}\n\023ResponseAccountData\022\022\n\naccoun"
+    "t_id\030\001 \001(\t\022\024\n\014account_name\030\002 \001(\t\022\030\n\020acco"
+    "unt_password\030\003 \001(\t\022\"\n\032account_password_t"
+    "o_verify\030\004 \001(\t\"/\n\030RequestPlayerInitialDa"
+    "ta\022\023\n\013player_guid\030\001 \001(\t\"\236\001\n\031ResponsePlay"
+    "erInitialData\022\023\n\013player_name\030\002 \001(\t\022\022\n\npo"
+    "sition_x\030\003 \001(\002\022\022\n\nposition_y\030\004 \001(\002\022\022\n\npo"
+    "sition_z\030\005 \001(\002\022\022\n\nrotation_y\030\006 \001(\r\022\034\n\024pl"
+    "ayer_movementspeed\030\007 \001(\rb\006proto3"
 };
 static ::absl::once_flag descriptor_table_DatabaseProtocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_DatabaseProtocol_2eproto = {
     false,
     false,
-    644,
+    912,
     descriptor_table_protodef_DatabaseProtocol_2eproto,
     "DatabaseProtocol.proto",
     &descriptor_table_DatabaseProtocol_2eproto_once,
     nullptr,
     0,
-    5,
+    6,
     schemas,
     file_default_instances,
     TableStruct_DatabaseProtocol_2eproto::offsets,
@@ -271,13 +328,14 @@ const ::google::protobuf::EnumDescriptor* RequestWrapper_RequestType_descriptor(
   return file_level_enum_descriptors_DatabaseProtocol_2eproto[0];
 }
 PROTOBUF_CONSTINIT const uint32_t RequestWrapper_RequestType_internal_data_[] = {
-    65536u, 0u, };
+    131072u, 0u, };
 bool RequestWrapper_RequestType_IsValid(int value) {
-  return 0 <= value && value <= 0;
+  return 0 <= value && value <= 1;
 }
 #if (__cplusplus < 201703) && \
   (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 
+constexpr RequestWrapper_RequestType RequestWrapper::REQUESTACCOUNTDATA;
 constexpr RequestWrapper_RequestType RequestWrapper::REQUESTPLAYERINITIALDATA;
 constexpr RequestWrapper_RequestType RequestWrapper::RequestType_MIN;
 constexpr RequestWrapper_RequestType RequestWrapper::RequestType_MAX;
@@ -285,18 +343,38 @@ constexpr int RequestWrapper::RequestType_ARRAYSIZE;
 
 #endif  // (__cplusplus < 201703) &&
         // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-const ::google::protobuf::EnumDescriptor* ResponseWrapper_ResponseType_descriptor() {
+const ::google::protobuf::EnumDescriptor* RequestWrapper_ServiceType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_DatabaseProtocol_2eproto);
   return file_level_enum_descriptors_DatabaseProtocol_2eproto[1];
 }
-PROTOBUF_CONSTINIT const uint32_t ResponseWrapper_ResponseType_internal_data_[] = {
+PROTOBUF_CONSTINIT const uint32_t RequestWrapper_ServiceType_internal_data_[] = {
     65536u, 0u, };
-bool ResponseWrapper_ResponseType_IsValid(int value) {
+bool RequestWrapper_ServiceType_IsValid(int value) {
   return 0 <= value && value <= 0;
 }
 #if (__cplusplus < 201703) && \
   (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 
+constexpr RequestWrapper_ServiceType RequestWrapper::ACCOUNTSERVICE;
+constexpr RequestWrapper_ServiceType RequestWrapper::ServiceType_MIN;
+constexpr RequestWrapper_ServiceType RequestWrapper::ServiceType_MAX;
+constexpr int RequestWrapper::ServiceType_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* ResponseWrapper_ResponseType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_DatabaseProtocol_2eproto);
+  return file_level_enum_descriptors_DatabaseProtocol_2eproto[2];
+}
+PROTOBUF_CONSTINIT const uint32_t ResponseWrapper_ResponseType_internal_data_[] = {
+    131072u, 0u, };
+bool ResponseWrapper_ResponseType_IsValid(int value) {
+  return 0 <= value && value <= 1;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr ResponseWrapper_ResponseType ResponseWrapper::RESPONSEACCOUNTDATA;
 constexpr ResponseWrapper_ResponseType ResponseWrapper::RESPONSEPLAYERINITIALDATA;
 constexpr ResponseWrapper_ResponseType ResponseWrapper::ResponseType_MIN;
 constexpr ResponseWrapper_ResponseType ResponseWrapper::ResponseType_MAX;
@@ -388,40 +466,45 @@ const char* RequestWrapper::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 0, 2> RequestWrapper::_table_ = {
+const ::_pbi::TcParseTable<2, 4, 0, 0, 2> RequestWrapper::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
+    4, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967280,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
+    4,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_RequestWrapper_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
+    // bytes request_payload = 4;
+    {::_pbi::TcParser::FastBS1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(RequestWrapper, _impl_.request_payload_)}},
     // .RequestWrapper.RequestType request_type = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RequestWrapper, _impl_.request_type_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(RequestWrapper, _impl_.request_type_)}},
-    // uint32 request_id = 2;
+    // .RequestWrapper.ServiceType service_type = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RequestWrapper, _impl_.service_type_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(RequestWrapper, _impl_.service_type_)}},
+    // uint32 request_id = 3;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RequestWrapper, _impl_.request_id_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(RequestWrapper, _impl_.request_id_)}},
-    // bytes request_payload = 3;
-    {::_pbi::TcParser::FastBS1,
-     {26, 63, 0, PROTOBUF_FIELD_OFFSET(RequestWrapper, _impl_.request_payload_)}},
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(RequestWrapper, _impl_.request_id_)}},
   }}, {{
     65535, 65535
   }}, {{
     // .RequestWrapper.RequestType request_type = 1;
     {PROTOBUF_FIELD_OFFSET(RequestWrapper, _impl_.request_type_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-    // uint32 request_id = 2;
+    // .RequestWrapper.ServiceType service_type = 2;
+    {PROTOBUF_FIELD_OFFSET(RequestWrapper, _impl_.service_type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // uint32 request_id = 3;
     {PROTOBUF_FIELD_OFFSET(RequestWrapper, _impl_.request_id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // bytes request_payload = 3;
+    // bytes request_payload = 4;
     {PROTOBUF_FIELD_OFFSET(RequestWrapper, _impl_.request_payload_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
@@ -444,17 +527,24 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> RequestWrapper::_table_ = {
         1, this->_internal_request_type(), target);
   }
 
-  // uint32 request_id = 2;
+  // .RequestWrapper.ServiceType service_type = 2;
+  if (this->_internal_service_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        2, this->_internal_service_type(), target);
+  }
+
+  // uint32 request_id = 3;
   if (this->_internal_request_id() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-        2, this->_internal_request_id(), target);
+        3, this->_internal_request_id(), target);
   }
 
-  // bytes request_payload = 3;
+  // bytes request_payload = 4;
   if (!this->_internal_request_payload().empty()) {
     const std::string& _s = this->_internal_request_payload();
-    target = stream->WriteBytesMaybeAliased(3, _s, target);
+    target = stream->WriteBytesMaybeAliased(4, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -474,7 +564,7 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> RequestWrapper::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // bytes request_payload = 3;
+  // bytes request_payload = 4;
   if (!this->_internal_request_payload().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_request_payload());
@@ -486,7 +576,13 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> RequestWrapper::_table_ = {
                   ::_pbi::WireFormatLite::EnumSize(this->_internal_request_type());
   }
 
-  // uint32 request_id = 2;
+  // .RequestWrapper.ServiceType service_type = 2;
+  if (this->_internal_service_type() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_service_type());
+  }
+
+  // uint32 request_id = 3;
   if (this->_internal_request_id() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
         this->_internal_request_id());
@@ -516,6 +612,9 @@ void RequestWrapper::MergeImpl(::google::protobuf::Message& to_msg, const ::goog
   }
   if (from._internal_request_type() != 0) {
     _this->_internal_set_request_type(from._internal_request_type());
+  }
+  if (from._internal_service_type() != 0) {
+    _this->_internal_set_service_type(from._internal_service_type());
   }
   if (from._internal_request_id() != 0) {
     _this->_internal_set_request_id(from._internal_request_id());
@@ -810,6 +909,502 @@ void ResponseWrapper::InternalSwap(ResponseWrapper* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
+class RequestAccountData::_Internal {
+ public:
+};
+
+RequestAccountData::RequestAccountData(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:RequestAccountData)
+}
+inline PROTOBUF_NDEBUG_INLINE RequestAccountData::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : account_name_(arena, from.account_name_),
+        account_password_to_verify_(arena, from.account_password_to_verify_),
+        _cached_size_{0} {}
+
+RequestAccountData::RequestAccountData(
+    ::google::protobuf::Arena* arena,
+    const RequestAccountData& from)
+    : ::google::protobuf::Message(arena) {
+  RequestAccountData* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:RequestAccountData)
+}
+inline PROTOBUF_NDEBUG_INLINE RequestAccountData::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : account_name_(arena),
+        account_password_to_verify_(arena),
+        _cached_size_{0} {}
+
+inline void RequestAccountData::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+RequestAccountData::~RequestAccountData() {
+  // @@protoc_insertion_point(destructor:RequestAccountData)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void RequestAccountData::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.account_name_.Destroy();
+  _impl_.account_password_to_verify_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void RequestAccountData::Clear() {
+// @@protoc_insertion_point(message_clear_start:RequestAccountData)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.account_name_.ClearToEmpty();
+  _impl_.account_password_to_verify_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* RequestAccountData::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 65, 2> RequestAccountData::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_RequestAccountData_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string account_password_to_verify = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(RequestAccountData, _impl_.account_password_to_verify_)}},
+    // string account_name = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(RequestAccountData, _impl_.account_name_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string account_name = 1;
+    {PROTOBUF_FIELD_OFFSET(RequestAccountData, _impl_.account_name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string account_password_to_verify = 2;
+    {PROTOBUF_FIELD_OFFSET(RequestAccountData, _impl_.account_password_to_verify_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\22\14\32\0\0\0\0\0"
+    "RequestAccountData"
+    "account_name"
+    "account_password_to_verify"
+  }},
+};
+
+::uint8_t* RequestAccountData::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:RequestAccountData)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string account_name = 1;
+  if (!this->_internal_account_name().empty()) {
+    const std::string& _s = this->_internal_account_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "RequestAccountData.account_name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // string account_password_to_verify = 2;
+  if (!this->_internal_account_password_to_verify().empty()) {
+    const std::string& _s = this->_internal_account_password_to_verify();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "RequestAccountData.account_password_to_verify");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:RequestAccountData)
+  return target;
+}
+
+::size_t RequestAccountData::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:RequestAccountData)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string account_name = 1;
+  if (!this->_internal_account_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_account_name());
+  }
+
+  // string account_password_to_verify = 2;
+  if (!this->_internal_account_password_to_verify().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_account_password_to_verify());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData RequestAccountData::_class_data_ = {
+    RequestAccountData::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* RequestAccountData::GetClassData() const {
+  return &_class_data_;
+}
+
+void RequestAccountData::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<RequestAccountData*>(&to_msg);
+  auto& from = static_cast<const RequestAccountData&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:RequestAccountData)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_account_name().empty()) {
+    _this->_internal_set_account_name(from._internal_account_name());
+  }
+  if (!from._internal_account_password_to_verify().empty()) {
+    _this->_internal_set_account_password_to_verify(from._internal_account_password_to_verify());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void RequestAccountData::CopyFrom(const RequestAccountData& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:RequestAccountData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool RequestAccountData::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* RequestAccountData::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void RequestAccountData::InternalSwap(RequestAccountData* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.account_name_, &other->_impl_.account_name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.account_password_to_verify_, &other->_impl_.account_password_to_verify_, arena);
+}
+
+::google::protobuf::Metadata RequestAccountData::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_DatabaseProtocol_2eproto_getter, &descriptor_table_DatabaseProtocol_2eproto_once,
+      file_level_metadata_DatabaseProtocol_2eproto[2]);
+}
+// ===================================================================
+
+class ResponseAccountData::_Internal {
+ public:
+};
+
+ResponseAccountData::ResponseAccountData(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:ResponseAccountData)
+}
+inline PROTOBUF_NDEBUG_INLINE ResponseAccountData::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : account_id_(arena, from.account_id_),
+        account_name_(arena, from.account_name_),
+        account_password_(arena, from.account_password_),
+        account_password_to_verify_(arena, from.account_password_to_verify_),
+        _cached_size_{0} {}
+
+ResponseAccountData::ResponseAccountData(
+    ::google::protobuf::Arena* arena,
+    const ResponseAccountData& from)
+    : ::google::protobuf::Message(arena) {
+  ResponseAccountData* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:ResponseAccountData)
+}
+inline PROTOBUF_NDEBUG_INLINE ResponseAccountData::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : account_id_(arena),
+        account_name_(arena),
+        account_password_(arena),
+        account_password_to_verify_(arena),
+        _cached_size_{0} {}
+
+inline void ResponseAccountData::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+ResponseAccountData::~ResponseAccountData() {
+  // @@protoc_insertion_point(destructor:ResponseAccountData)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ResponseAccountData::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.account_id_.Destroy();
+  _impl_.account_name_.Destroy();
+  _impl_.account_password_.Destroy();
+  _impl_.account_password_to_verify_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void ResponseAccountData::Clear() {
+// @@protoc_insertion_point(message_clear_start:ResponseAccountData)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.account_id_.ClearToEmpty();
+  _impl_.account_name_.ClearToEmpty();
+  _impl_.account_password_.ClearToEmpty();
+  _impl_.account_password_to_verify_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ResponseAccountData::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 4, 0, 92, 2> ResponseAccountData::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    4, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967280,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    4,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_ResponseAccountData_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string account_password_to_verify = 4;
+    {::_pbi::TcParser::FastUS1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(ResponseAccountData, _impl_.account_password_to_verify_)}},
+    // string account_id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ResponseAccountData, _impl_.account_id_)}},
+    // string account_name = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ResponseAccountData, _impl_.account_name_)}},
+    // string account_password = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(ResponseAccountData, _impl_.account_password_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string account_id = 1;
+    {PROTOBUF_FIELD_OFFSET(ResponseAccountData, _impl_.account_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string account_name = 2;
+    {PROTOBUF_FIELD_OFFSET(ResponseAccountData, _impl_.account_name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string account_password = 3;
+    {PROTOBUF_FIELD_OFFSET(ResponseAccountData, _impl_.account_password_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string account_password_to_verify = 4;
+    {PROTOBUF_FIELD_OFFSET(ResponseAccountData, _impl_.account_password_to_verify_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\23\12\14\20\32\0\0\0"
+    "ResponseAccountData"
+    "account_id"
+    "account_name"
+    "account_password"
+    "account_password_to_verify"
+  }},
+};
+
+::uint8_t* ResponseAccountData::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:ResponseAccountData)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string account_id = 1;
+  if (!this->_internal_account_id().empty()) {
+    const std::string& _s = this->_internal_account_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "ResponseAccountData.account_id");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // string account_name = 2;
+  if (!this->_internal_account_name().empty()) {
+    const std::string& _s = this->_internal_account_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "ResponseAccountData.account_name");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  // string account_password = 3;
+  if (!this->_internal_account_password().empty()) {
+    const std::string& _s = this->_internal_account_password();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "ResponseAccountData.account_password");
+    target = stream->WriteStringMaybeAliased(3, _s, target);
+  }
+
+  // string account_password_to_verify = 4;
+  if (!this->_internal_account_password_to_verify().empty()) {
+    const std::string& _s = this->_internal_account_password_to_verify();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "ResponseAccountData.account_password_to_verify");
+    target = stream->WriteStringMaybeAliased(4, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:ResponseAccountData)
+  return target;
+}
+
+::size_t ResponseAccountData::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:ResponseAccountData)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string account_id = 1;
+  if (!this->_internal_account_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_account_id());
+  }
+
+  // string account_name = 2;
+  if (!this->_internal_account_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_account_name());
+  }
+
+  // string account_password = 3;
+  if (!this->_internal_account_password().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_account_password());
+  }
+
+  // string account_password_to_verify = 4;
+  if (!this->_internal_account_password_to_verify().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_account_password_to_verify());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ResponseAccountData::_class_data_ = {
+    ResponseAccountData::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* ResponseAccountData::GetClassData() const {
+  return &_class_data_;
+}
+
+void ResponseAccountData::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ResponseAccountData*>(&to_msg);
+  auto& from = static_cast<const ResponseAccountData&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:ResponseAccountData)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_account_id().empty()) {
+    _this->_internal_set_account_id(from._internal_account_id());
+  }
+  if (!from._internal_account_name().empty()) {
+    _this->_internal_set_account_name(from._internal_account_name());
+  }
+  if (!from._internal_account_password().empty()) {
+    _this->_internal_set_account_password(from._internal_account_password());
+  }
+  if (!from._internal_account_password_to_verify().empty()) {
+    _this->_internal_set_account_password_to_verify(from._internal_account_password_to_verify());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ResponseAccountData::CopyFrom(const ResponseAccountData& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:ResponseAccountData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ResponseAccountData::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* ResponseAccountData::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void ResponseAccountData::InternalSwap(ResponseAccountData* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.account_id_, &other->_impl_.account_id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.account_name_, &other->_impl_.account_name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.account_password_, &other->_impl_.account_password_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.account_password_to_verify_, &other->_impl_.account_password_to_verify_, arena);
+}
+
+::google::protobuf::Metadata ResponseAccountData::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_DatabaseProtocol_2eproto_getter, &descriptor_table_DatabaseProtocol_2eproto_once,
+      file_level_metadata_DatabaseProtocol_2eproto[3]);
+}
+// ===================================================================
+
 class RequestPlayerInitialData::_Internal {
  public:
 };
@@ -996,24 +1591,14 @@ void RequestPlayerInitialData::InternalSwap(RequestPlayerInitialData* PROTOBUF_R
 ::google::protobuf::Metadata RequestPlayerInitialData::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_DatabaseProtocol_2eproto_getter, &descriptor_table_DatabaseProtocol_2eproto_once,
-      file_level_metadata_DatabaseProtocol_2eproto[2]);
+      file_level_metadata_DatabaseProtocol_2eproto[4]);
 }
 // ===================================================================
 
 class ResponsePlayerInitialData::_Internal {
  public:
-  using HasBits = decltype(std::declval<ResponsePlayerInitialData>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(ResponsePlayerInitialData, _impl_._has_bits_);
-  static const ::DbPlayerInitialData& player_initial_data(const ResponsePlayerInitialData* msg);
-  static void set_has_player_initial_data(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
 };
 
-const ::DbPlayerInitialData& ResponsePlayerInitialData::_Internal::player_initial_data(const ResponsePlayerInitialData* msg) {
-  return *msg->_impl_.player_initial_data_;
-}
 ResponsePlayerInitialData::ResponsePlayerInitialData(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
@@ -1022,7 +1607,7 @@ ResponsePlayerInitialData::ResponsePlayerInitialData(::google::protobuf::Arena* 
 inline PROTOBUF_NDEBUG_INLINE ResponsePlayerInitialData::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : _has_bits_{from._has_bits_},
+      : player_name_(arena, from.player_name_),
         _cached_size_{0} {}
 
 ResponsePlayerInitialData::ResponsePlayerInitialData(
@@ -1030,203 +1615,6 @@ ResponsePlayerInitialData::ResponsePlayerInitialData(
     const ResponsePlayerInitialData& from)
     : ::google::protobuf::Message(arena) {
   ResponsePlayerInitialData* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.player_initial_data_ = (cached_has_bits & 0x00000001u)
-                ? CreateMaybeMessage<::DbPlayerInitialData>(arena, *from._impl_.player_initial_data_)
-                : nullptr;
-
-  // @@protoc_insertion_point(copy_constructor:ResponsePlayerInitialData)
-}
-inline PROTOBUF_NDEBUG_INLINE ResponsePlayerInitialData::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : _cached_size_{0} {}
-
-inline void ResponsePlayerInitialData::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.player_initial_data_ = {};
-}
-ResponsePlayerInitialData::~ResponsePlayerInitialData() {
-  // @@protoc_insertion_point(destructor:ResponsePlayerInitialData)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void ResponsePlayerInitialData::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  delete _impl_.player_initial_data_;
-  _impl_.~Impl_();
-}
-
-PROTOBUF_NOINLINE void ResponsePlayerInitialData::Clear() {
-// @@protoc_insertion_point(message_clear_start:ResponsePlayerInitialData)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.player_initial_data_ != nullptr);
-    _impl_.player_initial_data_->Clear();
-  }
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-const char* ResponsePlayerInitialData::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
-  return ptr;
-}
-
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 1, 0, 2> ResponsePlayerInitialData::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(ResponsePlayerInitialData, _impl_._has_bits_),
-    0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_ResponsePlayerInitialData_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // .DbPlayerInitialData player_initial_data = 1;
-    {::_pbi::TcParser::FastMtS1,
-     {10, 0, 0, PROTOBUF_FIELD_OFFSET(ResponsePlayerInitialData, _impl_.player_initial_data_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // .DbPlayerInitialData player_initial_data = 1;
-    {PROTOBUF_FIELD_OFFSET(ResponsePlayerInitialData, _impl_.player_initial_data_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::DbPlayerInitialData>()},
-  }}, {{
-  }},
-};
-
-::uint8_t* ResponsePlayerInitialData::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:ResponsePlayerInitialData)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  cached_has_bits = _impl_._has_bits_[0];
-  // .DbPlayerInitialData player_initial_data = 1;
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        1, _Internal::player_initial_data(this),
-        _Internal::player_initial_data(this).GetCachedSize(), target, stream);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:ResponsePlayerInitialData)
-  return target;
-}
-
-::size_t ResponsePlayerInitialData::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:ResponsePlayerInitialData)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // .DbPlayerInitialData player_initial_data = 1;
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size +=
-        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.player_initial_data_);
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::google::protobuf::Message::ClassData ResponsePlayerInitialData::_class_data_ = {
-    ResponsePlayerInitialData::MergeImpl,
-    nullptr,  // OnDemandRegisterArenaDtor
-};
-const ::google::protobuf::Message::ClassData* ResponsePlayerInitialData::GetClassData() const {
-  return &_class_data_;
-}
-
-void ResponsePlayerInitialData::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<ResponsePlayerInitialData*>(&to_msg);
-  auto& from = static_cast<const ResponsePlayerInitialData&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:ResponsePlayerInitialData)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_internal_mutable_player_initial_data()->::DbPlayerInitialData::MergeFrom(
-        from._internal_player_initial_data());
-  }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void ResponsePlayerInitialData::CopyFrom(const ResponsePlayerInitialData& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:ResponsePlayerInitialData)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-PROTOBUF_NOINLINE bool ResponsePlayerInitialData::IsInitialized() const {
-  return true;
-}
-
-::_pbi::CachedSize* ResponsePlayerInitialData::AccessCachedSize() const {
-  return &_impl_._cached_size_;
-}
-void ResponsePlayerInitialData::InternalSwap(ResponsePlayerInitialData* PROTOBUF_RESTRICT other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  swap(_impl_.player_initial_data_, other->_impl_.player_initial_data_);
-}
-
-::google::protobuf::Metadata ResponsePlayerInitialData::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_DatabaseProtocol_2eproto_getter, &descriptor_table_DatabaseProtocol_2eproto_once,
-      file_level_metadata_DatabaseProtocol_2eproto[3]);
-}
-// ===================================================================
-
-class DbPlayerInitialData::_Internal {
- public:
-};
-
-DbPlayerInitialData::DbPlayerInitialData(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:DbPlayerInitialData)
-}
-inline PROTOBUF_NDEBUG_INLINE DbPlayerInitialData::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from)
-      : player_name_(arena, from.player_name_),
-        _cached_size_{0} {}
-
-DbPlayerInitialData::DbPlayerInitialData(
-    ::google::protobuf::Arena* arena,
-    const DbPlayerInitialData& from)
-    : ::google::protobuf::Message(arena) {
-  DbPlayerInitialData* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
@@ -1239,15 +1627,15 @@ DbPlayerInitialData::DbPlayerInitialData(
                offsetof(Impl_, position_x_) +
                sizeof(Impl_::player_movementspeed_));
 
-  // @@protoc_insertion_point(copy_constructor:DbPlayerInitialData)
+  // @@protoc_insertion_point(copy_constructor:ResponsePlayerInitialData)
 }
-inline PROTOBUF_NDEBUG_INLINE DbPlayerInitialData::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE ResponsePlayerInitialData::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : player_name_(arena),
         _cached_size_{0} {}
 
-inline void DbPlayerInitialData::SharedCtor(::_pb::Arena* arena) {
+inline void ResponsePlayerInitialData::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, position_x_),
@@ -1256,19 +1644,19 @@ inline void DbPlayerInitialData::SharedCtor(::_pb::Arena* arena) {
                offsetof(Impl_, position_x_) +
                sizeof(Impl_::player_movementspeed_));
 }
-DbPlayerInitialData::~DbPlayerInitialData() {
-  // @@protoc_insertion_point(destructor:DbPlayerInitialData)
+ResponsePlayerInitialData::~ResponsePlayerInitialData() {
+  // @@protoc_insertion_point(destructor:ResponsePlayerInitialData)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void DbPlayerInitialData::SharedDtor() {
+inline void ResponsePlayerInitialData::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.player_name_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void DbPlayerInitialData::Clear() {
-// @@protoc_insertion_point(message_clear_start:DbPlayerInitialData)
+PROTOBUF_NOINLINE void ResponsePlayerInitialData::Clear() {
+// @@protoc_insertion_point(message_clear_start:ResponsePlayerInitialData)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -1281,7 +1669,7 @@ PROTOBUF_NOINLINE void DbPlayerInitialData::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* DbPlayerInitialData::_InternalParse(
+const char* ResponsePlayerInitialData::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -1289,7 +1677,7 @@ const char* DbPlayerInitialData::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 6, 0, 39, 2> DbPlayerInitialData::_table_ = {
+const ::_pbi::TcParseTable<3, 6, 0, 45, 2> ResponsePlayerInitialData::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1300,63 +1688,63 @@ const ::_pbi::TcParseTable<3, 6, 0, 39, 2> DbPlayerInitialData::_table_ = {
     6,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_DbPlayerInitialData_default_instance_._instance,
+    &_ResponsePlayerInitialData_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
     // string player_name = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(DbPlayerInitialData, _impl_.player_name_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ResponsePlayerInitialData, _impl_.player_name_)}},
     // float position_x = 3;
     {::_pbi::TcParser::FastF32S1,
-     {29, 63, 0, PROTOBUF_FIELD_OFFSET(DbPlayerInitialData, _impl_.position_x_)}},
+     {29, 63, 0, PROTOBUF_FIELD_OFFSET(ResponsePlayerInitialData, _impl_.position_x_)}},
     // float position_y = 4;
     {::_pbi::TcParser::FastF32S1,
-     {37, 63, 0, PROTOBUF_FIELD_OFFSET(DbPlayerInitialData, _impl_.position_y_)}},
+     {37, 63, 0, PROTOBUF_FIELD_OFFSET(ResponsePlayerInitialData, _impl_.position_y_)}},
     // float position_z = 5;
     {::_pbi::TcParser::FastF32S1,
-     {45, 63, 0, PROTOBUF_FIELD_OFFSET(DbPlayerInitialData, _impl_.position_z_)}},
+     {45, 63, 0, PROTOBUF_FIELD_OFFSET(ResponsePlayerInitialData, _impl_.position_z_)}},
     // uint32 rotation_y = 6;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(DbPlayerInitialData, _impl_.rotation_y_), 63>(),
-     {48, 63, 0, PROTOBUF_FIELD_OFFSET(DbPlayerInitialData, _impl_.rotation_y_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ResponsePlayerInitialData, _impl_.rotation_y_), 63>(),
+     {48, 63, 0, PROTOBUF_FIELD_OFFSET(ResponsePlayerInitialData, _impl_.rotation_y_)}},
     // uint32 player_movementspeed = 7;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(DbPlayerInitialData, _impl_.player_movementspeed_), 63>(),
-     {56, 63, 0, PROTOBUF_FIELD_OFFSET(DbPlayerInitialData, _impl_.player_movementspeed_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ResponsePlayerInitialData, _impl_.player_movementspeed_), 63>(),
+     {56, 63, 0, PROTOBUF_FIELD_OFFSET(ResponsePlayerInitialData, _impl_.player_movementspeed_)}},
   }}, {{
     65535, 65535
   }}, {{
     // string player_name = 2;
-    {PROTOBUF_FIELD_OFFSET(DbPlayerInitialData, _impl_.player_name_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ResponsePlayerInitialData, _impl_.player_name_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // float position_x = 3;
-    {PROTOBUF_FIELD_OFFSET(DbPlayerInitialData, _impl_.position_x_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ResponsePlayerInitialData, _impl_.position_x_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
     // float position_y = 4;
-    {PROTOBUF_FIELD_OFFSET(DbPlayerInitialData, _impl_.position_y_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ResponsePlayerInitialData, _impl_.position_y_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
     // float position_z = 5;
-    {PROTOBUF_FIELD_OFFSET(DbPlayerInitialData, _impl_.position_z_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ResponsePlayerInitialData, _impl_.position_z_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
     // uint32 rotation_y = 6;
-    {PROTOBUF_FIELD_OFFSET(DbPlayerInitialData, _impl_.rotation_y_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ResponsePlayerInitialData, _impl_.rotation_y_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
     // uint32 player_movementspeed = 7;
-    {PROTOBUF_FIELD_OFFSET(DbPlayerInitialData, _impl_.player_movementspeed_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ResponsePlayerInitialData, _impl_.player_movementspeed_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
   }},
   // no aux_entries
   {{
-    "\23\13\0\0\0\0\0\0"
-    "DbPlayerInitialData"
+    "\31\13\0\0\0\0\0\0"
+    "ResponsePlayerInitialData"
     "player_name"
   }},
 };
 
-::uint8_t* DbPlayerInitialData::_InternalSerialize(
+::uint8_t* ResponsePlayerInitialData::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:DbPlayerInitialData)
+  // @@protoc_insertion_point(serialize_to_array_start:ResponsePlayerInitialData)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -1364,7 +1752,7 @@ const ::_pbi::TcParseTable<3, 6, 0, 39, 2> DbPlayerInitialData::_table_ = {
   if (!this->_internal_player_name().empty()) {
     const std::string& _s = this->_internal_player_name();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "DbPlayerInitialData.player_name");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "ResponsePlayerInitialData.player_name");
     target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
@@ -1423,12 +1811,12 @@ const ::_pbi::TcParseTable<3, 6, 0, 39, 2> DbPlayerInitialData::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:DbPlayerInitialData)
+  // @@protoc_insertion_point(serialize_to_array_end:ResponsePlayerInitialData)
   return target;
 }
 
-::size_t DbPlayerInitialData::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:DbPlayerInitialData)
+::size_t ResponsePlayerInitialData::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:ResponsePlayerInitialData)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -1486,18 +1874,18 @@ const ::_pbi::TcParseTable<3, 6, 0, 39, 2> DbPlayerInitialData::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData DbPlayerInitialData::_class_data_ = {
-    DbPlayerInitialData::MergeImpl,
+const ::google::protobuf::Message::ClassData ResponsePlayerInitialData::_class_data_ = {
+    ResponsePlayerInitialData::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* DbPlayerInitialData::GetClassData() const {
+const ::google::protobuf::Message::ClassData* ResponsePlayerInitialData::GetClassData() const {
   return &_class_data_;
 }
 
-void DbPlayerInitialData::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<DbPlayerInitialData*>(&to_msg);
-  auto& from = static_cast<const DbPlayerInitialData&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:DbPlayerInitialData)
+void ResponsePlayerInitialData::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ResponsePlayerInitialData*>(&to_msg);
+  auto& from = static_cast<const ResponsePlayerInitialData&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:ResponsePlayerInitialData)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1538,38 +1926,38 @@ void DbPlayerInitialData::MergeImpl(::google::protobuf::Message& to_msg, const :
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void DbPlayerInitialData::CopyFrom(const DbPlayerInitialData& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:DbPlayerInitialData)
+void ResponsePlayerInitialData::CopyFrom(const ResponsePlayerInitialData& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:ResponsePlayerInitialData)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool DbPlayerInitialData::IsInitialized() const {
+PROTOBUF_NOINLINE bool ResponsePlayerInitialData::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* DbPlayerInitialData::AccessCachedSize() const {
+::_pbi::CachedSize* ResponsePlayerInitialData::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void DbPlayerInitialData::InternalSwap(DbPlayerInitialData* PROTOBUF_RESTRICT other) {
+void ResponsePlayerInitialData::InternalSwap(ResponsePlayerInitialData* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.player_name_, &other->_impl_.player_name_, arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(DbPlayerInitialData, _impl_.player_movementspeed_)
-      + sizeof(DbPlayerInitialData::_impl_.player_movementspeed_)
-      - PROTOBUF_FIELD_OFFSET(DbPlayerInitialData, _impl_.position_x_)>(
+      PROTOBUF_FIELD_OFFSET(ResponsePlayerInitialData, _impl_.player_movementspeed_)
+      + sizeof(ResponsePlayerInitialData::_impl_.player_movementspeed_)
+      - PROTOBUF_FIELD_OFFSET(ResponsePlayerInitialData, _impl_.position_x_)>(
           reinterpret_cast<char*>(&_impl_.position_x_),
           reinterpret_cast<char*>(&other->_impl_.position_x_));
 }
 
-::google::protobuf::Metadata DbPlayerInitialData::GetMetadata() const {
+::google::protobuf::Metadata ResponsePlayerInitialData::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_DatabaseProtocol_2eproto_getter, &descriptor_table_DatabaseProtocol_2eproto_once,
-      file_level_metadata_DatabaseProtocol_2eproto[4]);
+      file_level_metadata_DatabaseProtocol_2eproto[5]);
 }
 // @@protoc_insertion_point(namespace_scope)
 namespace google {

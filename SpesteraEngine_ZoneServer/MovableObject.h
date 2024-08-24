@@ -24,6 +24,7 @@ public:
     virtual ~MovableObject() {}
 
     TDM::Vector3 get_transform() const;
+    float get_movementspeed() const;
     int get_object_id() const;
     void update_chunk_position();
 

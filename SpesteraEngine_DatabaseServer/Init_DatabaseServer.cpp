@@ -27,7 +27,7 @@ int main() {
 			});
 
 		boost::asio::io_context io_context;
-		auto tcp_connector = std::make_unique<TcpConnector>(io_context, db_ip, tcp_port, db_connection.get());
+		auto tcp_connector = std::make_unique<TcpConnector>(io_context, db_ip, tcp_port, uri);
 
 		std::cout << "Database server loaded" << std::endl;
 

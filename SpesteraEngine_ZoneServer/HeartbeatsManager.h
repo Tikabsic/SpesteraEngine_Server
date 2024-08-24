@@ -17,7 +17,6 @@ public:
 	HeartbeatsManager(TcpServer* tcpserver, ZoneMap* zonemap, boost::asio::io_context& iocontext);
 	~HeartbeatsManager();
 
-	void start_heartbeating();
 private:
 	boost::asio::io_context& io_context_;
 	TcpServer* tcp_server_;

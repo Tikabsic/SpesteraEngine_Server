@@ -14,6 +14,11 @@ TDM::Vector3 MovableObject::get_transform() const
 	return transform_.position;
 }
 
+float MovableObject::get_movementspeed() const
+{
+	return movement_speed_;
+}
+
 int MovableObject::get_object_id() const
 {
 	return object_id_;

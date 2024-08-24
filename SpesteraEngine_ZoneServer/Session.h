@@ -25,6 +25,9 @@ public:
     void set_player_id(u_short pid);
     u_short get_player_id();
     std::shared_ptr<ZoneCharacter>& get_zone_character();
+
+    //Updates
+    void send_chunk_data(CellKey key);
 private:
     Session(const Session&) = delete;
     Session& operator=(const Session&) = delete;

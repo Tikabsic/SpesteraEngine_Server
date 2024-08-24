@@ -12,7 +12,6 @@ void TcpServer::do_accept() {
     acceptor_.async_accept(
         [this](boost::system::error_code ec, tcp::socket socket) {
             if (!ec) {
-                std::cout << "Accepting..." << std::endl;
                 auto session = std::make_shared<Session>(std::move(socket), next_id_, this);
                 session->set_player_id(next_id_);
                 conn_manager_->create_new_connection(session->get_player_id(), session);

@@ -162,6 +162,9 @@
     <ClInclude Include="GSProtocol.pb.h">
       <Filter>Game_Server\Config\Protocol\GameServer_Protocol</Filter>
     </ClInclude>
+    <ClInclude Include="SSPHasher.h">
+      <Filter>Game_Server\Utils\Security</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TcpServer.cpp">
@@ -211,6 +214,9 @@
     </ClCompile>
     <ClCompile Include="GSProtocol.pb.cc">
       <Filter>Game_Server\Config\Protocol\GameServer_Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="SSPHasher.cpp">
+      <Filter>Game_Server\Utils\Security</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

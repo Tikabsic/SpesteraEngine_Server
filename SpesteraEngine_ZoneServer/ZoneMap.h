@@ -21,6 +21,9 @@ public:
 
 	void remove_session(const std::shared_ptr<Session>& session);
 
+	WorldData grab_world_data(std::shared_ptr<ZoneCharacter>& obj);
+	WorldData grab_chunk_data(CellKey chunkposition, u_short id) const;
+
 	std::vector<Chunk*> get_zonemap_chunks();
 
 private:

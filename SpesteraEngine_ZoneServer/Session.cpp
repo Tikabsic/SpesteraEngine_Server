@@ -17,9 +17,9 @@ void Session::start() {
     PlayerInitialData player_initial_data;
     player_initial_data.set_player_id(playerId_);
     player_initial_data.set_player_movementspeed(5);
-    player_initial_data.set_position_x(1);
+    player_initial_data.set_position_x(240);
     player_initial_data.set_position_y(10);
-    player_initial_data.set_position_z(1);
+    player_initial_data.set_position_z(240);
 
 
     ZSWrapper wrapper;
@@ -48,12 +48,25 @@ void Session::start() {
 
 void Session::disconnect()
 {
-    std::cout << " Processing logout" << std::endl;
-    tcp_server_->remove_session(shared_from_this());
-    zone_map_->remove_session(shared_from_this());
-    tcp_server_ = nullptr;
-    zone_map_ = nullptr;
+    socket_.cancel();
+    tcp_server_->send_logout_message(shared_from_this());
     socket_.close();
+
+    if (zone_map_) {
+        zone_map_->remove_session(shared_from_this());
+        zone_map_ = nullptr;
+    }
+
+    if (character_) {
+        character_->delete_session_ptr();
+        character_.reset();
+    }
+
+    if (tcp_server_) {
+        tcp_server_->send_logout_message(shared_from_this());
+        tcp_server_->remove_session(id_);
+        tcp_server_ = nullptr;
+    }
 }
 
 void Session::compress_to_write(const ZSWrapper& msg) {
@@ -69,12 +82,11 @@ void Session::compress_to_write(const ZSWrapper& msg) {
 
 void Session::direct_push_to_buffer(const std::string& msg)
 {
-    if (write_msgs_.empty()) {
-        write_msgs_.push_back(msg);
+    bool write_in_progress = !write_msgs_.empty();
+    write_msgs_.push_back(msg);
+    
+    if (!write_in_progress) {
         do_write();
-    }
-    else {
-        write_msgs_.push_back(msg);
     }
 }
 
@@ -96,6 +108,15 @@ void Session::handle_message(const ZSWrapper& wrapper) {
         }
         break;
     }
+    case ZSWrapper::REQUESTWORLDDATA: {
+        WorldData world_data = zone_map_->grab_world_data(character_);
+
+        ZSWrapper wrapper;
+        wrapper.set_type(ZSWrapper::WORLDDATA);
+        wrapper.set_payload(world_data.SerializeAsString());
+        compress_to_write(wrapper);
+        break;
+    }
     default:
         std::cout << "Unknown message type received: " << wrapper.type() << std::endl;
         break;
@@ -112,32 +133,45 @@ std::shared_ptr<ZoneCharacter>& Session::get_zone_character()
     return character_;
 }
 
+void Session::send_chunk_data(CellKey key)
+{
+    zone_map_->grab_chunk_data(key, playerId_);
+    ZSWrapper wrapper;
+    wrapper.set_type(ZSWrapper::WORLDDATA);
+    wrapper.set_payload(zone_map_->grab_chunk_data(key, playerId_).SerializeAsString());
+
+    compress_to_write(wrapper);
+    std::cout << "sent chunk data to : " << playerId_ << " of chunk: (" << key.first << " , " << key.second << " )" << std::endl;
+}
+
 void Session::do_read() {
+    auto self(shared_from_this());
     socket_.async_read_some(boost::asio::buffer(data_, max_length),
-        [this](boost::system::error_code ec, std::size_t length) {
+        [self](boost::system::error_code ec, std::size_t length) {
             if (!ec) {
-                try{
+                try {
                     ZSWrapper wrapper;
-                    if (wrapper.ParseFromArray(data_, length)) {
-                        handle_message(wrapper);
+                    if (wrapper.ParseFromArray(self->data_, length)) {
+                        self->handle_message(wrapper);
                     }
-                    do_read();
+                    self->do_read();
                 }
                 catch (const std::runtime_error& e) {
-
                 }
             }
         });
 }
 
 void Session::do_write() {
+    std::cout << "sending message" << std::endl;
+    auto self(shared_from_this());
     boost::asio::async_write(socket_,
         boost::asio::buffer(write_msgs_.front()),
-        [this](boost::system::error_code ec, std::size_t length) {
+        [self](boost::system::error_code ec, std::size_t length) {
             if (!ec) {
-                write_msgs_.pop_front();
-                if (!write_msgs_.empty()) {
-                    do_write();
+                self->write_msgs_.pop_front();
+                if (!self->write_msgs_.empty()) {
+                    self->do_write();
                 }
             }
         });

@@ -56,15 +56,18 @@ struct TableStruct_DatabaseProtocol_2eproto {
 };
 extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_DatabaseProtocol_2eproto;
-class DbPlayerInitialData;
-struct DbPlayerInitialDataDefaultTypeInternal;
-extern DbPlayerInitialDataDefaultTypeInternal _DbPlayerInitialData_default_instance_;
+class RequestAccountData;
+struct RequestAccountDataDefaultTypeInternal;
+extern RequestAccountDataDefaultTypeInternal _RequestAccountData_default_instance_;
 class RequestPlayerInitialData;
 struct RequestPlayerInitialDataDefaultTypeInternal;
 extern RequestPlayerInitialDataDefaultTypeInternal _RequestPlayerInitialData_default_instance_;
 class RequestWrapper;
 struct RequestWrapperDefaultTypeInternal;
 extern RequestWrapperDefaultTypeInternal _RequestWrapper_default_instance_;
+class ResponseAccountData;
+struct ResponseAccountDataDefaultTypeInternal;
+extern ResponseAccountDataDefaultTypeInternal _ResponseAccountData_default_instance_;
 class ResponsePlayerInitialData;
 struct ResponsePlayerInitialDataDefaultTypeInternal;
 extern ResponsePlayerInitialDataDefaultTypeInternal _ResponsePlayerInitialData_default_instance_;
@@ -77,7 +80,8 @@ namespace protobuf {
 }  // namespace google
 
 enum RequestWrapper_RequestType : int {
-  RequestWrapper_RequestType_REQUESTPLAYERINITIALDATA = 0,
+  RequestWrapper_RequestType_REQUESTACCOUNTDATA = 0,
+  RequestWrapper_RequestType_REQUESTPLAYERINITIALDATA = 1,
   RequestWrapper_RequestType_RequestWrapper_RequestType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   RequestWrapper_RequestType_RequestWrapper_RequestType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -87,8 +91,8 @@ enum RequestWrapper_RequestType : int {
 bool RequestWrapper_RequestType_IsValid(int value);
 extern const uint32_t RequestWrapper_RequestType_internal_data_[];
 constexpr RequestWrapper_RequestType RequestWrapper_RequestType_RequestType_MIN = static_cast<RequestWrapper_RequestType>(0);
-constexpr RequestWrapper_RequestType RequestWrapper_RequestType_RequestType_MAX = static_cast<RequestWrapper_RequestType>(0);
-constexpr int RequestWrapper_RequestType_RequestType_ARRAYSIZE = 0 + 1;
+constexpr RequestWrapper_RequestType RequestWrapper_RequestType_RequestType_MAX = static_cast<RequestWrapper_RequestType>(1);
+constexpr int RequestWrapper_RequestType_RequestType_ARRAYSIZE = 1 + 1;
 const ::google::protobuf::EnumDescriptor*
 RequestWrapper_RequestType_descriptor();
 template <typename T>
@@ -101,15 +105,48 @@ const std::string& RequestWrapper_RequestType_Name(T value) {
 template <>
 inline const std::string& RequestWrapper_RequestType_Name(RequestWrapper_RequestType value) {
   return ::google::protobuf::internal::NameOfDenseEnum<RequestWrapper_RequestType_descriptor,
-                                                 0, 0>(
+                                                 0, 1>(
       static_cast<int>(value));
 }
 inline bool RequestWrapper_RequestType_Parse(absl::string_view name, RequestWrapper_RequestType* value) {
   return ::google::protobuf::internal::ParseNamedEnum<RequestWrapper_RequestType>(
       RequestWrapper_RequestType_descriptor(), name, value);
 }
+enum RequestWrapper_ServiceType : int {
+  RequestWrapper_ServiceType_ACCOUNTSERVICE = 0,
+  RequestWrapper_ServiceType_RequestWrapper_ServiceType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  RequestWrapper_ServiceType_RequestWrapper_ServiceType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool RequestWrapper_ServiceType_IsValid(int value);
+extern const uint32_t RequestWrapper_ServiceType_internal_data_[];
+constexpr RequestWrapper_ServiceType RequestWrapper_ServiceType_ServiceType_MIN = static_cast<RequestWrapper_ServiceType>(0);
+constexpr RequestWrapper_ServiceType RequestWrapper_ServiceType_ServiceType_MAX = static_cast<RequestWrapper_ServiceType>(0);
+constexpr int RequestWrapper_ServiceType_ServiceType_ARRAYSIZE = 0 + 1;
+const ::google::protobuf::EnumDescriptor*
+RequestWrapper_ServiceType_descriptor();
+template <typename T>
+const std::string& RequestWrapper_ServiceType_Name(T value) {
+  static_assert(std::is_same<T, RequestWrapper_ServiceType>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to ServiceType_Name().");
+  return RequestWrapper_ServiceType_Name(static_cast<RequestWrapper_ServiceType>(value));
+}
+template <>
+inline const std::string& RequestWrapper_ServiceType_Name(RequestWrapper_ServiceType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<RequestWrapper_ServiceType_descriptor,
+                                                 0, 0>(
+      static_cast<int>(value));
+}
+inline bool RequestWrapper_ServiceType_Parse(absl::string_view name, RequestWrapper_ServiceType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<RequestWrapper_ServiceType>(
+      RequestWrapper_ServiceType_descriptor(), name, value);
+}
 enum ResponseWrapper_ResponseType : int {
-  ResponseWrapper_ResponseType_RESPONSEPLAYERINITIALDATA = 0,
+  ResponseWrapper_ResponseType_RESPONSEACCOUNTDATA = 0,
+  ResponseWrapper_ResponseType_RESPONSEPLAYERINITIALDATA = 1,
   ResponseWrapper_ResponseType_ResponseWrapper_ResponseType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   ResponseWrapper_ResponseType_ResponseWrapper_ResponseType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -119,8 +156,8 @@ enum ResponseWrapper_ResponseType : int {
 bool ResponseWrapper_ResponseType_IsValid(int value);
 extern const uint32_t ResponseWrapper_ResponseType_internal_data_[];
 constexpr ResponseWrapper_ResponseType ResponseWrapper_ResponseType_ResponseType_MIN = static_cast<ResponseWrapper_ResponseType>(0);
-constexpr ResponseWrapper_ResponseType ResponseWrapper_ResponseType_ResponseType_MAX = static_cast<ResponseWrapper_ResponseType>(0);
-constexpr int ResponseWrapper_ResponseType_ResponseType_ARRAYSIZE = 0 + 1;
+constexpr ResponseWrapper_ResponseType ResponseWrapper_ResponseType_ResponseType_MAX = static_cast<ResponseWrapper_ResponseType>(1);
+constexpr int ResponseWrapper_ResponseType_ResponseType_ARRAYSIZE = 1 + 1;
 const ::google::protobuf::EnumDescriptor*
 ResponseWrapper_ResponseType_descriptor();
 template <typename T>
@@ -133,7 +170,7 @@ const std::string& ResponseWrapper_ResponseType_Name(T value) {
 template <>
 inline const std::string& ResponseWrapper_ResponseType_Name(ResponseWrapper_ResponseType value) {
   return ::google::protobuf::internal::NameOfDenseEnum<ResponseWrapper_ResponseType_descriptor,
-                                                 0, 0>(
+                                                 0, 1>(
       static_cast<int>(value));
 }
 inline bool ResponseWrapper_ResponseType_Parse(absl::string_view name, ResponseWrapper_ResponseType* value) {
@@ -276,6 +313,7 @@ class ResponseWrapper final :
   // nested types ----------------------------------------------------
 
   using ResponseType = ResponseWrapper_ResponseType;
+  static constexpr ResponseType RESPONSEACCOUNTDATA = ResponseWrapper_ResponseType_RESPONSEACCOUNTDATA;
   static constexpr ResponseType RESPONSEPLAYERINITIALDATA = ResponseWrapper_ResponseType_RESPONSEPLAYERINITIALDATA;
   static inline bool ResponseType_IsValid(int value) {
     return ResponseWrapper_ResponseType_IsValid(value);
@@ -363,6 +401,482 @@ class ResponseWrapper final :
     ::google::protobuf::internal::ArenaStringPtr response_payload_;
     int response_type_;
     ::uint32_t response_id_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_DatabaseProtocol_2eproto;
+};// -------------------------------------------------------------------
+
+class ResponsePlayerInitialData final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:ResponsePlayerInitialData) */ {
+ public:
+  inline ResponsePlayerInitialData() : ResponsePlayerInitialData(nullptr) {}
+  ~ResponsePlayerInitialData() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ResponsePlayerInitialData(::google::protobuf::internal::ConstantInitialized);
+
+  inline ResponsePlayerInitialData(const ResponsePlayerInitialData& from)
+      : ResponsePlayerInitialData(nullptr, from) {}
+  ResponsePlayerInitialData(ResponsePlayerInitialData&& from) noexcept
+    : ResponsePlayerInitialData() {
+    *this = ::std::move(from);
+  }
+
+  inline ResponsePlayerInitialData& operator=(const ResponsePlayerInitialData& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ResponsePlayerInitialData& operator=(ResponsePlayerInitialData&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ResponsePlayerInitialData& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ResponsePlayerInitialData* internal_default_instance() {
+    return reinterpret_cast<const ResponsePlayerInitialData*>(
+               &_ResponsePlayerInitialData_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(ResponsePlayerInitialData& a, ResponsePlayerInitialData& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ResponsePlayerInitialData* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ResponsePlayerInitialData* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ResponsePlayerInitialData* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ResponsePlayerInitialData>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ResponsePlayerInitialData& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ResponsePlayerInitialData& from) {
+    ResponsePlayerInitialData::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(ResponsePlayerInitialData* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "ResponsePlayerInitialData";
+  }
+  protected:
+  explicit ResponsePlayerInitialData(::google::protobuf::Arena* arena);
+  ResponsePlayerInitialData(::google::protobuf::Arena* arena, const ResponsePlayerInitialData& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPlayerNameFieldNumber = 2,
+    kPositionXFieldNumber = 3,
+    kPositionYFieldNumber = 4,
+    kPositionZFieldNumber = 5,
+    kRotationYFieldNumber = 6,
+    kPlayerMovementspeedFieldNumber = 7,
+  };
+  // string player_name = 2;
+  void clear_player_name() ;
+  const std::string& player_name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_player_name(Arg_&& arg, Args_... args);
+  std::string* mutable_player_name();
+  PROTOBUF_NODISCARD std::string* release_player_name();
+  void set_allocated_player_name(std::string* value);
+
+  private:
+  const std::string& _internal_player_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_player_name(
+      const std::string& value);
+  std::string* _internal_mutable_player_name();
+
+  public:
+  // float position_x = 3;
+  void clear_position_x() ;
+  float position_x() const;
+  void set_position_x(float value);
+
+  private:
+  float _internal_position_x() const;
+  void _internal_set_position_x(float value);
+
+  public:
+  // float position_y = 4;
+  void clear_position_y() ;
+  float position_y() const;
+  void set_position_y(float value);
+
+  private:
+  float _internal_position_y() const;
+  void _internal_set_position_y(float value);
+
+  public:
+  // float position_z = 5;
+  void clear_position_z() ;
+  float position_z() const;
+  void set_position_z(float value);
+
+  private:
+  float _internal_position_z() const;
+  void _internal_set_position_z(float value);
+
+  public:
+  // uint32 rotation_y = 6;
+  void clear_rotation_y() ;
+  ::uint32_t rotation_y() const;
+  void set_rotation_y(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_rotation_y() const;
+  void _internal_set_rotation_y(::uint32_t value);
+
+  public:
+  // uint32 player_movementspeed = 7;
+  void clear_player_movementspeed() ;
+  ::uint32_t player_movementspeed() const;
+  void set_player_movementspeed(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_player_movementspeed() const;
+  void _internal_set_player_movementspeed(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:ResponsePlayerInitialData)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      3, 6, 0,
+      45, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr player_name_;
+    float position_x_;
+    float position_y_;
+    float position_z_;
+    ::uint32_t rotation_y_;
+    ::uint32_t player_movementspeed_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_DatabaseProtocol_2eproto;
+};// -------------------------------------------------------------------
+
+class ResponseAccountData final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:ResponseAccountData) */ {
+ public:
+  inline ResponseAccountData() : ResponseAccountData(nullptr) {}
+  ~ResponseAccountData() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ResponseAccountData(::google::protobuf::internal::ConstantInitialized);
+
+  inline ResponseAccountData(const ResponseAccountData& from)
+      : ResponseAccountData(nullptr, from) {}
+  ResponseAccountData(ResponseAccountData&& from) noexcept
+    : ResponseAccountData() {
+    *this = ::std::move(from);
+  }
+
+  inline ResponseAccountData& operator=(const ResponseAccountData& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ResponseAccountData& operator=(ResponseAccountData&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ResponseAccountData& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ResponseAccountData* internal_default_instance() {
+    return reinterpret_cast<const ResponseAccountData*>(
+               &_ResponseAccountData_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(ResponseAccountData& a, ResponseAccountData& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ResponseAccountData* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ResponseAccountData* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ResponseAccountData* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ResponseAccountData>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ResponseAccountData& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ResponseAccountData& from) {
+    ResponseAccountData::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(ResponseAccountData* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "ResponseAccountData";
+  }
+  protected:
+  explicit ResponseAccountData(::google::protobuf::Arena* arena);
+  ResponseAccountData(::google::protobuf::Arena* arena, const ResponseAccountData& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAccountIdFieldNumber = 1,
+    kAccountNameFieldNumber = 2,
+    kAccountPasswordFieldNumber = 3,
+    kAccountPasswordToVerifyFieldNumber = 4,
+  };
+  // string account_id = 1;
+  void clear_account_id() ;
+  const std::string& account_id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_account_id(Arg_&& arg, Args_... args);
+  std::string* mutable_account_id();
+  PROTOBUF_NODISCARD std::string* release_account_id();
+  void set_allocated_account_id(std::string* value);
+
+  private:
+  const std::string& _internal_account_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_account_id(
+      const std::string& value);
+  std::string* _internal_mutable_account_id();
+
+  public:
+  // string account_name = 2;
+  void clear_account_name() ;
+  const std::string& account_name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_account_name(Arg_&& arg, Args_... args);
+  std::string* mutable_account_name();
+  PROTOBUF_NODISCARD std::string* release_account_name();
+  void set_allocated_account_name(std::string* value);
+
+  private:
+  const std::string& _internal_account_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_account_name(
+      const std::string& value);
+  std::string* _internal_mutable_account_name();
+
+  public:
+  // string account_password = 3;
+  void clear_account_password() ;
+  const std::string& account_password() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_account_password(Arg_&& arg, Args_... args);
+  std::string* mutable_account_password();
+  PROTOBUF_NODISCARD std::string* release_account_password();
+  void set_allocated_account_password(std::string* value);
+
+  private:
+  const std::string& _internal_account_password() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_account_password(
+      const std::string& value);
+  std::string* _internal_mutable_account_password();
+
+  public:
+  // string account_password_to_verify = 4;
+  void clear_account_password_to_verify() ;
+  const std::string& account_password_to_verify() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_account_password_to_verify(Arg_&& arg, Args_... args);
+  std::string* mutable_account_password_to_verify();
+  PROTOBUF_NODISCARD std::string* release_account_password_to_verify();
+  void set_allocated_account_password_to_verify(std::string* value);
+
+  private:
+  const std::string& _internal_account_password_to_verify() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_account_password_to_verify(
+      const std::string& value);
+  std::string* _internal_mutable_account_password_to_verify();
+
+  public:
+  // @@protoc_insertion_point(class_scope:ResponseAccountData)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 4, 0,
+      92, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr account_id_;
+    ::google::protobuf::internal::ArenaStringPtr account_name_;
+    ::google::protobuf::internal::ArenaStringPtr account_password_;
+    ::google::protobuf::internal::ArenaStringPtr account_password_to_verify_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -500,6 +1014,7 @@ class RequestWrapper final :
   // nested types ----------------------------------------------------
 
   using RequestType = RequestWrapper_RequestType;
+  static constexpr RequestType REQUESTACCOUNTDATA = RequestWrapper_RequestType_REQUESTACCOUNTDATA;
   static constexpr RequestType REQUESTPLAYERINITIALDATA = RequestWrapper_RequestType_REQUESTPLAYERINITIALDATA;
   static inline bool RequestType_IsValid(int value) {
     return RequestWrapper_RequestType_IsValid(value);
@@ -518,14 +1033,34 @@ class RequestWrapper final :
     return RequestWrapper_RequestType_Parse(name, value);
   }
 
+  using ServiceType = RequestWrapper_ServiceType;
+  static constexpr ServiceType ACCOUNTSERVICE = RequestWrapper_ServiceType_ACCOUNTSERVICE;
+  static inline bool ServiceType_IsValid(int value) {
+    return RequestWrapper_ServiceType_IsValid(value);
+  }
+  static constexpr ServiceType ServiceType_MIN = RequestWrapper_ServiceType_ServiceType_MIN;
+  static constexpr ServiceType ServiceType_MAX = RequestWrapper_ServiceType_ServiceType_MAX;
+  static constexpr int ServiceType_ARRAYSIZE = RequestWrapper_ServiceType_ServiceType_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* ServiceType_descriptor() {
+    return RequestWrapper_ServiceType_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& ServiceType_Name(T value) {
+    return RequestWrapper_ServiceType_Name(value);
+  }
+  static inline bool ServiceType_Parse(absl::string_view name, ServiceType* value) {
+    return RequestWrapper_ServiceType_Parse(name, value);
+  }
+
   // accessors -------------------------------------------------------
 
   enum : int {
-    kRequestPayloadFieldNumber = 3,
+    kRequestPayloadFieldNumber = 4,
     kRequestTypeFieldNumber = 1,
-    kRequestIdFieldNumber = 2,
+    kServiceTypeFieldNumber = 2,
+    kRequestIdFieldNumber = 3,
   };
-  // bytes request_payload = 3;
+  // bytes request_payload = 4;
   void clear_request_payload() ;
   const std::string& request_payload() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -551,7 +1086,17 @@ class RequestWrapper final :
   void _internal_set_request_type(::RequestWrapper_RequestType value);
 
   public:
-  // uint32 request_id = 2;
+  // .RequestWrapper.ServiceType service_type = 2;
+  void clear_service_type() ;
+  ::RequestWrapper_ServiceType service_type() const;
+  void set_service_type(::RequestWrapper_ServiceType value);
+
+  private:
+  ::RequestWrapper_ServiceType _internal_service_type() const;
+  void _internal_set_service_type(::RequestWrapper_ServiceType value);
+
+  public:
+  // uint32 request_id = 3;
   void clear_request_id() ;
   ::uint32_t request_id() const;
   void set_request_id(::uint32_t value);
@@ -567,7 +1112,7 @@ class RequestWrapper final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 0,
+      2, 4, 0,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -586,6 +1131,7 @@ class RequestWrapper final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::ArenaStringPtr request_payload_;
     int request_type_;
+    int service_type_;
     ::uint32_t request_id_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -653,7 +1199,7 @@ class RequestPlayerInitialData final :
                &_RequestPlayerInitialData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    4;
 
   friend void swap(RequestPlayerInitialData& a, RequestPlayerInitialData& b) {
     a.Swap(&b);
@@ -775,26 +1321,26 @@ class RequestPlayerInitialData final :
   friend struct ::TableStruct_DatabaseProtocol_2eproto;
 };// -------------------------------------------------------------------
 
-class DbPlayerInitialData final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:DbPlayerInitialData) */ {
+class RequestAccountData final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:RequestAccountData) */ {
  public:
-  inline DbPlayerInitialData() : DbPlayerInitialData(nullptr) {}
-  ~DbPlayerInitialData() override;
+  inline RequestAccountData() : RequestAccountData(nullptr) {}
+  ~RequestAccountData() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR DbPlayerInitialData(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR RequestAccountData(::google::protobuf::internal::ConstantInitialized);
 
-  inline DbPlayerInitialData(const DbPlayerInitialData& from)
-      : DbPlayerInitialData(nullptr, from) {}
-  DbPlayerInitialData(DbPlayerInitialData&& from) noexcept
-    : DbPlayerInitialData() {
+  inline RequestAccountData(const RequestAccountData& from)
+      : RequestAccountData(nullptr, from) {}
+  RequestAccountData(RequestAccountData&& from) noexcept
+    : RequestAccountData() {
     *this = ::std::move(from);
   }
 
-  inline DbPlayerInitialData& operator=(const DbPlayerInitialData& from) {
+  inline RequestAccountData& operator=(const RequestAccountData& from) {
     CopyFrom(from);
     return *this;
   }
-  inline DbPlayerInitialData& operator=(DbPlayerInitialData&& from) noexcept {
+  inline RequestAccountData& operator=(RequestAccountData&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -826,20 +1372,20 @@ class DbPlayerInitialData final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const DbPlayerInitialData& default_instance() {
+  static const RequestAccountData& default_instance() {
     return *internal_default_instance();
   }
-  static inline const DbPlayerInitialData* internal_default_instance() {
-    return reinterpret_cast<const DbPlayerInitialData*>(
-               &_DbPlayerInitialData_default_instance_);
+  static inline const RequestAccountData* internal_default_instance() {
+    return reinterpret_cast<const RequestAccountData*>(
+               &_RequestAccountData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    2;
 
-  friend void swap(DbPlayerInitialData& a, DbPlayerInitialData& b) {
+  friend void swap(RequestAccountData& a, RequestAccountData& b) {
     a.Swap(&b);
   }
-  inline void Swap(DbPlayerInitialData* other) {
+  inline void Swap(RequestAccountData* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -852,7 +1398,7 @@ class DbPlayerInitialData final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(DbPlayerInitialData* other) {
+  void UnsafeArenaSwap(RequestAccountData* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -860,14 +1406,14 @@ class DbPlayerInitialData final :
 
   // implements Message ----------------------------------------------
 
-  DbPlayerInitialData* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<DbPlayerInitialData>(arena);
+  RequestAccountData* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<RequestAccountData>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const DbPlayerInitialData& from);
+  void CopyFrom(const RequestAccountData& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const DbPlayerInitialData& from) {
-    DbPlayerInitialData::MergeImpl(*this, from);
+  void MergeFrom( const RequestAccountData& from) {
+    RequestAccountData::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -885,16 +1431,16 @@ class DbPlayerInitialData final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(DbPlayerInitialData* other);
+  void InternalSwap(RequestAccountData* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "DbPlayerInitialData";
+    return "RequestAccountData";
   }
   protected:
-  explicit DbPlayerInitialData(::google::protobuf::Arena* arena);
-  DbPlayerInitialData(::google::protobuf::Arena* arena, const DbPlayerInitialData& from);
+  explicit RequestAccountData(::google::protobuf::Arena* arena);
+  RequestAccountData(::google::protobuf::Arena* arena, const RequestAccountData& from);
   public:
 
   static const ClassData _class_data_;
@@ -907,87 +1453,49 @@ class DbPlayerInitialData final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kPlayerNameFieldNumber = 2,
-    kPositionXFieldNumber = 3,
-    kPositionYFieldNumber = 4,
-    kPositionZFieldNumber = 5,
-    kRotationYFieldNumber = 6,
-    kPlayerMovementspeedFieldNumber = 7,
+    kAccountNameFieldNumber = 1,
+    kAccountPasswordToVerifyFieldNumber = 2,
   };
-  // string player_name = 2;
-  void clear_player_name() ;
-  const std::string& player_name() const;
+  // string account_name = 1;
+  void clear_account_name() ;
+  const std::string& account_name() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_player_name(Arg_&& arg, Args_... args);
-  std::string* mutable_player_name();
-  PROTOBUF_NODISCARD std::string* release_player_name();
-  void set_allocated_player_name(std::string* value);
+  void set_account_name(Arg_&& arg, Args_... args);
+  std::string* mutable_account_name();
+  PROTOBUF_NODISCARD std::string* release_account_name();
+  void set_allocated_account_name(std::string* value);
 
   private:
-  const std::string& _internal_player_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_player_name(
+  const std::string& _internal_account_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_account_name(
       const std::string& value);
-  std::string* _internal_mutable_player_name();
+  std::string* _internal_mutable_account_name();
 
   public:
-  // float position_x = 3;
-  void clear_position_x() ;
-  float position_x() const;
-  void set_position_x(float value);
+  // string account_password_to_verify = 2;
+  void clear_account_password_to_verify() ;
+  const std::string& account_password_to_verify() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_account_password_to_verify(Arg_&& arg, Args_... args);
+  std::string* mutable_account_password_to_verify();
+  PROTOBUF_NODISCARD std::string* release_account_password_to_verify();
+  void set_allocated_account_password_to_verify(std::string* value);
 
   private:
-  float _internal_position_x() const;
-  void _internal_set_position_x(float value);
+  const std::string& _internal_account_password_to_verify() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_account_password_to_verify(
+      const std::string& value);
+  std::string* _internal_mutable_account_password_to_verify();
 
   public:
-  // float position_y = 4;
-  void clear_position_y() ;
-  float position_y() const;
-  void set_position_y(float value);
-
-  private:
-  float _internal_position_y() const;
-  void _internal_set_position_y(float value);
-
-  public:
-  // float position_z = 5;
-  void clear_position_z() ;
-  float position_z() const;
-  void set_position_z(float value);
-
-  private:
-  float _internal_position_z() const;
-  void _internal_set_position_z(float value);
-
-  public:
-  // uint32 rotation_y = 6;
-  void clear_rotation_y() ;
-  ::uint32_t rotation_y() const;
-  void set_rotation_y(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_rotation_y() const;
-  void _internal_set_rotation_y(::uint32_t value);
-
-  public:
-  // uint32 player_movementspeed = 7;
-  void clear_player_movementspeed() ;
-  ::uint32_t player_movementspeed() const;
-  void set_player_movementspeed(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_player_movementspeed() const;
-  void _internal_set_player_movementspeed(::uint32_t value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:DbPlayerInitialData)
+  // @@protoc_insertion_point(class_scope:RequestAccountData)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 6, 0,
-      39, 2>
+      1, 2, 0,
+      65, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1003,194 +1511,9 @@ class DbPlayerInitialData final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::ArenaStringPtr player_name_;
-    float position_x_;
-    float position_y_;
-    float position_z_;
-    ::uint32_t rotation_y_;
-    ::uint32_t player_movementspeed_;
+    ::google::protobuf::internal::ArenaStringPtr account_name_;
+    ::google::protobuf::internal::ArenaStringPtr account_password_to_verify_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_DatabaseProtocol_2eproto;
-};// -------------------------------------------------------------------
-
-class ResponsePlayerInitialData final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:ResponsePlayerInitialData) */ {
- public:
-  inline ResponsePlayerInitialData() : ResponsePlayerInitialData(nullptr) {}
-  ~ResponsePlayerInitialData() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR ResponsePlayerInitialData(::google::protobuf::internal::ConstantInitialized);
-
-  inline ResponsePlayerInitialData(const ResponsePlayerInitialData& from)
-      : ResponsePlayerInitialData(nullptr, from) {}
-  ResponsePlayerInitialData(ResponsePlayerInitialData&& from) noexcept
-    : ResponsePlayerInitialData() {
-    *this = ::std::move(from);
-  }
-
-  inline ResponsePlayerInitialData& operator=(const ResponsePlayerInitialData& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline ResponsePlayerInitialData& operator=(ResponsePlayerInitialData&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const ResponsePlayerInitialData& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const ResponsePlayerInitialData* internal_default_instance() {
-    return reinterpret_cast<const ResponsePlayerInitialData*>(
-               &_ResponsePlayerInitialData_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    3;
-
-  friend void swap(ResponsePlayerInitialData& a, ResponsePlayerInitialData& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(ResponsePlayerInitialData* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr &&
-        GetArena() == other->GetArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(ResponsePlayerInitialData* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  ResponsePlayerInitialData* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ResponsePlayerInitialData>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const ResponsePlayerInitialData& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const ResponsePlayerInitialData& from) {
-    ResponsePlayerInitialData::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(ResponsePlayerInitialData* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "ResponsePlayerInitialData";
-  }
-  protected:
-  explicit ResponsePlayerInitialData(::google::protobuf::Arena* arena);
-  ResponsePlayerInitialData(::google::protobuf::Arena* arena, const ResponsePlayerInitialData& from);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kPlayerInitialDataFieldNumber = 1,
-  };
-  // .DbPlayerInitialData player_initial_data = 1;
-  bool has_player_initial_data() const;
-  void clear_player_initial_data() ;
-  const ::DbPlayerInitialData& player_initial_data() const;
-  PROTOBUF_NODISCARD ::DbPlayerInitialData* release_player_initial_data();
-  ::DbPlayerInitialData* mutable_player_initial_data();
-  void set_allocated_player_initial_data(::DbPlayerInitialData* value);
-  void unsafe_arena_set_allocated_player_initial_data(::DbPlayerInitialData* value);
-  ::DbPlayerInitialData* unsafe_arena_release_player_initial_data();
-
-  private:
-  const ::DbPlayerInitialData& _internal_player_initial_data() const;
-  ::DbPlayerInitialData* _internal_mutable_player_initial_data();
-
-  public:
-  // @@protoc_insertion_point(class_scope:ResponsePlayerInitialData)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 1,
-      0, 2>
-      _table_;
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-
-        inline explicit constexpr Impl_(
-            ::google::protobuf::internal::ConstantInitialized) noexcept;
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena);
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::DbPlayerInitialData* player_initial_data_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -1236,7 +1559,30 @@ inline void RequestWrapper::_internal_set_request_type(::RequestWrapper_RequestT
   _impl_.request_type_ = value;
 }
 
-// uint32 request_id = 2;
+// .RequestWrapper.ServiceType service_type = 2;
+inline void RequestWrapper::clear_service_type() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.service_type_ = 0;
+}
+inline ::RequestWrapper_ServiceType RequestWrapper::service_type() const {
+  // @@protoc_insertion_point(field_get:RequestWrapper.service_type)
+  return _internal_service_type();
+}
+inline void RequestWrapper::set_service_type(::RequestWrapper_ServiceType value) {
+  _internal_set_service_type(value);
+  // @@protoc_insertion_point(field_set:RequestWrapper.service_type)
+}
+inline ::RequestWrapper_ServiceType RequestWrapper::_internal_service_type() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::RequestWrapper_ServiceType>(_impl_.service_type_);
+}
+inline void RequestWrapper::_internal_set_service_type(::RequestWrapper_ServiceType value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.service_type_ = value;
+}
+
+// uint32 request_id = 3;
 inline void RequestWrapper::clear_request_id() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.request_id_ = 0u;
@@ -1259,7 +1605,7 @@ inline void RequestWrapper::_internal_set_request_id(::uint32_t value) {
   _impl_.request_id_ = value;
 }
 
-// bytes request_payload = 3;
+// bytes request_payload = 4;
 inline void RequestWrapper::clear_request_payload() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.request_payload_.ClearToEmpty();
@@ -1417,6 +1763,332 @@ inline void ResponseWrapper::set_allocated_response_payload(std::string* value) 
 
 // -------------------------------------------------------------------
 
+// RequestAccountData
+
+// string account_name = 1;
+inline void RequestAccountData::clear_account_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.account_name_.ClearToEmpty();
+}
+inline const std::string& RequestAccountData::account_name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:RequestAccountData.account_name)
+  return _internal_account_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RequestAccountData::set_account_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.account_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:RequestAccountData.account_name)
+}
+inline std::string* RequestAccountData::mutable_account_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_account_name();
+  // @@protoc_insertion_point(field_mutable:RequestAccountData.account_name)
+  return _s;
+}
+inline const std::string& RequestAccountData::_internal_account_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.account_name_.Get();
+}
+inline void RequestAccountData::_internal_set_account_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.account_name_.Set(value, GetArena());
+}
+inline std::string* RequestAccountData::_internal_mutable_account_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.account_name_.Mutable( GetArena());
+}
+inline std::string* RequestAccountData::release_account_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:RequestAccountData.account_name)
+  return _impl_.account_name_.Release();
+}
+inline void RequestAccountData::set_allocated_account_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.account_name_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.account_name_.IsDefault()) {
+          _impl_.account_name_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:RequestAccountData.account_name)
+}
+
+// string account_password_to_verify = 2;
+inline void RequestAccountData::clear_account_password_to_verify() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.account_password_to_verify_.ClearToEmpty();
+}
+inline const std::string& RequestAccountData::account_password_to_verify() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:RequestAccountData.account_password_to_verify)
+  return _internal_account_password_to_verify();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RequestAccountData::set_account_password_to_verify(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.account_password_to_verify_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:RequestAccountData.account_password_to_verify)
+}
+inline std::string* RequestAccountData::mutable_account_password_to_verify() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_account_password_to_verify();
+  // @@protoc_insertion_point(field_mutable:RequestAccountData.account_password_to_verify)
+  return _s;
+}
+inline const std::string& RequestAccountData::_internal_account_password_to_verify() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.account_password_to_verify_.Get();
+}
+inline void RequestAccountData::_internal_set_account_password_to_verify(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.account_password_to_verify_.Set(value, GetArena());
+}
+inline std::string* RequestAccountData::_internal_mutable_account_password_to_verify() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.account_password_to_verify_.Mutable( GetArena());
+}
+inline std::string* RequestAccountData::release_account_password_to_verify() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:RequestAccountData.account_password_to_verify)
+  return _impl_.account_password_to_verify_.Release();
+}
+inline void RequestAccountData::set_allocated_account_password_to_verify(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.account_password_to_verify_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.account_password_to_verify_.IsDefault()) {
+          _impl_.account_password_to_verify_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:RequestAccountData.account_password_to_verify)
+}
+
+// -------------------------------------------------------------------
+
+// ResponseAccountData
+
+// string account_id = 1;
+inline void ResponseAccountData::clear_account_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.account_id_.ClearToEmpty();
+}
+inline const std::string& ResponseAccountData::account_id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:ResponseAccountData.account_id)
+  return _internal_account_id();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ResponseAccountData::set_account_id(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.account_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:ResponseAccountData.account_id)
+}
+inline std::string* ResponseAccountData::mutable_account_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_account_id();
+  // @@protoc_insertion_point(field_mutable:ResponseAccountData.account_id)
+  return _s;
+}
+inline const std::string& ResponseAccountData::_internal_account_id() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.account_id_.Get();
+}
+inline void ResponseAccountData::_internal_set_account_id(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.account_id_.Set(value, GetArena());
+}
+inline std::string* ResponseAccountData::_internal_mutable_account_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.account_id_.Mutable( GetArena());
+}
+inline std::string* ResponseAccountData::release_account_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:ResponseAccountData.account_id)
+  return _impl_.account_id_.Release();
+}
+inline void ResponseAccountData::set_allocated_account_id(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.account_id_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.account_id_.IsDefault()) {
+          _impl_.account_id_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:ResponseAccountData.account_id)
+}
+
+// string account_name = 2;
+inline void ResponseAccountData::clear_account_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.account_name_.ClearToEmpty();
+}
+inline const std::string& ResponseAccountData::account_name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:ResponseAccountData.account_name)
+  return _internal_account_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ResponseAccountData::set_account_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.account_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:ResponseAccountData.account_name)
+}
+inline std::string* ResponseAccountData::mutable_account_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_account_name();
+  // @@protoc_insertion_point(field_mutable:ResponseAccountData.account_name)
+  return _s;
+}
+inline const std::string& ResponseAccountData::_internal_account_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.account_name_.Get();
+}
+inline void ResponseAccountData::_internal_set_account_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.account_name_.Set(value, GetArena());
+}
+inline std::string* ResponseAccountData::_internal_mutable_account_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.account_name_.Mutable( GetArena());
+}
+inline std::string* ResponseAccountData::release_account_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:ResponseAccountData.account_name)
+  return _impl_.account_name_.Release();
+}
+inline void ResponseAccountData::set_allocated_account_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.account_name_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.account_name_.IsDefault()) {
+          _impl_.account_name_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:ResponseAccountData.account_name)
+}
+
+// string account_password = 3;
+inline void ResponseAccountData::clear_account_password() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.account_password_.ClearToEmpty();
+}
+inline const std::string& ResponseAccountData::account_password() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:ResponseAccountData.account_password)
+  return _internal_account_password();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ResponseAccountData::set_account_password(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.account_password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:ResponseAccountData.account_password)
+}
+inline std::string* ResponseAccountData::mutable_account_password() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_account_password();
+  // @@protoc_insertion_point(field_mutable:ResponseAccountData.account_password)
+  return _s;
+}
+inline const std::string& ResponseAccountData::_internal_account_password() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.account_password_.Get();
+}
+inline void ResponseAccountData::_internal_set_account_password(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.account_password_.Set(value, GetArena());
+}
+inline std::string* ResponseAccountData::_internal_mutable_account_password() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.account_password_.Mutable( GetArena());
+}
+inline std::string* ResponseAccountData::release_account_password() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:ResponseAccountData.account_password)
+  return _impl_.account_password_.Release();
+}
+inline void ResponseAccountData::set_allocated_account_password(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.account_password_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.account_password_.IsDefault()) {
+          _impl_.account_password_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:ResponseAccountData.account_password)
+}
+
+// string account_password_to_verify = 4;
+inline void ResponseAccountData::clear_account_password_to_verify() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.account_password_to_verify_.ClearToEmpty();
+}
+inline const std::string& ResponseAccountData::account_password_to_verify() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:ResponseAccountData.account_password_to_verify)
+  return _internal_account_password_to_verify();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ResponseAccountData::set_account_password_to_verify(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.account_password_to_verify_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:ResponseAccountData.account_password_to_verify)
+}
+inline std::string* ResponseAccountData::mutable_account_password_to_verify() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_account_password_to_verify();
+  // @@protoc_insertion_point(field_mutable:ResponseAccountData.account_password_to_verify)
+  return _s;
+}
+inline const std::string& ResponseAccountData::_internal_account_password_to_verify() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.account_password_to_verify_.Get();
+}
+inline void ResponseAccountData::_internal_set_account_password_to_verify(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.account_password_to_verify_.Set(value, GetArena());
+}
+inline std::string* ResponseAccountData::_internal_mutable_account_password_to_verify() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.account_password_to_verify_.Mutable( GetArena());
+}
+inline std::string* ResponseAccountData::release_account_password_to_verify() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:ResponseAccountData.account_password_to_verify)
+  return _impl_.account_password_to_verify_.Release();
+}
+inline void ResponseAccountData::set_allocated_account_password_to_verify(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.account_password_to_verify_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.account_password_to_verify_.IsDefault()) {
+          _impl_.account_password_to_verify_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:ResponseAccountData.account_password_to_verify)
+}
+
+// -------------------------------------------------------------------
+
 // RequestPlayerInitialData
 
 // string player_guid = 1;
@@ -1476,149 +2148,49 @@ inline void RequestPlayerInitialData::set_allocated_player_guid(std::string* val
 
 // ResponsePlayerInitialData
 
-// .DbPlayerInitialData player_initial_data = 1;
-inline bool ResponsePlayerInitialData::has_player_initial_data() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.player_initial_data_ != nullptr);
-  return value;
-}
-inline void ResponsePlayerInitialData::clear_player_initial_data() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (_impl_.player_initial_data_ != nullptr) _impl_.player_initial_data_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-inline const ::DbPlayerInitialData& ResponsePlayerInitialData::_internal_player_initial_data() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::DbPlayerInitialData* p = _impl_.player_initial_data_;
-  return p != nullptr ? *p : reinterpret_cast<const ::DbPlayerInitialData&>(::_DbPlayerInitialData_default_instance_);
-}
-inline const ::DbPlayerInitialData& ResponsePlayerInitialData::player_initial_data() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:ResponsePlayerInitialData.player_initial_data)
-  return _internal_player_initial_data();
-}
-inline void ResponsePlayerInitialData::unsafe_arena_set_allocated_player_initial_data(::DbPlayerInitialData* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.player_initial_data_);
-  }
-  _impl_.player_initial_data_ = reinterpret_cast<::DbPlayerInitialData*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ResponsePlayerInitialData.player_initial_data)
-}
-inline ::DbPlayerInitialData* ResponsePlayerInitialData::release_player_initial_data() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::DbPlayerInitialData* released = _impl_.player_initial_data_;
-  _impl_.player_initial_data_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  if (GetArena() == nullptr) {
-    delete old;
-  }
-#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArena() != nullptr) {
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return released;
-}
-inline ::DbPlayerInitialData* ResponsePlayerInitialData::unsafe_arena_release_player_initial_data() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:ResponsePlayerInitialData.player_initial_data)
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::DbPlayerInitialData* temp = _impl_.player_initial_data_;
-  _impl_.player_initial_data_ = nullptr;
-  return temp;
-}
-inline ::DbPlayerInitialData* ResponsePlayerInitialData::_internal_mutable_player_initial_data() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  if (_impl_.player_initial_data_ == nullptr) {
-    auto* p = CreateMaybeMessage<::DbPlayerInitialData>(GetArena());
-    _impl_.player_initial_data_ = reinterpret_cast<::DbPlayerInitialData*>(p);
-  }
-  return _impl_.player_initial_data_;
-}
-inline ::DbPlayerInitialData* ResponsePlayerInitialData::mutable_player_initial_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::DbPlayerInitialData* _msg = _internal_mutable_player_initial_data();
-  // @@protoc_insertion_point(field_mutable:ResponsePlayerInitialData.player_initial_data)
-  return _msg;
-}
-inline void ResponsePlayerInitialData::set_allocated_player_initial_data(::DbPlayerInitialData* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::DbPlayerInitialData*>(_impl_.player_initial_data_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::DbPlayerInitialData*>(value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-
-  _impl_.player_initial_data_ = reinterpret_cast<::DbPlayerInitialData*>(value);
-  // @@protoc_insertion_point(field_set_allocated:ResponsePlayerInitialData.player_initial_data)
-}
-
-// -------------------------------------------------------------------
-
-// DbPlayerInitialData
-
 // string player_name = 2;
-inline void DbPlayerInitialData::clear_player_name() {
+inline void ResponsePlayerInitialData::clear_player_name() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.player_name_.ClearToEmpty();
 }
-inline const std::string& DbPlayerInitialData::player_name() const
+inline const std::string& ResponsePlayerInitialData::player_name() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:DbPlayerInitialData.player_name)
+  // @@protoc_insertion_point(field_get:ResponsePlayerInitialData.player_name)
   return _internal_player_name();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void DbPlayerInitialData::set_player_name(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void ResponsePlayerInitialData::set_player_name(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.player_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:DbPlayerInitialData.player_name)
+  // @@protoc_insertion_point(field_set:ResponsePlayerInitialData.player_name)
 }
-inline std::string* DbPlayerInitialData::mutable_player_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* ResponsePlayerInitialData::mutable_player_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_player_name();
-  // @@protoc_insertion_point(field_mutable:DbPlayerInitialData.player_name)
+  // @@protoc_insertion_point(field_mutable:ResponsePlayerInitialData.player_name)
   return _s;
 }
-inline const std::string& DbPlayerInitialData::_internal_player_name() const {
+inline const std::string& ResponsePlayerInitialData::_internal_player_name() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.player_name_.Get();
 }
-inline void DbPlayerInitialData::_internal_set_player_name(const std::string& value) {
+inline void ResponsePlayerInitialData::_internal_set_player_name(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.player_name_.Set(value, GetArena());
 }
-inline std::string* DbPlayerInitialData::_internal_mutable_player_name() {
+inline std::string* ResponsePlayerInitialData::_internal_mutable_player_name() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.player_name_.Mutable( GetArena());
 }
-inline std::string* DbPlayerInitialData::release_player_name() {
+inline std::string* ResponsePlayerInitialData::release_player_name() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:DbPlayerInitialData.player_name)
+  // @@protoc_insertion_point(field_release:ResponsePlayerInitialData.player_name)
   return _impl_.player_name_.Release();
 }
-inline void DbPlayerInitialData::set_allocated_player_name(std::string* value) {
+inline void ResponsePlayerInitialData::set_allocated_player_name(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.player_name_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -1626,119 +2198,119 @@ inline void DbPlayerInitialData::set_allocated_player_name(std::string* value) {
           _impl_.player_name_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:DbPlayerInitialData.player_name)
+  // @@protoc_insertion_point(field_set_allocated:ResponsePlayerInitialData.player_name)
 }
 
 // float position_x = 3;
-inline void DbPlayerInitialData::clear_position_x() {
+inline void ResponsePlayerInitialData::clear_position_x() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.position_x_ = 0;
 }
-inline float DbPlayerInitialData::position_x() const {
-  // @@protoc_insertion_point(field_get:DbPlayerInitialData.position_x)
+inline float ResponsePlayerInitialData::position_x() const {
+  // @@protoc_insertion_point(field_get:ResponsePlayerInitialData.position_x)
   return _internal_position_x();
 }
-inline void DbPlayerInitialData::set_position_x(float value) {
+inline void ResponsePlayerInitialData::set_position_x(float value) {
   _internal_set_position_x(value);
-  // @@protoc_insertion_point(field_set:DbPlayerInitialData.position_x)
+  // @@protoc_insertion_point(field_set:ResponsePlayerInitialData.position_x)
 }
-inline float DbPlayerInitialData::_internal_position_x() const {
+inline float ResponsePlayerInitialData::_internal_position_x() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.position_x_;
 }
-inline void DbPlayerInitialData::_internal_set_position_x(float value) {
+inline void ResponsePlayerInitialData::_internal_set_position_x(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.position_x_ = value;
 }
 
 // float position_y = 4;
-inline void DbPlayerInitialData::clear_position_y() {
+inline void ResponsePlayerInitialData::clear_position_y() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.position_y_ = 0;
 }
-inline float DbPlayerInitialData::position_y() const {
-  // @@protoc_insertion_point(field_get:DbPlayerInitialData.position_y)
+inline float ResponsePlayerInitialData::position_y() const {
+  // @@protoc_insertion_point(field_get:ResponsePlayerInitialData.position_y)
   return _internal_position_y();
 }
-inline void DbPlayerInitialData::set_position_y(float value) {
+inline void ResponsePlayerInitialData::set_position_y(float value) {
   _internal_set_position_y(value);
-  // @@protoc_insertion_point(field_set:DbPlayerInitialData.position_y)
+  // @@protoc_insertion_point(field_set:ResponsePlayerInitialData.position_y)
 }
-inline float DbPlayerInitialData::_internal_position_y() const {
+inline float ResponsePlayerInitialData::_internal_position_y() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.position_y_;
 }
-inline void DbPlayerInitialData::_internal_set_position_y(float value) {
+inline void ResponsePlayerInitialData::_internal_set_position_y(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.position_y_ = value;
 }
 
 // float position_z = 5;
-inline void DbPlayerInitialData::clear_position_z() {
+inline void ResponsePlayerInitialData::clear_position_z() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.position_z_ = 0;
 }
-inline float DbPlayerInitialData::position_z() const {
-  // @@protoc_insertion_point(field_get:DbPlayerInitialData.position_z)
+inline float ResponsePlayerInitialData::position_z() const {
+  // @@protoc_insertion_point(field_get:ResponsePlayerInitialData.position_z)
   return _internal_position_z();
 }
-inline void DbPlayerInitialData::set_position_z(float value) {
+inline void ResponsePlayerInitialData::set_position_z(float value) {
   _internal_set_position_z(value);
-  // @@protoc_insertion_point(field_set:DbPlayerInitialData.position_z)
+  // @@protoc_insertion_point(field_set:ResponsePlayerInitialData.position_z)
 }
-inline float DbPlayerInitialData::_internal_position_z() const {
+inline float ResponsePlayerInitialData::_internal_position_z() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.position_z_;
 }
-inline void DbPlayerInitialData::_internal_set_position_z(float value) {
+inline void ResponsePlayerInitialData::_internal_set_position_z(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.position_z_ = value;
 }
 
 // uint32 rotation_y = 6;
-inline void DbPlayerInitialData::clear_rotation_y() {
+inline void ResponsePlayerInitialData::clear_rotation_y() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.rotation_y_ = 0u;
 }
-inline ::uint32_t DbPlayerInitialData::rotation_y() const {
-  // @@protoc_insertion_point(field_get:DbPlayerInitialData.rotation_y)
+inline ::uint32_t ResponsePlayerInitialData::rotation_y() const {
+  // @@protoc_insertion_point(field_get:ResponsePlayerInitialData.rotation_y)
   return _internal_rotation_y();
 }
-inline void DbPlayerInitialData::set_rotation_y(::uint32_t value) {
+inline void ResponsePlayerInitialData::set_rotation_y(::uint32_t value) {
   _internal_set_rotation_y(value);
-  // @@protoc_insertion_point(field_set:DbPlayerInitialData.rotation_y)
+  // @@protoc_insertion_point(field_set:ResponsePlayerInitialData.rotation_y)
 }
-inline ::uint32_t DbPlayerInitialData::_internal_rotation_y() const {
+inline ::uint32_t ResponsePlayerInitialData::_internal_rotation_y() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.rotation_y_;
 }
-inline void DbPlayerInitialData::_internal_set_rotation_y(::uint32_t value) {
+inline void ResponsePlayerInitialData::_internal_set_rotation_y(::uint32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.rotation_y_ = value;
 }
 
 // uint32 player_movementspeed = 7;
-inline void DbPlayerInitialData::clear_player_movementspeed() {
+inline void ResponsePlayerInitialData::clear_player_movementspeed() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.player_movementspeed_ = 0u;
 }
-inline ::uint32_t DbPlayerInitialData::player_movementspeed() const {
-  // @@protoc_insertion_point(field_get:DbPlayerInitialData.player_movementspeed)
+inline ::uint32_t ResponsePlayerInitialData::player_movementspeed() const {
+  // @@protoc_insertion_point(field_get:ResponsePlayerInitialData.player_movementspeed)
   return _internal_player_movementspeed();
 }
-inline void DbPlayerInitialData::set_player_movementspeed(::uint32_t value) {
+inline void ResponsePlayerInitialData::set_player_movementspeed(::uint32_t value) {
   _internal_set_player_movementspeed(value);
-  // @@protoc_insertion_point(field_set:DbPlayerInitialData.player_movementspeed)
+  // @@protoc_insertion_point(field_set:ResponsePlayerInitialData.player_movementspeed)
 }
-inline ::uint32_t DbPlayerInitialData::_internal_player_movementspeed() const {
+inline ::uint32_t ResponsePlayerInitialData::_internal_player_movementspeed() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.player_movementspeed_;
 }
-inline void DbPlayerInitialData::_internal_set_player_movementspeed(::uint32_t value) {
+inline void ResponsePlayerInitialData::_internal_set_player_movementspeed(::uint32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.player_movementspeed_ = value;
@@ -1759,6 +2331,12 @@ struct is_proto_enum<::RequestWrapper_RequestType> : std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor<::RequestWrapper_RequestType>() {
   return ::RequestWrapper_RequestType_descriptor();
+}
+template <>
+struct is_proto_enum<::RequestWrapper_ServiceType> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::RequestWrapper_ServiceType>() {
+  return ::RequestWrapper_ServiceType_descriptor();
 }
 template <>
 struct is_proto_enum<::ResponseWrapper_ResponseType> : std::true_type {};

@@ -68,3 +68,8 @@ void ZoneCharacter::set_last_sent_position()
 {
     last_sent_position_ = transform_.position;
 }
+
+void ZoneCharacter::delete_session_ptr()
+{
+    session_.reset();
+}

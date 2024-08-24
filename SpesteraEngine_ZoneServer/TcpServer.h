@@ -23,7 +23,8 @@ public:
 
     //Session Management
     void add_session(std::shared_ptr<Session> session);
-    void remove_session(std::shared_ptr<Session> session);
+    void remove_session(int sessionid);
+    void send_logout_message(std::shared_ptr<Session> session);
 
 private:
     void do_accept();

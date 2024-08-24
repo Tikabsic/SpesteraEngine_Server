@@ -25,7 +25,6 @@ DbServicesProvider& DbServicesProvider::get_instance()
 }
 
 void DbServicesProvider::send_query(const std::string& query) {
-    std::lock_guard<std::mutex> lock(clients_mutex_);
 
     if ( db_clients_.empty() ) {
         add_new_client();
@@ -40,7 +39,8 @@ void DbServicesProvider::process_response(const std::string& response)
         ResponseWrapper wrapper;
         if ( wrapper.ParseFromString(response) ) {
             auto session = conn_manager_.get_connection(wrapper.response_id());
-            session->direct_push_to_buffer("siemano");
+            session->process_database_data(wrapper);
+            std::cout << "db provider return process response" << std::endl;
         }
     }
     catch ( const std::runtime_error& e ) {
@@ -53,7 +53,6 @@ void DbServicesProvider::add_new_client() {
 }
 
 void DbServicesProvider::check_and_add_client(u_short connections_count) {
-    std::lock_guard<std::mutex> lock(clients_mutex_);
     if ( db_clients_.size() < ( connections_count / balancing_threshold_ ) + 1 ) {
         add_new_client();
     }

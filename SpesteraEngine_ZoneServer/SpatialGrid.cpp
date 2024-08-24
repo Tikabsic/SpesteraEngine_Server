@@ -11,15 +11,36 @@ SpatialGrid::~SpatialGrid()
 
 // Adds an object to the appropriate cell
 void SpatialGrid::add_object(const std::shared_ptr<MovableObject>& go) {
-    CellKey cell = getChunkKey(go->get_transform().x, go->get_transform().z);
-    auto it = grid_.find(cell);
-    if (it != grid_.end()) {
-        it->second->add_object_to_chunk(go);
-        auto zc = std::dynamic_pointer_cast<ZoneCharacter>(go);
-        if (zc) {
-            it->second->add_session_to_chunk(zc->get_session());
+
+    std::unordered_set<CellKey> newChunksInFOV;
+    int minX = static_cast<int>(std::floor((go->get_transform().x - fov_) / cell_size_) + 1);
+    int maxX = static_cast<int>(std::floor((go->get_transform().x + fov_) / cell_size_) + 1);
+    int minY = static_cast<int>(std::floor((go->get_transform().z - fov_) / cell_size_) + 1);
+    int maxY = static_cast<int>(std::floor((go->get_transform().z + fov_) / cell_size_) + 1);
+
+    // Calculate the new set of chunks in the FOV
+    for (int cx = minX; cx <= maxX; ++cx) {
+        for (int cy = minY; cy <= maxY; ++cy) {
+            // Check if chunk exists in the grid
+            auto it = grid_.find({ cx, cy });
+            if (it != grid_.end()) {
+                newChunksInFOV.insert({ cx, cy });
+            }
         }
     }
+
+    for (auto& cell : newChunksInFOV) {
+        auto it = grid_.find(cell);
+        if (it != grid_.end()) {
+            it->second->add_object_to_chunk(go);
+            auto zc = std::dynamic_pointer_cast<ZoneCharacter>(go);
+            if (zc) {
+                it->second->add_session_to_chunk(zc->get_session());
+                zc->fov_.insert(cell);
+            }
+        }
+    }
+
 }
 
 void SpatialGrid::update_chunk_position(const std::shared_ptr<MovableObject>& go)

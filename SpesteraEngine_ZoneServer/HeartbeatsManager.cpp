@@ -15,7 +15,6 @@ HeartbeatsManager::HeartbeatsManager(TcpServer* tcpserver, ZoneMap* zonemap, boo
 		heartbeats_.emplace_back(std::move(chunk_heartbeat));
 	}
 
-	start_heartbeating();
 	std::cout << "Heartbeat manager initialized..." << std::endl;
 }
 
@@ -23,9 +22,3 @@ HeartbeatsManager::~HeartbeatsManager()
 {
 }
 
-void HeartbeatsManager::start_heartbeating()
-{
-	for (auto& heartbeat : heartbeats_) {
-		heartbeat->do_heartbeat();
-	}
-}

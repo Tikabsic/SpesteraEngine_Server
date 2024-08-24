@@ -1,5 +1,4 @@
-#ifndef DBCONNECTION_H
-#define DBCONNECTION_H
+#pragma once
 
 #include <iostream>
 #include <mysqlx/xdevapi.h>
@@ -18,7 +17,6 @@ public:
 
     void process_queries();
     void add_query_broker(const std::string& query);
-    ResponseWrapper get_data(const RequestWrapper& query);
     void stop();
 
 private:
@@ -30,5 +28,3 @@ private:
     std::condition_variable cv;
     bool running = true;
 };
-
-#endif // DBCONNECTION_H

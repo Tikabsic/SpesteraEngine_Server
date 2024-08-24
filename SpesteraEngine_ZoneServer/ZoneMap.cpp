@@ -52,11 +52,71 @@ void ZoneMap::update_zone_character_fov(std::shared_ptr<ZoneCharacter>& obj)
 void ZoneMap::remove_session(const std::shared_ptr<Session>& session)
 {
 	std::cout << "Removing session :" << session->get_player_id() << std::endl;
-	for (auto& chunk : chunks_) {
-		chunk.second->remove_session_from_chunk(session);
-		auto mo = std::dynamic_pointer_cast<MovableObject>(session->get_zone_character());
-		chunk.second->remove_object_from_chunk(mo, true);
+	auto& zc = session->get_zone_character();
+
+	for (const auto& chunk_id : zc->fov_) {
+		auto it = chunks_.find(chunk_id);
+		if (it != chunks_.end()) {
+			it->second->remove_session_from_chunk(session);
+			auto mo = std::dynamic_pointer_cast<MovableObject>(zc);
+			it->second->remove_object_from_chunk(mo, true);
+		}
 	}
+}
+
+WorldData ZoneMap::grab_world_data(std::shared_ptr<ZoneCharacter>& obj) {
+	WorldData world_data;
+
+	for (const auto& chunk_id : obj->fov_) {
+		auto it = chunks_.find(chunk_id);
+		if (it != chunks_.end()) {
+
+			const auto& objects = it->second->get_chunk_objects();
+			for (const auto& object : objects) {
+
+				if (object->get_object_id() == obj->get_object_id()) {
+					continue;
+				}
+
+				PlayerInitialData* player_data = world_data.add_players();
+				player_data->set_player_id(object->get_object_id());
+				player_data->set_player_movementspeed(object->get_movementspeed());
+
+				const auto& transform = object->get_transform();
+				player_data->set_position_x(transform.x);
+				player_data->set_position_y(transform.y);
+				player_data->set_position_z(transform.z);
+			}
+		}
+	}
+
+	return world_data;
+}
+
+WorldData ZoneMap::grab_chunk_data(CellKey chunkposition, u_short id) const
+{
+	WorldData data;
+	auto chunk = chunks_.find(chunkposition);
+	if (chunk != chunks_.end()) {
+
+		const auto& objects = chunk->second->get_chunk_objects();
+		for (const auto& object : objects) {
+
+			if (object->get_object_id() == id) {
+				continue;
+			}
+
+			PlayerInitialData* player_data = data.add_players();
+			player_data->set_player_id(object->get_object_id());
+			player_data->set_player_movementspeed(object->get_movementspeed());
+
+			const auto& transform = object->get_transform();
+			player_data->set_position_x(transform.x);
+			player_data->set_position_y(transform.y);
+			player_data->set_position_z(transform.z);
+		}
+	}
+	return WorldData();
 }
 
 std::vector<Chunk*> ZoneMap::get_zonemap_chunks()

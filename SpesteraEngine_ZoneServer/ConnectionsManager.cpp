@@ -7,7 +7,7 @@ ConnectionsManager::ConnectionsManager()
 
 }
 
-void ConnectionsManager::create_new_connection(short key, std::shared_ptr<Session> session)
+void ConnectionsManager::create_new_connection(short key, const std::shared_ptr<Session>& session)
 {
     connections_.insert({key, session });
     std::cout << "New player connected with id : " << key << ". Total players online : " << connections_.size() << "!" << std::endl;
@@ -17,6 +17,7 @@ void ConnectionsManager::delete_connection_from_map(short key)
 {
     auto it = connections_.find(key);
     if (it != connections_.end()) {
+        std::cout << "Removing connection with key: " << key << " and reference count: " << it->second.use_count() << std::endl;
         connections_.erase(it);
         std::cout << "Player with id: " << key << " disconnected, online players in zone: " << connections_.size() << "!" << std::endl;
     }

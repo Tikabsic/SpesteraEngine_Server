@@ -2,20 +2,38 @@ syntax = "proto3";
 
 message RequestWrapper {
     enum RequestType {
-        REQUESTPLAYERINITIALDATA = 0;
+        REQUESTACCOUNTDATA = 0;
+        REQUESTPLAYERINITIALDATA = 1;
+    }
+    enum ServiceType {
+        ACCOUNTSERVICE = 0;
     }
     RequestType request_type = 1;
-    uint32 request_id = 2;
-    bytes request_payload = 3;
+    ServiceType service_type = 2;
+    uint32 request_id = 3;
+    bytes request_payload = 4;
 }
 
 message ResponseWrapper{
     enum ResponseType{
-        RESPONSEPLAYERINITIALDATA = 0;
+        RESPONSEACCOUNTDATA = 0;
+        RESPONSEPLAYERINITIALDATA = 1;
     }
     ResponseType response_type = 1;
     uint32 response_id = 2;
     bytes response_payload = 3;
+}
+
+message RequestAccountData{
+    string account_name = 1;
+    string account_password_to_verify = 2;
+}
+
+message ResponseAccountData{
+    string account_id = 1;
+    string account_name = 2;
+    string account_password = 3;
+    string account_password_to_verify = 4;
 }
 
 message RequestPlayerInitialData {
@@ -23,10 +41,6 @@ message RequestPlayerInitialData {
 }
 
 message ResponsePlayerInitialData {
-    DbPlayerInitialData player_initial_data = 1;
-}
-
-message DbPlayerInitialData {
     string player_name = 2;
     float position_x = 3;
     float position_y = 4;

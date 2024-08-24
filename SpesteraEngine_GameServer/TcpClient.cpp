@@ -40,9 +40,11 @@ void TcpClient::do_connect(const tcp::resolver::results_type& endpoints) {
 }
 
 void TcpClient::send(const std::string& message) {
-    std::lock_guard<std::mutex> lock(write_msgs_mutex_);
+    bool is_writing = !write_msgs_.empty();
     write_msgs_.push_back(message);
-    do_write();
+    if ( !is_writing ) {
+        do_write();
+    }
 }
 
 void TcpClient::do_write() {

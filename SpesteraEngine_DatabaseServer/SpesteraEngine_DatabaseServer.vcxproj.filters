@@ -36,6 +36,18 @@
     <Filter Include="Source\Infrastructure_Connection">
       <UniqueIdentifier>{59c2540c-3bcc-44ff-af39-106eeb1ecd81}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Db_Repository">
+      <UniqueIdentifier>{ee31a27d-a66b-428c-b0e3-4b085b2a3678}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Db_Repository">
+      <UniqueIdentifier>{425caa42-0f5d-46ad-acb1-a35e323f090c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Db_Repository\Base_Repository">
+      <UniqueIdentifier>{a7db515b-d247-40d8-9982-1d56090197fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Db_Repository\Base_Repository">
+      <UniqueIdentifier>{7ff1d226-427f-4b7a-b4e0-87c18b427510}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Init_DatabaseServer.cpp" />
@@ -54,6 +66,15 @@
     <ClCompile Include="DatabaseProtocol.pb.cc">
       <Filter>Config\DatabasePortocol</Filter>
     </ClCompile>
+    <ClCompile Include="AccountService.cpp">
+      <Filter>Source\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="AccountRepository.cpp">
+      <Filter>Source\Db_Repository</Filter>
+    </ClCompile>
+    <ClCompile Include="Repository.cpp">
+      <Filter>Source\Db_Repository\Base_Repository</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DbConnection.h">
@@ -70,6 +91,15 @@
     </ClInclude>
     <ClInclude Include="DatabaseProtocol.pb.h">
       <Filter>Config\DatabasePortocol</Filter>
+    </ClInclude>
+    <ClInclude Include="AccountService.h">
+      <Filter>Include\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="AccountRepository.h">
+      <Filter>Include\Db_Repository</Filter>
+    </ClInclude>
+    <ClInclude Include="Repository.h">
+      <Filter>Include\Db_Repository\Base_Repository</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

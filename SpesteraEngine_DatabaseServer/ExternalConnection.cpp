@@ -1,9 +1,11 @@
 #include "ExternalConnection.h"
 #include <iostream>
 
-ExternalConnection::ExternalConnection(boost::asio::ip::tcp::socket socket, DbConnection* db_connection)
-    : socket_(std::move(socket)), db_connection_(db_connection) {
+ExternalConnection::ExternalConnection(boost::asio::ip::tcp::socket socket, std::string dburi)
+    : socket_(std::move(socket)) {
     std::cout << "External Connection established..." << std::endl;
+    
+    account_service_ = new AccountService(dburi);
 }
 
 boost::asio::ip::tcp::socket& ExternalConnection::socket() {
@@ -22,10 +24,7 @@ void ExternalConnection::read_data() {
                 try {
                     RequestWrapper wrapper;
                     if (wrapper.ParseFromString(std::string(recive_data_, bytes_transferred))) {
-                        auto response = db_connection_->get_data(wrapper);
-                        std::string data = response.SerializeAsString();
-                        send_data_.push_back(data);
-                        send_data();
+                        handle_message(wrapper);
                         read_data();
                     }
                     else {
@@ -58,4 +57,25 @@ void ExternalConnection::send_data()
                 }
             }
         });
+}
+
+void ExternalConnection::handle_message(const RequestWrapper& wrapper)
+{
+    switch (wrapper.service_type()) {
+        case RequestWrapper::ACCOUNTSERVICE: {
+            ResponseWrapper response = account_service_->handle_message(wrapper);
+            push_and_send(response.SerializeAsString());
+            break;
+        }
+    }
+}
+
+void ExternalConnection::push_and_send(std::string message)
+{
+    bool is_writing = !send_data_.empty();
+    
+    send_data_.push_back(message);
+    if (!is_writing) {
+        send_data();
+    }
 }

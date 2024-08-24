@@ -19,6 +19,8 @@ public:
 	void remove_object_from_chunk(const std::shared_ptr<MovableObject>& go, bool isplayer = false);
 	bool check_for_object(std::shared_ptr<MovableObject> go);
 
+	std::unordered_set<std::shared_ptr<MovableObject>>& get_chunk_objects();
+
 	void set_chunk_heartbeat(ChunkHeartbeat* chunkheartbeat);
 	std::vector<std::shared_ptr<Session>>& get_sessions();
 

@@ -49,7 +49,7 @@ message PlayerInitialData {
     float position_x = 3;
     float position_y = 4;
     float position_z = 5;
-    uint32 player_movementspeed = 7;
+    uint32 player_movementspeed = 6;
 }
 
 // Characters Position
@@ -68,7 +68,7 @@ message MonsterInitialData {
     float position_x = 3;
     float position_y = 4;
     float position_z = 5;
-    uint32 monster_movement_speed = 7;
+    uint32 monster_movement_speed = 6;
 }
 
 // Monsters Position

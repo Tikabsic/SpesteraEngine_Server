@@ -1,5 +1,4 @@
-#ifndef TCPSERVER_H
-#define TCPSERVER_H
+#pragma once
 
 #include "Session.h"
 
@@ -33,5 +32,3 @@ private:
 
     u_short next_id_;
 };
-
-#endif // TCPSERVER_H

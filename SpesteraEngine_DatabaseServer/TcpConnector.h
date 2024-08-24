@@ -8,14 +8,14 @@
 
 class TcpConnector {
 public:
-    TcpConnector(boost::asio::io_context& io_context, const std::string& address, unsigned short port, DbConnection* db_connection);
+    TcpConnector(boost::asio::io_context& io_context, const std::string& address, unsigned short port, std::string dburi);
 
 private:
     void start_accept();
 
     std::vector<std::shared_ptr<ExternalConnection>> external_connections_;
     boost::asio::ip::tcp::acceptor acceptor_;
-    DbConnection* db_connection_;
+    std::string database_uri = "";
 };
 
 #endif // TCP_CONNECTOR_H

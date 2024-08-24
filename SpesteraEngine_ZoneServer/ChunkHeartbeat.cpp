@@ -56,6 +56,10 @@ void ChunkHeartbeat::do_heartbeat()
 
     Heartbeat chunkHeartbeat;
 
+    //if (sessions_.size() > 1) {
+    //    std::cout << "players in chunk " << "( " << chunk_key_.first << " , " << chunk_key_.second << " ) : " << sessions_.size() << std::endl;
+    //}
+
     for (auto& player : sessions_) {
         if (player->get_zone_character()->is_character_moving()) {
             auto position = ChunkHeartbeat::gather_player_transformation(player->get_zone_character(), true);
@@ -66,11 +70,8 @@ void ChunkHeartbeat::do_heartbeat()
     ZSWrapper wrapper;
     wrapper.set_type(ZSWrapper::HEARTBEAT);
     wrapper.set_payload(chunkHeartbeat.SerializeAsString());
-    std::string compressed_msg;
-    BinaryCompressor compressor;
-    compressor.compress_string(wrapper.SerializeAsString(), compressed_msg);
 
-    send_data_to_players_in_chunk(compressed_msg);
+    send_data_to_players_in_chunk(wrapper);
 
     timer_.expires_after(boost::asio::chrono::milliseconds(tickrate_));
     timer_.async_wait([this](boost::system::error_code ec) {
@@ -80,11 +81,11 @@ void ChunkHeartbeat::do_heartbeat()
         });
 }
 
-void ChunkHeartbeat::send_data_to_players_in_chunk(std::string& const message)
+void ChunkHeartbeat::send_data_to_players_in_chunk(ZSWrapper& message)
 {
     //std::cout << "message from :" << chunk_key_.first << " ," << chunk_key_.second << std::endl;
     for (auto& player : sessions_) {
-        player->direct_push_to_buffer(message);
+        player->compress_to_write(message);
     }
 }
 
