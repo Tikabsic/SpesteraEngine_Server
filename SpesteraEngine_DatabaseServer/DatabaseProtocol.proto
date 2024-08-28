@@ -1,50 +1,21 @@
 syntax = "proto3";
 
-message RequestWrapper {
-    enum RequestType {
-        REQUESTACCOUNTDATA = 0;
-        REQUESTPLAYERINITIALDATA = 1;
+import "AccountService.proto";
+import "GameCharacterService.proto";
+
+message DatabaseRequestWrapper {
+    uint32 session_id = 1;
+    oneof service_request {
+        AccountServiceRequestWrapper account_service_request = 2;
+        GameCharacterServiceRequestWrapper gamecharacter_service_request = 3;
     }
-    enum ServiceType {
-        ACCOUNTSERVICE = 0;
+}
+
+message DatabaseResponseWrapper{
+    uint32 session_id = 1;
+
+    oneof service_response {
+        AccountServiceResponseWrapper account_service_response = 2;
+        GameCharacterServiceResponseWrapper gamecharacter_service_response = 3;
     }
-    RequestType request_type = 1;
-    ServiceType service_type = 2;
-    uint32 request_id = 3;
-    bytes request_payload = 4;
-}
-
-message ResponseWrapper{
-    enum ResponseType{
-        RESPONSEACCOUNTDATA = 0;
-        RESPONSEPLAYERINITIALDATA = 1;
-    }
-    ResponseType response_type = 1;
-    uint32 response_id = 2;
-    bytes response_payload = 3;
-}
-
-message RequestAccountData{
-    string account_name = 1;
-    string account_password_to_verify = 2;
-}
-
-message ResponseAccountData{
-    string account_id = 1;
-    string account_name = 2;
-    string account_password = 3;
-    string account_password_to_verify = 4;
-}
-
-message RequestPlayerInitialData {
-    string player_guid = 1;
-}
-
-message ResponsePlayerInitialData {
-    string player_name = 2;
-    float position_x = 3;
-    float position_y = 4;
-    float position_z = 5;
-    uint32 rotation_y = 6;
-    uint32 player_movementspeed = 7;
 }

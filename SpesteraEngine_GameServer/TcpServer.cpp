@@ -22,13 +22,13 @@ void TcpServer::do_accept() {
         });
 }
 
-void TcpServer::deliver_to_all(const GSWrapper& msg) {
+void TcpServer::deliver_to_all(const GSWrapperResponse& msg) {
     for (auto& session : conn_manager_->connections_) {
         session.second->compress_to_write(msg);
     }
 }
 
-void TcpServer::deliver_to_player(const u_short& player_id, const GSWrapper& msg) {
+void TcpServer::deliver_to_player(const u_short& player_id, const GSWrapperResponse& msg) {
     auto it = conn_manager_->get_connection(player_id);
     if (it != nullptr) {
         it->compress_to_write(msg);
@@ -47,12 +47,10 @@ void TcpServer::deliver_to_other_direct(const std::string& msg, short session_id
 
 void TcpServer::remove_session(std::shared_ptr<Session> session) {
 
-    ClientLogout logout_msg;
-    logout_msg.set_player_id(session->get_player_id());
-
-    GSWrapper logout_wrapper;
-    logout_wrapper.set_type(GSWrapper::CLIENTLOGOUT);
-    logout_wrapper.set_payload(logout_msg.SerializeAsString());
+    GSWrapperResponse logout_wrapper;
+    auto* connection_proto_wrapper = logout_wrapper.mutable_connection_response();
+    auto* logout_msg = connection_proto_wrapper->mutable_client_logout();
+    logout_msg->set_player_id(session->get_player_id());
 
     deliver_to_other_direct(logout_wrapper.SerializeAsString(), session->get_player_id());
 

@@ -50,7 +50,7 @@ void DbConnection::stop() {
     cv.notify_all();
 }
 
-void DbConnection::execute_query(const RequestWrapper query) {
+void DbConnection::execute_query(const DatabaseRequestWrapper& query) {
     try {
         
     }

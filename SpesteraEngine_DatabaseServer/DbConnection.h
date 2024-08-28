@@ -20,7 +20,7 @@ public:
     void stop();
 
 private:
-    void execute_query(const RequestWrapper query);
+    void execute_query(const DatabaseRequestWrapper& query);
 
     mysqlx::Session* session;
     std::queue<std::string> queryBuffer;

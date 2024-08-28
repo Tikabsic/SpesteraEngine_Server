@@ -16,8 +16,8 @@ public:
     TcpServer(boost::asio::io_context& io_context, const std::string& address, int port, ConnectionsManager* connmanager);
 
     //Deliver Type
-    void deliver_to_all(const GSWrapper& msg);
-    void deliver_to_player(const u_short& player_id, const GSWrapper& msg);
+    void deliver_to_all(const GSWrapperResponse& msg);
+    void deliver_to_player(const u_short& player_id, const GSWrapperResponse& msg);
     void deliver_to_other_direct(const std::string& msg, short session_id);
 
     //Session Disconnect

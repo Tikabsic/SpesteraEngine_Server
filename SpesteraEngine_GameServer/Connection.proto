@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+message ConnectionRequestWrapper {
+    oneof action {
+        ClientLogin client_login = 1;
+        ClientLogout client_logout = 2;
+        RequestLogin request_login = 3;
+        RequestCharacter request_character = 4;
+    }
+}
+
+message ConnectionResponseWrapper {
+    oneof action {
+        AssignId assign_id = 1;
+        LoginRequestResult login_result = 2;
+        LoginResponse login_response = 3;
+        ClientLogin client_login = 4;
+        ClientLogout client_logout = 5;
+    }
+}
+
+message RequestCharacter {
+    string player_id = 1;
+}
+
+message ClientLogin{
+    uint32 player_id = 1;
+}
+
+message ClientLogout{
+    uint32 player_id = 1;
+}
+
+message RequestLogin {
+    string account_name = 1;
+    string password = 2;
+}
+
+message AuthenticationToken {
+    string token = 1;
+}
+
+message CharacterInfoBase {
+    uint32 slot_number = 1;
+    string character_id = 2;
+    string character_name = 3;
+}
+
+message LoginRequestResult {
+    string message = 2;
+}
+
+message LoginResponse {
+    AuthenticationToken token = 1;
+    repeated CharacterInfoBase data = 2;
+}
+
+message AssignId {
+    uint32 string = 1;
+}

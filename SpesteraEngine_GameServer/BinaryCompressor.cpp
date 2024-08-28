@@ -84,11 +84,11 @@ void BinaryCompressor::decompress_string(const char* input, std::size_t input_le
     output.swap(outstring);
 }
 
-GSWrapper BinaryCompressor::decompress_message_to_wrapper(const std::string& compressedMessage)
+GSWrapperRequest BinaryCompressor::decompress_message_to_wrapper(const std::string& compressedMessage)
 {
     std::string decompressed_msg;
     decompress_string(compressedMessage.data(), compressedMessage.size(), decompressed_msg);
-    GSWrapper wrapper_msg;
+    GSWrapperRequest wrapper_msg;
     wrapper_msg.ParseFromString(decompressed_msg);
 
     return wrapper_msg;

@@ -11,22 +11,14 @@ AccountService::~AccountService()
     repository_ = nullptr;
 }
 
-ResponseWrapper AccountService::handle_message(const RequestWrapper& wrapper)
+DatabaseResponseWrapper AccountService::handle_message(const AccountServiceRequestWrapper& wrapper)
 {
-    ResponseWrapper response_wrapper;
-
-    switch (wrapper.request_type()) {
-        case RequestWrapper::REQUESTACCOUNTDATA: {
-            RequestAccountData request_data;
-            if (request_data.ParseFromString(wrapper.request_payload())) {
-                ResponseAccountData response_data = repository_->get_account_data(request_data);
-
-                response_wrapper.set_response_type(ResponseWrapper::RESPONSEACCOUNTDATA);
-                response_wrapper.set_response_id(wrapper.request_id());
-                response_wrapper.set_response_payload(response_data.SerializeAsString());
-
-                return response_wrapper;
-            }
-        }
-    }
+	switch (wrapper.request_case()) {
+		case AccountServiceRequestWrapper::kRequestAccountData: {
+			DatabaseResponseWrapper response_wrapper;
+			auto* account_service_Wrapper = response_wrapper.mutable_account_service_response();
+			account_service_Wrapper->mutable_response_account_data()->CopyFrom(repository_->get_account_data(wrapper.request_account_data()));
+			return response_wrapper;
+		}
+	}
 }

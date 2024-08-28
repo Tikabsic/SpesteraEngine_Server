@@ -4,6 +4,7 @@
 #include <memory>
 #include "DbConnection.h"
 #include "AccountService.h"
+#include "AccountService.pb.h"
 
 class ExternalConnection : public std::enable_shared_from_this<ExternalConnection> {
 public:
@@ -16,7 +17,7 @@ private:
     void read_data();
     void send_data();
 
-    void handle_message(const RequestWrapper& wrapper);
+    void handle_message(const DatabaseRequestWrapper& wrapper);
 
     void push_and_send(std::string message);
 

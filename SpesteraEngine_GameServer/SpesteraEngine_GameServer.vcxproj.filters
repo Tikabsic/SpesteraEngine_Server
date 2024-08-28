@@ -165,6 +165,15 @@
     <ClInclude Include="SSPHasher.h">
       <Filter>Game_Server\Utils\Security</Filter>
     </ClInclude>
+    <ClInclude Include="AccountService.pb.h">
+      <Filter>Game_Server\Config\Protocol\Database_Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="GameCharacterService.pb.h">
+      <Filter>Game_Server\Config\Protocol\Database_Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Connection.pb.h">
+      <Filter>Game_Server\Config\Protocol\GameServer_Protocol</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TcpServer.cpp">
@@ -218,10 +227,22 @@
     <ClCompile Include="SSPHasher.cpp">
       <Filter>Game_Server\Utils\Security</Filter>
     </ClCompile>
+    <ClCompile Include="AccountService.pb.cc">
+      <Filter>Game_Server\Config\Protocol\Database_Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="GameCharacterService.pb.cc">
+      <Filter>Game_Server\Config\Protocol\Database_Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="Connection.pb.cc">
+      <Filter>Game_Server\Config\Protocol\GameServer_Protocol</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Config.ini" />
     <None Include="GSProtocol.proto">
+      <Filter>Game_Server\Config\Protocol\GameServer_Protocol</Filter>
+    </None>
+    <None Include="Connection.proto">
       <Filter>Game_Server\Config\Protocol\GameServer_Protocol</Filter>
     </None>
   </ItemGroup>

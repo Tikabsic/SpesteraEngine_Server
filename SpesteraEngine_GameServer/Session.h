@@ -7,6 +7,8 @@
 
 #include "GSProtocol.pb.h"
 #include "DatabaseProtocol.pb.h"
+#include "GameCharacterService.pb.h"
+#include "AccountService.pb.h"
 #include "BinaryCompressor.h"
 #include "PlayerCharacter.h"
 
@@ -19,23 +21,25 @@ public:
     void start();
     void disconnect();
 
-    void compress_to_write(const GSWrapper& msg);
+    void compress_to_write(const GSWrapperResponse& msg);
     void direct_push_to_buffer(const std::string& msg);
 
     //DbDataProcessing
-    void process_database_data(ResponseWrapper& wrapper);
+    void process_database_data(DatabaseResponseWrapper& wrapper);
 
     void set_player_id(u_short pid);
     u_short get_player_id();
 private:
     void do_read();
     void do_write();
-    void handle_message(const GSWrapper& wrapper);
+    void handle_message(const GSWrapperRequest& wrapper);
 
     //Authentication
-    void process_login_request(RequestLogin& request);
-    bool verify_login_request(ResponseAccountData& data);
+    void process_login_request(const RequestLogin& request);
+    bool verify_login_request(const ResponseAccountData& data);
 
+    void handle_account_service_response(const AccountServiceResponseWrapper& wrapper);
+    void handle_gamecharacter_service_response(const GameCharacterServiceResponseWrapper& wrapper);
 
     boost::asio::ip::tcp::socket socket_;
     int id_;

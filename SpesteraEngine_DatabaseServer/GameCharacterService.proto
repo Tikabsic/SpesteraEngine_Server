@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+message GameCharacterServiceRequestWrapper{
+    oneof request {
+        RequestPlayerInitialData request_player_initial_data = 1;
+    }
+}
+
+message GameCharacterServiceResponseWrapper{
+    oneof response {
+        ResponsePlayerInitialData response_player_initial_data = 1;
+    }
+}
+
+message RequestPlayerInitialData {
+    string player_guid = 1;
+}
+
+message ResponsePlayerInitialData {
+    string player_name = 1;
+    float position_x = 2;
+    float position_y = 3;
+    float position_z = 4;
+    uint32 rotation_y = 5;
+    uint32 player_movementspeed = 6;
+}

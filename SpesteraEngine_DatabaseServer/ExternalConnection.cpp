@@ -22,7 +22,7 @@ void ExternalConnection::read_data() {
         [this, self](const boost::system::error_code& error, std::size_t bytes_transferred) {
             if (!error) {
                 try {
-                    RequestWrapper wrapper;
+                    DatabaseRequestWrapper wrapper;
                     if (wrapper.ParseFromString(std::string(recive_data_, bytes_transferred))) {
                         handle_message(wrapper);
                         read_data();
@@ -59,15 +59,18 @@ void ExternalConnection::send_data()
         });
 }
 
-void ExternalConnection::handle_message(const RequestWrapper& wrapper)
-{
-    switch (wrapper.service_type()) {
-        case RequestWrapper::ACCOUNTSERVICE: {
-            ResponseWrapper response = account_service_->handle_message(wrapper);
-            push_and_send(response.SerializeAsString());
-            break;
-        }
-    }
+void ExternalConnection::handle_message(const DatabaseRequestWrapper& wrapper) {
+	switch (wrapper.service_request_case()) {
+	    case DatabaseRequestWrapper::kAccountServiceRequest: {
+		    DatabaseResponseWrapper response = account_service_->handle_message(wrapper.account_service_request());
+		    push_and_send(response.SerializeAsString());
+		    break;
+	    }
+	    case DatabaseRequestWrapper::kGamecharacterServiceRequest: {
+
+		    break;
+	    }
+	}
 }
 
 void ExternalConnection::push_and_send(std::string message)

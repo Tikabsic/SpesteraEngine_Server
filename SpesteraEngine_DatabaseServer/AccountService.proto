@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+message AccountServiceRequestWrapper {
+    oneof request {
+        RequestAccountData request_account_data = 2;
+        RequestCharacterList request_character_list = 3;
+    }
+}
+
+message AccountServiceResponseWrapper {
+    oneof response {
+        ResponseAccountData response_account_data = 2;
+        ResponseCharacterList response_character_list = 3;
+    }
+}
+
+message RequestAccountData{
+    string account_name = 1;
+    string account_password_to_verify = 2;
+}
+
+message ResponseAccountData{
+    string account_id = 1;
+    string account_name = 2;
+    string account_password = 3;
+    string account_password_to_verify = 4;
+}
+
+message RequestCharacterList{
+    string account_name = 1;
+}
+
+message CharacterBaseData{
+    uint32 slot_number = 1;
+    string character_name = 2;
+}
+
+message ResponseCharacterList{
+    repeated CharacterBaseData characters = 1;
+}

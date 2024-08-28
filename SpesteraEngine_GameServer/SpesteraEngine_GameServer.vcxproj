@@ -191,10 +191,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AccountService.pb.h" />
     <ClInclude Include="BinaryCompressor.h" />
+    <ClInclude Include="Connection.pb.h" />
     <ClInclude Include="ConnectionsManager.h" />
     <ClInclude Include="DatabaseProtocol.pb.h" />
     <ClInclude Include="DbServicesProvider.h" />
+    <ClInclude Include="GameCharacterService.pb.h" />
     <ClInclude Include="GSProtocol.pb.h" />
     <ClInclude Include="MessageInterpreter.h" />
     <ClInclude Include="PlayerCharacter.h" />
@@ -209,10 +212,13 @@
     <ClInclude Include="ZonesManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AccountService.pb.cc" />
     <ClCompile Include="BinaryCompressor.cpp" />
+    <ClCompile Include="Connection.pb.cc" />
     <ClCompile Include="ConnectionsManager.cpp" />
     <ClCompile Include="DatabaseProtocol.pb.cc" />
     <ClCompile Include="DbServicesProvider.cpp" />
+    <ClCompile Include="GameCharacterService.pb.cc" />
     <ClCompile Include="GSProtocol.pb.cc" />
     <ClCompile Include="MessageInterpreter.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
@@ -230,6 +236,7 @@
   <ItemGroup>
     <None Include="Config.ini" />
     <None Include="GSProtocol.proto" />
+    <None Include="Connection.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

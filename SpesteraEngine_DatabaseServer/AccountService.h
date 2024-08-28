@@ -11,7 +11,7 @@ public:
 	AccountService(std::string dburi);
 	~AccountService();
 
-	ResponseWrapper handle_message(const RequestWrapper& wrapper);
+	DatabaseResponseWrapper handle_message(const AccountServiceRequestWrapper& wrapper);
 
 private:
 	AccountRepository* repository_;

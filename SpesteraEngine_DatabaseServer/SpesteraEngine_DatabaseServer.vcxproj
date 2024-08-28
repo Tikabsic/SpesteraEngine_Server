@@ -130,28 +130,38 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AccountService.cpp" />
+    <ClCompile Include="AccountService.pb.cc" />
     <ClCompile Include="ConfigReader.cpp" />
     <ClCompile Include="DatabaseProtocol.pb.cc" />
     <ClCompile Include="DbConnection.cpp" />
     <ClCompile Include="AccountRepository.cpp" />
     <ClCompile Include="ExternalConnection.cpp" />
+    <ClCompile Include="GameCharacterRepository.cpp" />
+    <ClCompile Include="GameCharacterService.cpp" />
+    <ClCompile Include="GameCharacterService.pb.cc" />
     <ClCompile Include="Init_DatabaseServer.cpp" />
     <ClCompile Include="Repository.cpp" />
     <ClCompile Include="TcpConnector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AccountService.h" />
+    <ClInclude Include="AccountService.pb.h" />
     <ClInclude Include="ConfigReader.h" />
     <ClInclude Include="DatabaseProtocol.pb.h" />
     <ClInclude Include="DbConnection.h" />
     <ClInclude Include="AccountRepository.h" />
     <ClInclude Include="ExternalConnection.h" />
+    <ClInclude Include="GameCharacterRepository.h" />
+    <ClInclude Include="GameCharacterService.h" />
+    <ClInclude Include="GameCharacterService.pb.h" />
     <ClInclude Include="Repository.h" />
     <ClInclude Include="TcpConnector.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AccountService.proto" />
     <None Include="Config.ini" />
     <None Include="DatabaseProtocol.proto" />
+    <None Include="GameCharacterService.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

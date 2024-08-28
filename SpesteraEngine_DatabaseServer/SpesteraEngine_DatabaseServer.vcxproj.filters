@@ -75,6 +75,18 @@
     <ClCompile Include="Repository.cpp">
       <Filter>Source\Db_Repository\Base_Repository</Filter>
     </ClCompile>
+    <ClCompile Include="GameCharacterService.cpp">
+      <Filter>Source\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="GameCharacterRepository.cpp">
+      <Filter>Source\Db_Repository</Filter>
+    </ClCompile>
+    <ClCompile Include="AccountService.pb.cc">
+      <Filter>Config\DatabasePortocol</Filter>
+    </ClCompile>
+    <ClCompile Include="GameCharacterService.pb.cc">
+      <Filter>Config\DatabasePortocol</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DbConnection.h">
@@ -101,10 +113,28 @@
     <ClInclude Include="Repository.h">
       <Filter>Include\Db_Repository\Base_Repository</Filter>
     </ClInclude>
+    <ClInclude Include="GameCharacterRepository.h">
+      <Filter>Include\Db_Repository</Filter>
+    </ClInclude>
+    <ClInclude Include="GameCharacterService.h">
+      <Filter>Include\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="AccountService.pb.h">
+      <Filter>Config\DatabasePortocol</Filter>
+    </ClInclude>
+    <ClInclude Include="GameCharacterService.pb.h">
+      <Filter>Config\DatabasePortocol</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Config.ini" />
     <None Include="DatabaseProtocol.proto">
+      <Filter>Config\DatabasePortocol</Filter>
+    </None>
+    <None Include="AccountService.proto">
+      <Filter>Config\DatabasePortocol</Filter>
+    </None>
+    <None Include="GameCharacterService.proto">
       <Filter>Config\DatabasePortocol</Filter>
     </None>
   </ItemGroup>
