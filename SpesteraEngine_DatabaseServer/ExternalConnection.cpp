@@ -63,6 +63,7 @@ void ExternalConnection::handle_message(const DatabaseRequestWrapper& wrapper) {
 	switch (wrapper.service_request_case()) {
 	    case DatabaseRequestWrapper::kAccountServiceRequest: {
 		    DatabaseResponseWrapper response = account_service_->handle_message(wrapper.account_service_request());
+            response.set_session_id(wrapper.session_id());
 		    push_and_send(response.SerializeAsString());
 		    break;
 	    }

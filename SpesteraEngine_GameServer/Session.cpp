@@ -176,10 +176,11 @@ void Session::process_database_data(DatabaseResponseWrapper& wrapper)
 
 //Database response handling
 
+
 void Session::handle_account_service_response(const AccountServiceResponseWrapper& wrapper)
 {
-	switch ( wrapper.request_type() ) {
-	case AccountServiceResponseWrapper::RESPONSEACCOUNTDATA: {
+	switch (wrapper.response_case()) {
+	case AccountServiceResponseWrapper::kResponseAccountData: {
 		const auto& data = wrapper.response_account_data();
 		if ( tcp_server_->is_account_online(data.account_name()) ) {
 
@@ -193,6 +194,8 @@ void Session::handle_account_service_response(const AccountServiceResponseWrappe
 		}
 
 		bool verify_result = verify_login_request(data);
+
+		std::cout << verify_result << std::endl;
 
 		if ( verify_result ) {
 
@@ -245,6 +248,10 @@ void Session::process_login_request(const RequestLogin& request)
 
 bool Session::verify_login_request(const ResponseAccountData& data)
 {
+	if ( data.account_name().empty() ) {
+		return false;
+	}
+
 	SSPHasher hasher;
 	bool verification_result = hasher.VerifyPassword(data.account_password(), data.account_password_to_verify());
 	return verification_result;

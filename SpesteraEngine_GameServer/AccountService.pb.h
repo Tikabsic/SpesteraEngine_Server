@@ -33,7 +33,6 @@
 #include "google/protobuf/message.h"
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
-#include "google/protobuf/generated_enum_reflection.h"
 #include "google/protobuf/unknown_field_set.h"
 // @@protoc_insertion_point(includes)
 
@@ -82,72 +81,6 @@ namespace protobuf {
 }  // namespace protobuf
 }  // namespace google
 
-enum AccountServiceRequestWrapper_RequestType : int {
-  AccountServiceRequestWrapper_RequestType_REQUESTACCOUNTDATA = 0,
-  AccountServiceRequestWrapper_RequestType_REQUESTCHARACTERLIST = 1,
-  AccountServiceRequestWrapper_RequestType_AccountServiceRequestWrapper_RequestType_INT_MIN_SENTINEL_DO_NOT_USE_ =
-      std::numeric_limits<::int32_t>::min(),
-  AccountServiceRequestWrapper_RequestType_AccountServiceRequestWrapper_RequestType_INT_MAX_SENTINEL_DO_NOT_USE_ =
-      std::numeric_limits<::int32_t>::max(),
-};
-
-bool AccountServiceRequestWrapper_RequestType_IsValid(int value);
-extern const uint32_t AccountServiceRequestWrapper_RequestType_internal_data_[];
-constexpr AccountServiceRequestWrapper_RequestType AccountServiceRequestWrapper_RequestType_RequestType_MIN = static_cast<AccountServiceRequestWrapper_RequestType>(0);
-constexpr AccountServiceRequestWrapper_RequestType AccountServiceRequestWrapper_RequestType_RequestType_MAX = static_cast<AccountServiceRequestWrapper_RequestType>(1);
-constexpr int AccountServiceRequestWrapper_RequestType_RequestType_ARRAYSIZE = 1 + 1;
-const ::google::protobuf::EnumDescriptor*
-AccountServiceRequestWrapper_RequestType_descriptor();
-template <typename T>
-const std::string& AccountServiceRequestWrapper_RequestType_Name(T value) {
-  static_assert(std::is_same<T, AccountServiceRequestWrapper_RequestType>::value ||
-                    std::is_integral<T>::value,
-                "Incorrect type passed to RequestType_Name().");
-  return AccountServiceRequestWrapper_RequestType_Name(static_cast<AccountServiceRequestWrapper_RequestType>(value));
-}
-template <>
-inline const std::string& AccountServiceRequestWrapper_RequestType_Name(AccountServiceRequestWrapper_RequestType value) {
-  return ::google::protobuf::internal::NameOfDenseEnum<AccountServiceRequestWrapper_RequestType_descriptor,
-                                                 0, 1>(
-      static_cast<int>(value));
-}
-inline bool AccountServiceRequestWrapper_RequestType_Parse(absl::string_view name, AccountServiceRequestWrapper_RequestType* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<AccountServiceRequestWrapper_RequestType>(
-      AccountServiceRequestWrapper_RequestType_descriptor(), name, value);
-}
-enum AccountServiceResponseWrapper_ResponseType : int {
-  AccountServiceResponseWrapper_ResponseType_RESPONSEACCOUNTDATA = 0,
-  AccountServiceResponseWrapper_ResponseType_REPONSECHARACTERLIST = 1,
-  AccountServiceResponseWrapper_ResponseType_AccountServiceResponseWrapper_ResponseType_INT_MIN_SENTINEL_DO_NOT_USE_ =
-      std::numeric_limits<::int32_t>::min(),
-  AccountServiceResponseWrapper_ResponseType_AccountServiceResponseWrapper_ResponseType_INT_MAX_SENTINEL_DO_NOT_USE_ =
-      std::numeric_limits<::int32_t>::max(),
-};
-
-bool AccountServiceResponseWrapper_ResponseType_IsValid(int value);
-extern const uint32_t AccountServiceResponseWrapper_ResponseType_internal_data_[];
-constexpr AccountServiceResponseWrapper_ResponseType AccountServiceResponseWrapper_ResponseType_ResponseType_MIN = static_cast<AccountServiceResponseWrapper_ResponseType>(0);
-constexpr AccountServiceResponseWrapper_ResponseType AccountServiceResponseWrapper_ResponseType_ResponseType_MAX = static_cast<AccountServiceResponseWrapper_ResponseType>(1);
-constexpr int AccountServiceResponseWrapper_ResponseType_ResponseType_ARRAYSIZE = 1 + 1;
-const ::google::protobuf::EnumDescriptor*
-AccountServiceResponseWrapper_ResponseType_descriptor();
-template <typename T>
-const std::string& AccountServiceResponseWrapper_ResponseType_Name(T value) {
-  static_assert(std::is_same<T, AccountServiceResponseWrapper_ResponseType>::value ||
-                    std::is_integral<T>::value,
-                "Incorrect type passed to ResponseType_Name().");
-  return AccountServiceResponseWrapper_ResponseType_Name(static_cast<AccountServiceResponseWrapper_ResponseType>(value));
-}
-template <>
-inline const std::string& AccountServiceResponseWrapper_ResponseType_Name(AccountServiceResponseWrapper_ResponseType value) {
-  return ::google::protobuf::internal::NameOfDenseEnum<AccountServiceResponseWrapper_ResponseType_descriptor,
-                                                 0, 1>(
-      static_cast<int>(value));
-}
-inline bool AccountServiceResponseWrapper_ResponseType_Parse(absl::string_view name, AccountServiceResponseWrapper_ResponseType* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<AccountServiceResponseWrapper_ResponseType>(
-      AccountServiceResponseWrapper_ResponseType_descriptor(), name, value);
-}
 
 // ===================================================================
 
@@ -1200,8 +1133,8 @@ class AccountServiceRequestWrapper final :
     return *internal_default_instance();
   }
   enum RequestCase {
-    kRequestAccountData = 3,
-    kRequestCharacterList = 4,
+    kRequestAccountData = 2,
+    kRequestCharacterList = 3,
     REQUEST_NOT_SET = 0,
   };
 
@@ -1280,61 +1213,13 @@ class AccountServiceRequestWrapper final :
 
   // nested types ----------------------------------------------------
 
-  using RequestType = AccountServiceRequestWrapper_RequestType;
-  static constexpr RequestType REQUESTACCOUNTDATA = AccountServiceRequestWrapper_RequestType_REQUESTACCOUNTDATA;
-  static constexpr RequestType REQUESTCHARACTERLIST = AccountServiceRequestWrapper_RequestType_REQUESTCHARACTERLIST;
-  static inline bool RequestType_IsValid(int value) {
-    return AccountServiceRequestWrapper_RequestType_IsValid(value);
-  }
-  static constexpr RequestType RequestType_MIN = AccountServiceRequestWrapper_RequestType_RequestType_MIN;
-  static constexpr RequestType RequestType_MAX = AccountServiceRequestWrapper_RequestType_RequestType_MAX;
-  static constexpr int RequestType_ARRAYSIZE = AccountServiceRequestWrapper_RequestType_RequestType_ARRAYSIZE;
-  static inline const ::google::protobuf::EnumDescriptor* RequestType_descriptor() {
-    return AccountServiceRequestWrapper_RequestType_descriptor();
-  }
-  template <typename T>
-  static inline const std::string& RequestType_Name(T value) {
-    return AccountServiceRequestWrapper_RequestType_Name(value);
-  }
-  static inline bool RequestType_Parse(absl::string_view name, RequestType* value) {
-    return AccountServiceRequestWrapper_RequestType_Parse(name, value);
-  }
-
   // accessors -------------------------------------------------------
 
   enum : int {
-    kSessionIdFieldNumber = 2,
-    kRequestTypeFieldNumber = 1,
-    kRequestAccountDataFieldNumber = 3,
-    kRequestCharacterListFieldNumber = 4,
+    kRequestAccountDataFieldNumber = 2,
+    kRequestCharacterListFieldNumber = 3,
   };
-  // string session_id = 2;
-  void clear_session_id() ;
-  const std::string& session_id() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_session_id(Arg_&& arg, Args_... args);
-  std::string* mutable_session_id();
-  PROTOBUF_NODISCARD std::string* release_session_id();
-  void set_allocated_session_id(std::string* value);
-
-  private:
-  const std::string& _internal_session_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_session_id(
-      const std::string& value);
-  std::string* _internal_mutable_session_id();
-
-  public:
-  // .AccountServiceRequestWrapper.RequestType request_type = 1;
-  void clear_request_type() ;
-  ::AccountServiceRequestWrapper_RequestType request_type() const;
-  void set_request_type(::AccountServiceRequestWrapper_RequestType value);
-
-  private:
-  ::AccountServiceRequestWrapper_RequestType _internal_request_type() const;
-  void _internal_set_request_type(::AccountServiceRequestWrapper_RequestType value);
-
-  public:
-  // .RequestAccountData request_account_data = 3;
+  // .RequestAccountData request_account_data = 2;
   bool has_request_account_data() const;
   private:
   bool _internal_has_request_account_data() const;
@@ -1353,7 +1238,7 @@ class AccountServiceRequestWrapper final :
   ::RequestAccountData* _internal_mutable_request_account_data();
 
   public:
-  // .RequestCharacterList request_character_list = 4;
+  // .RequestCharacterList request_character_list = 3;
   bool has_request_character_list() const;
   private:
   bool _internal_has_request_character_list() const;
@@ -1385,8 +1270,8 @@ class AccountServiceRequestWrapper final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 4, 2,
-      47, 2>
+      0, 2, 2,
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1402,8 +1287,6 @@ class AccountServiceRequestWrapper final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::ArenaStringPtr session_id_;
-    int request_type_;
     union RequestUnion {
       constexpr RequestUnion() : _constinit_{} {}
         ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -1474,8 +1357,8 @@ class AccountServiceResponseWrapper final :
     return *internal_default_instance();
   }
   enum ResponseCase {
-    kResponseAccountData = 3,
-    kResponseCharacterList = 4,
+    kResponseAccountData = 2,
+    kResponseCharacterList = 3,
     RESPONSE_NOT_SET = 0,
   };
 
@@ -1554,61 +1437,13 @@ class AccountServiceResponseWrapper final :
 
   // nested types ----------------------------------------------------
 
-  using ResponseType = AccountServiceResponseWrapper_ResponseType;
-  static constexpr ResponseType RESPONSEACCOUNTDATA = AccountServiceResponseWrapper_ResponseType_RESPONSEACCOUNTDATA;
-  static constexpr ResponseType REPONSECHARACTERLIST = AccountServiceResponseWrapper_ResponseType_REPONSECHARACTERLIST;
-  static inline bool ResponseType_IsValid(int value) {
-    return AccountServiceResponseWrapper_ResponseType_IsValid(value);
-  }
-  static constexpr ResponseType ResponseType_MIN = AccountServiceResponseWrapper_ResponseType_ResponseType_MIN;
-  static constexpr ResponseType ResponseType_MAX = AccountServiceResponseWrapper_ResponseType_ResponseType_MAX;
-  static constexpr int ResponseType_ARRAYSIZE = AccountServiceResponseWrapper_ResponseType_ResponseType_ARRAYSIZE;
-  static inline const ::google::protobuf::EnumDescriptor* ResponseType_descriptor() {
-    return AccountServiceResponseWrapper_ResponseType_descriptor();
-  }
-  template <typename T>
-  static inline const std::string& ResponseType_Name(T value) {
-    return AccountServiceResponseWrapper_ResponseType_Name(value);
-  }
-  static inline bool ResponseType_Parse(absl::string_view name, ResponseType* value) {
-    return AccountServiceResponseWrapper_ResponseType_Parse(name, value);
-  }
-
   // accessors -------------------------------------------------------
 
   enum : int {
-    kSessionIdFieldNumber = 2,
-    kRequestTypeFieldNumber = 1,
-    kResponseAccountDataFieldNumber = 3,
-    kResponseCharacterListFieldNumber = 4,
+    kResponseAccountDataFieldNumber = 2,
+    kResponseCharacterListFieldNumber = 3,
   };
-  // string session_id = 2;
-  void clear_session_id() ;
-  const std::string& session_id() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_session_id(Arg_&& arg, Args_... args);
-  std::string* mutable_session_id();
-  PROTOBUF_NODISCARD std::string* release_session_id();
-  void set_allocated_session_id(std::string* value);
-
-  private:
-  const std::string& _internal_session_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_session_id(
-      const std::string& value);
-  std::string* _internal_mutable_session_id();
-
-  public:
-  // .AccountServiceResponseWrapper.ResponseType request_type = 1;
-  void clear_request_type() ;
-  ::AccountServiceResponseWrapper_ResponseType request_type() const;
-  void set_request_type(::AccountServiceResponseWrapper_ResponseType value);
-
-  private:
-  ::AccountServiceResponseWrapper_ResponseType _internal_request_type() const;
-  void _internal_set_request_type(::AccountServiceResponseWrapper_ResponseType value);
-
-  public:
-  // .ResponseAccountData response_account_data = 3;
+  // .ResponseAccountData response_account_data = 2;
   bool has_response_account_data() const;
   private:
   bool _internal_has_response_account_data() const;
@@ -1627,7 +1462,7 @@ class AccountServiceResponseWrapper final :
   ::ResponseAccountData* _internal_mutable_response_account_data();
 
   public:
-  // .ResponseCharacterList response_character_list = 4;
+  // .ResponseCharacterList response_character_list = 3;
   bool has_response_character_list() const;
   private:
   bool _internal_has_response_character_list() const;
@@ -1659,8 +1494,8 @@ class AccountServiceResponseWrapper final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 4, 2,
-      48, 2>
+      0, 2, 2,
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1676,8 +1511,6 @@ class AccountServiceResponseWrapper final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::ArenaStringPtr session_id_;
-    int request_type_;
     union ResponseUnion {
       constexpr ResponseUnion() : _constinit_{} {}
         ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -1709,83 +1542,7 @@ class AccountServiceResponseWrapper final :
 
 // AccountServiceRequestWrapper
 
-// .AccountServiceRequestWrapper.RequestType request_type = 1;
-inline void AccountServiceRequestWrapper::clear_request_type() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.request_type_ = 0;
-}
-inline ::AccountServiceRequestWrapper_RequestType AccountServiceRequestWrapper::request_type() const {
-  // @@protoc_insertion_point(field_get:AccountServiceRequestWrapper.request_type)
-  return _internal_request_type();
-}
-inline void AccountServiceRequestWrapper::set_request_type(::AccountServiceRequestWrapper_RequestType value) {
-  _internal_set_request_type(value);
-  // @@protoc_insertion_point(field_set:AccountServiceRequestWrapper.request_type)
-}
-inline ::AccountServiceRequestWrapper_RequestType AccountServiceRequestWrapper::_internal_request_type() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return static_cast<::AccountServiceRequestWrapper_RequestType>(_impl_.request_type_);
-}
-inline void AccountServiceRequestWrapper::_internal_set_request_type(::AccountServiceRequestWrapper_RequestType value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.request_type_ = value;
-}
-
-// string session_id = 2;
-inline void AccountServiceRequestWrapper::clear_session_id() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.session_id_.ClearToEmpty();
-}
-inline const std::string& AccountServiceRequestWrapper::session_id() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:AccountServiceRequestWrapper.session_id)
-  return _internal_session_id();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void AccountServiceRequestWrapper::set_session_id(Arg_&& arg,
-                                                     Args_... args) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.session_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:AccountServiceRequestWrapper.session_id)
-}
-inline std::string* AccountServiceRequestWrapper::mutable_session_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_session_id();
-  // @@protoc_insertion_point(field_mutable:AccountServiceRequestWrapper.session_id)
-  return _s;
-}
-inline const std::string& AccountServiceRequestWrapper::_internal_session_id() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.session_id_.Get();
-}
-inline void AccountServiceRequestWrapper::_internal_set_session_id(const std::string& value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.session_id_.Set(value, GetArena());
-}
-inline std::string* AccountServiceRequestWrapper::_internal_mutable_session_id() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  return _impl_.session_id_.Mutable( GetArena());
-}
-inline std::string* AccountServiceRequestWrapper::release_session_id() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:AccountServiceRequestWrapper.session_id)
-  return _impl_.session_id_.Release();
-}
-inline void AccountServiceRequestWrapper::set_allocated_session_id(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.session_id_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.session_id_.IsDefault()) {
-          _impl_.session_id_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:AccountServiceRequestWrapper.session_id)
-}
-
-// .RequestAccountData request_account_data = 3;
+// .RequestAccountData request_account_data = 2;
 inline bool AccountServiceRequestWrapper::has_request_account_data() const {
   return request_case() == kRequestAccountData;
 }
@@ -1861,7 +1618,7 @@ inline ::RequestAccountData* AccountServiceRequestWrapper::mutable_request_accou
   return _msg;
 }
 
-// .RequestCharacterList request_character_list = 4;
+// .RequestCharacterList request_character_list = 3;
 inline bool AccountServiceRequestWrapper::has_request_character_list() const {
   return request_case() == kRequestCharacterList;
 }
@@ -1950,83 +1707,7 @@ inline AccountServiceRequestWrapper::RequestCase AccountServiceRequestWrapper::r
 
 // AccountServiceResponseWrapper
 
-// .AccountServiceResponseWrapper.ResponseType request_type = 1;
-inline void AccountServiceResponseWrapper::clear_request_type() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.request_type_ = 0;
-}
-inline ::AccountServiceResponseWrapper_ResponseType AccountServiceResponseWrapper::request_type() const {
-  // @@protoc_insertion_point(field_get:AccountServiceResponseWrapper.request_type)
-  return _internal_request_type();
-}
-inline void AccountServiceResponseWrapper::set_request_type(::AccountServiceResponseWrapper_ResponseType value) {
-  _internal_set_request_type(value);
-  // @@protoc_insertion_point(field_set:AccountServiceResponseWrapper.request_type)
-}
-inline ::AccountServiceResponseWrapper_ResponseType AccountServiceResponseWrapper::_internal_request_type() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return static_cast<::AccountServiceResponseWrapper_ResponseType>(_impl_.request_type_);
-}
-inline void AccountServiceResponseWrapper::_internal_set_request_type(::AccountServiceResponseWrapper_ResponseType value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.request_type_ = value;
-}
-
-// string session_id = 2;
-inline void AccountServiceResponseWrapper::clear_session_id() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.session_id_.ClearToEmpty();
-}
-inline const std::string& AccountServiceResponseWrapper::session_id() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:AccountServiceResponseWrapper.session_id)
-  return _internal_session_id();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void AccountServiceResponseWrapper::set_session_id(Arg_&& arg,
-                                                     Args_... args) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.session_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:AccountServiceResponseWrapper.session_id)
-}
-inline std::string* AccountServiceResponseWrapper::mutable_session_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_session_id();
-  // @@protoc_insertion_point(field_mutable:AccountServiceResponseWrapper.session_id)
-  return _s;
-}
-inline const std::string& AccountServiceResponseWrapper::_internal_session_id() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.session_id_.Get();
-}
-inline void AccountServiceResponseWrapper::_internal_set_session_id(const std::string& value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.session_id_.Set(value, GetArena());
-}
-inline std::string* AccountServiceResponseWrapper::_internal_mutable_session_id() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  return _impl_.session_id_.Mutable( GetArena());
-}
-inline std::string* AccountServiceResponseWrapper::release_session_id() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:AccountServiceResponseWrapper.session_id)
-  return _impl_.session_id_.Release();
-}
-inline void AccountServiceResponseWrapper::set_allocated_session_id(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.session_id_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.session_id_.IsDefault()) {
-          _impl_.session_id_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:AccountServiceResponseWrapper.session_id)
-}
-
-// .ResponseAccountData response_account_data = 3;
+// .ResponseAccountData response_account_data = 2;
 inline bool AccountServiceResponseWrapper::has_response_account_data() const {
   return response_case() == kResponseAccountData;
 }
@@ -2102,7 +1783,7 @@ inline ::ResponseAccountData* AccountServiceResponseWrapper::mutable_response_ac
   return _msg;
 }
 
-// .ResponseCharacterList response_character_list = 4;
+// .ResponseCharacterList response_character_list = 3;
 inline bool AccountServiceResponseWrapper::has_response_character_list() const {
   return response_case() == kResponseCharacterList;
 }
@@ -2709,25 +2390,6 @@ ResponseCharacterList::_internal_mutable_characters() {
 
 // @@protoc_insertion_point(namespace_scope)
 
-
-namespace google {
-namespace protobuf {
-
-template <>
-struct is_proto_enum<::AccountServiceRequestWrapper_RequestType> : std::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor<::AccountServiceRequestWrapper_RequestType>() {
-  return ::AccountServiceRequestWrapper_RequestType_descriptor();
-}
-template <>
-struct is_proto_enum<::AccountServiceResponseWrapper_ResponseType> : std::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor<::AccountServiceResponseWrapper_ResponseType>() {
-  return ::AccountServiceResponseWrapper_ResponseType_descriptor();
-}
-
-}  // namespace protobuf
-}  // namespace google
 
 // @@protoc_insertion_point(global_scope)
 

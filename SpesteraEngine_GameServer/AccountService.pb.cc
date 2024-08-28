@@ -139,11 +139,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr AccountServiceRequestWrapper::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : session_id_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        request_type_{static_cast< ::AccountServiceRequestWrapper_RequestType >(0)},
-        request_{},
+      : request_{},
         _cached_size_{0},
         _oneof_case_{} {}
 
@@ -163,11 +159,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr AccountServiceResponseWrapper::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : session_id_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        request_type_{static_cast< ::AccountServiceResponseWrapper_ResponseType >(0)},
-        response_{},
+      : response_{},
         _cached_size_{0},
         _oneof_case_{} {}
 
@@ -185,7 +177,8 @@ struct AccountServiceResponseWrapperDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AccountServiceResponseWrapperDefaultTypeInternal _AccountServiceResponseWrapper_default_instance_;
 static ::_pb::Metadata file_level_metadata_AccountService_2eproto[7];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_AccountService_2eproto[2];
+static constexpr const ::_pb::EnumDescriptor**
+    file_level_enum_descriptors_AccountService_2eproto = nullptr;
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_AccountService_2eproto = nullptr;
 const ::uint32_t TableStruct_AccountService_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
@@ -198,8 +191,6 @@ const ::uint32_t TableStruct_AccountService_2eproto::offsets[] PROTOBUF_SECTION_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::AccountServiceRequestWrapper, _impl_.request_type_),
-    PROTOBUF_FIELD_OFFSET(::AccountServiceRequestWrapper, _impl_.session_id_),
     ::_pbi::kInvalidFieldOffsetTag,
     ::_pbi::kInvalidFieldOffsetTag,
     PROTOBUF_FIELD_OFFSET(::AccountServiceRequestWrapper, _impl_.request_),
@@ -211,8 +202,6 @@ const ::uint32_t TableStruct_AccountService_2eproto::offsets[] PROTOBUF_SECTION_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::AccountServiceResponseWrapper, _impl_.request_type_),
-    PROTOBUF_FIELD_OFFSET(::AccountServiceResponseWrapper, _impl_.session_id_),
     ::_pbi::kInvalidFieldOffsetTag,
     ::_pbi::kInvalidFieldOffsetTag,
     PROTOBUF_FIELD_OFFSET(::AccountServiceResponseWrapper, _impl_.response_),
@@ -271,12 +260,12 @@ const ::uint32_t TableStruct_AccountService_2eproto::offsets[] PROTOBUF_SECTION_
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::AccountServiceRequestWrapper)},
-        {13, -1, -1, sizeof(::AccountServiceResponseWrapper)},
-        {26, -1, -1, sizeof(::RequestAccountData)},
-        {36, -1, -1, sizeof(::ResponseAccountData)},
-        {48, -1, -1, sizeof(::RequestCharacterList)},
-        {57, -1, -1, sizeof(::CharacterBaseData)},
-        {67, -1, -1, sizeof(::ResponseCharacterList)},
+        {11, -1, -1, sizeof(::AccountServiceResponseWrapper)},
+        {22, -1, -1, sizeof(::RequestAccountData)},
+        {32, -1, -1, sizeof(::ResponseAccountData)},
+        {44, -1, -1, sizeof(::RequestCharacterList)},
+        {53, -1, -1, sizeof(::CharacterBaseData)},
+        {63, -1, -1, sizeof(::ResponseCharacterList)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -289,38 +278,31 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::_ResponseCharacterList_default_instance_._instance,
 };
 const char descriptor_table_protodef_AccountService_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\024AccountService.proto\"\255\002\n\034AccountServic"
-    "eRequestWrapper\022\?\n\014request_type\030\001 \001(\0162)."
-    "AccountServiceRequestWrapper.RequestType"
-    "\022\022\n\nsession_id\030\002 \001(\t\0223\n\024request_account_"
-    "data\030\003 \001(\0132\023.RequestAccountDataH\000\0227\n\026req"
-    "uest_character_list\030\004 \001(\0132\025.RequestChara"
-    "cterListH\000\"\?\n\013RequestType\022\026\n\022REQUESTACCO"
-    "UNTDATA\020\000\022\030\n\024REQUESTCHARACTERLIST\020\001B\t\n\007r"
-    "equest\"\267\002\n\035AccountServiceResponseWrapper"
-    "\022A\n\014request_type\030\001 \001(\0162+.AccountServiceR"
-    "esponseWrapper.ResponseType\022\022\n\nsession_i"
-    "d\030\002 \001(\t\0225\n\025response_account_data\030\003 \001(\0132\024"
-    ".ResponseAccountDataH\000\0229\n\027response_chara"
-    "cter_list\030\004 \001(\0132\026.ResponseCharacterListH"
-    "\000\"A\n\014ResponseType\022\027\n\023RESPONSEACCOUNTDATA"
-    "\020\000\022\030\n\024REPONSECHARACTERLIST\020\001B\n\n\010response"
-    "\"N\n\022RequestAccountData\022\024\n\014account_name\030\001"
-    " \001(\t\022\"\n\032account_password_to_verify\030\002 \001(\t"
-    "\"}\n\023ResponseAccountData\022\022\n\naccount_id\030\001 "
-    "\001(\t\022\024\n\014account_name\030\002 \001(\t\022\030\n\020account_pas"
-    "sword\030\003 \001(\t\022\"\n\032account_password_to_verif"
-    "y\030\004 \001(\t\",\n\024RequestCharacterList\022\024\n\014accou"
-    "nt_name\030\001 \001(\t\"@\n\021CharacterBaseData\022\023\n\013sl"
-    "ot_number\030\001 \001(\r\022\026\n\016character_name\030\002 \001(\t\""
-    "\?\n\025ResponseCharacterList\022&\n\ncharacters\030\001"
-    " \003(\0132\022.CharacterBaseDatab\006proto3"
+    "\n\024AccountService.proto\"\227\001\n\034AccountServic"
+    "eRequestWrapper\0223\n\024request_account_data\030"
+    "\002 \001(\0132\023.RequestAccountDataH\000\0227\n\026request_"
+    "character_list\030\003 \001(\0132\025.RequestCharacterL"
+    "istH\000B\t\n\007request\"\235\001\n\035AccountServiceRespo"
+    "nseWrapper\0225\n\025response_account_data\030\002 \001("
+    "\0132\024.ResponseAccountDataH\000\0229\n\027response_ch"
+    "aracter_list\030\003 \001(\0132\026.ResponseCharacterLi"
+    "stH\000B\n\n\010response\"N\n\022RequestAccountData\022\024"
+    "\n\014account_name\030\001 \001(\t\022\"\n\032account_password"
+    "_to_verify\030\002 \001(\t\"}\n\023ResponseAccountData\022"
+    "\022\n\naccount_id\030\001 \001(\t\022\024\n\014account_name\030\002 \001("
+    "\t\022\030\n\020account_password\030\003 \001(\t\022\"\n\032account_p"
+    "assword_to_verify\030\004 \001(\t\",\n\024RequestCharac"
+    "terList\022\024\n\014account_name\030\001 \001(\t\"@\n\021Charact"
+    "erBaseData\022\023\n\013slot_number\030\001 \001(\r\022\026\n\016chara"
+    "cter_name\030\002 \001(\t\"\?\n\025ResponseCharacterList"
+    "\022&\n\ncharacters\030\001 \003(\0132\022.CharacterBaseData"
+    "b\006proto3"
 };
 static ::absl::once_flag descriptor_table_AccountService_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_AccountService_2eproto = {
     false,
     false,
-    1032,
+    728,
     descriptor_table_protodef_AccountService_2eproto,
     "AccountService.proto",
     &descriptor_table_AccountService_2eproto_once,
@@ -352,46 +334,6 @@ PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_AccountS
 // Force running AddDescriptors() at dynamic initialization time.
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_AccountService_2eproto(&descriptor_table_AccountService_2eproto);
-const ::google::protobuf::EnumDescriptor* AccountServiceRequestWrapper_RequestType_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_AccountService_2eproto);
-  return file_level_enum_descriptors_AccountService_2eproto[0];
-}
-PROTOBUF_CONSTINIT const uint32_t AccountServiceRequestWrapper_RequestType_internal_data_[] = {
-    131072u, 0u, };
-bool AccountServiceRequestWrapper_RequestType_IsValid(int value) {
-  return 0 <= value && value <= 1;
-}
-#if (__cplusplus < 201703) && \
-  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-
-constexpr AccountServiceRequestWrapper_RequestType AccountServiceRequestWrapper::REQUESTACCOUNTDATA;
-constexpr AccountServiceRequestWrapper_RequestType AccountServiceRequestWrapper::REQUESTCHARACTERLIST;
-constexpr AccountServiceRequestWrapper_RequestType AccountServiceRequestWrapper::RequestType_MIN;
-constexpr AccountServiceRequestWrapper_RequestType AccountServiceRequestWrapper::RequestType_MAX;
-constexpr int AccountServiceRequestWrapper::RequestType_ARRAYSIZE;
-
-#endif  // (__cplusplus < 201703) &&
-        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-const ::google::protobuf::EnumDescriptor* AccountServiceResponseWrapper_ResponseType_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_AccountService_2eproto);
-  return file_level_enum_descriptors_AccountService_2eproto[1];
-}
-PROTOBUF_CONSTINIT const uint32_t AccountServiceResponseWrapper_ResponseType_internal_data_[] = {
-    131072u, 0u, };
-bool AccountServiceResponseWrapper_ResponseType_IsValid(int value) {
-  return 0 <= value && value <= 1;
-}
-#if (__cplusplus < 201703) && \
-  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-
-constexpr AccountServiceResponseWrapper_ResponseType AccountServiceResponseWrapper::RESPONSEACCOUNTDATA;
-constexpr AccountServiceResponseWrapper_ResponseType AccountServiceResponseWrapper::REPONSECHARACTERLIST;
-constexpr AccountServiceResponseWrapper_ResponseType AccountServiceResponseWrapper::ResponseType_MIN;
-constexpr AccountServiceResponseWrapper_ResponseType AccountServiceResponseWrapper::ResponseType_MAX;
-constexpr int AccountServiceResponseWrapper::ResponseType_ARRAYSIZE;
-
-#endif  // (__cplusplus < 201703) &&
-        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 // ===================================================================
 
 class AccountServiceRequestWrapper::_Internal {
@@ -442,8 +384,7 @@ AccountServiceRequestWrapper::AccountServiceRequestWrapper(::google::protobuf::A
 inline PROTOBUF_NDEBUG_INLINE AccountServiceRequestWrapper::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : session_id_(arena, from.session_id_),
-        request_{},
+      : request_{},
         _cached_size_{0},
         _oneof_case_{from._oneof_case_[0]} {}
 
@@ -456,7 +397,6 @@ AccountServiceRequestWrapper::AccountServiceRequestWrapper(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  _impl_.request_type_ = from._impl_.request_type_;
   switch (request_case()) {
     case REQUEST_NOT_SET:
       break;
@@ -473,14 +413,12 @@ AccountServiceRequestWrapper::AccountServiceRequestWrapper(
 inline PROTOBUF_NDEBUG_INLINE AccountServiceRequestWrapper::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : session_id_(arena),
-        request_{},
+      : request_{},
         _cached_size_{0},
         _oneof_case_{} {}
 
 inline void AccountServiceRequestWrapper::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.request_type_ = {};
 }
 AccountServiceRequestWrapper::~AccountServiceRequestWrapper() {
   // @@protoc_insertion_point(destructor:AccountServiceRequestWrapper)
@@ -489,7 +427,6 @@ AccountServiceRequestWrapper::~AccountServiceRequestWrapper() {
 }
 inline void AccountServiceRequestWrapper::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.session_id_.Destroy();
   if (has_request()) {
     clear_request();
   }
@@ -527,8 +464,6 @@ PROTOBUF_NOINLINE void AccountServiceRequestWrapper::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.session_id_.ClearToEmpty();
-  _impl_.request_type_ = 0;
   clear_request();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -541,48 +476,34 @@ const char* AccountServiceRequestWrapper::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 4, 2, 47, 2> AccountServiceRequestWrapper::_table_ = {
+const ::_pbi::TcParseTable<0, 2, 2, 0, 2> AccountServiceRequestWrapper::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    4, 8,  // max_field_number, fast_idx_mask
+    3, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967280,  // skipmap
+    4294967289,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    4,  // num_field_entries
+    2,  // num_field_entries
     2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_AccountServiceRequestWrapper_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string session_id = 2;
-    {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(AccountServiceRequestWrapper, _impl_.session_id_)}},
-    // .AccountServiceRequestWrapper.RequestType request_type = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AccountServiceRequestWrapper, _impl_.request_type_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(AccountServiceRequestWrapper, _impl_.request_type_)}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
-    // .AccountServiceRequestWrapper.RequestType request_type = 1;
-    {PROTOBUF_FIELD_OFFSET(AccountServiceRequestWrapper, _impl_.request_type_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-    // string session_id = 2;
-    {PROTOBUF_FIELD_OFFSET(AccountServiceRequestWrapper, _impl_.session_id_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .RequestAccountData request_account_data = 3;
+    // .RequestAccountData request_account_data = 2;
     {PROTOBUF_FIELD_OFFSET(AccountServiceRequestWrapper, _impl_.request_.request_account_data_), _Internal::kOneofCaseOffset + 0, 0,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .RequestCharacterList request_character_list = 4;
+    // .RequestCharacterList request_character_list = 3;
     {PROTOBUF_FIELD_OFFSET(AccountServiceRequestWrapper, _impl_.request_.request_character_list_), _Internal::kOneofCaseOffset + 0, 1,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::RequestAccountData>()},
     {::_pbi::TcParser::GetTable<::RequestCharacterList>()},
   }}, {{
-    "\34\0\12\0\0\0\0\0"
-    "AccountServiceRequestWrapper"
-    "session_id"
   }},
 };
 
@@ -593,31 +514,16 @@ const ::_pbi::TcParseTable<1, 4, 2, 47, 2> AccountServiceRequestWrapper::_table_
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // .AccountServiceRequestWrapper.RequestType request_type = 1;
-  if (this->_internal_request_type() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteEnumToArray(
-        1, this->_internal_request_type(), target);
-  }
-
-  // string session_id = 2;
-  if (!this->_internal_session_id().empty()) {
-    const std::string& _s = this->_internal_session_id();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "AccountServiceRequestWrapper.session_id");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
-  }
-
   switch (request_case()) {
     case kRequestAccountData: {
       target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-          3, _Internal::request_account_data(this),
+          2, _Internal::request_account_data(this),
           _Internal::request_account_data(this).GetCachedSize(), target, stream);
       break;
     }
     case kRequestCharacterList: {
       target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-          4, _Internal::request_character_list(this),
+          3, _Internal::request_character_list(this),
           _Internal::request_character_list(this).GetCachedSize(), target, stream);
       break;
     }
@@ -641,26 +547,14 @@ const ::_pbi::TcParseTable<1, 4, 2, 47, 2> AccountServiceRequestWrapper::_table_
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string session_id = 2;
-  if (!this->_internal_session_id().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_session_id());
-  }
-
-  // .AccountServiceRequestWrapper.RequestType request_type = 1;
-  if (this->_internal_request_type() != 0) {
-    total_size += 1 +
-                  ::_pbi::WireFormatLite::EnumSize(this->_internal_request_type());
-  }
-
   switch (request_case()) {
-    // .RequestAccountData request_account_data = 3;
+    // .RequestAccountData request_account_data = 2;
     case kRequestAccountData: {
       total_size +=
           1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.request_.request_account_data_);
       break;
     }
-    // .RequestCharacterList request_character_list = 4;
+    // .RequestCharacterList request_character_list = 3;
     case kRequestCharacterList: {
       total_size +=
           1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.request_.request_character_list_);
@@ -689,12 +583,6 @@ void AccountServiceRequestWrapper::MergeImpl(::google::protobuf::Message& to_msg
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_session_id().empty()) {
-    _this->_internal_set_session_id(from._internal_session_id());
-  }
-  if (from._internal_request_type() != 0) {
-    _this->_internal_set_request_type(from._internal_request_type());
-  }
   switch (from.request_case()) {
     case kRequestAccountData: {
       _this->_internal_mutable_request_account_data()->::RequestAccountData::MergeFrom(
@@ -729,11 +617,7 @@ PROTOBUF_NOINLINE bool AccountServiceRequestWrapper::IsInitialized() const {
 }
 void AccountServiceRequestWrapper::InternalSwap(AccountServiceRequestWrapper* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.session_id_, &other->_impl_.session_id_, arena);
-  swap(_impl_.request_type_, other->_impl_.request_type_);
   swap(_impl_.request_, other->_impl_.request_);
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }
@@ -793,8 +677,7 @@ AccountServiceResponseWrapper::AccountServiceResponseWrapper(::google::protobuf:
 inline PROTOBUF_NDEBUG_INLINE AccountServiceResponseWrapper::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : session_id_(arena, from.session_id_),
-        response_{},
+      : response_{},
         _cached_size_{0},
         _oneof_case_{from._oneof_case_[0]} {}
 
@@ -807,7 +690,6 @@ AccountServiceResponseWrapper::AccountServiceResponseWrapper(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  _impl_.request_type_ = from._impl_.request_type_;
   switch (response_case()) {
     case RESPONSE_NOT_SET:
       break;
@@ -824,14 +706,12 @@ AccountServiceResponseWrapper::AccountServiceResponseWrapper(
 inline PROTOBUF_NDEBUG_INLINE AccountServiceResponseWrapper::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : session_id_(arena),
-        response_{},
+      : response_{},
         _cached_size_{0},
         _oneof_case_{} {}
 
 inline void AccountServiceResponseWrapper::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.request_type_ = {};
 }
 AccountServiceResponseWrapper::~AccountServiceResponseWrapper() {
   // @@protoc_insertion_point(destructor:AccountServiceResponseWrapper)
@@ -840,7 +720,6 @@ AccountServiceResponseWrapper::~AccountServiceResponseWrapper() {
 }
 inline void AccountServiceResponseWrapper::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.session_id_.Destroy();
   if (has_response()) {
     clear_response();
   }
@@ -878,8 +757,6 @@ PROTOBUF_NOINLINE void AccountServiceResponseWrapper::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.session_id_.ClearToEmpty();
-  _impl_.request_type_ = 0;
   clear_response();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -892,48 +769,34 @@ const char* AccountServiceResponseWrapper::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 4, 2, 48, 2> AccountServiceResponseWrapper::_table_ = {
+const ::_pbi::TcParseTable<0, 2, 2, 0, 2> AccountServiceResponseWrapper::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    4, 8,  // max_field_number, fast_idx_mask
+    3, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967280,  // skipmap
+    4294967289,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    4,  // num_field_entries
+    2,  // num_field_entries
     2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_AccountServiceResponseWrapper_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string session_id = 2;
-    {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(AccountServiceResponseWrapper, _impl_.session_id_)}},
-    // .AccountServiceResponseWrapper.ResponseType request_type = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AccountServiceResponseWrapper, _impl_.request_type_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(AccountServiceResponseWrapper, _impl_.request_type_)}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
-    // .AccountServiceResponseWrapper.ResponseType request_type = 1;
-    {PROTOBUF_FIELD_OFFSET(AccountServiceResponseWrapper, _impl_.request_type_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-    // string session_id = 2;
-    {PROTOBUF_FIELD_OFFSET(AccountServiceResponseWrapper, _impl_.session_id_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .ResponseAccountData response_account_data = 3;
+    // .ResponseAccountData response_account_data = 2;
     {PROTOBUF_FIELD_OFFSET(AccountServiceResponseWrapper, _impl_.response_.response_account_data_), _Internal::kOneofCaseOffset + 0, 0,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .ResponseCharacterList response_character_list = 4;
+    // .ResponseCharacterList response_character_list = 3;
     {PROTOBUF_FIELD_OFFSET(AccountServiceResponseWrapper, _impl_.response_.response_character_list_), _Internal::kOneofCaseOffset + 0, 1,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::ResponseAccountData>()},
     {::_pbi::TcParser::GetTable<::ResponseCharacterList>()},
   }}, {{
-    "\35\0\12\0\0\0\0\0"
-    "AccountServiceResponseWrapper"
-    "session_id"
   }},
 };
 
@@ -944,31 +807,16 @@ const ::_pbi::TcParseTable<1, 4, 2, 48, 2> AccountServiceResponseWrapper::_table
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // .AccountServiceResponseWrapper.ResponseType request_type = 1;
-  if (this->_internal_request_type() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteEnumToArray(
-        1, this->_internal_request_type(), target);
-  }
-
-  // string session_id = 2;
-  if (!this->_internal_session_id().empty()) {
-    const std::string& _s = this->_internal_session_id();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "AccountServiceResponseWrapper.session_id");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
-  }
-
   switch (response_case()) {
     case kResponseAccountData: {
       target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-          3, _Internal::response_account_data(this),
+          2, _Internal::response_account_data(this),
           _Internal::response_account_data(this).GetCachedSize(), target, stream);
       break;
     }
     case kResponseCharacterList: {
       target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-          4, _Internal::response_character_list(this),
+          3, _Internal::response_character_list(this),
           _Internal::response_character_list(this).GetCachedSize(), target, stream);
       break;
     }
@@ -992,26 +840,14 @@ const ::_pbi::TcParseTable<1, 4, 2, 48, 2> AccountServiceResponseWrapper::_table
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string session_id = 2;
-  if (!this->_internal_session_id().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_session_id());
-  }
-
-  // .AccountServiceResponseWrapper.ResponseType request_type = 1;
-  if (this->_internal_request_type() != 0) {
-    total_size += 1 +
-                  ::_pbi::WireFormatLite::EnumSize(this->_internal_request_type());
-  }
-
   switch (response_case()) {
-    // .ResponseAccountData response_account_data = 3;
+    // .ResponseAccountData response_account_data = 2;
     case kResponseAccountData: {
       total_size +=
           1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.response_.response_account_data_);
       break;
     }
-    // .ResponseCharacterList response_character_list = 4;
+    // .ResponseCharacterList response_character_list = 3;
     case kResponseCharacterList: {
       total_size +=
           1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.response_.response_character_list_);
@@ -1040,12 +876,6 @@ void AccountServiceResponseWrapper::MergeImpl(::google::protobuf::Message& to_ms
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_session_id().empty()) {
-    _this->_internal_set_session_id(from._internal_session_id());
-  }
-  if (from._internal_request_type() != 0) {
-    _this->_internal_set_request_type(from._internal_request_type());
-  }
   switch (from.response_case()) {
     case kResponseAccountData: {
       _this->_internal_mutable_response_account_data()->::ResponseAccountData::MergeFrom(
@@ -1080,11 +910,7 @@ PROTOBUF_NOINLINE bool AccountServiceResponseWrapper::IsInitialized() const {
 }
 void AccountServiceResponseWrapper::InternalSwap(AccountServiceResponseWrapper* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.session_id_, &other->_impl_.session_id_, arena);
-  swap(_impl_.request_type_, other->_impl_.request_type_);
   swap(_impl_.response_, other->_impl_.response_);
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }

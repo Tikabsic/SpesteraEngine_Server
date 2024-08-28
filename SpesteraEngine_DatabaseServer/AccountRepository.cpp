@@ -17,6 +17,12 @@ ResponseAccountData AccountRepository::get_account_data(const RequestAccountData
         response_data.set_account_password(row[1].get<std::string>());
         response_data.set_account_id(row[2].get<std::string>());
         response_data.set_account_password_to_verify(data.account_password_to_verify());
+        std::cout << " not null" << std::endl;
         return response_data;
+    }
+    else {
+        ResponseAccountData empty_data;
+        empty_data.set_account_id("0");
+        return empty_data;
     }
 }

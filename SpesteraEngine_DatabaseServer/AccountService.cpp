@@ -20,5 +20,10 @@ DatabaseResponseWrapper AccountService::handle_message(const AccountServiceReque
 			account_service_Wrapper->mutable_response_account_data()->CopyFrom(repository_->get_account_data(wrapper.request_account_data()));
 			return response_wrapper;
 		}
+		default:
+			DatabaseResponseWrapper empty_wrapper;
+			std::cout << "Unknown message..." << std::endl;
+			return empty_wrapper;
+			break;
 	}
 }
