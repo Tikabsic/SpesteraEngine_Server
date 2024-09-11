@@ -198,9 +198,12 @@
     <ClInclude Include="DatabaseProtocol.pb.h" />
     <ClInclude Include="DbServicesProvider.h" />
     <ClInclude Include="GameCharacterService.pb.h" />
+    <ClInclude Include="GameSession.h" />
     <ClInclude Include="GSProtocol.pb.h" />
+    <ClInclude Include="LoginSession.h" />
     <ClInclude Include="MessageInterpreter.h" />
     <ClInclude Include="PlayerCharacter.h" />
+    <ClInclude Include="ServerStopwatch.h" />
     <ClInclude Include="Session.h" />
     <ClInclude Include="ConfigReader.h" />
     <ClInclude Include="SSKey.h" />
@@ -219,9 +222,12 @@
     <ClCompile Include="DatabaseProtocol.pb.cc" />
     <ClCompile Include="DbServicesProvider.cpp" />
     <ClCompile Include="GameCharacterService.pb.cc" />
+    <ClCompile Include="GameSession.cpp" />
     <ClCompile Include="GSProtocol.pb.cc" />
+    <ClCompile Include="LoginSession.cpp" />
     <ClCompile Include="MessageInterpreter.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
+    <ClCompile Include="ServerStopwatch.cpp" />
     <ClCompile Include="Session.cpp" />
     <ClCompile Include="ConfigReader.cpp" />
     <ClCompile Include="Init_GameServer.cpp" />

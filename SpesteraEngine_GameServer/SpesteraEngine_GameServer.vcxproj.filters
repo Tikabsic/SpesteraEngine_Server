@@ -115,6 +115,9 @@
     <Filter Include="Game_Server\Config\Protocol\Database_Protocol">
       <UniqueIdentifier>{d5665f5b-ccb7-41fe-aebe-71ef7392755c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game_Server\Utils\Server_Stopwatch">
+      <UniqueIdentifier>{a3dd0ca9-d81d-406f-b469-dc5acea272cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TcpServer.h">
@@ -173,6 +176,15 @@
     </ClInclude>
     <ClInclude Include="Connection.pb.h">
       <Filter>Game_Server\Config\Protocol\GameServer_Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSession.h">
+      <Filter>Game_Server\Include\Client_Session</Filter>
+    </ClInclude>
+    <ClInclude Include="LoginSession.h">
+      <Filter>Game_Server\Include\Client_Session</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerStopwatch.h">
+      <Filter>Game_Server\Utils\Server_Stopwatch</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +247,15 @@
     </ClCompile>
     <ClCompile Include="Connection.pb.cc">
       <Filter>Game_Server\Config\Protocol\GameServer_Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSession.cpp">
+      <Filter>Game_Server\Source\Client_Session</Filter>
+    </ClCompile>
+    <ClCompile Include="LoginSession.cpp">
+      <Filter>Game_Server\Source\Client_Session</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerStopwatch.cpp">
+      <Filter>Game_Server\Utils\Server_Stopwatch</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

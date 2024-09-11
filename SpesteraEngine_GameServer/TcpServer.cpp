@@ -1,10 +1,13 @@
 #include "TcpServer.h"
 #include "ConnectionsManager.h"
+#include "LoginSession.h"
+
 
 TcpServer::TcpServer(boost::asio::io_context& io_context, const std::string& address, int port, ConnectionsManager* connmanager)
     : acceptor_(io_context, tcp::endpoint(boost::asio::ip::make_address(address), port)),
     next_id_(1),
     conn_manager_(connmanager){
+
     do_accept();
 }
 
@@ -12,8 +15,7 @@ void TcpServer::do_accept() {
     acceptor_.async_accept(
         [this](boost::system::error_code ec, tcp::socket socket) {
             if (!ec) {
-                auto session = std::make_shared<Session>(std::move(socket), next_id_, this);
-                session->set_player_id(next_id_);
+                auto session = std::make_shared<LoginSession>(std::move(socket), next_id_, this);
                 conn_manager_->create_new_connection(session->get_player_id(), session);
                 session->start();
                 ++next_id_;

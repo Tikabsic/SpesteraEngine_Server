@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Session.h"
+#include "ServerStopwatch.h"
 
 #include <boost/asio.hpp>
 #include <memory>
@@ -27,7 +28,6 @@ public:
     void connect_account(std::string accountname);
     void disconnect_account(std::string accountname);
     bool is_account_online(std::string accountname);
-
 private:
     void do_accept();
 

@@ -19,11 +19,8 @@ void Chunk::add_session_to_chunk(const std::shared_ptr<Session>& session) {
     if (it == sessions_.end()) {
         sessions_.push_back(session);
         session->send_chunk_data(chunk_position_);
-        std::cout << "Added session: " << session->get_player_id() << " to chunk: (" << chunk_position_.first << " , " << chunk_position_.second << " )" << std::endl;
     }
-    else {
-        std::cout << "Session: " << session->get_player_id() << " is already in chunk: (" << chunk_position_.first << " , " << chunk_position_.second << " )" << std::endl;
-    }
+
 }
 
 void Chunk::remove_session_from_chunk(const std::shared_ptr<Session>& session)
@@ -35,14 +32,12 @@ void Chunk::remove_session_from_chunk(const std::shared_ptr<Session>& session)
 
     if (it != sessions_.end()) {
         sessions_.erase(it);
-        std::cout << "Removed session: " << session->get_player_id() << " from chunk: (" << chunk_position_.first << " , " << chunk_position_.second << " )" << std::endl;
     }
 }
 
 void Chunk::add_object_to_chunk(const std::shared_ptr<MovableObject>& go) {
     chunk_objects_.insert(go);
     go->current_chunk_ = chunk_position_;
-    std::cout << "Added object with id: " << go->get_object_id() << " to chunk: (" << chunk_position_.first << " , " << chunk_position_.second << " )" << std::endl;
 }
 
 void Chunk::remove_object_from_chunk(const std::shared_ptr<MovableObject>& go, bool isplayer) {
@@ -50,12 +45,10 @@ void Chunk::remove_object_from_chunk(const std::shared_ptr<MovableObject>& go, b
         auto it = std::find(chunk_objects_.begin(), chunk_objects_.end(), go);
         if (it != chunk_objects_.end()) {
             chunk_objects_.erase(go);
-            std::cout << "Removed zone character with id: " << go->get_object_id() << " from chunk: (" << chunk_position_.first << " , " << chunk_position_.second << " )" << std::endl;
         }
     }
     else {
         chunk_objects_.erase(go);
-        std::cout << "Removed object with id: " << go->get_object_id() << " from chunk: (" << chunk_position_.first << " , " << chunk_position_.second << " )" << std::endl;
     }
 }
 

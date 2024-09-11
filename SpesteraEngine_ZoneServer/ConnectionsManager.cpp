@@ -17,7 +17,6 @@ void ConnectionsManager::delete_connection_from_map(short key)
 {
     auto it = connections_.find(key);
     if (it != connections_.end()) {
-        std::cout << "Removing connection with key: " << key << " and reference count: " << it->second.use_count() << std::endl;
         connections_.erase(it);
         std::cout << "Player with id: " << key << " disconnected, online players in zone: " << connections_.size() << "!" << std::endl;
     }

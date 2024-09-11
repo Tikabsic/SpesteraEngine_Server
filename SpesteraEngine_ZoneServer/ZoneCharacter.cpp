@@ -34,6 +34,14 @@ void ZoneCharacter::move_zone_character(PlayerPosition transform)
     transform_.position += movementVector;
     update_chunk_position();
     update_fov();
+    std::shared_ptr<Session> sessionPtr = session_.lock();
+    if (sessionPtr) {
+        sessionPtr->end_time = sessionPtr->timer_.now();
+        auto duration = sessionPtr->end_time - sessionPtr->start_time;
+        auto microseconds = std::chrono::duration_cast<std::chrono::microseconds>(duration).count();
+        std::cout << "Czas przetwarzania: " << microseconds << " mikrosekund" << std::endl;
+    }
+
 }
 
 void ZoneCharacter::update_fov()

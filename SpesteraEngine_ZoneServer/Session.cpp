@@ -13,36 +13,6 @@ Session::~Session() {
 }
 
 void Session::start() {
-    //Gathering initial player position, currently hardcoded, latelly will read from DB
-    PlayerInitialData player_initial_data;
-    player_initial_data.set_player_id(playerId_);
-    player_initial_data.set_player_movementspeed(5);
-    player_initial_data.set_position_x(240);
-    player_initial_data.set_position_y(10);
-    player_initial_data.set_position_z(240);
-
-
-    ZSWrapper wrapper;
-    wrapper.set_type(ZSWrapper::PLAYERINITIALDATA);
-    wrapper.set_payload(player_initial_data.SerializeAsString());
-
-
-    //pushing PlayerInitialData to buffer and senting it direct to client 
-    write_msgs_.push_back(wrapper.SerializeAsString());
-    do_write();
-
-    //Creating data for other players to send and notice that new player logged in to game.
-    PlayerIn new_client_data;
-    new_client_data.mutable_data()->CopyFrom(player_initial_data);
-    ZSWrapper client_data_wrapper;
-    client_data_wrapper.set_type(ZSWrapper::PLAYERIN);
-    client_data_wrapper.set_payload(new_client_data.SerializeAsString());
-    tcp_server_->deliver_to_other_direct(client_data_wrapper.SerializeAsString(), playerId_);
-
-    //Creating and pushing to ServerHeart shared_ptr of a Player_Character class wich represents and hold data of game character
-    character_ = std::make_shared<ZoneCharacter>(*zone_map_, player_initial_data.position_x(), player_initial_data.position_y(), player_initial_data.position_z(), 5, playerId_, weak_from_this());
-    zone_map_->spawn_movable_object_on_map(character_);
-
     do_read();
 }
 
@@ -109,6 +79,7 @@ void Session::handle_message(const ZSWrapper& wrapper) {
         break;
     }
     case ZSWrapper::REQUESTWORLDDATA: {
+        zone_map_->spawn_movable_object_on_map(character_);
         WorldData world_data = zone_map_->grab_world_data(character_);
 
         ZSWrapper wrapper;
@@ -117,10 +88,45 @@ void Session::handle_message(const ZSWrapper& wrapper) {
         compress_to_write(wrapper);
         break;
     }
+    case ZSWrapper::ASSIGNCHARACTER: {
+        initialize_character();
+        break;
+    }
     default:
         std::cout << "Unknown message type received: " << wrapper.type() << std::endl;
         break;
     }
+}
+
+void Session::initialize_character()
+{
+    //Gathering initial player position, currently hardcoded, latelly will read from DB
+    PlayerInitialData player_initial_data;
+    player_initial_data.set_player_id(playerId_);
+    player_initial_data.set_player_movementspeed(5);
+    player_initial_data.set_position_x(240);
+    player_initial_data.set_position_y(10);
+    player_initial_data.set_position_z(240);
+
+
+    ZSWrapper wrapper;
+    wrapper.set_type(ZSWrapper::PLAYERINITIALDATA);
+    wrapper.set_payload(player_initial_data.SerializeAsString());
+
+
+    //pushing PlayerInitialData to buffer and senting it direct to client 
+    direct_push_to_buffer(wrapper.SerializeAsString());
+
+    //Creating data for other players to send and notice that new player logged in to game.
+    PlayerIn new_client_data;
+    new_client_data.mutable_data()->CopyFrom(player_initial_data);
+    ZSWrapper client_data_wrapper;
+    client_data_wrapper.set_type(ZSWrapper::PLAYERIN);
+    client_data_wrapper.set_payload(new_client_data.SerializeAsString());
+    tcp_server_->deliver_to_other_direct(client_data_wrapper.SerializeAsString(), playerId_);
+
+    //Creating and pushing to ServerHeart shared_ptr of a Player_Character class wich represents and hold data of game character
+    character_ = std::make_shared<ZoneCharacter>(*zone_map_, player_initial_data.position_x(), player_initial_data.position_y(), player_initial_data.position_z(), 5, playerId_, weak_from_this());
 }
 
 u_short Session::get_player_id()
@@ -141,29 +147,11 @@ void Session::send_chunk_data(CellKey key)
     wrapper.set_payload(zone_map_->grab_chunk_data(key, playerId_).SerializeAsString());
 
     compress_to_write(wrapper);
-    std::cout << "sent chunk data to : " << playerId_ << " of chunk: (" << key.first << " , " << key.second << " )" << std::endl;
 }
 
-void Session::do_read() {
-    auto self(shared_from_this());
-    socket_.async_read_some(boost::asio::buffer(data_, max_length),
-        [self](boost::system::error_code ec, std::size_t length) {
-            if (!ec) {
-                try {
-                    ZSWrapper wrapper;
-                    if (wrapper.ParseFromArray(self->data_, length)) {
-                        self->handle_message(wrapper);
-                    }
-                    self->do_read();
-                }
-                catch (const std::runtime_error& e) {
-                }
-            }
-        });
-}
+S
 
 void Session::do_write() {
-    std::cout << "sending message" << std::endl;
     auto self(shared_from_this());
     boost::asio::async_write(socket_,
         boost::asio::buffer(write_msgs_.front()),

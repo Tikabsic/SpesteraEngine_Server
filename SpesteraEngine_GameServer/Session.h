@@ -1,14 +1,17 @@
-#ifndef SESSION_H
-#define SESSION_H
+#pragma once
 
 #include <boost/asio.hpp>
 #include <deque>
 #include <mutex>
+#include <chrono>
 
+//Protobuf
 #include "GSProtocol.pb.h"
 #include "DatabaseProtocol.pb.h"
 #include "GameCharacterService.pb.h"
 #include "AccountService.pb.h"
+#include "Connection.pb.h"
+
 #include "BinaryCompressor.h"
 #include "PlayerCharacter.h"
 
@@ -17,7 +20,7 @@ class TcpServer;
 class Session : public std::enable_shared_from_this<Session> {
 public:
     Session(boost::asio::ip::tcp::socket socket, int id, TcpServer* tcpserver);
-    ~Session();
+    virtual ~Session() = default;
     void start();
     void disconnect();
 
@@ -25,21 +28,21 @@ public:
     void direct_push_to_buffer(const std::string& msg);
 
     //DbDataProcessing
-    void process_database_data(DatabaseResponseWrapper& wrapper);
+    virtual void process_database_data(DatabaseResponseWrapper& wrapper) = 0;
 
-    void set_player_id(u_short pid);
     u_short get_player_id();
-private:
+protected:
+    std::chrono::steady_clock timer_;
+    std::chrono::steady_clock::time_point start_time;
+    std::chrono::steady_clock::time_point end_time;
+
     void do_read();
     void do_write();
-    void handle_message(const GSWrapperRequest& wrapper);
+    virtual void handle_message(const GSWrapperRequest& wrapper) = 0;
 
-    //Authentication
-    void process_login_request(const RequestLogin& request);
-    bool verify_login_request(const ResponseAccountData& data);
-
-    void handle_account_service_response(const AccountServiceResponseWrapper& wrapper);
-    void handle_gamecharacter_service_response(const GameCharacterServiceResponseWrapper& wrapper);
+    //DbHandlers
+    virtual void handle_account_service_response(const AccountServiceResponseWrapper& wrapper) = 0;
+    virtual void handle_gamecharacter_service_response(const GameCharacterServiceResponseWrapper& wrapper) = 0;
 
     boost::asio::ip::tcp::socket socket_;
     int id_;
@@ -50,13 +53,6 @@ private:
     //Modules
     TcpServer* tcp_server_;
 
-    //Account properties
-    bool is_authenticated = false;
     std::string account_name_ = "";
-
-    //Player things
-    uint16_t playerId_;
     std::shared_ptr<PlayerCharacter> character_;
 };
-
-#endif // SESSION_H

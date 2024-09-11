@@ -30,12 +30,12 @@
     <ClCompile Include="MessageInterpreter.cpp" />
     <ClCompile Include="MovableObject.cpp" />
     <ClCompile Include="ChunkHeartbeat.cpp" />
+    <ClCompile Include="ServerStopwatch.cpp" />
     <ClCompile Include="Session.cpp" />
     <ClCompile Include="SpatialGrid.cpp" />
     <ClCompile Include="SSKey.cpp" />
     <ClCompile Include="TcpServer.cpp" />
     <ClCompile Include="ZoneCharacter.cpp" />
-    <ClCompile Include="ServerStopwatch.cpp" />
     <ClCompile Include="TcpConnector.cpp" />
     <ClCompile Include="TDM.cpp" />
     <ClCompile Include="ZoneMap.cpp" />
@@ -67,6 +67,7 @@
   <ItemGroup>
     <None Include="Config.ini" />
     <None Include="map.bin" />
+    <None Include="ZGSProtocol.proto" />
     <None Include="ZSProtocol.proto" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

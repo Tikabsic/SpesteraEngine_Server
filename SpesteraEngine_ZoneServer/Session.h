@@ -4,6 +4,7 @@
 #include <boost/asio.hpp>
 #include <deque>
 #include <mutex>
+#include <chrono>
 
 #include "ZSProtocol.pb.h"
 #include "BinaryCompressor.h"
@@ -28,13 +29,20 @@ public:
 
     //Updates
     void send_chunk_data(CellKey key);
+    std::chrono::steady_clock timer_;
+    std::chrono::steady_clock::time_point start_time;
+    std::chrono::steady_clock::time_point end_time;
 private:
+
     Session(const Session&) = delete;
     Session& operator=(const Session&) = delete;
 
     void do_read();
     void do_write();
     void handle_message(const ZSWrapper& wrapper);
+
+    //callbacks
+    void initialize_character();
 
     boost::asio::ip::tcp::socket socket_;
     int id_;
